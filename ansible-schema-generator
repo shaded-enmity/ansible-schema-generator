@@ -1,0 +1,289 @@
+#!/usr/bin/env python
+
+# ansible-schema-generator
+#
+# Copyright (C) 2017 Pavel Odvody <podvody@redhat.com>
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import ast
+import argparse
+import json
+import logging
+import os
+import sys
+import yaml
+
+import daiquiri
+
+
+logger = daiquiri.getLogger('ansible-schema')
+
+
+DOCUMENTATION_KEY = 'DOCUMENTATION'
+TITLE_KEYS = ('module',)
+IGNORE_KEYS = (('plugin_type',), ('strategy',), ('callback'),)
+FREE_FORM_KEYS = (('free_form',),)
+COMMAND_MODULES = ('shell', 'command', 'script',)
+LOG_LEVEL_MAP = {'debug': logging.DEBUG,
+                 'warning': logging.WARNING, 'error': logging.ERROR}
+
+
+def _find_script_files(path):
+    ''' Find all files ending with `.py` in the given directory tree and return them '''
+    target_directory = os.path.abspath(path)
+    script_files = []
+
+    for root, _, files in os.walk(target_directory):
+        for file in files:
+            absolute_path = os.path.join(root, file)
+            # Skip symlinks so that we don't process the same file more than once
+            if os.path.islink(absolute_path):
+                continue
+            if file.endswith('.py'):
+                script_files.append(absolute_path)
+
+    return script_files
+
+
+def _parse_files(files):
+    ''' Parse Python files and return a mapping of `path` => `ast.Module` '''
+    parsed_files = {}
+    for file in files:
+        with open(file, 'r') as fp:
+            parsed_files[file] = ast.parse(fp.read(), file)
+    return parsed_files
+
+
+def _find_documentation_variable(filename, module):
+    ''' Extract `DOCUMENTATION` string from the module '''
+    for node in ast.iter_child_nodes(module):
+        if isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Name):
+            if node.targets[0].id == DOCUMENTATION_KEY:
+                # We could probably dig a little but deeper here, this seems to
+                # suffice though
+                if not isinstance(node.value, ast.Str):
+                    logger.warning('Value for {} is not a string but "{}"'.format(
+                        filename, type(node.value)))
+
+                try:
+                    return yaml.load(node.value.s)
+                except yaml.YAMLError:
+                    logger.error('Error loading {}'.format(filename))
+                    return None
+
+
+def _infer_type(option):
+    ''' Infer JSON schema types from Ansible type description
+
+        returns tuple (required, type_descriptor)
+    '''
+    default = option.get('default')
+    description = option.get('description', '')
+    if isinstance(description, list):
+        description = "\n".join(description)
+
+    type_descriptor = {}
+
+    TYPE_MAP = {
+        'int': 'integer',
+        'bool': 'boolean',
+        'str': 'string',
+        'float': 'number'
+    }
+
+    type_name = type(default).__name__
+    mapped_type = TYPE_MAP.get(type_name)
+
+    if not mapped_type:
+        mapped_type = 'string'
+
+    # This is a hack, however there doesn't seem any better way
+    # of distinguishing whether the given option is a list option
+    # so handle it heuristically
+    if 'List' in description or 'list' in description:
+        type_descriptor = {'type': 'array', 'items': {'type': mapped_type}}
+    else:
+        type_descriptor = {'type': mapped_type}
+
+    return (option.get('required', False), type_descriptor)
+
+
+def _take_key(key_list, obj):
+    ''' Iterate over keys in `key_list` and return the first one which
+        is present in `obj`, or None
+    '''
+    for key in key_list:
+        if key in obj:
+            return obj[key]
+
+    return None
+
+
+def _check_keys(key_set_list, obj):
+    ''' Check if `obj` contains a full `key_set` from `key_set_list` '''
+    for key_set in key_set_list:
+        if all(key in obj for key in key_set):
+            return True
+
+    return False
+
+
+def _tranform_deferred_schemas(options):
+    ''' Deferred transformation to handle particular `free_form` commands '''
+    schemas = []
+    for (filename, contents) in options:
+        properties, requireds = {}, []
+        schema = {'name': {'type': 'string'}, 'args': {
+            'type': 'object', 'properties': properties, 'required': requireds}}
+
+        title = _take_key(TITLE_KEYS, contents)
+        if title is None:
+            logger.warning('No object title for: {}'.format(filename))
+            continue
+
+        data = contents.get('options') or {}
+        for key, value in data.iteritems():
+            # `free_form` is only an indicator of the type of command
+            # and should not be an actual key to chooser from
+            if key == 'free_form':
+                continue
+            required, descriptor = _infer_type(value)
+            properties[key] = descriptor
+            if required:
+                requireds.append(key)
+
+        description = contents.get('description', '')
+        if isinstance(description, list):
+            description = "\n".join(description)
+
+        schema[title] = {'type': 'string'}
+        schemas.append({'type': 'object', 'properties': schema,
+                        'required': ['name', title]})
+
+    return schemas
+
+
+def _transform_options_to_schemas(options, deferred):
+    ''' Transform Ansible `options` specification into JSON descriptors '''
+    schemas = {'name': {'type': 'string'}}
+    for (filename, contents) in options:
+        if _check_keys(IGNORE_KEYS, contents):
+            logger.debug('Ignoring source file: {}'.format(filename))
+            continue
+
+        schema = {'type': 'object', 'description': None,
+                  'required': list(), 'properties': dict()}
+
+        title = _take_key(TITLE_KEYS, contents)
+        if title is None:
+            logger.warning('No object title for: {}'.format(filename))
+            continue
+        elif title in schemas:
+            logger.error(
+                'Attempting to insert duplicate entry for: {}'.format(title))
+            continue
+
+        data = contents.get('options') or {}
+        if _check_keys(FREE_FORM_KEYS, data) and title not in COMMAND_MODULES:
+            logger.warning(
+                'Ignoring non-command free form module {}'.format(filename))
+            continue
+
+        if title in COMMAND_MODULES:
+            deferred.append((filename, contents))
+            continue
+
+        for key, value in data.iteritems():
+            required, descriptor = _infer_type(value)
+            schema['properties'][key] = descriptor
+            if required:
+                schema['required'].append(key)
+
+        description = contents.get('description', '')
+        if isinstance(description, list):
+            description = "\n".join(description)
+
+        schema['description'] = description
+        schemas[title] = schema
+
+    return schemas
+
+
+def _parse_arguments():
+    description = ('Generate JSON schema for language servers from Ansible module' + 
+                   ' documentation in an Ansible repository checkout `target_path`')
+    ap = argparse.ArgumentParser(prog='ansible-schema-generator', description=description)
+    ap.add_argument('-o', '--output-file', default=None, help='write result to this file')
+    ap.add_argument('-l', '--log-level',
+                    choices=['debug', 'warning', 'error'], default='warning', help='set log level')
+    ap.add_argument('target_path', help='scan this directory for Ansible modules')
+
+    return ap.parse_args()
+
+
+def main():
+    arguments = _parse_arguments()
+    target_path = arguments.target_path
+    log_level = LOG_LEVEL_MAP[arguments.log_level]
+
+    daiquiri.setup(level=log_level, program_name='ansible-schema')
+
+    logger.debug('Loading modules from: {}'.format(
+        os.path.abspath(target_path)))
+
+    # find python files and get their AST
+    script_files = _find_script_files(target_path)
+    parsed_files = _parse_files(script_files)
+
+    # extract data from AST
+    collected_data = []
+    for filename, module in parsed_files.iteritems():
+        variable_value = _find_documentation_variable(filename, module)
+        if variable_value:
+            collected_data.append((filename, variable_value))
+
+    logger.debug('Transforming {} documents'.format(len(collected_data)))
+
+    deferred = []
+    transformed = _transform_options_to_schemas(collected_data, deferred)
+
+    logger.debug('Handing {} deferred schemas'.format(len(deferred)))
+    transformed_deferred = _tranform_deferred_schemas(deferred)
+
+    combined = {'anyOf': transformed_deferred + [{'type': 'object',
+                                                  'properties': transformed, 'required': ['name']}]}
+
+    output_schemas = {'$schema': 'http://json-schema.org/draft-04/schema#',
+                      'type': 'array', 'items': combined}
+
+    logger.debug('Transformation done!')
+
+    # determine where we should write the resulting data
+    fp = sys.stdout
+    if arguments.output_file:
+        logger.debug('Setting output file to: {}'.format(
+            os.path.abspath(arguments.output_file)))
+        fp = open(arguments.output_file, 'w')
+
+    logger.debug('Writing output')
+
+    with fp:
+        json.dump(output_schemas, fp, indent=3)
+
+    logger.debug('Done')
+
+
+if __name__ == '__main__':
+    main()
