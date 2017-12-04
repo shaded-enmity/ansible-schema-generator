@@ -146,7 +146,7 @@ def _tranform_deferred_schemas(options):
     for (filename, contents) in options:
         properties, requireds = {}, []
         schema = {'name': {'type': 'string'}, 'args': {
-            'type': 'object', 'properties': properties, 'required': requireds}}
+                  'type': 'object', 'properties': properties, 'required': requireds}}
 
         title = _take_key(TITLE_KEYS, contents)
         if title is None:
