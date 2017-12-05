@@ -3,8 +3,7 @@
       "anyOf": [
          {
             "required": [
-               "name", 
-               "command"
+               "name"
             ], 
             "type": "object", 
             "properties": {
@@ -39,8 +38,7 @@
          }, 
          {
             "required": [
-               "name", 
-               "shell"
+               "name"
             ], 
             "type": "object", 
             "properties": {
@@ -78,8 +76,7 @@
          }, 
          {
             "required": [
-               "name", 
-               "script"
+               "name"
             ], 
             "type": "object", 
             "properties": {
@@ -3223,115 +3220,108 @@
                      }
                   }
                }, 
-               "dnsimple": {
-                  "required": [], 
+               "panos_nat_policy": {
+                  "required": [
+                     "rule_name", 
+                     "password", 
+                     "ip_address", 
+                     "to_zone", 
+                     "from_zone"
+                  ], 
                   "type": "object", 
-                  "description": "Manages domains and records via the DNSimple API, see the docs: U(http://developer.dnsimple.com/)", 
+                  "description": "Create a policy nat rule. Keep in mind that we can either end up configuring source NAT, destination NAT, or both. Instead of splitting it into two we will make a fair attempt to determine which one the user wants.", 
                   "properties": {
-                     "solo": {
+                     "username": {
                         "type": "string"
                      }, 
-                     "domain": {
+                     "dnat_address": {
+                        "type": "string"
+                     }, 
+                     "snat_bidirectional": {
+                        "type": "string"
+                     }, 
+                     "to_zone": {
+                        "type": "string"
+                     }, 
+                     "snat_type": {
+                        "type": "string"
+                     }, 
+                     "service": {
+                        "type": "string"
+                     }, 
+                     "source": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "account_email": {
-                        "type": "string"
-                     }, 
-                     "record_ids": {
+                     "from_zone": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "value": {
+                     "destination": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "dnat_port": {
                         "type": "string"
                      }, 
-                     "priority": {
+                     "snat_interface_address": {
                         "type": "string"
                      }, 
-                     "record": {
+                     "rule_name": {
                         "type": "string"
                      }, 
-                     "state": {
+                     "override": {
                         "type": "string"
                      }, 
-                     "ttl": {
+                     "commit": {
+                        "type": "boolean"
+                     }, 
+                     "password": {
                         "type": "string"
                      }, 
-                     "type": {
+                     "ip_address": {
                         "type": "string"
                      }, 
-                     "account_api_token": {
+                     "snat_address": {
+                        "type": "string"
+                     }, 
+                     "snat_interface": {
                         "type": "string"
                      }
                   }
                }, 
-               "gluster_volume": {
+               "pn_show": {
                   "required": [
-                     "name", 
-                     "state"
+                     "pn_command"
                   ], 
                   "type": "object", 
-                  "description": "Create, remove, start, stop and tune GlusterFS volumes", 
+                  "description": "Execute show command in the nodes and returns the results read from the device.", 
                   "properties": {
-                     "force": {
+                     "pn_clipassword": {
                         "type": "string"
                      }, 
-                     "name": {
+                     "pn_command": {
                         "type": "string"
                      }, 
-                     "replicas": {
+                     "pn_cliusername": {
                         "type": "string"
                      }, 
-                     "bricks": {
-                        "type": "string"
-                     }, 
-                     "disperses": {
-                        "type": "string"
-                     }, 
-                     "quota": {
+                     "pn_parameters": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "stripes": {
+                     "pn_options": {
                         "type": "string"
                      }, 
-                     "cluster": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "host": {
-                        "type": "string"
-                     }, 
-                     "state": {
-                        "type": "string"
-                     }, 
-                     "arbiter": {
-                        "type": "string"
-                     }, 
-                     "redundancies": {
-                        "type": "string"
-                     }, 
-                     "directory": {
-                        "type": "string"
-                     }, 
-                     "start_on_create": {
-                        "type": "string"
-                     }, 
-                     "rebalance": {
-                        "type": "string"
-                     }, 
-                     "options": {
-                        "type": "string"
-                     }, 
-                     "transport": {
+                     "pn_cliswitch": {
                         "type": "string"
                      }
                   }
@@ -3506,17 +3496,141 @@
                      }
                   }
                }, 
-               "ovirt_quotas_facts": {
-                  "required": [
-                     "data_center"
-                  ], 
+               "netscaler_service": {
+                  "required": [], 
                   "type": "object", 
-                  "description": "Retrieve facts about one or more oVirt/RHV quotas.", 
+                  "description": "Manage service configuration in Netscaler.\nThis module allows the creation, deletion and modification of Netscaler services.\nThis module is intended to run either on the ansible  control node or a bastion (jumpserver) with access to the actual netscaler instance.\nThis module supports check mode.", 
                   "properties": {
+                     "comment": {
+                        "type": "string"
+                     }, 
+                     "tcpb": {
+                        "type": "string"
+                     }, 
+                     "cachetype": {
+                        "type": "string"
+                     }, 
+                     "maxbandwidth": {
+                        "type": "string"
+                     }, 
+                     "ip": {
+                        "type": "string"
+                     }, 
+                     "servername": {
+                        "type": "string"
+                     }, 
+                     "disabled": {
+                        "type": "boolean"
+                     }, 
+                     "maxreq": {
+                        "type": "string"
+                     }, 
+                     "monitor_bindings": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "graceful": {
+                        "type": "boolean"
+                     }, 
+                     "svrtimeout": {
+                        "type": "string"
+                     }, 
+                     "port": {
+                        "type": "string"
+                     }, 
+                     "clttimeout": {
+                        "type": "string"
+                     }, 
+                     "servicetype": {
+                        "type": "string"
+                     }, 
+                     "cacheable": {
+                        "type": "boolean"
+                     }, 
+                     "pathmonitor": {
+                        "type": "string"
+                     }, 
+                     "maxclient": {
+                        "type": "string"
+                     }, 
+                     "ipaddress": {
+                        "type": "string"
+                     }, 
+                     "usip": {
+                        "type": "string"
+                     }, 
+                     "netprofile": {
+                        "type": "string"
+                     }, 
+                     "customserverid": {
+                        "type": "string"
+                     }, 
+                     "td": {
+                        "type": "string"
+                     }, 
+                     "httpprofilename": {
+                        "type": "string"
+                     }, 
+                     "pathmonitorindv": {
+                        "type": "string"
+                     }, 
+                     "cleartextport": {
+                        "type": "string"
+                     }, 
+                     "appflowlog": {
+                        "type": "string"
+                     }, 
+                     "rtspsessionidremap": {
+                        "type": "boolean"
+                     }, 
+                     "monthreshold": {
+                        "type": "string"
+                     }, 
+                     "hashid": {
+                        "type": "string"
+                     }, 
+                     "serverid": {
+                        "type": "string"
+                     }, 
+                     "processlocal": {
+                        "type": "string"
+                     }, 
+                     "accessdown": {
+                        "type": "boolean"
+                     }, 
                      "name": {
                         "type": "string"
                      }, 
-                     "data_center": {
+                     "tcpprofilename": {
+                        "type": "string"
+                     }, 
+                     "sp": {
+                        "type": "string"
+                     }, 
+                     "downstateflush": {
+                        "type": "string"
+                     }, 
+                     "cipheader": {
+                        "type": "string"
+                     }, 
+                     "cip": {
+                        "type": "string"
+                     }, 
+                     "healthmonitor": {
+                        "type": "boolean"
+                     }, 
+                     "useproxyport": {
+                        "type": "string"
+                     }, 
+                     "cka": {
+                        "type": "string"
+                     }, 
+                     "dnsprofilename": {
+                        "type": "string"
+                     }, 
+                     "cmp": {
                         "type": "string"
                      }
                   }
@@ -7447,27 +7561,57 @@
                      }
                   }
                }, 
-               "bigip_gtm_wide_ip": {
+               "ec2_vpc": {
                   "required": [
-                     "lb_method", 
-                     "name"
+                     "state", 
+                     "resource_tags"
                   ], 
                   "type": "object", 
-                  "description": "Manages F5 BIG-IP GTM wide ip.", 
+                  "description": "Create or terminates AWS virtual private clouds.  This module has a dependency on python-boto.", 
                   "properties": {
+                     "subnets": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "route_tables": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "dns_support": {
+                        "type": "string"
+                     }, 
+                     "internet_gateway": {
+                        "type": "string"
+                     }, 
+                     "instance_tenancy": {
+                        "type": "string"
+                     }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "lb_method": {
+                     "wait_timeout": {
+                        "type": "integer"
+                     }, 
+                     "dns_hostnames": {
                         "type": "string"
                      }, 
-                     "type": {
+                     "resource_tags": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "vpc_id": {
                         "type": "string"
                      }, 
-                     "name": {
+                     "cidr_block": {
                         "type": "string"
                      }, 
-                     "partition": {
+                     "wait": {
                         "type": "string"
                      }
                   }
@@ -8484,43 +8628,16 @@
                      }
                   }
                }, 
-               "ce_evpn_bd_vni": {
-                  "required": [
-                     "vpn_target_import", 
-                     "bridge_domain_id"
-                  ], 
+               "elb_classic_lb_facts": {
+                  "required": [], 
                   "type": "object", 
-                  "description": "Manages Ethernet Virtual Private Network (EVPN) VXLAN Network Identifier (VNI) configurations on HUAWEI CloudEngine switches.", 
+                  "description": "Gather facts about EC2 Elastic Load Balancers in AWS", 
                   "properties": {
-                     "vpn_target_both": {
+                     "names": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
-                     }, 
-                     "vpn_target_import": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "bridge_domain_id": {
-                        "type": "string"
-                     }, 
-                     "vpn_target_export": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "state": {
-                        "type": "string"
-                     }, 
-                     "route_distinguisher": {
-                        "type": "string"
-                     }, 
-                     "evpn": {
-                        "type": "string"
                      }
                   }
                }, 
@@ -14612,12 +14729,66 @@
                      }
                   }
                }, 
-               "rax_identity": {
-                  "required": [], 
+               "avi_gslbhealthmonitor": {
+                  "required": [
+                     "name", 
+                     "type"
+                  ], 
                   "type": "object", 
-                  "description": "Verifies Rackspace Cloud credentials and returns identity information", 
+                  "description": "This module is used to configure GslbHealthMonitor object\nmore examples at U(https://github.com/avinetworks/devops)", 
                   "properties": {
+                     "monitor_port": {
+                        "type": "string"
+                     }, 
+                     "https_monitor": {
+                        "type": "string"
+                     }, 
+                     "receive_timeout": {
+                        "type": "string"
+                     }, 
+                     "description": {
+                        "type": "string"
+                     }, 
+                     "url": {
+                        "type": "string"
+                     }, 
+                     "dns_monitor": {
+                        "type": "string"
+                     }, 
+                     "tenant_ref": {
+                        "type": "string"
+                     }, 
+                     "uuid": {
+                        "type": "string"
+                     }, 
+                     "name": {
+                        "type": "string"
+                     }, 
+                     "failed_checks": {
+                        "type": "string"
+                     }, 
+                     "tcp_monitor": {
+                        "type": "string"
+                     }, 
                      "state": {
+                        "type": "string"
+                     }, 
+                     "send_interval": {
+                        "type": "string"
+                     }, 
+                     "udp_monitor": {
+                        "type": "string"
+                     }, 
+                     "http_monitor": {
+                        "type": "string"
+                     }, 
+                     "external_monitor": {
+                        "type": "string"
+                     }, 
+                     "type": {
+                        "type": "string"
+                     }, 
+                     "successful_checks": {
                         "type": "string"
                      }
                   }
@@ -16477,12 +16648,8 @@
                "ping": {
                   "required": [], 
                   "type": "object", 
-                  "description": "A trivial test module, this module always returns C(pong) on successful contact. It does not make sense in playbooks, but it is useful from C(/usr/bin/ansible) to verify the ability to login and that a usable python is configured.\nThis is NOT ICMP ping, this is just a trivial test module.\nFor Windows targets, use the M(win_ping) module instead.", 
-                  "properties": {
-                     "data": {
-                        "type": "string"
-                     }
-                  }
+                  "description": "A trivial test module, this module always returns C(pong) on successful contact. It does not make sense in playbooks, but it is useful from C(/usr/bin/ansible) to verify the ability to login and that a usable python is configured.\nThis is NOT ICMP ping, this is just a trivial test module.", 
+                  "properties": {}
                }, 
                "avi_cloud": {
                   "required": [
@@ -17597,29 +17764,74 @@
                      }
                   }
                }, 
-               "cs_securitygroup": {
+               "mail": {
                   "required": [
-                     "name"
+                     "subject"
                   ], 
                   "type": "object", 
-                  "description": "Create and remove security groups.", 
+                  "description": "This module is useful for sending emails from playbooks.\nOne may wonder why automate sending emails?  In complex environments there are from time to time processes that cannot be automated, either because you lack the authority to make it so, or because not everyone agrees to a common approach.\nIf you cannot automate a specific step, but the step is non-blocking, sending out an email to the responsible party to make them perform their part of the bargain is an elegant way to put the responsibility in someone else's lap.\nOf course sending out a mail can be equally useful as a way to notify one or more people in a team that a specific action has been (successfully) taken.", 
                   "properties": {
-                     "account": {
+                     "body": {
                         "type": "string"
                      }, 
-                     "description": {
+                     "username": {
                         "type": "string"
                      }, 
-                     "domain": {
+                     "from": {
                         "type": "string"
                      }, 
-                     "project": {
+                     "secure": {
                         "type": "string"
                      }, 
-                     "state": {
+                     "headers": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "cc": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "charset": {
                         "type": "string"
                      }, 
-                     "name": {
+                     "bcc": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "to": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "host": {
+                        "type": "string"
+                     }, 
+                     "timeout": {
+                        "type": "integer"
+                     }, 
+                     "subtype": {
+                        "type": "string"
+                     }, 
+                     "attach": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "password": {
+                        "type": "string"
+                     }, 
+                     "port": {
+                        "type": "integer"
+                     }, 
+                     "subject": {
                         "type": "string"
                      }
                   }
@@ -18031,90 +18243,23 @@
                      }
                   }
                }, 
-               "synchronize": {
+               "aci_aep": {
                   "required": [
-                     "src", 
-                     "dest"
+                     "aep"
                   ], 
                   "type": "object", 
-                  "description": "C(synchronize) is a wrapper around rsync to make common tasks in your playbooks quick and easy. It is run and originates on the local host where Ansible is being run. Of course, you could just use the C(command) action to call rsync yourself, but you also have to add a fair number of boilerplate options and host facts. C(synchronize) is not intended to provide access to the full power of rsync, but does make the most common invocations easier to implement. You `still` may need to call rsync directly via C(command) or C(shell) depending on your use case.", 
+                  "description": "Connect to external virtual and physical domains by using attachable Access Entity Profiles (AEP) on Cisco ACI fabrics.\nMore information from the internal APIC class I(infra:AttEntityP) at U(https://developer.cisco.com/media/mim-ref/MO-infraAttEntityP.html).", 
                   "properties": {
-                     "partial": {
+                     "aep": {
                         "type": "string"
                      }, 
-                     "links": {
-                        "type": "string"
+                     "state": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
                      }, 
-                     "copy_links": {
-                        "type": "string"
-                     }, 
-                     "perms": {
-                        "type": "string"
-                     }, 
-                     "link_dest": {
-                        "type": "string"
-                     }, 
-                     "owner": {
-                        "type": "string"
-                     }, 
-                     "archive": {
-                        "type": "string"
-                     }, 
-                     "dest_port": {
-                        "type": "string"
-                     }, 
-                     "group": {
-                        "type": "string"
-                     }, 
-                     "existing_only": {
-                        "type": "string"
-                     }, 
-                     "rsync_path": {
-                        "type": "string"
-                     }, 
-                     "verify_host": {
-                        "type": "string"
-                     }, 
-                     "use_ssh_args": {
-                        "type": "string"
-                     }, 
-                     "dirs": {
-                        "type": "string"
-                     }, 
-                     "private_key": {
-                        "type": "string"
-                     }, 
-                     "dest": {
-                        "type": "string"
-                     }, 
-                     "compress": {
-                        "type": "string"
-                     }, 
-                     "rsync_timeout": {
-                        "type": "integer"
-                     }, 
-                     "rsync_opts": {
-                        "type": "string"
-                     }, 
-                     "set_remote_user": {
-                        "type": "boolean"
-                     }, 
-                     "recursive": {
-                        "type": "string"
-                     }, 
-                     "src": {
-                        "type": "string"
-                     }, 
-                     "checksum": {
-                        "type": "string"
-                     }, 
-                     "times": {
-                        "type": "string"
-                     }, 
-                     "mode": {
-                        "type": "string"
-                     }, 
-                     "delete": {
+                     "description": {
                         "type": "string"
                      }
                   }
@@ -18200,44 +18345,47 @@
                   "description": "Runs the I(facter) discovery program (U(https://github.com/puppetlabs/facter)) on the remote system, returning JSON data that can be useful for inventory purposes.", 
                   "properties": {}
                }, 
-               "postgresql_lang": {
+               "vdirect_file": {
                   "required": [
-                     "lang"
+                     "vdirect_user", 
+                     "file_name", 
+                     "vdirect_ip", 
+                     "vdirect_password"
                   ], 
                   "type": "object", 
-                  "description": "Adds, removes or changes procedural languages with a PostgreSQL database.\nThis module allows you to add a language, remote a language or change the trust relationship with a PostgreSQL database. The module can be used on the machine where executed or on a remote host.\nWhen removing a language from a database, it is possible that dependencies prevent the database from being removed. In that case, you can specify casade to automatically drop objects that depend on the language (such as functions in the language). In case the language can't be deleted because it is required by the database system, you can specify fail_on_drop=no to ignore the error.\nBe carefull when marking a language as trusted since this could be a potential security breach. Untrusted languages allow only users with the PostgreSQL superuser privilege to use this language to create new functions.", 
+                  "description": "Uploads a new or updates an existing configuration template or workflow template into the Radware vDirect server. All parameters may be set as environment variables.", 
                   "properties": {
-                     "lang": {
+                     "vdirect_user": {
                         "type": "string"
                      }, 
-                     "cascade": {
-                        "type": "boolean"
+                     "vdirect_https_port": {
+                        "type": "integer"
                      }, 
-                     "login_user": {
+                     "vdirect_validate_certs": {
                         "type": "string"
                      }, 
-                     "login_host": {
+                     "file_name": {
                         "type": "string"
                      }, 
-                     "db": {
+                     "vdirect_timeout": {
+                        "type": "integer"
+                     }, 
+                     "vdirect_wait": {
                         "type": "string"
                      }, 
-                     "force_trust": {
-                        "type": "boolean"
-                     }, 
-                     "state": {
+                     "vdirect_ip": {
                         "type": "string"
                      }, 
-                     "login_password": {
+                     "vdirect_password": {
                         "type": "string"
                      }, 
-                     "trust": {
-                        "type": "boolean"
-                     }, 
-                     "fail_on_drop": {
+                     "vdirect_secondary_ip": {
                         "type": "string"
                      }, 
-                     "port": {
+                     "vdirect_use_ssl": {
+                        "type": "string"
+                     }, 
+                     "vdirect_http_port": {
                         "type": "integer"
                      }
                   }
@@ -19768,16 +19916,42 @@
                      }
                   }
                }, 
-               "elb_classic_lb_facts": {
-                  "required": [], 
+               "bigip_monitor_tcp": {
+                  "required": [
+                     "name"
+                  ], 
                   "type": "object", 
-                  "description": "Gather facts about EC2 Elastic Load Balancers in AWS", 
+                  "description": "Manages F5 BIG-IP LTM tcp monitors via iControl SOAP API.", 
                   "properties": {
-                     "names": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
+                     "name": {
+                        "type": "string"
+                     }, 
+                     "parent": {
+                        "type": "string"
+                     }, 
+                     "receive": {
+                        "type": "string"
+                     }, 
+                     "ip": {
+                        "type": "string"
+                     }, 
+                     "interval": {
+                        "type": "string"
+                     }, 
+                     "send": {
+                        "type": "string"
+                     }, 
+                     "time_until_up": {
+                        "type": "string"
+                     }, 
+                     "timeout": {
+                        "type": "string"
+                     }, 
+                     "type": {
+                        "type": "string"
+                     }, 
+                     "port": {
+                        "type": "string"
                      }
                   }
                }, 
@@ -21584,81 +21758,14 @@
                      }
                   }
                }, 
-               "nxos_bgp_neighbor": {
+               "nxos_overlay_global": {
                   "required": [
-                     "asn", 
-                     "neighbor"
+                     "anycast_gateway_mac"
                   ], 
                   "type": "object", 
-                  "description": "Manages BGP neighbors configurations on NX-OS switches.", 
+                  "description": "Configures anycast gateway MAC of the switch.", 
                   "properties": {
-                     "pwd_type": {
-                        "type": "string"
-                     }, 
-                     "dynamic_capability": {
-                        "type": "string"
-                     }, 
-                     "shutdown": {
-                        "type": "string"
-                     }, 
-                     "low_memory_exempt": {
-                        "type": "string"
-                     }, 
-                     "remove_private_as": {
-                        "type": "string"
-                     }, 
-                     "suppress_4_byte_as": {
-                        "type": "string"
-                     }, 
-                     "connected_check": {
-                        "type": "string"
-                     }, 
-                     "remote_as": {
-                        "type": "string"
-                     }, 
-                     "ebgp_multihop": {
-                        "type": "string"
-                     }, 
-                     "maximum_peers": {
-                        "type": "string"
-                     }, 
-                     "state": {
-                        "type": "string"
-                     }, 
-                     "timers_holdtime": {
-                        "type": "string"
-                     }, 
-                     "update_source": {
-                        "type": "string"
-                     }, 
-                     "description": {
-                        "type": "string"
-                     }, 
-                     "local_as": {
-                        "type": "string"
-                     }, 
-                     "timers_keepalive": {
-                        "type": "string"
-                     }, 
-                     "pwd": {
-                        "type": "string"
-                     }, 
-                     "vrf": {
-                        "type": "string"
-                     }, 
-                     "log_neighbor_changes": {
-                        "type": "string"
-                     }, 
-                     "asn": {
-                        "type": "string"
-                     }, 
-                     "transport_passive_only": {
-                        "type": "string"
-                     }, 
-                     "capability_negotiation": {
-                        "type": "string"
-                     }, 
-                     "neighbor": {
+                     "anycast_gateway_mac": {
                         "type": "string"
                      }
                   }
@@ -21847,46 +21954,27 @@
                      }
                   }
                }, 
-               "clc_loadbalancer": {
+               "aci_ap": {
                   "required": [
-                     "name", 
-                     "alias", 
-                     "location"
+                     "ap", 
+                     "tenant"
                   ], 
                   "type": "object", 
-                  "description": "An Ansible module to Create, Delete shared loadbalancers in CenturyLink Cloud.", 
+                  "description": "Manage top level Application Profile (AP) objects on Cisco ACI fabrics\nMore information from the internal APIC class I(fv:Ap) at U(https://developer.cisco.com/media/mim-ref/MO-fvAp.html).", 
                   "properties": {
-                     "status": {
-                        "type": "string"
-                     }, 
-                     "name": {
-                        "type": "string"
-                     }, 
-                     "port": {
-                        "type": "string"
-                     }, 
-                     "alias": {
+                     "ap": {
                         "type": "string"
                      }, 
                      "state": {
-                        "type": "string"
-                     }, 
-                     "location": {
-                        "type": "string"
-                     }, 
-                     "nodes": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "method": {
+                     "descr": {
                         "type": "string"
                      }, 
-                     "persistence": {
-                        "type": "string"
-                     }, 
-                     "description": {
+                     "tenant": {
                         "type": "string"
                      }
                   }
@@ -22197,78 +22285,48 @@
                      }
                   }
                }, 
-               "panos_nat_policy": {
-                  "required": [
-                     "rule_name", 
-                     "password", 
-                     "ip_address", 
-                     "to_zone", 
-                     "from_zone"
-                  ], 
+               "dnsimple": {
+                  "required": [], 
                   "type": "object", 
-                  "description": "Create a policy nat rule. Keep in mind that we can either end up configuring source NAT, destination NAT, or both. Instead of splitting it into two we will make a fair attempt to determine which one the user wants.", 
+                  "description": "Manages domains and records via the DNSimple API, see the docs: U(http://developer.dnsimple.com/)", 
                   "properties": {
-                     "username": {
+                     "solo": {
                         "type": "string"
                      }, 
-                     "dnat_address": {
-                        "type": "string"
-                     }, 
-                     "snat_bidirectional": {
-                        "type": "string"
-                     }, 
-                     "to_zone": {
-                        "type": "string"
-                     }, 
-                     "snat_type": {
-                        "type": "string"
-                     }, 
-                     "service": {
-                        "type": "string"
-                     }, 
-                     "source": {
+                     "domain": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "from_zone": {
+                     "account_email": {
+                        "type": "string"
+                     }, 
+                     "record_ids": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "destination": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "dnat_port": {
+                     "value": {
                         "type": "string"
                      }, 
-                     "snat_interface_address": {
+                     "priority": {
                         "type": "string"
                      }, 
-                     "rule_name": {
+                     "record": {
                         "type": "string"
                      }, 
-                     "override": {
+                     "state": {
                         "type": "string"
                      }, 
-                     "commit": {
-                        "type": "boolean"
-                     }, 
-                     "password": {
+                     "ttl": {
                         "type": "string"
                      }, 
-                     "ip_address": {
+                     "type": {
                         "type": "string"
                      }, 
-                     "snat_address": {
-                        "type": "string"
-                     }, 
-                     "snat_interface": {
+                     "account_api_token": {
                         "type": "string"
                      }
                   }
@@ -22334,14 +22392,81 @@
                      }
                   }
                }, 
-               "nxos_overlay_global": {
+               "nxos_bgp_neighbor": {
                   "required": [
-                     "anycast_gateway_mac"
+                     "asn", 
+                     "neighbor"
                   ], 
                   "type": "object", 
-                  "description": "Configures anycast gateway MAC of the switch.", 
+                  "description": "Manages BGP neighbors configurations on NX-OS switches.", 
                   "properties": {
-                     "anycast_gateway_mac": {
+                     "pwd_type": {
+                        "type": "string"
+                     }, 
+                     "dynamic_capability": {
+                        "type": "string"
+                     }, 
+                     "shutdown": {
+                        "type": "string"
+                     }, 
+                     "low_memory_exempt": {
+                        "type": "string"
+                     }, 
+                     "remove_private_as": {
+                        "type": "string"
+                     }, 
+                     "suppress_4_byte_as": {
+                        "type": "string"
+                     }, 
+                     "connected_check": {
+                        "type": "string"
+                     }, 
+                     "remote_as": {
+                        "type": "string"
+                     }, 
+                     "ebgp_multihop": {
+                        "type": "string"
+                     }, 
+                     "maximum_peers": {
+                        "type": "string"
+                     }, 
+                     "state": {
+                        "type": "string"
+                     }, 
+                     "timers_holdtime": {
+                        "type": "string"
+                     }, 
+                     "update_source": {
+                        "type": "string"
+                     }, 
+                     "description": {
+                        "type": "string"
+                     }, 
+                     "local_as": {
+                        "type": "string"
+                     }, 
+                     "timers_keepalive": {
+                        "type": "string"
+                     }, 
+                     "pwd": {
+                        "type": "string"
+                     }, 
+                     "vrf": {
+                        "type": "string"
+                     }, 
+                     "log_neighbor_changes": {
+                        "type": "string"
+                     }, 
+                     "asn": {
+                        "type": "string"
+                     }, 
+                     "transport_passive_only": {
+                        "type": "string"
+                     }, 
+                     "capability_negotiation": {
+                        "type": "string"
+                     }, 
+                     "neighbor": {
                         "type": "string"
                      }
                   }
@@ -22384,32 +22509,69 @@
                      }
                   }
                }, 
-               "pn_show": {
+               "gluster_volume": {
                   "required": [
-                     "pn_command"
+                     "name", 
+                     "state"
                   ], 
                   "type": "object", 
-                  "description": "Execute show command in the nodes and returns the results read from the device.", 
+                  "description": "Create, remove, start, stop and tune GlusterFS volumes", 
                   "properties": {
-                     "pn_clipassword": {
+                     "force": {
                         "type": "string"
                      }, 
-                     "pn_command": {
+                     "name": {
                         "type": "string"
                      }, 
-                     "pn_cliusername": {
+                     "replicas": {
                         "type": "string"
                      }, 
-                     "pn_parameters": {
+                     "bricks": {
+                        "type": "string"
+                     }, 
+                     "disperses": {
+                        "type": "string"
+                     }, 
+                     "quota": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "pn_options": {
+                     "stripes": {
                         "type": "string"
                      }, 
-                     "pn_cliswitch": {
+                     "cluster": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "host": {
+                        "type": "string"
+                     }, 
+                     "state": {
+                        "type": "string"
+                     }, 
+                     "arbiter": {
+                        "type": "string"
+                     }, 
+                     "redundancies": {
+                        "type": "string"
+                     }, 
+                     "directory": {
+                        "type": "string"
+                     }, 
+                     "start_on_create": {
+                        "type": "string"
+                     }, 
+                     "rebalance": {
+                        "type": "string"
+                     }, 
+                     "options": {
+                        "type": "string"
+                     }, 
+                     "transport": {
                         "type": "string"
                      }
                   }
@@ -22570,65 +22732,57 @@
                      }
                   }
                }, 
-               "postgresql_user": {
-                  "required": [
-                     "name"
-                  ], 
+               "ovirt_storage_connections": {
+                  "required": [], 
                   "type": "object", 
-                  "description": "Add or remove PostgreSQL users (roles) from a remote host and, optionally, grant the users access to an existing database or tables.\nThe fundamental function of the module is to create, or delete, roles from a PostgreSQL cluster. Privilege assignment, or removal, is an optional step, which works on one database at a time. This allows for the module to be called several times in the same module to modify the permissions on different databases, or to grant permissions to already existing users.\nA user cannot be removed until all the privileges have been stripped from the user. In such situation, if the module tries to remove the user it will fail. To avoid this from happening the fail_on_user option signals the module to try to remove the user, but if not possible keep going; the module will report if changes happened and separately if the user was removed or not.", 
+                  "description": "Module to manage storage connections in oVirt", 
                   "properties": {
-                     "ssl_rootcert": {
+                     "username": {
                         "type": "string"
                      }, 
-                     "ssl_mode": {
+                     "force": {
                         "type": "string"
                      }, 
-                     "name": {
+                     "target": {
                         "type": "string"
                      }, 
-                     "no_password_changes": {
+                     "storage": {
                         "type": "string"
                      }, 
-                     "login_user": {
+                     "nfs_retrans": {
                         "type": "string"
                      }, 
-                     "login_host": {
+                     "id": {
                         "type": "string"
                      }, 
-                     "expires": {
-                        "type": "string"
-                     }, 
-                     "db": {
-                        "type": "string"
-                     }, 
-                     "role_attr_flags": {
-                        "type": "string"
-                     }, 
-                     "conn_limit": {
-                        "type": "string"
-                     }, 
-                     "login_unix_socket": {
+                     "port": {
                         "type": "string"
                      }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "encrypted": {
-                        "type": "boolean"
+                     "mount_options": {
+                        "type": "string"
                      }, 
-                     "login_password": {
+                     "address": {
+                        "type": "string"
+                     }, 
+                     "nfs_timeout": {
+                        "type": "string"
+                     }, 
+                     "path": {
+                        "type": "string"
+                     }, 
+                     "vfs_type": {
                         "type": "string"
                      }, 
                      "password": {
                         "type": "string"
                      }, 
-                     "port": {
-                        "type": "integer"
-                     }, 
-                     "fail_on_user": {
+                     "type": {
                         "type": "string"
                      }, 
-                     "priv": {
+                     "nfs_version": {
                         "type": "string"
                      }
                   }
@@ -22923,57 +23077,65 @@
                      }
                   }
                }, 
-               "ovirt_storage_connections": {
-                  "required": [], 
+               "postgresql_user": {
+                  "required": [
+                     "name"
+                  ], 
                   "type": "object", 
-                  "description": "Module to manage storage connections in oVirt", 
+                  "description": "Add or remove PostgreSQL users (roles) from a remote host and, optionally, grant the users access to an existing database or tables.\nThe fundamental function of the module is to create, or delete, roles from a PostgreSQL cluster. Privilege assignment, or removal, is an optional step, which works on one database at a time. This allows for the module to be called several times in the same module to modify the permissions on different databases, or to grant permissions to already existing users.\nA user cannot be removed until all the privileges have been stripped from the user. In such situation, if the module tries to remove the user it will fail. To avoid this from happening the fail_on_user option signals the module to try to remove the user, but if not possible keep going; the module will report if changes happened and separately if the user was removed or not.", 
                   "properties": {
-                     "username": {
+                     "ssl_rootcert": {
                         "type": "string"
                      }, 
-                     "force": {
+                     "ssl_mode": {
                         "type": "string"
                      }, 
-                     "target": {
+                     "name": {
                         "type": "string"
                      }, 
-                     "storage": {
+                     "no_password_changes": {
                         "type": "string"
                      }, 
-                     "nfs_retrans": {
+                     "login_user": {
                         "type": "string"
                      }, 
-                     "id": {
+                     "login_host": {
                         "type": "string"
                      }, 
-                     "port": {
+                     "expires": {
+                        "type": "string"
+                     }, 
+                     "db": {
+                        "type": "string"
+                     }, 
+                     "role_attr_flags": {
+                        "type": "string"
+                     }, 
+                     "conn_limit": {
+                        "type": "string"
+                     }, 
+                     "login_unix_socket": {
                         "type": "string"
                      }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "mount_options": {
-                        "type": "string"
+                     "encrypted": {
+                        "type": "boolean"
                      }, 
-                     "address": {
-                        "type": "string"
-                     }, 
-                     "nfs_timeout": {
-                        "type": "string"
-                     }, 
-                     "path": {
-                        "type": "string"
-                     }, 
-                     "vfs_type": {
+                     "login_password": {
                         "type": "string"
                      }, 
                      "password": {
                         "type": "string"
                      }, 
-                     "type": {
+                     "port": {
+                        "type": "integer"
+                     }, 
+                     "fail_on_user": {
                         "type": "string"
                      }, 
-                     "nfs_version": {
+                     "priv": {
                         "type": "string"
                      }
                   }
@@ -23480,141 +23642,17 @@
                      }
                   }
                }, 
-               "netscaler_service": {
-                  "required": [], 
+               "ovirt_quotas_facts": {
+                  "required": [
+                     "data_center"
+                  ], 
                   "type": "object", 
-                  "description": "Manage service configuration in Netscaler.\nThis module allows the creation, deletion and modification of Netscaler services.\nThis module is intended to run either on the ansible  control node or a bastion (jumpserver) with access to the actual netscaler instance.\nThis module supports check mode.", 
+                  "description": "Retrieve facts about one or more oVirt/RHV quotas.", 
                   "properties": {
-                     "comment": {
-                        "type": "string"
-                     }, 
-                     "tcpb": {
-                        "type": "string"
-                     }, 
-                     "cachetype": {
-                        "type": "string"
-                     }, 
-                     "maxbandwidth": {
-                        "type": "string"
-                     }, 
-                     "ip": {
-                        "type": "string"
-                     }, 
-                     "servername": {
-                        "type": "string"
-                     }, 
-                     "disabled": {
-                        "type": "boolean"
-                     }, 
-                     "maxreq": {
-                        "type": "string"
-                     }, 
-                     "monitor_bindings": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "graceful": {
-                        "type": "boolean"
-                     }, 
-                     "svrtimeout": {
-                        "type": "string"
-                     }, 
-                     "port": {
-                        "type": "string"
-                     }, 
-                     "clttimeout": {
-                        "type": "string"
-                     }, 
-                     "servicetype": {
-                        "type": "string"
-                     }, 
-                     "cacheable": {
-                        "type": "boolean"
-                     }, 
-                     "pathmonitor": {
-                        "type": "string"
-                     }, 
-                     "maxclient": {
-                        "type": "string"
-                     }, 
-                     "ipaddress": {
-                        "type": "string"
-                     }, 
-                     "usip": {
-                        "type": "string"
-                     }, 
-                     "netprofile": {
-                        "type": "string"
-                     }, 
-                     "customserverid": {
-                        "type": "string"
-                     }, 
-                     "td": {
-                        "type": "string"
-                     }, 
-                     "httpprofilename": {
-                        "type": "string"
-                     }, 
-                     "pathmonitorindv": {
-                        "type": "string"
-                     }, 
-                     "cleartextport": {
-                        "type": "string"
-                     }, 
-                     "appflowlog": {
-                        "type": "string"
-                     }, 
-                     "rtspsessionidremap": {
-                        "type": "boolean"
-                     }, 
-                     "monthreshold": {
-                        "type": "string"
-                     }, 
-                     "hashid": {
-                        "type": "string"
-                     }, 
-                     "serverid": {
-                        "type": "string"
-                     }, 
-                     "processlocal": {
-                        "type": "string"
-                     }, 
-                     "accessdown": {
-                        "type": "boolean"
-                     }, 
                      "name": {
                         "type": "string"
                      }, 
-                     "tcpprofilename": {
-                        "type": "string"
-                     }, 
-                     "sp": {
-                        "type": "string"
-                     }, 
-                     "downstateflush": {
-                        "type": "string"
-                     }, 
-                     "cipheader": {
-                        "type": "string"
-                     }, 
-                     "cip": {
-                        "type": "string"
-                     }, 
-                     "healthmonitor": {
-                        "type": "boolean"
-                     }, 
-                     "useproxyport": {
-                        "type": "string"
-                     }, 
-                     "cka": {
-                        "type": "string"
-                     }, 
-                     "dnsprofilename": {
-                        "type": "string"
-                     }, 
-                     "cmp": {
+                     "data_center": {
                         "type": "string"
                      }
                   }
@@ -24026,45 +24064,6 @@
                         "type": "string"
                      }, 
                      "before": {
-                        "type": "string"
-                     }
-                  }
-               }, 
-               "bigip_monitor_tcp": {
-                  "required": [
-                     "name"
-                  ], 
-                  "type": "object", 
-                  "description": "Manages F5 BIG-IP LTM tcp monitors via iControl SOAP API.", 
-                  "properties": {
-                     "name": {
-                        "type": "string"
-                     }, 
-                     "parent": {
-                        "type": "string"
-                     }, 
-                     "receive": {
-                        "type": "string"
-                     }, 
-                     "ip": {
-                        "type": "string"
-                     }, 
-                     "interval": {
-                        "type": "string"
-                     }, 
-                     "send": {
-                        "type": "string"
-                     }, 
-                     "time_until_up": {
-                        "type": "string"
-                     }, 
-                     "timeout": {
-                        "type": "string"
-                     }, 
-                     "type": {
-                        "type": "string"
-                     }, 
-                     "port": {
                         "type": "string"
                      }
                   }
@@ -26805,37 +26804,21 @@
                      }
                   }
                }, 
-               "expect": {
+               "set_stats": {
                   "required": [
-                     "command", 
-                     "responses"
+                     "data"
                   ], 
                   "type": "object", 
-                  "description": "The C(expect) module executes a command and responds to prompts.\nThe given command will be executed on all selected nodes. It will not be processed through the shell, so variables like C($HOME) and operations like C(\"<\"), C(\">\"), C(\"|\"), and C(\"&\") will not work.", 
+                  "description": "This module allows setting/accumulating stats on the current ansible run, either per host of for all hosts in the run.\nThis module is also supported for Windows targets.", 
                   "properties": {
-                     "chdir": {
-                        "type": "string"
-                     }, 
-                     "responses": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "removes": {
-                        "type": "string"
-                     }, 
-                     "echo": {
+                     "aggregate": {
                         "type": "boolean"
                      }, 
-                     "creates": {
+                     "data": {
                         "type": "string"
                      }, 
-                     "command": {
-                        "type": "string"
-                     }, 
-                     "timeout": {
-                        "type": "integer"
+                     "per_host": {
+                        "type": "boolean"
                      }
                   }
                }, 
@@ -29519,16 +29502,16 @@
                      }
                   }
                }, 
-               "smartos_image_facts": {
+               "aws_kms_facts": {
                   "required": [], 
                   "type": "object", 
-                  "description": "Retrieve facts about all installed images on SmartOS. Facts will be inserted to the ansible_facts key.", 
+                  "description": "Gather facts about AWS KMS keys including tags and grants", 
                   "properties": {
+                     "pending_deletion": {
+                        "type": "boolean"
+                     }, 
                      "filters": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
+                        "type": "string"
                      }
                   }
                }, 
@@ -29639,6 +29622,50 @@
                         "type": "string"
                      }, 
                      "privkey": {
+                        "type": "string"
+                     }
+                  }
+               }, 
+               "clc_loadbalancer": {
+                  "required": [
+                     "name", 
+                     "alias", 
+                     "location"
+                  ], 
+                  "type": "object", 
+                  "description": "An Ansible module to Create, Delete shared loadbalancers in CenturyLink Cloud.", 
+                  "properties": {
+                     "status": {
+                        "type": "string"
+                     }, 
+                     "name": {
+                        "type": "string"
+                     }, 
+                     "port": {
+                        "type": "string"
+                     }, 
+                     "alias": {
+                        "type": "string"
+                     }, 
+                     "state": {
+                        "type": "string"
+                     }, 
+                     "location": {
+                        "type": "string"
+                     }, 
+                     "nodes": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "method": {
+                        "type": "string"
+                     }, 
+                     "persistence": {
+                        "type": "string"
+                     }, 
+                     "description": {
                         "type": "string"
                      }
                   }
@@ -30563,66 +30590,12 @@
                      }
                   }
                }, 
-               "avi_gslbhealthmonitor": {
-                  "required": [
-                     "name", 
-                     "type"
-                  ], 
+               "rax_identity": {
+                  "required": [], 
                   "type": "object", 
-                  "description": "This module is used to configure GslbHealthMonitor object\nmore examples at U(https://github.com/avinetworks/devops)", 
+                  "description": "Verifies Rackspace Cloud credentials and returns identity information", 
                   "properties": {
-                     "monitor_port": {
-                        "type": "string"
-                     }, 
-                     "https_monitor": {
-                        "type": "string"
-                     }, 
-                     "receive_timeout": {
-                        "type": "string"
-                     }, 
-                     "description": {
-                        "type": "string"
-                     }, 
-                     "url": {
-                        "type": "string"
-                     }, 
-                     "dns_monitor": {
-                        "type": "string"
-                     }, 
-                     "tenant_ref": {
-                        "type": "string"
-                     }, 
-                     "uuid": {
-                        "type": "string"
-                     }, 
-                     "name": {
-                        "type": "string"
-                     }, 
-                     "failed_checks": {
-                        "type": "string"
-                     }, 
-                     "tcp_monitor": {
-                        "type": "string"
-                     }, 
                      "state": {
-                        "type": "string"
-                     }, 
-                     "send_interval": {
-                        "type": "string"
-                     }, 
-                     "udp_monitor": {
-                        "type": "string"
-                     }, 
-                     "http_monitor": {
-                        "type": "string"
-                     }, 
-                     "external_monitor": {
-                        "type": "string"
-                     }, 
-                     "type": {
-                        "type": "string"
-                     }, 
-                     "successful_checks": {
                         "type": "string"
                      }
                   }
@@ -31162,6 +31135,33 @@
                      }
                   }
                }, 
+               "cs_securitygroup": {
+                  "required": [
+                     "name"
+                  ], 
+                  "type": "object", 
+                  "description": "Create and remove security groups.", 
+                  "properties": {
+                     "account": {
+                        "type": "string"
+                     }, 
+                     "description": {
+                        "type": "string"
+                     }, 
+                     "domain": {
+                        "type": "string"
+                     }, 
+                     "project": {
+                        "type": "string"
+                     }, 
+                     "state": {
+                        "type": "string"
+                     }, 
+                     "name": {
+                        "type": "string"
+                     }
+                  }
+               }, 
                "sts_session_token": {
                   "required": [], 
                   "type": "object", 
@@ -31606,21 +31606,37 @@
                      }
                   }
                }, 
-               "set_stats": {
+               "expect": {
                   "required": [
-                     "data"
+                     "command", 
+                     "responses"
                   ], 
                   "type": "object", 
-                  "description": "This module allows setting/accumulating stats on the current ansible run, either per host of for all hosts in the run.\nThis module is also supported for Windows targets.", 
+                  "description": "The C(expect) module executes a command and responds to prompts.\nThe given command will be executed on all selected nodes. It will not be processed through the shell, so variables like C($HOME) and operations like C(\"<\"), C(\">\"), C(\"|\"), and C(\"&\") will not work.", 
                   "properties": {
-                     "aggregate": {
-                        "type": "boolean"
-                     }, 
-                     "data": {
+                     "chdir": {
                         "type": "string"
                      }, 
-                     "per_host": {
+                     "responses": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "removes": {
+                        "type": "string"
+                     }, 
+                     "echo": {
                         "type": "boolean"
+                     }, 
+                     "creates": {
+                        "type": "string"
+                     }, 
+                     "command": {
+                        "type": "string"
+                     }, 
+                     "timeout": {
+                        "type": "integer"
                      }
                   }
                }, 
@@ -35552,20 +35568,53 @@
                      }
                   }
                }, 
-               "slackpkg": {
+               "avi_network": {
                   "required": [
                      "name"
                   ], 
                   "type": "object", 
-                  "description": "Manage binary packages for Slackware using 'slackpkg' which is available in versions after 12.2.", 
+                  "description": "This module is used to configure Network object\nmore examples at U(https://github.com/avinetworks/devops)", 
                   "properties": {
+                     "configured_subnets": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "vrf_context_ref": {
+                        "type": "string"
+                     }, 
+                     "name": {
+                        "type": "string"
+                     }, 
+                     "exclude_discovered_subnets": {
+                        "type": "string"
+                     }, 
+                     "cloud_ref": {
+                        "type": "string"
+                     }, 
+                     "tenant_ref": {
+                        "type": "string"
+                     }, 
+                     "synced_from_se": {
+                        "type": "string"
+                     }, 
+                     "vimgrnw_ref": {
+                        "type": "string"
+                     }, 
+                     "url": {
+                        "type": "string"
+                     }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "update_cache": {
-                        "type": "boolean"
+                     "dhcp_enabled": {
+                        "type": "string"
                      }, 
-                     "name": {
+                     "vcenter_dvs": {
+                        "type": "string"
+                     }, 
+                     "uuid": {
                         "type": "string"
                      }
                   }
@@ -36184,31 +36233,6 @@
                      }, 
                      "l2sub": {
                         "type": "boolean"
-                     }
-                  }
-               }, 
-               "aci_ap": {
-                  "required": [
-                     "ap", 
-                     "tenant"
-                  ], 
-                  "type": "object", 
-                  "description": "Manage top level Application Profile (AP) objects on Cisco ACI fabrics\nMore information from the internal APIC class I(fv:Ap) at U(https://developer.cisco.com/media/mim-ref/MO-fvAp.html).", 
-                  "properties": {
-                     "ap": {
-                        "type": "string"
-                     }, 
-                     "state": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "descr": {
-                        "type": "string"
-                     }, 
-                     "tenant": {
-                        "type": "string"
                      }
                   }
                }, 
@@ -39373,47 +39397,44 @@
                      }
                   }
                }, 
-               "vdirect_file": {
+               "postgresql_lang": {
                   "required": [
-                     "vdirect_user", 
-                     "file_name", 
-                     "vdirect_ip", 
-                     "vdirect_password"
+                     "lang"
                   ], 
                   "type": "object", 
-                  "description": "Uploads a new or updates an existing configuration template or workflow template into the Radware vDirect server. All parameters may be set as environment variables.", 
+                  "description": "Adds, removes or changes procedural languages with a PostgreSQL database.\nThis module allows you to add a language, remote a language or change the trust relationship with a PostgreSQL database. The module can be used on the machine where executed or on a remote host.\nWhen removing a language from a database, it is possible that dependencies prevent the database from being removed. In that case, you can specify casade to automatically drop objects that depend on the language (such as functions in the language). In case the language can't be deleted because it is required by the database system, you can specify fail_on_drop=no to ignore the error.\nBe carefull when marking a language as trusted since this could be a potential security breach. Untrusted languages allow only users with the PostgreSQL superuser privilege to use this language to create new functions.", 
                   "properties": {
-                     "vdirect_user": {
+                     "lang": {
                         "type": "string"
                      }, 
-                     "vdirect_https_port": {
-                        "type": "integer"
+                     "cascade": {
+                        "type": "boolean"
                      }, 
-                     "vdirect_validate_certs": {
+                     "login_user": {
                         "type": "string"
                      }, 
-                     "file_name": {
+                     "login_host": {
                         "type": "string"
                      }, 
-                     "vdirect_timeout": {
-                        "type": "integer"
-                     }, 
-                     "vdirect_wait": {
+                     "db": {
                         "type": "string"
                      }, 
-                     "vdirect_ip": {
+                     "force_trust": {
+                        "type": "boolean"
+                     }, 
+                     "state": {
                         "type": "string"
                      }, 
-                     "vdirect_password": {
+                     "login_password": {
                         "type": "string"
                      }, 
-                     "vdirect_secondary_ip": {
+                     "trust": {
+                        "type": "boolean"
+                     }, 
+                     "fail_on_drop": {
                         "type": "string"
                      }, 
-                     "vdirect_use_ssl": {
-                        "type": "string"
-                     }, 
-                     "vdirect_http_port": {
+                     "port": {
                         "type": "integer"
                      }
                   }
@@ -41170,16 +41191,16 @@
                      }
                   }
                }, 
-               "aws_kms_facts": {
+               "smartos_image_facts": {
                   "required": [], 
                   "type": "object", 
-                  "description": "Gather facts about AWS KMS keys including tags and grants", 
+                  "description": "Retrieve facts about all installed images on SmartOS. Facts will be inserted to the ansible_facts key.", 
                   "properties": {
-                     "pending_deletion": {
-                        "type": "boolean"
-                     }, 
                      "filters": {
-                        "type": "string"
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
                      }
                   }
                }, 
@@ -41700,57 +41721,27 @@
                      }
                   }
                }, 
-               "ec2_vpc": {
+               "bigip_gtm_wide_ip": {
                   "required": [
-                     "state", 
-                     "resource_tags"
+                     "lb_method", 
+                     "name"
                   ], 
                   "type": "object", 
-                  "description": "Create or terminates AWS virtual private clouds.  This module has a dependency on python-boto.", 
+                  "description": "Manages F5 BIG-IP GTM wide ip.", 
                   "properties": {
-                     "subnets": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "route_tables": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "dns_support": {
-                        "type": "string"
-                     }, 
-                     "internet_gateway": {
-                        "type": "string"
-                     }, 
-                     "instance_tenancy": {
-                        "type": "string"
-                     }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "wait_timeout": {
-                        "type": "integer"
-                     }, 
-                     "dns_hostnames": {
+                     "lb_method": {
                         "type": "string"
                      }, 
-                     "resource_tags": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "vpc_id": {
+                     "type": {
                         "type": "string"
                      }, 
-                     "cidr_block": {
+                     "name": {
                         "type": "string"
                      }, 
-                     "wait": {
+                     "partition": {
                         "type": "string"
                      }
                   }
@@ -44933,128 +44924,50 @@
                      }
                   }
                }, 
-               "ce_acl_advance": {
+               "net_interface": {
                   "required": [
-                     "acl_name"
+                     "name"
                   ], 
                   "type": "object", 
-                  "description": "Manages advanced ACL configurations on HUAWEI CloudEngine switches.", 
+                  "description": "This module provides declarative management of Interfaces on network devices.", 
                   "properties": {
-                     "acl_step": {
+                     "delay": {
+                        "type": "integer"
+                     }, 
+                     "name": {
                         "type": "string"
                      }, 
-                     "protocol": {
+                     "duplex": {
                         "type": "string"
                      }, 
-                     "precedence": {
+                     "enabled": {
                         "type": "string"
                      }, 
-                     "dest_port_end": {
+                     "mtu": {
                         "type": "string"
                      }, 
-                     "log_flag": {
+                     "rx_rate": {
+                        "type": "string"
+                     }, 
+                     "purge": {
                         "type": "boolean"
-                     }, 
-                     "time_range": {
-                        "type": "string"
-                     }, 
-                     "src_port_begin": {
-                        "type": "string"
-                     }, 
-                     "frag_type": {
-                        "type": "string"
-                     }, 
-                     "dest_port_op": {
-                        "type": "string"
-                     }, 
-                     "dest_pool_name": {
-                        "type": "string"
-                     }, 
-                     "acl_description": {
-                        "type": "string"
-                     }, 
-                     "ttl_expired": {
-                        "type": "boolean"
-                     }, 
-                     "icmp_type": {
-                        "type": "string"
-                     }, 
-                     "src_mask": {
-                        "type": "string"
-                     }, 
-                     "icmp_name": {
-                        "type": "string"
-                     }, 
-                     "established": {
-                        "type": "boolean"
-                     }, 
-                     "igmp_type": {
-                        "type": "string"
-                     }, 
-                     "tos": {
-                        "type": "string"
                      }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "rule_action": {
+                     "aggregate": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "speed": {
                         "type": "string"
                      }, 
-                     "acl_num": {
+                     "tx_rate": {
                         "type": "string"
                      }, 
-                     "tcp_flag_mask": {
-                        "type": "string"
-                     }, 
-                     "src_port_end": {
-                        "type": "string"
-                     }, 
-                     "dest_ip": {
-                        "type": "string"
-                     }, 
-                     "icmp_code": {
-                        "type": "string"
-                     }, 
-                     "src_port_op": {
-                        "type": "string"
-                     }, 
-                     "acl_name": {
-                        "type": "string"
-                     }, 
-                     "dscp": {
-                        "type": "string"
-                     }, 
-                     "rule_name": {
-                        "type": "string"
-                     }, 
-                     "rule_description": {
-                        "type": "string"
-                     }, 
-                     "dest_mask": {
-                        "type": "string"
-                     }, 
-                     "src_port_pool_name": {
-                        "type": "string"
-                     }, 
-                     "source_ip": {
-                        "type": "string"
-                     }, 
-                     "syn_flag": {
-                        "type": "string"
-                     }, 
-                     "vrf_name": {
-                        "type": "string"
-                     }, 
-                     "src_pool_name": {
-                        "type": "string"
-                     }, 
-                     "dest_port_begin": {
-                        "type": "string"
-                     }, 
-                     "dest_port_pool_name": {
-                        "type": "string"
-                     }, 
-                     "rule_id": {
+                     "description": {
                         "type": "string"
                      }
                   }
@@ -48038,49 +47951,36 @@
                      }
                   }
                }, 
-               "win_package": {
-                  "required": [], 
+               "exo_dns_record": {
+                  "required": [
+                     "domain"
+                  ], 
                   "type": "object", 
-                  "description": "Installs or uninstalls a package in either an MSI or EXE format.\nThese packages can be sources from the local file system, network file share or a url.\nPlease read the notes section around some caveats with this module.", 
+                  "description": "Create, update and delete records.", 
                   "properties": {
-                     "username": {
+                     "domain": {
                         "type": "string"
                      }, 
-                     "expected_return_code": {
+                     "multiple": {
                         "type": "string"
                      }, 
                      "name": {
                         "type": "string"
                      }, 
-                     "creates_service": {
+                     "prio": {
                         "type": "string"
                      }, 
-                     "creates_path": {
+                     "content": {
+                        "type": "string"
+                     }, 
+                     "record_type": {
                         "type": "string"
                      }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "arguments": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "path": {
-                        "type": "string"
-                     }, 
-                     "creates_version": {
-                        "type": "string"
-                     }, 
-                     "password": {
-                        "type": "string"
-                     }, 
-                     "validate_certs": {
-                        "type": "string"
-                     }, 
-                     "product_id": {
-                        "type": "string"
+                     "ttl": {
+                        "type": "integer"
                      }
                   }
                }, 
@@ -49818,74 +49718,42 @@
                      }
                   }
                }, 
-               "mail": {
+               "ce_evpn_bd_vni": {
                   "required": [
-                     "subject"
+                     "vpn_target_import", 
+                     "bridge_domain_id"
                   ], 
                   "type": "object", 
-                  "description": "This module is useful for sending emails from playbooks.\nOne may wonder why automate sending emails?  In complex environments there are from time to time processes that cannot be automated, either because you lack the authority to make it so, or because not everyone agrees to a common approach.\nIf you cannot automate a specific step, but the step is non-blocking, sending out an email to the responsible party to make them perform their part of the bargain is an elegant way to put the responsibility in someone else's lap.\nOf course sending out a mail can be equally useful as a way to notify one or more people in a team that a specific action has been (successfully) taken.", 
+                  "description": "Manages Ethernet Virtual Private Network (EVPN) VXLAN Network Identifier (VNI) configurations on HUAWEI CloudEngine switches.", 
                   "properties": {
-                     "body": {
-                        "type": "string"
-                     }, 
-                     "username": {
-                        "type": "string"
-                     }, 
-                     "from": {
-                        "type": "string"
-                     }, 
-                     "secure": {
-                        "type": "string"
-                     }, 
-                     "headers": {
+                     "vpn_target_both": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "cc": {
+                     "vpn_target_import": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "charset": {
+                     "bridge_domain_id": {
                         "type": "string"
                      }, 
-                     "bcc": {
+                     "vpn_target_export": {
                         "items": {
                            "type": "string"
                         }, 
                         "type": "array"
                      }, 
-                     "to": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "host": {
+                     "state": {
                         "type": "string"
                      }, 
-                     "timeout": {
-                        "type": "integer"
-                     }, 
-                     "subtype": {
+                     "route_distinguisher": {
                         "type": "string"
                      }, 
-                     "attach": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "password": {
-                        "type": "string"
-                     }, 
-                     "port": {
-                        "type": "integer"
-                     }, 
-                     "subject": {
+                     "evpn": {
                         "type": "string"
                      }
                   }
@@ -51255,53 +51123,20 @@
                      }
                   }
                }, 
-               "avi_network": {
+               "slackpkg": {
                   "required": [
                      "name"
                   ], 
                   "type": "object", 
-                  "description": "This module is used to configure Network object\nmore examples at U(https://github.com/avinetworks/devops)", 
+                  "description": "Manage binary packages for Slackware using 'slackpkg' which is available in versions after 12.2.", 
                   "properties": {
-                     "configured_subnets": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "vrf_context_ref": {
-                        "type": "string"
-                     }, 
-                     "name": {
-                        "type": "string"
-                     }, 
-                     "exclude_discovered_subnets": {
-                        "type": "string"
-                     }, 
-                     "cloud_ref": {
-                        "type": "string"
-                     }, 
-                     "tenant_ref": {
-                        "type": "string"
-                     }, 
-                     "synced_from_se": {
-                        "type": "string"
-                     }, 
-                     "vimgrnw_ref": {
-                        "type": "string"
-                     }, 
-                     "url": {
-                        "type": "string"
-                     }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "dhcp_enabled": {
-                        "type": "string"
+                     "update_cache": {
+                        "type": "boolean"
                      }, 
-                     "vcenter_dvs": {
-                        "type": "string"
-                     }, 
-                     "uuid": {
+                     "name": {
                         "type": "string"
                      }
                   }
@@ -51979,23 +51814,90 @@
                      }
                   }
                }, 
-               "aci_aep": {
+               "synchronize": {
                   "required": [
-                     "aep"
+                     "src", 
+                     "dest"
                   ], 
                   "type": "object", 
-                  "description": "Connect to external virtual and physical domains by using attachable Access Entity Profiles (AEP) on Cisco ACI fabrics.\nMore information from the internal APIC class I(infra:AttEntityP) at U(https://developer.cisco.com/media/mim-ref/MO-infraAttEntityP.html).", 
+                  "description": "C(synchronize) is a wrapper around rsync to make common tasks in your playbooks quick and easy. It is run and originates on the local host where Ansible is being run. Of course, you could just use the C(command) action to call rsync yourself, but you also have to add a fair number of boilerplate options and host facts. C(synchronize) is not intended to provide access to the full power of rsync, but does make the most common invocations easier to implement. You `still` may need to call rsync directly via C(command) or C(shell) depending on your use case.", 
                   "properties": {
-                     "aep": {
+                     "partial": {
                         "type": "string"
                      }, 
-                     "state": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
+                     "links": {
+                        "type": "string"
                      }, 
-                     "description": {
+                     "copy_links": {
+                        "type": "string"
+                     }, 
+                     "perms": {
+                        "type": "string"
+                     }, 
+                     "link_dest": {
+                        "type": "string"
+                     }, 
+                     "owner": {
+                        "type": "string"
+                     }, 
+                     "archive": {
+                        "type": "string"
+                     }, 
+                     "dest_port": {
+                        "type": "string"
+                     }, 
+                     "group": {
+                        "type": "string"
+                     }, 
+                     "existing_only": {
+                        "type": "string"
+                     }, 
+                     "rsync_path": {
+                        "type": "string"
+                     }, 
+                     "verify_host": {
+                        "type": "string"
+                     }, 
+                     "use_ssh_args": {
+                        "type": "string"
+                     }, 
+                     "dirs": {
+                        "type": "string"
+                     }, 
+                     "private_key": {
+                        "type": "string"
+                     }, 
+                     "dest": {
+                        "type": "string"
+                     }, 
+                     "compress": {
+                        "type": "string"
+                     }, 
+                     "rsync_timeout": {
+                        "type": "integer"
+                     }, 
+                     "rsync_opts": {
+                        "type": "string"
+                     }, 
+                     "set_remote_user": {
+                        "type": "boolean"
+                     }, 
+                     "recursive": {
+                        "type": "string"
+                     }, 
+                     "src": {
+                        "type": "string"
+                     }, 
+                     "checksum": {
+                        "type": "string"
+                     }, 
+                     "times": {
+                        "type": "string"
+                     }, 
+                     "mode": {
+                        "type": "string"
+                     }, 
+                     "delete": {
                         "type": "string"
                      }
                   }
@@ -52457,50 +52359,128 @@
                      }
                   }
                }, 
-               "net_interface": {
+               "ce_acl_advance": {
                   "required": [
-                     "name"
+                     "acl_name"
                   ], 
                   "type": "object", 
-                  "description": "This module provides declarative management of Interfaces on network devices.", 
+                  "description": "Manages advanced ACL configurations on HUAWEI CloudEngine switches.", 
                   "properties": {
-                     "delay": {
-                        "type": "integer"
-                     }, 
-                     "name": {
+                     "acl_step": {
                         "type": "string"
                      }, 
-                     "duplex": {
+                     "protocol": {
                         "type": "string"
                      }, 
-                     "enabled": {
+                     "precedence": {
                         "type": "string"
                      }, 
-                     "mtu": {
+                     "dest_port_end": {
                         "type": "string"
                      }, 
-                     "rx_rate": {
-                        "type": "string"
-                     }, 
-                     "purge": {
+                     "log_flag": {
                         "type": "boolean"
+                     }, 
+                     "time_range": {
+                        "type": "string"
+                     }, 
+                     "src_port_begin": {
+                        "type": "string"
+                     }, 
+                     "frag_type": {
+                        "type": "string"
+                     }, 
+                     "dest_port_op": {
+                        "type": "string"
+                     }, 
+                     "dest_pool_name": {
+                        "type": "string"
+                     }, 
+                     "acl_description": {
+                        "type": "string"
+                     }, 
+                     "ttl_expired": {
+                        "type": "boolean"
+                     }, 
+                     "icmp_type": {
+                        "type": "string"
+                     }, 
+                     "src_mask": {
+                        "type": "string"
+                     }, 
+                     "icmp_name": {
+                        "type": "string"
+                     }, 
+                     "established": {
+                        "type": "boolean"
+                     }, 
+                     "igmp_type": {
+                        "type": "string"
+                     }, 
+                     "tos": {
+                        "type": "string"
                      }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "aggregate": {
-                        "items": {
-                           "type": "string"
-                        }, 
-                        "type": "array"
-                     }, 
-                     "speed": {
+                     "rule_action": {
                         "type": "string"
                      }, 
-                     "tx_rate": {
+                     "acl_num": {
                         "type": "string"
                      }, 
-                     "description": {
+                     "tcp_flag_mask": {
+                        "type": "string"
+                     }, 
+                     "src_port_end": {
+                        "type": "string"
+                     }, 
+                     "dest_ip": {
+                        "type": "string"
+                     }, 
+                     "icmp_code": {
+                        "type": "string"
+                     }, 
+                     "src_port_op": {
+                        "type": "string"
+                     }, 
+                     "acl_name": {
+                        "type": "string"
+                     }, 
+                     "dscp": {
+                        "type": "string"
+                     }, 
+                     "rule_name": {
+                        "type": "string"
+                     }, 
+                     "rule_description": {
+                        "type": "string"
+                     }, 
+                     "dest_mask": {
+                        "type": "string"
+                     }, 
+                     "src_port_pool_name": {
+                        "type": "string"
+                     }, 
+                     "source_ip": {
+                        "type": "string"
+                     }, 
+                     "syn_flag": {
+                        "type": "string"
+                     }, 
+                     "vrf_name": {
+                        "type": "string"
+                     }, 
+                     "src_pool_name": {
+                        "type": "string"
+                     }, 
+                     "dest_port_begin": {
+                        "type": "string"
+                     }, 
+                     "dest_port_pool_name": {
+                        "type": "string"
+                     }, 
+                     "rule_id": {
                         "type": "string"
                      }
                   }
@@ -52868,36 +52848,49 @@
                      }
                   }
                }, 
-               "exo_dns_record": {
-                  "required": [
-                     "domain"
-                  ], 
+               "win_package": {
+                  "required": [], 
                   "type": "object", 
-                  "description": "Create, update and delete records.", 
+                  "description": "Installs or uninstalls a package in either an MSI or EXE format.\nThese packages can be sources from the local file system, network file share or a url.\nPlease read the notes section around some caveats with this module.", 
                   "properties": {
-                     "domain": {
+                     "username": {
                         "type": "string"
                      }, 
-                     "multiple": {
+                     "expected_return_code": {
                         "type": "string"
                      }, 
                      "name": {
                         "type": "string"
                      }, 
-                     "prio": {
+                     "creates_service": {
                         "type": "string"
                      }, 
-                     "content": {
-                        "type": "string"
-                     }, 
-                     "record_type": {
+                     "creates_path": {
                         "type": "string"
                      }, 
                      "state": {
                         "type": "string"
                      }, 
-                     "ttl": {
-                        "type": "integer"
+                     "arguments": {
+                        "items": {
+                           "type": "string"
+                        }, 
+                        "type": "array"
+                     }, 
+                     "path": {
+                        "type": "string"
+                     }, 
+                     "creates_version": {
+                        "type": "string"
+                     }, 
+                     "password": {
+                        "type": "string"
+                     }, 
+                     "validate_certs": {
+                        "type": "string"
+                     }, 
+                     "product_id": {
+                        "type": "string"
                      }
                   }
                }, 
