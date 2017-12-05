@@ -170,7 +170,7 @@ def _tranform_deferred_schemas(options):
 
         schema[title] = {'type': 'string'}
         schemas.append({'type': 'object', 'properties': schema,
-                        'required': ['name', title]})
+                        'required': ['name']})
 
     return schemas
 

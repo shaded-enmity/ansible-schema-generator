@@ -1,0 +1,32 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+COMMAND_MODULES	../ansible-schema-generator	/^COMMAND_MODULES = ('shell', 'command', 'script',)$/;"	kind:variable	line:38
+DOCUMENTATION_KEY	../ansible-schema-generator	/^DOCUMENTATION_KEY = 'DOCUMENTATION'$/;"	kind:variable	line:34
+FREE_FORM_KEYS	../ansible-schema-generator	/^FREE_FORM_KEYS = (('free_form',),)$/;"	kind:variable	line:37
+IGNORE_KEYS	../ansible-schema-generator	/^IGNORE_KEYS = (('plugin_type',), ('strategy',), ('callback'),)$/;"	kind:variable	line:36
+LOG_LEVEL_MAP	../ansible-schema-generator	/^LOG_LEVEL_MAP = {'debug': logging.DEBUG,$/;"	kind:variable	line:39
+TITLE_KEYS	../ansible-schema-generator	/^TITLE_KEYS = ('module',)$/;"	kind:variable	line:35
+_check_keys	../ansible-schema-generator	/^def _check_keys(key_set_list, obj):$/;"	kind:function	line:134
+_find_documentation_variable	../ansible-schema-generator	/^def _find_documentation_variable(filename, module):$/;"	kind:function	line:69
+_find_script_files	../ansible-schema-generator	/^def _find_script_files(path):$/;"	kind:function	line:43
+_infer_type	../ansible-schema-generator	/^def _infer_type(option):$/;"	kind:function	line:87
+_parse_arguments	../ansible-schema-generator	/^def _parse_arguments():$/;"	kind:function	line:224
+_parse_files	../ansible-schema-generator	/^def _parse_files(files):$/;"	kind:function	line:60
+_take_key	../ansible-schema-generator	/^def _take_key(key_list, obj):$/;"	kind:function	line:123
+_tranform_deferred_schemas	../ansible-schema-generator	/^def _tranform_deferred_schemas(options):$/;"	kind:function	line:143
+_transform_options_to_schemas	../ansible-schema-generator	/^def _transform_options_to_schemas(options, deferred):$/;"	kind:function	line:178
+ansible-schema-generator	../ansible-schema-generator	1;"	kind:file	line:1
+argparse	../ansible-schema-generator	/^import argparse$/;"	kind:namespace	line:21
+ast	../ansible-schema-generator	/^import ast$/;"	kind:namespace	line:20
+daiquiri	../ansible-schema-generator	/^import daiquiri$/;"	kind:namespace	line:28
+json	../ansible-schema-generator	/^import json$/;"	kind:namespace	line:22
+logger	../ansible-schema-generator	/^logger = daiquiri.getLogger('ansible-schema')$/;"	kind:variable	line:31
+logging	../ansible-schema-generator	/^import logging$/;"	kind:namespace	line:23
+main	../ansible-schema-generator	/^def main():$/;"	kind:function	line:236
+os	../ansible-schema-generator	/^import os$/;"	kind:namespace	line:24
+sys	../ansible-schema-generator	/^import sys$/;"	kind:namespace	line:25
+yaml	../ansible-schema-generator	/^import yaml$/;"	kind:namespace	line:26
