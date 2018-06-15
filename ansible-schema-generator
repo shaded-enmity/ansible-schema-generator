@@ -3,17 +3,17 @@
 # ansible-schema-generator
 #
 # Copyright (C) 2017 Pavel Odvody <podvody@redhat.com>
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -22,8 +22,10 @@ import argparse
 import json
 import logging
 import os
+import re
 import sys
 import yaml
+from collections import namedtuple
 
 import daiquiri
 
@@ -35,9 +37,125 @@ DOCUMENTATION_KEY = 'DOCUMENTATION'
 TITLE_KEYS = ('module',)
 IGNORE_KEYS = (('plugin_type',), ('strategy',), ('callback'),)
 FREE_FORM_KEYS = (('free_form',),)
-COMMAND_MODULES = ('shell', 'command', 'script',)
+COMMAND_MODULES = ('shell', 'command', 'script', 'raw',)
 LOG_LEVEL_MAP = {'debug': logging.DEBUG,
                  'warning': logging.WARNING, 'error': logging.ERROR}
+LIST_MATCHER = re.compile(r'^\W*[Ll]ist')
+
+
+ANSIBLE_NUMBER_LIKE = {'oneOf': [{'type': 'integer'}, {'type': 'string'}]}
+ANSIBLE_TRUTH_LIKE = {'oneOf': [{'type': 'boolean'},
+                                {'enum': [0, 1], 'type': 'integer'},
+                                {'enum': ['yes',
+                                          'no',
+                                          'Yes',
+                                          'No',
+                                          'YES',
+                                          'NO',
+                                          'on',
+                                          'off',
+                                          'On',
+                                          'Off',
+                                          'ON',
+                                          'OFF',
+                                          '1',
+                                          '0',
+                                          'true',
+                                          'false',
+                                          'True',
+                                          'False'
+                                          'TRUE',
+                                          'FALSE'], 'type': 'string'}]}
+
+
+Property = namedtuple('Property', 'name description type required aliases')
+
+
+class DuplicateNameError(Exception):
+    def __init__(self, duplicates):
+        self.duplicates = duplicates
+
+
+class PropertyList(list):
+    def _get_template(self):
+        return {
+            'properties': [],
+            'allOf': []
+        }
+
+    def _classify_properties(self):
+        required = []
+        non_required = []
+        for prop in self:
+            if prop.required:
+                required.append(prop)
+            else:
+                non_required.append(prop)
+        return (required, non_required)
+
+
+    def _flatten_property_names(self):
+        for prop in self:
+            yield {'name': prop.name, 'type': prop.type}
+            for alias in prop.aliases:
+                yield {'name': alias, 'type': prop.type}
+
+
+    def _get_duplicate_names(self):
+        props = list(self._flatten_property_names())
+        as_set = {p['name'] for p in props}
+        if len(as_set) != len(props):
+            seen = set()
+            repeated = []
+            for e in props:
+                if e['name'] in seen:
+                    repeated.append(e['name'])
+                seen.add(e['name'])
+            return repeated
+        return False
+
+
+    def get_json_schema_key_values(self):
+        duplicates = self._get_duplicate_names()
+        if duplicates:
+            raise DuplicateNameError(duplicates)
+
+        # Four possible cases here:
+        #
+        #   1) Required, no aliases
+        #   2) Required, aliases
+        #   3) Non required, no aliases
+        #   4) Non required, aliases
+        #
+
+        schema = self._get_template()
+        mutexes = []
+
+        for prop in self:
+            if prop.aliases:
+                all_names = [prop.name] + prop.aliases
+                mutex = {
+                    'allOf': [{
+                        'not': {
+                            'required': all_names,
+                            'type': 'object'
+                        },
+                    }]
+                }
+                if prop.required:
+                    mutex['allOf'].append({
+                        'oneOf': [
+                          {'required': [n], 'type': 'object'}  for n in all_names
+                        ]
+                    })
+                mutexes.append(mutex)
+
+        schema['properties'] = {
+            p['name']: ({'type': p['type']} if not isinstance(p['type'], dict) else p['type']) for p in self._flatten_property_names()
+        }
+        schema['allOf'] = mutexes
+
+        return schema
 
 
 def _find_script_files(path):
@@ -62,7 +180,11 @@ def _parse_files(files):
     parsed_files = {}
     for file in files:
         with open(file, 'r') as fp:
-            parsed_files[file] = ast.parse(fp.read(), file)
+            try:
+                parsed_files[file] = ast.parse(fp.read(), file)
+            except:
+                logger.warning('Invalid Python file {}'.format(file))
+                continue
     return parsed_files
 
 
@@ -97,25 +219,27 @@ def _infer_type(option):
     type_descriptor = {}
 
     TYPE_MAP = {
-        'int': 'integer',
-        'bool': 'boolean',
+        'int': ANSIBLE_NUMBER_LIKE,
+        'bool': ANSIBLE_TRUTH_LIKE,
         'str': 'string',
         'float': 'number'
     }
 
-    type_name = type(default).__name__
-    mapped_type = TYPE_MAP.get(type_name)
-
-    if not mapped_type:
-        mapped_type = 'string'
+    type_name = option.get('type', 'str')
+    mapped_type = TYPE_MAP.get(type_name, 'string')
 
     # This is a hack, however there doesn't seem any better way
     # of distinguishing whether the given option is a list option
     # so handle it heuristically
-    if 'List' in description or 'list' in description:
+    if LIST_MATCHER.match(description):
         type_descriptor = {'type': 'array', 'items': {'type': mapped_type}}
     else:
-        type_descriptor = {'type': mapped_type}
+        if isinstance(mapped_type, dict):
+            type_descriptor = mapped_type
+        else:
+            type_descriptor = {'type': mapped_type}
+
+    type_descriptor['description'] = description
 
     return (option.get('required', False), type_descriptor)
 
@@ -144,23 +268,32 @@ def _tranform_deferred_schemas(options):
     ''' Deferred transformation to handle particular `free_form` commands '''
     schemas = []
     for (filename, contents) in options:
-        properties, requireds = {}, []
+        props, requireds = {}, []
         schema = {'name': {'type': 'string'}, 'args': {
-                  'type': 'object', 'properties': properties, 'required': requireds}}
+                  'type': 'object', 'properties': props, 'required': requireds}}
 
         title = _take_key(TITLE_KEYS, contents)
         if title is None:
             logger.warning('No object title for: {}'.format(filename))
             continue
 
+        properties = PropertyList()
         data = contents.get('options') or {}
         for key, value in data.iteritems():
             # `free_form` is only an indicator of the type of command
             # and should not be an actual key to chooser from
             if key == 'free_form':
                 continue
+            aliases = value.get('aliases', [])
+            if isinstance(aliases, str):
+                aliases = [aliases]
             required, descriptor = _infer_type(value)
-            properties[key] = descriptor
+            typ = descriptor['type'] if 'type' in descriptor else descriptor
+
+            properties.append(
+                Property(key, descriptor['description'], typ, required, aliases)
+            )
+
             if required:
                 requireds.append(key)
 
@@ -168,9 +301,17 @@ def _tranform_deferred_schemas(options):
         if isinstance(description, list):
             description = "\n".join(description)
 
+        try:
+            schema['args'].update(properties.get_json_schema_key_values())
+        except DuplicateNameError as e:
+            logger.error(
+                'Skipping {} because it contains duplicate property keys:\n{}'.format(filename, e.duplicates)
+            )
+            continue
+
         schema[title] = {'type': 'string'}
         schemas.append({'type': 'object', 'properties': schema,
-                        'required': ['name']})
+                        'required': [title]})
 
     return schemas
 
@@ -205,30 +346,51 @@ def _transform_options_to_schemas(options, deferred):
             deferred.append((filename, contents))
             continue
 
+        properties = PropertyList()
         for key, value in data.iteritems():
             required, descriptor = _infer_type(value)
-            schema['properties'][key] = descriptor
-            if required:
-                schema['required'].append(key)
+            aliases = value.get('aliases', [])
+            if isinstance(aliases, str):
+                aliases = [aliases]
+            typ = descriptor['type'] if 'type' in descriptor else descriptor
+
+            properties.append(
+                Property(key, descriptor['description'], typ, required, aliases)
+            )
+
+            #if required:
+            #    schema['required'].append(key)
 
         description = contents.get('description', '')
         if isinstance(description, list):
             description = "\n".join(description)
 
         schema['description'] = description
+
+        try:
+            schema.update(properties.get_json_schema_key_values())
+        except DuplicateNameError as e:
+            logger.error(
+                'Skipping {} because it contains duplicate property keys:\n{}'.format(filename, e.duplicates)
+            )
+            continue
+
         schemas[title] = schema
 
     return schemas
 
 
 def _parse_arguments():
-    description = ('Generate JSON schema for language servers from Ansible module' + 
+    description = ('Generate JSON schema for language servers from Ansible module' +
                    ' documentation in an Ansible repository checkout `target_path`')
-    ap = argparse.ArgumentParser(prog='ansible-schema-generator', description=description)
-    ap.add_argument('-o', '--output-file', default=None, help='write result to this file')
+    ap = argparse.ArgumentParser(
+        prog='ansible-schema-generator', description=description)
+    ap.add_argument('-o', '--output-file', default=None,
+                    help='write result to this file')
     ap.add_argument('-l', '--log-level',
                     choices=['debug', 'warning', 'error'], default='warning', help='set log level')
-    ap.add_argument('target_path', help='scan this directory for Ansible modules')
+    ap.add_argument(
+        'target_path', help='scan this directory for Ansible modules')
 
     return ap.parse_args()
 
@@ -242,6 +404,13 @@ def main():
 
     logger.debug('Loading modules from: {}'.format(
         os.path.abspath(target_path)))
+
+    # determine where we should write the resulting data
+    fp = sys.stdout
+    if arguments.output_file:
+        logger.debug('Setting output file to: {}'.format(
+            os.path.abspath(arguments.output_file)))
+        fp = open(arguments.output_file, 'w')
 
     # find python files and get their AST
     script_files = _find_script_files(target_path)
@@ -269,14 +438,6 @@ def main():
                       'type': 'array', 'items': combined}
 
     logger.debug('Transformation done!')
-
-    # determine where we should write the resulting data
-    fp = sys.stdout
-    if arguments.output_file:
-        logger.debug('Setting output file to: {}'.format(
-            os.path.abspath(arguments.output_file)))
-        fp = open(arguments.output_file, 'w')
-
     logger.debug('Writing output')
 
     with fp:
