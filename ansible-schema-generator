@@ -153,7 +153,16 @@ class PropertyList(list):
         schema['properties'] = {
             p['name']: ({'type': p['type']} if not isinstance(p['type'], dict) else p['type']) for p in self._flatten_property_names()
         }
-        schema['allOf'] = mutexes
+
+        if mutexes:
+            schema['allOf'] = mutexes
+        else:
+            del schema['allOf']
+            req = [p.name for p in self if p.required]
+            if req:
+                schema['required'] = req
+            else:
+                logger.debug('No required properties')
 
         return schema
 
@@ -310,6 +319,10 @@ def _tranform_deferred_schemas(options):
             continue
 
         schema[title] = {'type': 'string'}
+
+        if not requireds:
+            del schema['args']['required']
+
         schemas.append({'type': 'object', 'properties': schema,
                         'required': [title]})
 
@@ -324,8 +337,7 @@ def _transform_options_to_schemas(options, deferred):
             logger.debug('Ignoring source file: {}'.format(filename))
             continue
 
-        schema = {'type': 'object', 'description': None,
-                  'required': list(), 'properties': dict()}
+        schema = {'type': 'object', 'description': None, 'properties': dict()}
 
         title = _take_key(TITLE_KEYS, contents)
         if title is None:
@@ -358,9 +370,6 @@ def _transform_options_to_schemas(options, deferred):
                 Property(key, descriptor['description'], typ, required, aliases)
             )
 
-            #if required:
-            #    schema['required'].append(key)
-
         description = contents.get('description', '')
         if isinstance(description, list):
             description = "\n".join(description)
@@ -389,6 +398,8 @@ def _parse_arguments():
                     help='write result to this file')
     ap.add_argument('-l', '--log-level',
                     choices=['debug', 'warning', 'error'], default='warning', help='set log level')
+    ap.add_argument('-d', '--description', default='Auto-Generated', help='Description string to add to the schema')
+    ap.add_argument('-t', '--title', default='Ansible', help='Title of the schema')
     ap.add_argument(
         'target_path', help='scan this directory for Ansible modules')
 
@@ -435,7 +446,9 @@ def main():
                                                   'properties': transformed, 'required': ['name']}]}
 
     output_schemas = {'$schema': 'http://json-schema.org/draft-04/schema#',
-                      'type': 'array', 'items': combined}
+                      'type': 'array', 'items': combined,
+                      'description': arguments.description,
+                      'title': arguments.title}
 
     logger.debug('Transformation done!')
     logger.debug('Writing output')
