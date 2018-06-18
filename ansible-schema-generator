@@ -71,6 +71,18 @@ ANSIBLE_TRUTH_LIKE = {'oneOf': [{'type': 'boolean'},
 Property = namedtuple('Property', 'name description type required aliases')
 
 
+def get_definitions():
+    matcher = re.compile('^ANSIBLE_([A-Z]*)_LIKE$')
+    g = globals()
+    defs = {}
+    for n, v in g.items():
+        m = matcher.match(n)
+        if m:
+            name = m.group(1).lower()
+            defs['ansible_' + name] = v
+    return defs
+
+
 class DuplicateNameError(Exception):
     def __init__(self, duplicates):
         self.duplicates = duplicates
@@ -228,8 +240,8 @@ def _infer_type(option):
     type_descriptor = {}
 
     TYPE_MAP = {
-        'int': ANSIBLE_NUMBER_LIKE,
-        'bool': ANSIBLE_TRUTH_LIKE,
+        'int': {'$ref': '#/definitions/ansible_number'},
+        'bool': {'$ref': '#/definitions/ansible_truth'},
         'str': 'string',
         'float': 'number'
     }
@@ -448,7 +460,8 @@ def main():
     output_schemas = {'$schema': 'http://json-schema.org/draft-04/schema#',
                       'type': 'array', 'items': combined,
                       'description': arguments.description,
-                      'title': arguments.title}
+                      'title': arguments.title,
+                      'definitions': get_definitions()}
 
     logger.debug('Transformation done!')
     logger.debug('Writing output')
