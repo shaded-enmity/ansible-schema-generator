@@ -288,7 +288,8 @@ def _infer_type(option, module, name, version):
         'bool': {'$ref': '#/definitions/ansible_truth'},
         'str': 'string',
         'float': 'number',
-        'object': 'object'
+        'object': 'object',
+        'dict': 'object'
     }
 
     choices = option.get('choices', None)
