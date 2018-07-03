@@ -24,7 +24,7 @@ import logging
 import os
 import re
 import sys
-from collections import defaultdict, namedtuple
+from collections import defaultdict, namedtuple, OrderedDict
 
 import daiquiri
 import semver
@@ -226,7 +226,7 @@ def _are_choices_clean(choices):
 def _find_script_files(path):
     ''' Find all files ending with `.py` in the given directory tree and return them '''
     target_directory = os.path.abspath(path)
-    script_files = []
+    script_files, core_files = [], []
 
     for root, _, files in os.walk(target_directory):
         for file in files:
@@ -235,14 +235,17 @@ def _find_script_files(path):
             if os.path.islink(absolute_path):
                 continue
             if file.endswith('.py'):
-                script_files.append(absolute_path)
+                if '/lib/ansible/modules/core' in absolute_path:
+                    core_files.append(absolute_path)
+                else:
+                    script_files.append(absolute_path)
 
-    return script_files
+    return script_files + core_files
 
 
 def _parse_files(files):
     ''' Parse Python files and return a mapping of `path` => `ast.Module` '''
-    parsed_files = {}
+    parsed_files = OrderedDict()
     for file in files:
         with open(file, 'r') as fp:
             try:
@@ -534,7 +537,11 @@ def main():
                       'type': 'array', 'items': combined,
                       'description': arguments.description,
                       'title': arguments.title,
-                      'definitions': get_definitions()}
+                      'definitions': get_definitions(),
+                      '$contact': {
+                          'issues': 'https://github.com/shaded-enmity/ansible-schema-generator/issues',
+                          'name': 'Pavel Odvody'
+                      }}
 
     logger.debug('Transformation done!')
     logger.debug('Writing output')
