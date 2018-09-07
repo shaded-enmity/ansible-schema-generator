@@ -2,3 +2,5 @@ daiquiri
 pyyaml
 semver
 jsonschema
+ansible
+six
