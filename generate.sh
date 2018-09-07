@@ -17,7 +17,7 @@ ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules
 
 mkdir -p "${OUTPUT_DIR}"
 
-for branch in stable-2.0 stable-2.1 stable-2.2 stable-2.3 stable-2.4 stable-2.5 stable-2.6; do
+for branch in stable-2.5 stable-2.6; do
   version=$(cut -d- -f2 <<< ${branch})
   outfile="${OUTPUT_DIR}/ansible-stable-${version}.json"
   desc="Auto-Generated JSON Schema for Ansible-stable ${version} (https://github.com/shaded-enmity/ansible-schema-generator)"
