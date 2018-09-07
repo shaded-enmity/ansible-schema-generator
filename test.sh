@@ -14,4 +14,6 @@ export ANSIBLE_DIR=ansible/
 export ARGSPEC_PATH=ansible-stable/test/sanity/validate-modules/module_args.py
 ./generate.sh
 
-python test.py
+cd validator/
+npm install
+nodejs index.js
