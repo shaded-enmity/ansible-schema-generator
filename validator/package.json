@@ -7,6 +7,7 @@
   "author": "Pavel Odvody",
   "license": "MIT",
   "dependencies": {
+    "js-yaml": "^3.12.0",
     "tv4": "^1.3.0"
   }
 }
