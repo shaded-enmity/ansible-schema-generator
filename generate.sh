@@ -9,9 +9,8 @@ ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules
 list_branches() {
   cd "${ANSIBLE_DIR}"
   set +e
-  pwd #debug
-  ls  #debug
-  git branch --format '%(refname)' | cut -d/ -f3 | grep stable
+  git branch --format '%(refname)'
+  #git branch --format '%(refname)' | cut -d/ -f3 | grep stable
   cd - 1>/dev/null
 }
 
