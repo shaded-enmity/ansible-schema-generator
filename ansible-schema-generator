@@ -90,13 +90,8 @@ def organize_type_fixes(typefixes):
         fixes[tf.module][tf.option] = (tf.version, tf.type)
     return fixes
 
+__typefixes = organize_type_fixes([])
 
-__typefixes = organize_type_fixes([
-    TypeFix('azure_rm_deployment', 'parameters', {'type': 'object'}, '<2.6.0'),
-    TypeFix('firewalld', 'permanent', {'$ref': '#/definitions/ansible_truth'}, '<2.6.0'),
-    TypeFix('firewalld', 'immediate', {'$ref': '#/definitions/ansible_truth'}, '<2.6.0'),
-    TypeFix('firewalld', 'offline', {'$ref': '#/definitions/ansible_truth'}, '<2.6.0')
-])
 
 def apply_fix(fix, default, version):
     version_match, alt_type = fix

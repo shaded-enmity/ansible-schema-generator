@@ -38,3 +38,10 @@
   dnf:
     name: vim
     disable_gpg_check: yes
+
+- name: azure task
+  azure_rm_deployment:
+    resource_group_name: some
+    parameters:
+      random: value
+      another: one
