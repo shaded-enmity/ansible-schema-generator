@@ -9,6 +9,8 @@ ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules
 list_branches() {
   cd "${ANSIBLE_DIR}"
   set +e
+  for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote; done
+  git fetch --all
   git branch --format '%(refname)'
   #git branch --format '%(refname)' | cut -d/ -f3 | grep stable
   cd - 1>/dev/null
