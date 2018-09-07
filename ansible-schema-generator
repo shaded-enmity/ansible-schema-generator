@@ -19,6 +19,7 @@
 
 import ast
 import argparse
+import imp
 import json
 import logging
 import os
@@ -37,8 +38,9 @@ logger = daiquiri.getLogger('ansible-schema')
 DOCUMENTATION_KEY = 'DOCUMENTATION'
 TITLE_KEYS = ('module',)
 IGNORE_KEYS = (('plugin_type',), ('strategy',), ('callback'),)
-FREE_FORM_KEYS = (('free_form',),)
+FREE_FORM_KEYS = (('free_form',), ('free-form',),)
 COMMAND_MODULES = ('shell', 'command', 'script', 'raw',)
+META_MODULES = ('include_vars', 'include', 'import_tasks', 'include_tasks', 'import_playbook',)
 LOG_LEVEL_MAP = {'debug': logging.DEBUG,
                  'warning': logging.WARNING, 'error': logging.ERROR}
 LIST_MATCHER = re.compile(r'^\W*[Ll]ist')
@@ -68,10 +70,18 @@ ANSIBLE_TRUTH_LIKE = {'oneOf': [{'type': 'boolean'},
                                           'False'
                                           'TRUE',
                                           'FALSE'], 'type': 'string'}]}
+ANSIBLE_ARRAY_LIKE = {'oneOf': [{'type': 'string'}, {'type': 'array'}, {'type': 'object'}]} #should we be more relaxed here?
 
 
 Property = namedtuple('Property', 'name description type required aliases choices')
 TypeFix = namedtuple('TypeFix', 'module option type version')
+
+
+def import_function_from_file(file, func):
+    ''' This is a hack which pollutes global state, use ~wisely~, ~in rare cases~, never! '''
+    code = compile(open(file).read(), file, 'exec')
+    exec(code, globals(), globals())
+    return globals()[func]
 
 
 def organize_type_fixes(typefixes):
@@ -82,7 +92,10 @@ def organize_type_fixes(typefixes):
 
 
 __typefixes = organize_type_fixes([
-    TypeFix('azure_rm_deployment', 'parameters', {'type': 'object'}, '<2.6.0')
+    TypeFix('azure_rm_deployment', 'parameters', {'type': 'object'}, '<2.6.0'),
+    TypeFix('firewalld', 'permanent', {'$ref': '#/definitions/ansible_truth'}, '<2.6.0'),
+    TypeFix('firewalld', 'immediate', {'$ref': '#/definitions/ansible_truth'}, '<2.6.0'),
+    TypeFix('firewalld', 'offline', {'$ref': '#/definitions/ansible_truth'}, '<2.6.0')
 ])
 
 def apply_fix(fix, default, version):
@@ -186,7 +199,9 @@ class PropertyList(list):
 
         def _unwrap_type(p):
             if isinstance(p['type'], dict):
-                return p['type']
+                copy = p['type'].copy()
+                copy['description'] = p['desc']
+                return copy
             else:
                 base = {'type': p['type'], 'description': p['desc']}
                 if p['choices']:
@@ -220,7 +235,12 @@ def _are_choices_clean(choices):
         str_choice = str(choice)
         if ' ' in str_choice or '\n' in str_choice:
             return False
-    return True
+    try:
+        # Sometimes we get [['some_string]] which won't work
+        # as lists are not hashable
+        return len(set(choices)) == len(choices)
+    except TypeError:
+        return False
 
 
 def _find_script_files(path):
@@ -274,6 +294,19 @@ def _find_documentation_variable(filename, module):
                     return None
 
 
+def _convert(type_name):
+    TYPE_MAP = {
+            'int': {'$ref': '#/definitions/ansible_number'},
+            'bool': {'$ref': '#/definitions/ansible_truth'},
+            'str': 'string',
+            'float': 'number',
+            'object': 'object',
+            'dict': 'object',
+            'list': {'$ref': '#/definitions/ansible_array'},
+            'path': 'string'
+    }
+    return TYPE_MAP.get(type_name, 'string')
+
 def _infer_type(option, module, name, version):
     ''' Infer JSON schema types from Ansible type description
 
@@ -286,20 +319,9 @@ def _infer_type(option, module, name, version):
 
     type_descriptor = {}
 
-    TYPE_MAP = {
-        'int': {'$ref': '#/definitions/ansible_number'},
-        'bool': {'$ref': '#/definitions/ansible_truth'},
-        'str': 'string',
-        'float': 'number',
-        'object': 'object',
-        'dict': 'object'
-    }
-
     choices = option.get('choices', None)
 
-    type_name = option.get('type', 'str')
-    mapped_type = TYPE_MAP.get(type_name, 'string')
-
+    mapped_type = _convert(option.get('type'))
     # This is a hack, however there doesn't seem any better way
     # of distinguishing whether the given option is a list option
     # so handle it heuristically
@@ -348,29 +370,73 @@ def _check_keys(key_set_list, obj):
     return False
 
 
-def _tranform_deferred_schemas(options, version):
+def _validate_docs_argument_spec(items, reporter):
+    ''' Yield one item for each tuple in `items` and report
+        in case of inequality between A/B
+
+    '''
+    for (a, b, comparison, kind) in items:
+        try:
+            if comparison:
+                if comparison(a) == comparison(b):
+                    yield a
+                else:
+                    reporter(a, b, kind)
+                    yield b
+            else:
+                if a == b:
+                    yield a
+                else:
+                    reporter(a, b, kind)
+                    yield b
+        except:
+            yield None
+            reporter(a, b, 'CONVERSION')
+
+
+def _pick_values(items, reporter):
+    ''' Picks the A/B values from `items` which contains data about:
+
+        1) Documentation spec
+        2) Argument spec
+
+        While in most cases the latter should be used, some internal modules
+        do not expose argument_spec and only expose documentation
+    '''
+    return tuple(_validate_docs_argument_spec(items, reporter))
+
+
+def _tranform_deferred_schemas(options, version, argspec=None):
     ''' Deferred transformation to handle particular `free_form` commands '''
     schemas = []
-    for (filename, contents) in options:
+    for (filename, contents, is_command) in options:
         props, requireds = {}, []
-        schema = {'name': {'type': 'string'}, 'args': {
-                  'type': 'object', 'properties': props, 'required': requireds}}
-
         title = _take_key(TITLE_KEYS, contents)
         if title is None:
             logger.warning('No object title for: {}'.format(filename))
             continue
 
+        if is_command:
+            schema = {'name': {'type': 'string'}, 'args': {
+                      'type': 'object', 'properties': props, 'required': requireds}}
+        else:
+            requireds.append(title)
+            schema = {'name': {'type': 'string'}, title: {'type': 'string'},
+                      'properties': {}, 'required': requireds}
+
         properties = PropertyList()
         data = contents.get('options') or {}
         for key, value in data.iteritems():
-            # `free_form` is only an indicator of the type of command
-            # and should not be an actual key to chooser from
-            if key == 'free_form':
+            # free form is only an indicator of the type of command
+            # and should not be an actual key to chooser froma
+            if _check_keys(FREE_FORM_KEYS, [key]):
                 continue
             aliases = value.get('aliases', [])
             if isinstance(aliases, str):
                 aliases = [aliases]
+
+            # since none of the free form modules currently expose their Argspec
+            # we have to infer properties from the documentation strings
             required, descriptor = _infer_type(value, title, key, version)
             typ = descriptor['type'] if 'type' in descriptor else descriptor
             choices = descriptor['choices'] if 'choices' in descriptor else None
@@ -387,7 +453,10 @@ def _tranform_deferred_schemas(options, version):
             description = "\n".join(description)
 
         try:
-            schema['args'].update(properties.get_json_schema_key_values())
+            if is_command:
+                schema['args'].update(properties.get_json_schema_key_values())
+            else:
+                schema.update(properties.get_json_schema_key_values())
         except DuplicateNameError as e:
             logger.error(
                 'Skipping {} because it contains duplicate property keys:\n{}'.format(filename, e.duplicates)
@@ -404,13 +473,16 @@ def _tranform_deferred_schemas(options, version):
         if not requireds:
             del schema['args']['required']
 
-        schemas.append({'type': 'object', 'properties': schema,
-                        'required': [title]})
+        if is_command:
+            schemas.append({'type': 'object', 'properties': schema,
+                            'required': [title]})
+        else:
+            schemas.append(schema)
 
     return schemas
 
 
-def _transform_options_to_schemas(options, deferred, version):
+def _transform_options_to_schemas(options, deferred, version, argspec=None, report=None):
     ''' Transform Ansible `options` specification into JSON descriptors '''
     schemas = {'name': {'type': 'string'}}
     for (filename, contents) in options:
@@ -425,31 +497,74 @@ def _transform_options_to_schemas(options, deferred, version):
             logger.warning('No object title for: {}'.format(filename))
             continue
         elif title in schemas:
-            logger.error(
-                'Attempting to insert duplicate entry for {} via {}'.format(title, filename))
+            report.append({'kind': 'duplicate_module', 'module': title, 'file': filename})
             continue
 
         data = contents.get('options') or {}
-        if _check_keys(FREE_FORM_KEYS, data) and title not in COMMAND_MODULES:
-            logger.warning(
-                'Ignoring non-command free form module {}'.format(filename))
-            continue
+        if _check_keys(FREE_FORM_KEYS, data):
+            if title in COMMAND_MODULES:
+                deferred.append((filename, contents, True))
+            elif title in META_MODULES:
+                deferred.append((filename, contents, False))
+            else:
+                logger.warning(
+                    'Ignoring non-command free form module {}'.format(filename))
+                continue
 
-        if title in COMMAND_MODULES:
-            deferred.append((filename, contents))
-            continue
+        try:
+            spec = argspec(filename)
+        except:
+            report.append({'kind': 'argspec_fail', 'file': filename})
+            spec = {}
 
+        arguments = spec.get('argument_spec', {})
+
+        # What are the other interesting keys that we can use here?
+        #
+        # check_mode = spec.get('supports_check_mode', False)
+        # mutually_exclusive = spec.get('mutually_exclusive', [])
+        #
         properties = PropertyList()
-        for key, value in data.iteritems():
+        for key in arguments.keys():
+            st_desc = arguments.get(key, {})
+            value = data.get(key, None)
+
+            if not value:
+                # documentation key does not exist, try aliases
+                for al in st_desc.get('aliases', []):
+                    value = data.get(al, None)
+                    if value:
+                        break
+
+                if not value:
+                    value = {}
+
             required, descriptor = _infer_type(value, title, key, version)
             aliases = value.get('aliases', [])
+
             if isinstance(aliases, str):
                 aliases = [aliases]
-            typ = descriptor['type'] if 'type' in descriptor else descriptor
-            choices = descriptor['choices'] if 'choices' in descriptor else None
+
+            typ = descriptor['type'] if 'type' in descriptor else descriptor['$ref'] if '$ref' in descriptor else descriptor
+            choices = descriptor['choices'] if 'choices' in descriptor else []
+
+            stype = _convert(st_desc.get('type', 'str'))
+            schoices = st_desc.get('choices', [])
+            saliases = st_desc.get('aliases', [])
+            srequired = st_desc.get('required', False)
+
+            aliases, choices, typ, required = _pick_values(
+               [(aliases, saliases, set, 'aliases'),
+                (choices, schoices, set, 'choices'),
+                (typ, stype, None, 'type'),
+                (required, srequired, None, 'required')],
+                lambda a, b, kind: report.append(
+                    {'in_doc': str(a), 'in_argspec': str(b), 'kind': kind, 'key': key, 'file': filename}
+                )
+            )
 
             properties.append(
-                Property(key, descriptor['description'], typ, required, aliases, choices)
+                Property(key, descriptor['description'], typ, required, list(aliases) if aliases else [], list(choices) if choices else [])
             )
 
         description = contents.get('description', '')
@@ -461,16 +576,13 @@ def _transform_options_to_schemas(options, deferred, version):
         try:
             schema.update(properties.get_json_schema_key_values())
         except DuplicateNameError as e:
-            logger.error(
-                'Skipping {} because it contains duplicate property keys:\n{}'.format(filename, e.duplicates)
-            )
+            report.append({'kind': 'duplicate_keys', 'file': filename, 'duplicates': e.duplicates})
             continue
         except NoRequirements:
-            logger.error(
-                'Skipping {} because no properties are required'.format(filename)
-            )
+            report.append({'kind': 'zero_requirements', 'file': filename})
             continue
 
+        report.append({'kind': 'success', 'module': title, 'file': filename})
         schemas[title] = schema
 
     return schemas
@@ -490,6 +602,10 @@ def _parse_arguments():
     ap.add_argument('-v', '--version', default='2.5.0', help='Version of Ansible for which schemas are generated')
     ap.add_argument(
         'target_path', help='scan this directory for Ansible modules')
+    ap.add_argument('-a', '--argspec-path',
+        help='File from which we can import `get_argument_spec` function',
+        default=None)
+    ap.add_argument('-r', '--report-file', help='write report to this file', default=None)
 
     return ap.parse_args()
 
@@ -524,11 +640,25 @@ def main():
 
     logger.debug('Transforming {} documents'.format(len(collected_data)))
 
+    _argspec = import_function_from_file(
+        arguments.argspec_path or os.getenv('ASG_ARGSPEC_PATH', None),
+        'get_argument_spec'
+    )
+    argspec = lambda path: _argspec(path)[-1]
+
+    reports = []
     deferred = []
-    transformed = _transform_options_to_schemas(collected_data, deferred, arguments.version)
+    transformed = _transform_options_to_schemas(
+        collected_data, deferred, arguments.version, argspec, reports
+    )
+
+    if arguments.report_file:
+        with open(arguments.report_file, 'w') as rf:
+            json.dump(reports, rf, indent=3)
+    #sys.exit(0)
 
     logger.debug('Handing {} deferred schemas'.format(len(deferred)))
-    transformed_deferred = _tranform_deferred_schemas(deferred, arguments.version)
+    transformed_deferred = _tranform_deferred_schemas(deferred, arguments.version, argspec)
 
     combined = {'anyOf': transformed_deferred + [{'type': 'object',
                                                   'properties': transformed, 'required': ['name']}]}

@@ -1,0 +1,40 @@
+- name: yum task
+  yum:
+    name: foobar
+    state: present
+    allow_downgrade: yes
+
+- name: service
+  service:
+    enabled: yes
+    name: httpd
+    state: started
+
+- name: firewall
+  firewalld:
+    permanent: yes
+    state: enabled
+
+- include_vars: xaxa
+  extensions:
+    - yaml
+
+- name: Install package
+  apt:
+    package:
+      - vim
+      - emacs
+
+- import_tasks: foo.yml
+
+- name: manage_bar
+  include_tasks: bar.yml
+
+- include_vars: bar
+- include: bar
+- import_playbook: basdf
+
+- name: Install another package
+  dnf:
+    name: vim
+    disable_gpg_check: yes

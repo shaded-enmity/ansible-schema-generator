@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-ANSIBLE_DIR=~/Repos/ansible
+ANSIBLE_DIR=${ANSIBLE_DIR:-~/Repos/ansible}
 OUTPUT_DIR="generated/"
-
+ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules/module_args.py}
 
 list_branches() {
   cd "${ANSIBLE_DIR}"
@@ -19,11 +19,10 @@ for branch in $(list_branches); do
   title="Ansible ${version}"
   echo "[-] Generating data for version: $version"
   pushd "${ANSIBLE_DIR}"
-  git checkout ${branch}
-  git submodule update --init --recursive
+   git checkout ${branch}
+   git submodule update --init --recursive
   popd
-  ./ansible-schema-generator -v "${version}.0" -o "${outfile}.x" -l debug -d "${desc}" -t "${title}" ../ansible/
-  # get rid of trailing spaces ...
-  cat "${outfile}.x" | jq . > ${outfile}
-  rm "${outfile}.x"
+  ./ansible-schema-generator -a ${ARGSPEC_PATH} -v "${version}.0" -o "${outfile}" -l debug -d "${desc}" -t "${title}" "${ANSIBLE_DIR}" 2> "output-${version}.log"
+  # TODO: get rid of trailing spaces ...
+  # cat "${outfile}.x" | jq . > ${outfile}
 done
