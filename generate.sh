@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -xe
+
 ANSIBLE_DIR=${ANSIBLE_DIR:-~/Repos/ansible}
 OUTPUT_DIR="generated/"
 ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules/module_args.py}
