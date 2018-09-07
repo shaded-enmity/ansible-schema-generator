@@ -11,12 +11,10 @@ list_branches() {
   set +e
   for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote; done
   git fetch --all
-  git branch --format '%(refname)'
-  #git branch --format '%(refname)' | cut -d/ -f3 | grep stable
+  #git branch --format '%(refname)'
+  git branch --format '%(refname)' | cut -d/ -f3 | grep stable
   cd - 1>/dev/null
 }
-
-echo "Generating schemas for branches: $(list_branches)"
 
 mkdir -p "${OUTPUT_DIR}"
 

@@ -7,6 +7,7 @@ git clone https://github.com/ansible/ansible ansible-stable
 
 cd ansible-stable
  git checkout stable-2.5
+ git submodule update --init --recursive
 cd -
 
 export ANSIBLE_DIR=ansible/
