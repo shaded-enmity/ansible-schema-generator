@@ -3,7 +3,7 @@
 set -xe
 
 ANSIBLE_DIR=${ANSIBLE_DIR:-~/Repos/ansible}
-OUTPUT_DIR="generated/"
+OUTPUT_DIR="generated"
 ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules/module_args.py}
 
 list_branches() {
@@ -11,7 +11,7 @@ list_branches() {
   set +e
   for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote >/dev/null 2>/dev/null ; done
   git fetch --all >/dev/null 2>/dev/null
-  git branch --format '%(refname)' | cut -d/ -f3 | grep stable
+  git branch --format '%(refname)' | cut -d/ -f3 | grep stable | grep '2\.[0-9]*'
   cd - 1>/dev/null
 }
 
@@ -27,7 +27,7 @@ for branch in $(list_branches); do
    git checkout ${branch}
    git submodule update --init --recursive
   popd
-  ./ansible-schema-generator -a ${ARGSPEC_PATH} -v "${version}.0" -o "${outfile}" -l debug -d "${desc}" -t "${title}" "${ANSIBLE_DIR}" 2> "output-${version}.log"
+  ./ansible-schema-generator -a ${ARGSPEC_PATH} -v "${version}.0" -o "${outfile}" -l debug -d "${desc}" -t "${title}" "${ANSIBLE_DIR}"
   # TODO: get rid of trailing spaces ...
   # cat "${outfile}.x" | jq . > ${outfile}
 done
