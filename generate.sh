@@ -6,18 +6,18 @@ ANSIBLE_DIR=${ANSIBLE_DIR:-~/Repos/ansible}
 OUTPUT_DIR="generated"
 ARGSPEC_PATH=${ARGSPEC_PATH:-~/Repos/ansible-stable/test/sanity/validate-modules/module_args.py}
 
-list_branches() {
-  cd "${ANSIBLE_DIR}"
-  set +e
-  for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote >/dev/null 2>/dev/null ; done
-  git fetch --all >/dev/null 2>/dev/null
-  git branch --format '%(refname)' | cut -d/ -f3 | grep stable | grep '2\.[0-9]*'
-  cd - 1>/dev/null
-}
+#list_branches() {
+#  cd "${ANSIBLE_DIR}"
+#  set +e
+#  for remote in `git branch -r`; do git branch --track ${remote#origin/} $remote >/dev/null 2>/dev/null ; done
+#  git fetch --all >/dev/null 2>/dev/null
+#  git branch --format '%(refname)' | cut -d/ -f3 | grep stable | grep '2\.[0-9]*'
+#  cd - 1>/dev/null
+#}
 
 mkdir -p "${OUTPUT_DIR}"
 
-for branch in $(list_branches); do
+for branch in "stable-2.0 stable-2.1 stable-2.2 stable-2.3 stable-2.4 stable-2.5 stable-2.6"; do
   version=$(cut -d- -f2 <<< ${branch})
   outfile="${OUTPUT_DIR}/ansible-stable-${version}.json"
   desc="Auto-Generated JSON Schema for Ansible-stable ${version} (https://github.com/shaded-enmity/ansible-schema-generator)"
