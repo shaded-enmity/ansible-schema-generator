@@ -1,4 +1,4 @@
-daiquiry
+daiquiri
 pyyaml
 semver
 jsonschema
