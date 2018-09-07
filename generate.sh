@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 ANSIBLE_DIR=${ANSIBLE_DIR:-~/Repos/ansible}
 OUTPUT_DIR="generated/"
