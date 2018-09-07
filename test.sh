@@ -9,8 +9,8 @@ cd ansible-stable
  git checkout stable-2.5
 cd -
 
-ANSIBLE_DIR=ansible/
-ARGSPEC_PATH=ansible-stable/test/sanity/validate-modules/module_args.py
+export ANSIBLE_DIR=ansible/
+export ARGSPEC_PATH=ansible-stable/test/sanity/validate-modules/module_args.py
 ./generate.sh
 
 for TC in test/cases/*; do
