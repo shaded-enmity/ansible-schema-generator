@@ -13,6 +13,8 @@ list_branches() {
   cd - 1>/dev/null
 }
 
+echo "Generating schemas for branches: $(list_branches)"
+
 mkdir -p "${OUTPUT_DIR}"
 
 for branch in $(list_branches); do
