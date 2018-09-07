@@ -1,0 +1,7 @@
+- aci_interface_policy_l2:
+    description: '{{ description }}'
+    host: '{{ hostname }}'
+    l2_policy: '{{ l2_policy }}'
+    password: '{{ password }}'
+    username: '{{ username }}'
+    vlan_scope: '{{ vlan_policy }}'

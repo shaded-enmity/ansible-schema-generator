@@ -1,0 +1,7 @@
+- rollbar_deployment:
+    comment: Test Deploy
+    environment: staging
+    revision: '4.2'
+    rollbar_user: admin
+    token: AAAAAA
+    user: ansible

@@ -1,0 +1,6 @@
+- nxos_snmp_location:
+    location: Test
+    state: present
+- nxos_snmp_location:
+    location: Test
+    state: absent

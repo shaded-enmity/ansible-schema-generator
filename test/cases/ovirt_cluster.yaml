@@ -1,0 +1,34 @@
+- ovirt_cluster:
+    compatibility_version: 4.0
+    cpu_type: Intel SandyBridge Family
+    data_center: mydatacenter
+    description: mycluster
+    name: mycluster
+- ovirt_cluster:
+    ballooning: true
+    compatibility_version: 4.0
+    cpu_type: Intel Nehalem Family
+    data_center: mydatacenter
+    description: mycluster
+    gluster: false
+    ha_reservation: true
+    host_reason: false
+    ksm_numa: true
+    memory_policy: server
+    name: mycluster
+    rng_sources:
+    - hwrng
+    - random
+    switch_type: legacy
+    threads_as_cores: true
+    trusted_service: false
+    vm_reason: true
+- ovirt_cluster:
+    cpu_type: Intel SandyBridge Family
+    data_center: Default
+    external_network_providers:
+    - name: ovirt-provider-ovn
+    name: mycluster
+- ovirt_cluster:
+    name: mycluster
+    state: absent

@@ -1,0 +1,10 @@
+- ejabberd_user:
+    host: server
+    password: password
+    username: test
+  name: create a user if it does not exist
+- ejabberd_user:
+    host: server
+    state: absent
+    username: test
+  name: delete a user if it exists

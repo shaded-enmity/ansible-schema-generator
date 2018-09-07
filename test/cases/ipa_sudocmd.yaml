@@ -1,0 +1,12 @@
+- ipa_sudocmd:
+    description: Allow to run su via sudo
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: su
+- ipa_sudocmd:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: su
+    state: absent

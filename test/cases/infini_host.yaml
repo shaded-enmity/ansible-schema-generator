@@ -1,0 +1,22 @@
+- infini_host:
+    name: foo.example.com
+    password: secret
+    system: ibox001
+    user: admin
+  name: Create new new host
+- infini_host:
+    name: bar.example.com
+    password: secret
+    system: ibox01
+    user: admin
+    wwns:
+    - 00:00:00:00:00:00:00
+    - '11:11:11:11:11:11:11'
+  name: Make sure host bar is available with wwn ports
+- infini_host:
+    name: foo.example.com
+    password: secret
+    system: ibox01
+    user: admin
+    volume: bar
+  name: Map host foo.example.com to volume bar

@@ -1,0 +1,8 @@
+- ironware_config:
+    lines:
+    - port-name test
+    - enable
+    - load-interval 30
+    - rate-limit input broadcast unknown-unicast multicast 521216 64000
+    parents:
+    - interface ethernet 1/2

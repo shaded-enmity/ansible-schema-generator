@@ -1,0 +1,30 @@
+- connection: local
+  name: configure a zone on the system
+  nios_zone:
+    name: ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: update the comment and ext attributes for an existing zone
+  nios_zone:
+    comment: this is an example comment
+    extattrs:
+      Site: west-dc
+    name: ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: remove the dns zone
+  nios_zone:
+    name: ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: absent

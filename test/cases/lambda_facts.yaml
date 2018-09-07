@@ -1,0 +1,14 @@
+- lambda_facts:
+    function_name: myFunction
+    query: all
+  name: List all for a specific function
+  register: my_function_details
+- lambda_facts:
+    function_name: myFunction
+    query: versions
+  name: List function versions
+  register: my_function_versions
+- lambda_facts:
+    max_items: 20
+    query: all
+  name: List all function

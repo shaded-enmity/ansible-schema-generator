@@ -1,0 +1,16 @@
+- cyberark_user:
+    change_password_on_the_next_logon: false
+    cyberark_session: '{{ cyberark_session }}'
+    group_name: GroupOfUsers
+    initial_password: password
+    state: present
+    user_type_name: EPVUser
+    username: username
+  name: Create user & immediately add it to a group
+- cyberark_user:
+    cyberark_session: '{{ cyberark_session }}'
+    disabled: false
+    new_password: password
+    state: present
+    username: Username
+  name: Make sure user is present and reset user credential if present

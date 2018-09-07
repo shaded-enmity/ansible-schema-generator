@@ -1,0 +1,33 @@
+- name: Add NIC to VM
+  ovirt_nics:
+    interface: e1000
+    mac_address: 00:1a:4a:16:01:56
+    name: mynic
+    network: ovirtmgmt
+    profile: ovirtmgmt
+    state: present
+    vm: myvm
+- name: Plug NIC to VM
+  ovirt_nics:
+    name: mynic
+    state: plugged
+    vm: myvm
+- name: Unplug NIC from VM
+  ovirt_nics:
+    name: mynic
+    state: unplugged
+    vm: myvm
+- name: Add NIC to template
+  ovirt_nics:
+    auth: '{{ ovirt_auth }}'
+    interface: virtio
+    name: nic1
+    network: ovirtmgmt
+    profile: ovirtmgmt
+    state: present
+    template: my_template
+- name: Remove NIC from VM
+  ovirt_nics:
+    name: mynic
+    state: absent
+    vm: myvm

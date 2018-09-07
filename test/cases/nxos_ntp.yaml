@@ -1,0 +1,7 @@
+- nxos_ntp:
+    host: '{{ inventory_hostname }}'
+    key_id: 32
+    password: '{{ pwd }}'
+    prefer: enabled
+    server: 1.2.3.4
+    username: '{{ un }}'

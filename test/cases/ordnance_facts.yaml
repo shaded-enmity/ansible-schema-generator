@@ -1,0 +1,11 @@
+- ordnance_facts:
+    gather_subset: all
+    provider: '{{ cli }}'
+- ordnance_facts:
+    gather_subset:
+    - config
+    provider: '{{ cli }}'
+- ordnance_facts:
+    gather_subset:
+    - '!hardware'
+    provider: '{{ cli }}'

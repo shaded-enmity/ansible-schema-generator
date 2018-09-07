@@ -1,0 +1,73 @@
+- name: Create single event handler
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    email: '{{ email }}'
+    event_handlers:
+    - channels: '{{ handler_channel }}'
+      event: js-before-publish
+      name: '{{ handler_name }}'
+      src: '{{ path_to_handler_source }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    password: '{{ password }}'
+- name: Change event handler 'event'
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    email: '{{ email }}'
+    event_handlers:
+    - event: js-after-publish
+      name: '{{ handler_name }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    password: '{{ password }}'
+- name: Stopping block
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    email: '{{ email }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    password: '{{ password }}'
+    state: stop
+- name: Create '{{ block_name }}' block
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    email: '{{ email }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    password: '{{ password }}'
+    state: present
+  register: module_cache
+- name: Add '{{ event_handler_1_name }}' handler to '{{ block_name }}'
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    cache: '{{ module_cache }}'
+    event_handlers:
+    - channels: '{{ event_handler_1_channel }}'
+      event: js-before-publish
+      name: '{{ event_handler_1_name }}'
+      src: '{{ path_to_handler_1_source }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    state: present
+  register: module_cache
+- name: Add '{{ event_handler_2_name }}' handler to '{{ block_name }}'
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    cache: '{{ module_cache }}'
+    event_handlers:
+    - channels: '{{ event_handler_2_channel }}'
+      event: js-before-publish
+      name: '{{ event_handler_2_name }}'
+      src: '{{ path_to_handler_2_source }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    state: present
+  register: module_cache
+- name: Start '{{ block_name }}' block
+  pubnub_blocks:
+    application: '{{ app_name }}'
+    cache: '{{ module_cache }}'
+    keyset: '{{ keyset_name }}'
+    name: '{{ block_name }}'
+    state: started
+  register: module_cache

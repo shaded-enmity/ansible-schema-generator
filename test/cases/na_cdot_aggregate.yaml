@@ -1,0 +1,15 @@
+- na_cdot_aggregate:
+    disk_count: 1
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleAggr
+    password: '{{ netapp_password }}'
+    state: present
+    username: '{{ netapp_username }}'
+  name: Manage Aggregates
+- na_cdot_aggregate:
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleAggr
+    password: '{{ netapp_password }}'
+    state: present
+    username: '{{ netapp_username }}'
+  name: Manage Aggregates

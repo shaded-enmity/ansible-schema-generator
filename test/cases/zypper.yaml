@@ -1,0 +1,43 @@
+- zypper:
+    name: nmap
+    state: present
+- zypper:
+    disable_recommends: false
+    name: apache2
+    state: present
+- zypper:
+    name: openSUSE-2016-128
+    state: present
+    type: patch
+- zypper:
+    name: nmap
+    state: absent
+- zypper:
+    name: http://nginx.org/packages/sles/12/x86_64/RPMS/nginx-1.8.0-1.sles12.ngx.x86_64.rpm
+    state: present
+- zypper:
+    name: /tmp/fancy-software.rpm
+    state: present
+- zypper:
+    name: '*'
+    state: latest
+- zypper:
+    name: '*'
+    state: latest
+    type: patch
+- zypper:
+    extra_args: --no-allow-vendor-change --allow-arch-change
+    name: '*'
+    state: dist-upgrade
+- zypper:
+    name: openssl
+    state: present
+    update_cache: true
+- zypper:
+    name: docker>=1.10
+    state: present
+- environment:
+    ZYPP_LOCK_TIMEOUT: 20
+  zypper:
+    name: mosh
+    state: present

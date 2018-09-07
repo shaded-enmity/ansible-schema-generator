@@ -1,0 +1,6 @@
+- iam_role_facts: null
+  register: result
+- iam_role_facts:
+    name: MyIAMRole
+- iam_role_facts:
+    path_prefix: /application/path

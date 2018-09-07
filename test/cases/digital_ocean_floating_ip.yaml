@@ -1,0 +1,12 @@
+- digital_ocean_floating_ip:
+    region: lon1
+    state: present
+  name: Create a Floating IP in region lon1
+- digital_ocean_floating_ip:
+    droplet_id: 123456
+    state: present
+  name: Create a Floating IP assigned to Droplet ID 123456
+- digital_ocean_floating_ip:
+    ip: 1.2.3.4
+    state: absent
+  name: Delete a Floating IP with ip 1.2.3.4

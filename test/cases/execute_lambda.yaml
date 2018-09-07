@@ -1,0 +1,20 @@
+- execute_lambda:
+    name: test-function
+    payload:
+      foo: bar
+      value: 8
+  register: response
+- execute_lambda:
+    dry_run: true
+    function_arn: arn:aws:lambda:us-east-1:123456789012:function/some-function
+- execute_lambda:
+    name: test-function
+    payload:
+      foo: bar
+      value: 8
+    tail_log: true
+    wait: true
+  register: response
+- execute_lambda:
+    name: test-function
+    version_qualifier: PRODUCTION

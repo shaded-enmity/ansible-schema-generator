@@ -1,0 +1,11 @@
+- assert:
+    that: ansible_os_family != 'RedHat'
+- assert:
+    that:
+    - '''foo'' in some_command_result.stdout'
+    - number_of_the_counting == 3
+- assert:
+    msg: '''my_param'' must be between 0 and 100'
+    that:
+    - my_param <= 100
+    - my_param >= 0

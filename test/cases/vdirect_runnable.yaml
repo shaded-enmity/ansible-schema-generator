@@ -1,0 +1,12 @@
+- name: vdirect_runnable
+  vdirect_runnable:
+    parameters:
+      adc:
+      - name: adc-1
+        type: Adc
+      vlans_needed: 1
+    runnable_name: get_vlans
+    runnable_type: ConfigurationTemplate
+    vdirect_ip: 10.10.10.10
+    vdirect_password: radware
+    vdirect_user: vDirect

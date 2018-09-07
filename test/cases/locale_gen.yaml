@@ -1,0 +1,4 @@
+- locale_gen:
+    name: de_CH.UTF-8
+    state: present
+  name: Ensure a locale exists

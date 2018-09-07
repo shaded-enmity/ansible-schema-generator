@@ -1,0 +1,7 @@
+- avi_poolgroupdeploymentpolicy:
+    controller: 10.10.25.42
+    name: sample_poolgroupdeploymentpolicy
+    password: something
+    state: present
+    username: admin
+  name: Example to create PoolGroupDeploymentPolicy object

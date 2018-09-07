@@ -1,0 +1,16 @@
+- name: Install package foo
+  urpmi:
+    pkg: foo
+    state: present
+- name: Remove package foo
+  urpmi:
+    pkg: foo
+    state: absent
+- name: Remove packages foo and bar
+  urpmi:
+    pkg: foo,bar
+    state: absent
+- urpmi:
+    name: bar
+    state: present
+    update_cache: true

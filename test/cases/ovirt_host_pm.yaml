@@ -1,0 +1,15 @@
+- ovirt_host_pm:
+    address: 1.2.3.4
+    name: myhost
+    options:
+      myoption1: x
+      myoption2: y
+    password: admin
+    port: 3333
+    type: ipmilan
+    username: admin
+- ovirt_host_pm:
+    address: 1.2.3.4
+    name: myhost
+    state: absent
+    type: ipmilan

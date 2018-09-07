@@ -1,0 +1,6 @@
+- name: Add ACME webapplication on IIS.
+  win_iis_webapplication:
+    name: api
+    physical_path: C:\apps\acme\api
+    site: acme
+    state: present

@@ -1,0 +1,24 @@
+- name: Gather facts about previously created subnets
+  os_subnets_facts:
+    auth:
+      auth_url: https://identity.example.com
+      password: password
+      project_name: someproject
+      username: user
+- name: Gather facts about a previously created subnet by name
+  os_subnets_facts:
+    auth:
+      auth_url: https://identity.example.com
+      password: password
+      project_name: someproject
+      username: user
+    name: subnet1
+- name: Gather facts about a previously created subnet with filter
+  os_subnets_facts:
+    auth:
+      auth_url: https://identity.example.com
+      password: password
+      project_name: someproject
+      username: user
+    filters:
+      tenant_id: 55e2ce24b2a245b09f181bf025724cbe

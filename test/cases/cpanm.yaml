@@ -1,0 +1,22 @@
+- cpanm:
+    name: Dancer
+- cpanm:
+    name: MIYAGAWA/Plack-0.99_05.tar.gz
+- cpanm:
+    locallib: /srv/webapps/my_app/extlib
+    name: Dancer
+- cpanm:
+    from_path: /srv/webapps/my_app/src/
+- cpanm:
+    locallib: /srv/webapps/my_app/extlib
+    name: Dancer
+    notest: true
+- cpanm:
+    mirror: http://cpan.cpantesters.org/
+    name: Dancer
+- cpanm:
+    name: Dancer
+    system_lib: true
+- cpanm:
+    name: Dancer
+    version: '1.0'

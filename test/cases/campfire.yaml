@@ -1,0 +1,11 @@
+- campfire:
+    msg: Task completed.
+    room: 123
+    subscription: foo
+    token: 12345
+- campfire:
+    msg: Task completed ... with feeling.
+    notify: loggins
+    room: 123
+    subscription: foo
+    token: 12345

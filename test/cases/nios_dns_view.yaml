@@ -1,0 +1,28 @@
+- connection: local
+  name: configure a new dns view instance
+  nios_dns_view:
+    name: ansible-dns
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: update the comment for dns view
+  nios_dns_view:
+    comment: this is an example comment
+    name: ansible-dns
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: remove the dns view instance
+  nios_dns_view:
+    name: ansible-dns
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: absent

@@ -1,0 +1,7 @@
+- avi_prioritylabels:
+    controller: 10.10.25.42
+    name: sample_prioritylabels
+    password: something
+    state: present
+    username: admin
+  name: Example to create PriorityLabels object

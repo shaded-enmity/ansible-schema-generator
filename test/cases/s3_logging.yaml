@@ -1,0 +1,10 @@
+- name: Enable logging of s3 bucket mywebsite.com to s3 bucket mylogs
+  s3_logging:
+    name: mywebsite.com
+    state: present
+    target_bucket: mylogs
+    target_prefix: logs/mywebsite.com
+- name: Remove logging on an s3 bucket
+  s3_logging:
+    name: mywebsite.com
+    state: absent

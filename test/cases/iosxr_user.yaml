@@ -1,0 +1,35 @@
+- iosxr_user:
+    configured_password: mypassword
+    name: ansible
+    state: present
+  name: create a new user
+- iosxr_user:
+    purge: true
+  name: remove all users except admin
+- iosxr_user:
+    aggregate:
+    - name: netop
+    - name: netend
+    group: sysadmin
+    state: present
+  name: set multiple users to group sys-admin
+- iosxr_user:
+    aggregate:
+    - name: netop
+    - name: netend
+    groups:
+    - sysadmin
+    - root-system
+    state: present
+  name: set multiple users to multiple groups
+- iosxr_user:
+    configured_password: '{{ new_password }}'
+    name: netop
+    state: present
+    update_password: always
+  name: Change Password for User netop
+- iosxr_user:
+    name: netop
+    public_key_contents: '{{ lookup(''file'', ''/home/netop/.ssh/id_rsa.pub'' }}'
+    state: present
+  name: Add private key authentication for user netop

@@ -1,0 +1,26 @@
+- name: Create L3VPN
+  nso_config:
+    data:
+      l3vpn:vpn:
+        __state: in-sync
+        l3vpn:
+        - endpoint:
+          - as-number: 65101
+            bandwidth: 12000000
+            ce-device: ce6
+            ce-interface: GigabitEthernet0/12
+            id: branch-office1
+            ip-network: 10.10.1.0/24
+          - as-number: 65102
+            bandwidth: 6000000
+            ce-device: ce1
+            ce-interface: GigabitEthernet0/11
+            id: branch-office2
+            ip-network: 10.7.7.0/24
+          - __state: absent
+            id: branch-office3
+          name: company
+          route-distinguisher: 999
+    password: password
+    url: http://localhost:8080/jsonrpc
+    username: username

@@ -1,0 +1,41 @@
+- jenkins_plugin:
+    name: build-pipeline-plugin
+  name: Install plugin
+- jenkins_plugin:
+    name: build-pipeline-plugin
+    with_dependencies: false
+  name: Install plugin without its dependencies
+- jenkins_plugin:
+    name: token-macro
+    state: latest
+  name: Make sure the plugin is always up-to-date
+- jenkins_plugin:
+    name: token-macro
+    version: '1.15'
+  name: Install specific version of the plugin
+- jenkins_plugin:
+    name: token-macro
+    state: pinned
+  name: Pin the plugin
+- jenkins_plugin:
+    name: token-macro
+    state: unpinned
+  name: Unpin the plugin
+- jenkins_plugin:
+    name: token-macro
+    state: enabled
+  name: Enable the plugin
+- jenkins_plugin:
+    name: token-macro
+    state: disabled
+  name: Disable the plugin
+- jenkins_plugin:
+    name: build-pipeline-plugin
+    state: absent
+  name: Uninstall plugin
+- jenkins_plugin:
+    name: build-pipeline-plugin
+    url: http://localhost:8888
+    url_password: p4ssw0rd
+    url_username: admin
+  name: Install plugin

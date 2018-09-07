@@ -1,0 +1,8 @@
+- uptimerobot:
+    apikey: 12345-1234512345
+    monitorid: 12345
+    state: paused
+- uptimerobot:
+    apikey: 12345-1234512345
+    monitorid: 12345
+    state: started

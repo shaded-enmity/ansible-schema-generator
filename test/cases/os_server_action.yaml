@@ -1,0 +1,9 @@
+- os_server_action:
+    action: pause
+    auth:
+      auth_url: https://identity.example.com
+      password: admin
+      project_name: admin
+      username: admin
+    server: vm1
+    timeout: 200

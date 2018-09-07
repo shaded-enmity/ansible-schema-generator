@@ -1,0 +1,13 @@
+- lvg:
+    pesize: 32
+    pvs: /dev/sda1
+    vg: vg.services
+  name: Create a volume group on top of /dev/sda1 with physical extent size = 32MB
+- lvg:
+    pvs: /dev/sdb1,/dev/sdc5
+    vg: vg.services
+  name: Create or resize a volume group on top of /dev/sdb1 and /dev/sdc5.
+- lvg:
+    state: absent
+    vg: vg.services
+  name: Remove a volume group with name vg.services

@@ -1,0 +1,17 @@
+- os_zone:
+    cloud: mycloud
+    description: Test zone
+    email: test@example.net
+    name: example.net.
+    state: present
+    ttl: 3600
+    zone_type: primary
+- os_zone:
+    cloud: mycloud
+    name: example.net.
+    state: present
+    ttl: 7200
+- os_zone:
+    cloud: mycloud
+    name: example.net.
+    state: absent

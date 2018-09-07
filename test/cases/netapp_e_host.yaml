@@ -1,0 +1,8 @@
+- name: Set Host Info
+  netapp_e_host:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    host_type_index: '{{ host_type_index }}'
+    name: '{{ host_name }}'
+    ssid: '{{ ssid }}'

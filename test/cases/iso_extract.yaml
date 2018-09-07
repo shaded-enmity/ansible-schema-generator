@@ -1,0 +1,7 @@
+- iso_extract:
+    dest: /tmp/virt-rear/
+    files:
+    - isolinux/kernel
+    - isolinux/initrd.cgz
+    image: /tmp/rear-test.iso
+  name: Extract kernel and ramdisk from a LiveCD

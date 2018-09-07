@@ -1,0 +1,8 @@
+- ovirt_networks:
+    data_center: mydatacenter
+    name: mynetwork
+    vlan_tag: 1
+    vm_network: true
+- ovirt_networks:
+    name: mynetwork
+    state: absent

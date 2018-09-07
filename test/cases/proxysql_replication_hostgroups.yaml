@@ -1,0 +1,12 @@
+- proxysql_replication_hostgroups:
+    load_to_runtime: false
+    login_password: admin
+    login_user: admin
+    reader_hostgroup: 2
+    state: present
+    writer_hostgroup: 1
+- proxysql_replication_hostgroups:
+    config_file: ~/proxysql.cnf
+    reader_hostgroup: 4
+    state: absent
+    writer_hostgroup: 3

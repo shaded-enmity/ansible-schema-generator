@@ -1,0 +1,18 @@
+- na_cdot_qtree:
+    flexvol_name: ansibleVolume
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleQTree
+    password: '{{ netapp_password }}'
+    state: present
+    username: '{{ netapp_username }}'
+    vserver: ansibleVServer
+  name: Create QTree
+- na_cdot_qtree:
+    flexvol_name: ansibleVolume
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleQTree
+    password: '{{ netapp_password }}'
+    state: present
+    username: '{{ netapp_username }}'
+    vserver: ansibleVServer
+  name: Rename QTree

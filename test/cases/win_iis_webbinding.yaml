@@ -1,0 +1,33 @@
+- name: Add a HTTP binding on port 9090
+  win_iis_webbinding:
+    name: Default Web Site
+    port: 9090
+    state: present
+- name: Remove the HTTP binding on port 9090
+  win_iis_webbinding:
+    name: Default Web Site
+    port: 9090
+    state: absent
+- name: Remove the default http binding
+  win_iis_webbinding:
+    ip: '*'
+    name: Default Web Site
+    port: 80
+    state: absent
+- name: Add a HTTPS binding
+  win_iis_webbinding:
+    certificate_hash: B0D0FA8408FC67B230338FCA584D03792DA73F4C
+    ip: 127.0.0.1
+    name: Default Web Site
+    port: 443
+    protocol: https
+    state: present
+- name: Add a HTTPS binding with host header and SNI enabled
+  win_iis_webbinding:
+    certificate_hash: D1A3AF8988FD32D1A3AF8988FD323792DA73F4C
+    host_header: test.com
+    name: Default Web Site
+    port: 443
+    protocol: https
+    ssl_flags: 1
+    state: present

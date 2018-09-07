@@ -1,0 +1,13 @@
+- azure_rm_networkinterface_facts:
+    name: nic001
+    resource_group: Testing
+  name: Get facts for one network interface
+- azure_rm_networkinterface_facts:
+    resource_group: Testing
+  name: Get network interfaces within a resource group
+- azure_rm_networkinterface_facts:
+    resource_group: Testing
+    tags:
+    - testing
+    - foo:bar
+  name: Get network interfaces by tag

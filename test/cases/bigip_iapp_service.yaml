@@ -1,0 +1,103 @@
+- bigip_iapp_service:
+    name: foo-service
+    parameters: '{{ lookup(''file'', ''f5.http.parameters.json'') }}'
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    template: f5.http
+    user: admin
+  delegate_to: localhost
+  name: Create HTTP iApp service from iApp template
+- bigip_iapp_service:
+    name: foo-service
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    template: f5.http.v1.2.0rc4
+    user: admin
+  delegate_to: localhost
+  name: Upgrade foo-service to v1.2.0rc4 of the f5.http template
+- bigip_iapp_service:
+    name: tests
+    parameters:
+      variables:
+      - name: var__vs_address
+        value: 1.1.1.1
+      - name: pm__apache_servers_for_http
+        value: 2.2.2.1:80
+      - name: pm__apache_servers_for_https
+        value: 2.2.2.2:80
+    password: admin
+    server: '{{ inventory_hostname }}'
+    server_port: '{{ bigip_port }}'
+    state: present
+    template: web_frontends
+    user: admin
+    validate_certs: '{{ validate_certs }}'
+  delegate_to: localhost
+  name: Configure a service using parameters in YAML
+- bigip_iapp_service:
+    force: true
+    name: tests
+    parameters:
+      variables:
+      - name: var__vs_address
+        value: 1.1.1.1
+      - name: pm__apache_servers_for_http
+        value: 2.2.2.1:80
+      - name: pm__apache_servers_for_https
+        value: 2.2.2.2:80
+    password: admin
+    server: '{{ inventory_hostname }}'
+    server_port: '{{ bigip_port }}'
+    state: present
+    template: web_frontends
+    user: admin
+    validate_certs: '{{ validate_certs }}'
+  delegate_to: localhost
+  name: Re-configure a service whose underlying iApp was updated in place
+- bigip_iapp_service:
+    name: tests
+    parameters:
+      lists:
+      - name: irules__irules
+        value:
+        - foo
+        - bar
+      tables:
+      - name: basic__snatpool_members
+      - name: net__snatpool_members
+      - name: optimizations__hosts
+      - columnNames:
+        - name
+        name: pool__hosts
+        rows:
+        - row:
+          - internal.company.bar
+      - columnNames:
+        - addr
+        - port
+        - connection_limit
+        name: pool__members
+        rows:
+        - row:
+          - none
+          - 80
+          - 0
+      - name: server_pools__servers
+      variables:
+      - name: var__vs_address
+        value: 1.1.1.1
+      - name: pm__apache_servers_for_http
+        value: 2.2.2.1:80
+      - name: pm__apache_servers_for_https
+        value: 2.2.2.2:80
+    password: admin
+    server: '{{ inventory_hostname }}'
+    server_port: '{{ bigip_port }}'
+    state: present
+    template: web_frontends
+    user: admin
+    validate_certs: '{{ validate_certs }}'
+  delegate_to: localhost
+  name: Configure a service using more complicated parameters

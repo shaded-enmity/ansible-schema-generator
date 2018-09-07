@@ -1,0 +1,50 @@
+- junos_linkagg:
+    device_count: 4
+    lacp: active
+    members:
+    - ge-0/0/5
+    - ge-0/0/6
+    - ge-0/0/7
+    name: ae11
+    state: present
+  name: configure link aggregation
+- junos_linkagg:
+    device_count: 4
+    lacp: active
+    members:
+    - ge-0/0/5
+    - ge-0/0/6
+    - ge-0/0/7
+    name: ae11
+    state: delete
+  name: delete link aggregation
+- junos_linkagg:
+    active: false
+    device_count: 4
+    lacp: active
+    members:
+    - ge-0/0/5
+    - ge-0/0/6
+    - ge-0/0/7
+    name: ae11
+    state: present
+  name: deactivate link aggregation
+- junos_linkagg:
+    active: true
+    device_count: 4
+    lacp: active
+    members:
+    - ge-0/0/5
+    - ge-0/0/6
+    - ge-0/0/7
+    name: ae11
+    state: present
+  name: Activate link aggregation
+- junos_linkagg:
+    name: ae11
+    state: down
+  name: Disable link aggregation
+- junos_linkagg:
+    name: ae11
+    state: up
+  name: Enable link aggregation

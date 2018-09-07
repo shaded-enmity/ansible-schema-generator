@@ -1,0 +1,33 @@
+- aci_vrf:
+    descr: Lab VRF
+    host: apic
+    password: SomeSecretPassword
+    policy_control_direction: ingress
+    policy_control_preference: enforced
+    state: present
+    tenant: lab_tenant
+    username: admin
+    vrf: vrf_lab
+  name: Add a new VRF to a tenant
+- aci_vrf:
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: lab_tenant
+    username: admin
+    vrf: vrf_lab
+  name: Remove a VRF for a tenant
+- aci_vrf:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: lab_tenant
+    username: admin
+    vrf: vrf_lab
+  name: Query a VRF of a tenant
+- aci_vrf:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all VRFs

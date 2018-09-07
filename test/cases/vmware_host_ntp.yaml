@@ -1,0 +1,29 @@
+- name: Set NTP setting for all ESXi Host in given Cluster
+  vmware_host_ntp:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    ntp_servers:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Set NTP setting for an ESXi Host
+  vmware_host_ntp:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    ntp_servers:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Remove NTP setting for an ESXi Host
+  vmware_host_ntp:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    ntp_servers:
+    - bad.server.ntp.org
+    password: '{{ vcenter_password }}'
+    state: absent
+    username: '{{ vcenter_username }}'

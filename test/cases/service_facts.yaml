@@ -1,0 +1,2 @@
+- name: populate service facts
+  service_facts: null

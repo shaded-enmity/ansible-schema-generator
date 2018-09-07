@@ -1,0 +1,8 @@
+- dellos6_facts:
+    gather_subset: all
+- dellos6_facts:
+    gather_subset:
+    - config
+- dellos6_facts:
+    gather_subset:
+    - '!interfaces'

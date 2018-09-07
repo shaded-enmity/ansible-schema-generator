@@ -1,0 +1,8 @@
+- azure_rm_resourcegroup_facts:
+    name: Testing
+  name: Get facts for one resource group
+- azure_rm_resourcegroup_facts:
+    tags:
+    - testing
+    - foo:bar
+  name: Get facts by tags

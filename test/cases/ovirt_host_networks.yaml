@@ -1,0 +1,37 @@
+- name: Bonds
+  ovirt_host_networks:
+    bond:
+      interfaces:
+      - eth1
+      - eth2
+      mode: 2
+      name: bond0
+    name: myhost
+    networks:
+    - address: 1.2.3.4
+      boot_protocol: static
+      gateway: 1.2.3.4
+      name: myvlan
+      netmask: 255.255.255.0
+      version: v4
+- ovirt_host_networks:
+    bond:
+      name: bond0
+    name: myhost
+    state: absent
+- ovirt_host_networks:
+    interface: eth0
+    name: myhost
+    networks:
+    - name: myvlan1
+    - name: myvlan2
+- ovirt_host_networks:
+    interface: eth0
+    name: myhost
+    networks:
+    - name: myvlan2
+    state: absent
+- ovirt_host_networks:
+    interface: eth0
+    name: myhost
+    state: absent

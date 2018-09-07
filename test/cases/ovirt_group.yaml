@@ -1,0 +1,11 @@
+- ovirt_group:
+    domain: example.com-authz
+    name: group1
+- ovirt_group:
+    domain: example.com-authz
+    name: group1
+    namespace: dc=ad2,dc=example,dc=com
+- ovirt_group:
+    domain: example.com-authz
+    name: group1
+    state: absent

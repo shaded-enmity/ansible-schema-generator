@@ -1,0 +1,50 @@
+- clc_modify_server:
+    cpu: 4
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: present
+  name: set the cpu count to 4 on a server
+- clc_modify_server:
+    memory: 8
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: present
+  name: set the memory to 8GB on a server
+- clc_modify_server:
+    anti_affinity_policy_name: aa_policy
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: present
+  name: set the anti affinity policy on a server
+- clc_modify_server:
+    anti_affinity_policy_name: aa_policy
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: absent
+  name: remove the anti affinity policy on a server
+- clc_modify_server:
+    alert_policy_name: alert_policy
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: present
+  name: add the alert policy on a server
+- clc_modify_server:
+    alert_policy_name: alert_policy
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: absent
+  name: remove the alert policy on a server
+- clc_modify_server:
+    cpu: 8
+    memory: 16
+    server_ids:
+    - UC1TESTSVR01
+    - UC1TESTSVR02
+    state: present
+  name: set the memory to 16GB and cpu to 8 core on a lust if servers

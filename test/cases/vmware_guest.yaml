@@ -1,0 +1,111 @@
+- delegate_to: localhost
+  name: Create a VM from a template
+  register: deploy
+  vmware_guest:
+    cdrom:
+      iso_path: '[datastore1] livecd.iso'
+      type: iso
+    disk:
+    - datastore: g73_datastore
+      size_gb: 10
+      type: thin
+    folder: /testvms
+    hardware:
+      cpu_limit: 8096
+      cpu_reservation: 4096
+      hotadd_cpu: true
+      hotadd_memory: false
+      hotremove_cpu: true
+      max_connections: 5
+      mem_limit: 8096
+      mem_reservation: 4096
+      memory_mb: 512
+      memory_reservation: 512
+      memory_reservation_lock: true
+      num_cpu_cores_per_socket: 3
+      num_cpus: 6
+      scsi: paravirtual
+    hostname: 192.0.2.44
+    name: testvm_2
+    networks:
+    - mac: aa:bb:dd:aa:00:14
+      name: VM Network
+    password: vmware
+    state: poweredon
+    template: template_el7
+    username: administrator@vsphere.local
+    validate_certs: false
+    wait_for_ip_address: true
+- delegate_to: localhost
+  name: Clone a VM from Template and customize
+  vmware_guest:
+    cluster: cluster
+    customization:
+      autologon: true
+      dns_servers:
+      - 192.168.1.1
+      - 192.168.1.2
+      domain: my_domain
+      password: new_vm_password
+      runonce:
+      - powershell.exe -ExecutionPolicy Unrestricted -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1
+        -ForceNewSSLCert -EnableCredSSP
+    datacenter: datacenter1
+    hostname: 192.168.1.209
+    name: testvm-2
+    networks:
+    - dns_servers:
+      - 192.168.1.1
+      - 192.168.1.2
+      domain: my_domain
+      gateway: 192.168.1.1
+      ip: 192.168.1.100
+      mac: aa:bb:dd:aa:00:14
+      name: VM Network
+      netmask: 255.255.255.0
+    - type: dhcp
+      vlan: 1234
+    password: vmware
+    template: template_windows
+    username: administrator@vsphere.local
+    validate_certs: false
+- delegate_to: localhost
+  name: Create a VM template
+  register: deploy
+  vmware_guest:
+    cluster: vmware_cluster_esx
+    datacenter: datacenter1
+    disk:
+    - datastore: g73_datastore
+      size_gb: 10
+      type: thin
+    folder: /testvms
+    guest_id: debian6_64Guest
+    hardware:
+      memory_mb: 512
+      num_cpus: 1
+      scsi: lsilogic
+    hostname: 192.0.2.88
+    is_template: true
+    name: testvm_6
+    password: vmware
+    resource_pool: highperformance_pool
+    username: administrator@vsphere.local
+    validate_certs: false
+- delegate_to: localhost
+  name: Rename a VM (requires the VM's uuid)
+  vmware_guest:
+    hostname: 192.168.1.209
+    name: new_name
+    password: vmware
+    state: present
+    username: administrator@vsphere.local
+    uuid: 421e4592-c069-924d-ce20-7e7533fab926
+- delegate_to: localhost
+  name: Remove a VM by uuid
+  vmware_guest:
+    hostname: 192.168.1.209
+    password: vmware
+    state: absent
+    username: administrator@vsphere.local
+    uuid: 421e4592-c069-924d-ce20-7e7533fab926

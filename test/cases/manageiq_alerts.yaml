@@ -1,0 +1,57 @@
+- manageiq_alerts:
+    description: Test Alert 01
+    enabled: true
+    expression:
+      eval_method: hostd_log_threshold
+      mode: internal
+      options: {}
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    options:
+      notifications:
+        email:
+          from: example@example.com
+          to:
+          - example@example.com
+    resource_type: ContainerNode
+    state: present
+  name: Add an alert with a "hash expression" to ManageIQ
+- manageiq_alerts:
+    description: Test Alert 02
+    enabled: true
+    expression:
+      and:
+      - CONTAINS:
+          tag: Vm.managed-environment
+          value: prod
+      - CONTAINS:
+          tag: Vm.host.managed-environment
+          value: prod
+        not: null
+    expression_type: miq
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    options:
+      notifications:
+        email:
+          from: example@example.com
+          to:
+          - example@example.com
+    resource_type: Vm
+    state: present
+  name: Add an alert with a "miq expression" to ManageIQ
+- manageiq_alerts:
+    description: Test Alert 01
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    state: absent
+  name: Delete an alert from ManageIQ

@@ -1,0 +1,9 @@
+- name: Update the role of a storage array
+  netapp_e_amg_role:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    name: updating amg role
+    role: primary
+    ssid: '{{ ssid }}'
+    validate_certs: '{{ netapp_api_validate_certs }}'

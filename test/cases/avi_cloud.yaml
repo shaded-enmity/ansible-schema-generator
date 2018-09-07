@@ -1,0 +1,21 @@
+- avi_cloud:
+    apic_mode: false
+    controller: '{{ controller }}'
+    dhcp_enabled: true
+    enable_vip_static_routes: false
+    license_type: LIC_CORES
+    mtu: 1500
+    name: VCenter Cloud
+    password: '{{ password }}'
+    prefer_static_routes: false
+    tenant_ref: admin
+    username: '{{ username }}'
+    vcenter_configuration:
+      datacenter_ref: /api/vimgrdcruntime/datacenter-2-10.10.20.100
+      management_network: /api/vimgrnwruntime/dvportgroup-103-10.10.20.100
+      password: password
+      privilege: WRITE_ACCESS
+      username: user
+      vcenter_url: 10.10.20.100
+    vtype: CLOUD_VCENTER
+  name: Create a VMWare cloud with write access mode

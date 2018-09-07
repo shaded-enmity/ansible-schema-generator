@@ -1,0 +1,50 @@
+- letsencrypt:
+    account_key_content: '{{ account_private_key }}'
+    csr: /etc/pki/cert/csr/sample.com.csr
+    dest: /etc/httpd/ssl/sample.com.crt
+  name: Create a challenge for sample.com using a account key from a variable.
+  register: sample_com_challenge
+- letsencrypt:
+    account_key_content: '{{ lookup(''hashi_vault'', ''secret=secret/account_private_key:value'')
+      }}'
+    csr: /etc/pki/cert/csr/sample.com.csr
+    fullchain_dest: /etc/httpd/ssl/sample.com-fullchain.crt
+  name: Create a challenge for sample.com using a account key from hashi vault.
+  register: sample_com_challenge
+- letsencrypt:
+    account_key_src: /etc/pki/cert/private/account.key
+    csr: /etc/pki/cert/csr/sample.com.csr
+    dest: /etc/httpd/ssl/sample.com.crt
+    fullchain_dest: /etc/httpd/ssl/sample.com-fullchain.crt
+  name: Create a challenge for sample.com using a account key file.
+  register: sample_com_challenge
+- letsencrypt:
+    account_key_src: /etc/pki/cert/private/account.key
+    chain_dest: /etc/httpd/ssl/sample.com-intermediate.crt
+    csr: /etc/pki/cert/csr/sample.com.csr
+    data: '{{ sample_com_challenge }}'
+    dest: /etc/httpd/ssl/sample.com.crt
+    fullchain_dest: /etc/httpd/ssl/sample.com-fullchain.crt
+  name: Let the challenge be validated and retrieve the cert and intermediate certificate
+- letsencrypt:
+    account_email: myself@sample.com
+    account_key_src: /etc/pki/cert/private/account.key
+    acme_directory: https://acme-v01.api.letsencrypt.org/directory
+    cert: /etc/httpd/ssl/sample.com.crt
+    challenge: dns-01
+    remaining_days: 60
+    src: /etc/pki/cert/csr/sample.com.csr
+  name: Create a challenge for sample.com using a account key file.
+  register: sample_com_challenge
+- letsencrypt:
+    account_email: myself@sample.com
+    account_key_src: /etc/pki/cert/private/account.key
+    acme_directory: https://acme-v01.api.letsencrypt.org/directory
+    cert: /etc/httpd/ssl/sample.com.crt
+    chain: /etc/httpd/ssl/sample.com-intermediate.crt
+    challenge: dns-01
+    data: '{{ sample_com_challenge }}'
+    fullchain: /etc/httpd/ssl/sample.com-fullchain.crt
+    remaining_days: 60
+    src: /etc/pki/cert/csr/sample.com.csr
+  name: Let the challenge be validated and retrieve the cert and intermediate certificate

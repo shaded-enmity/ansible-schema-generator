@@ -1,0 +1,13 @@
+- azure_rm_postgresqlserver:
+    admin_password: password
+    admin_username: cloudsa
+    enforce_ssl: true
+    location: eastus
+    name: testserver
+    resource_group: TestGroup
+    sku:
+      capacity: 100
+      name: PGSQLS100
+      tier: Basic
+    storage_mb: 1024
+  name: Create (or update) PostgreSQL Server

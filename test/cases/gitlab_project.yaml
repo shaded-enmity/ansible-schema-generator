@@ -1,0 +1,22 @@
+- delegate_to: localhost
+  gitlab_project:
+    login_token: WnUzDsxjy8230-Dy_k
+    name: my_first_project
+    server_url: http://gitlab.example.com
+    state: absent
+    validate_certs: false
+  name: Delete Gitlab Project
+- delegate_to: localhost
+  gitlab_project:
+    group: ansible
+    import_url: http://git.example.com/example/lab.git
+    issues_enabled: false
+    login_password: MySecretPassword
+    login_user: dj-wasabi
+    name: my_first_project
+    server_url: https://gitlab.example.com
+    snippets_enabled: true
+    state: present
+    validate_certs: true
+    wiki_enabled: true
+  name: Create Gitlab Project in group Ansible

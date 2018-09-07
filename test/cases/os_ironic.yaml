@@ -1,0 +1,18 @@
+- os_ironic:
+    chassis_uuid: 00000000-0000-0000-0000-000000000001
+    cloud: devstack
+    driver: pxe_ipmitool
+    driver_info:
+      power:
+        ipmi_address: 1.2.3.4
+        ipmi_password: adminpass
+        ipmi_username: admin
+    nics:
+    - mac: aa:bb:cc:aa:bb:cc
+    - mac: dd:ee:ff:dd:ee:ff
+    properties:
+      cpu_arch: x86_64
+      cpus: 2
+      disk_size: 64
+      ram: 8192
+    uuid: 00000000-0000-0000-0000-000000000002

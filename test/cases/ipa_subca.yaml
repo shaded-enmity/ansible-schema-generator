@@ -1,0 +1,17 @@
+- ipa_subca:
+    ipa_host: spider.example.com
+    ipa_pass: Passw0rd!
+    state: present
+    subca_desc: Ansible Sub CA
+    subca_name: AnsibleSubCA1
+    subca_subject: CN=AnsibleSubCA1,O=example.com
+- ipa_subca:
+    ipa_host: spider.example.com
+    ipa_pass: Passw0rd!
+    state: absent
+    subca_name: AnsibleSubCA1
+- ipa_subca:
+    ipa_host: spider.example.com
+    ipa_pass: Passw0rd!
+    state: disable
+    subca_name: AnsibleSubCA1

@@ -1,0 +1,48 @@
+- blockinfile:
+    block: 'Match User ansible-agent
+
+      PasswordAuthentication no
+
+      '
+    path: /etc/ssh/sshd_config
+  name: insert/update "Match User" configuration block in /etc/ssh/sshd_config
+- blockinfile:
+    block: "iface eth0 inet static\n    address 192.0.2.23\n    netmask 255.255.255.0\n"
+    path: /etc/network/interfaces
+  name: insert/update eth0 configuration stanza in /etc/network/interfaces (it might
+    be better to copy files into /etc/network/interfaces.d/)
+- blockinfile:
+    backup: true
+    block: '{{ lookup(''file'', ''./local/ssh_config'') }}'
+    dest: /etc/ssh/ssh_config
+    validate: /usr/sbin/sshd -T -f %s
+  name: insert/update configuration using a local file and validate it
+- blockinfile:
+    content: '<h1>Welcome to {{ ansible_hostname }}</h1>
+
+      <p>Last updated on {{ ansible_date_time.iso8601 }}</p>
+
+      '
+    insertafter: <body>
+    marker: <!-- {mark} ANSIBLE MANAGED BLOCK -->
+    path: /var/www/html/index.html
+  name: insert/update HTML surrounded by custom markers after <body> line
+- blockinfile:
+    content: ''
+    marker: <!-- {mark} ANSIBLE MANAGED BLOCK -->
+    path: /var/www/html/index.html
+  name: remove HTML as well as surrounding markers
+- blockinfile:
+    block: '{{ item.ip }} {{ item.name }}
+
+      '
+    marker: '# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}'
+    path: /etc/hosts
+  name: Add mappings to /etc/hosts
+  with_items:
+  - ip: 10.10.1.10
+    name: host1
+  - ip: 10.10.1.11
+    name: host2
+  - ip: 10.10.1.12
+    name: host3

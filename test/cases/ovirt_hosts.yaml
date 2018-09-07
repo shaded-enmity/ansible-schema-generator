@@ -1,0 +1,55 @@
+- ovirt_hosts:
+    address: 10.34.61.145
+    cluster: Default
+    kernel_params:
+    - intel_iommu=on
+    name: myhost
+    override_iptables: true
+    password: secret
+- ovirt_hosts:
+    address: 10.34.61.145
+    cluster: Default
+    name: myhost2
+    override_iptables: true
+    public_key: true
+- ovirt_hosts:
+    address: 10.34.61.145
+    cluster: Default
+    hosted_engine: deploy
+    name: myhost2
+    override_iptables: true
+    password: secret
+- ovirt_hosts:
+    name: myhost
+    state: maintenance
+- ovirt_hosts:
+    name: myhost
+    state: restarted
+- ovirt_hosts:
+    name: myhost
+    state: upgraded
+- ovirt_hosts:
+    iscsi:
+      address: 10.34.61.145
+      password: secret
+      port: 3260
+      username: iscsi_user
+    name: myhost
+    state: iscsidiscover
+- ovirt_hosts:
+    iscsi:
+      address: 10.34.61.145
+      password: secret
+      port: 3260
+      target: iqn.2015-07.com.mlipchuk2.redhat:444
+      username: iscsi_user
+    name: myhost
+    state: iscsilogin
+- ovirt_hosts:
+    name: myhost
+    public_key: true
+    state: reinstalled
+- ovirt_hosts:
+    force: true
+    name: myhost
+    state: absent

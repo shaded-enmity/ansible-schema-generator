@@ -1,0 +1,11 @@
+- cnos_conditional_command:
+    command: spanning-tree mode enable
+    condition: '{{ hostvars[inventory_hostname][''condition'']}}'
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    flag: leaf_switch2
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_conditional_command_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Applying CLI template on VLAG Tier1 Leaf Switch1

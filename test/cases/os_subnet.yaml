@@ -1,0 +1,27 @@
+- os_subnet:
+    cidr: 192.168.0.0/24
+    dns_nameservers:
+    - 8.8.8.7
+    - 8.8.8.8
+    host_routes:
+    - destination: 0.0.0.0/0
+      nexthop: 12.34.56.78
+    - destination: 192.168.0.0/24
+      nexthop: 192.168.0.1
+    name: net1subnet
+    network_name: network1
+    state: present
+- os_subnet:
+    name: net1subnet
+    state: absent
+- os_subnet:
+    cidr: 2db8:1::/64
+    dns_nameservers:
+    - 2001:4860:4860::8888
+    - 2001:4860:4860::8844
+    ip_version: 6
+    ipv6_address_mode: dhcpv6-stateless
+    ipv6_ra_mode: dhcpv6-stateless
+    name: intv6
+    network_name: internal
+    state: present

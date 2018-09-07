@@ -1,0 +1,32 @@
+- beadm:
+    name: upgrade-be
+    state: present
+  name: Create ZFS boot environment
+- beadm:
+    name: upgrade-be
+    snapshot: be@old
+    state: present
+  name: Create ZFS boot environment from existing inactive boot environment
+- beadm:
+    description: upgrade
+    name: upgrade-be
+    options: compression=on
+    state: present
+  name: Create ZFS boot environment with compression enabled and description "upgrade"
+- beadm:
+    name: old-be
+    state: absent
+  name: Delete ZFS boot environment
+- beadm:
+    mountpoint: /tmp/be
+    name: BE
+    state: mounted
+  name: Mount ZFS boot environment on /tmp/be
+- beadm:
+    name: BE
+    state: unmounted
+  name: Unmount ZFS boot environment
+- beadm:
+    name: upgrade-be
+    state: activated
+  name: Activate ZFS boot environment

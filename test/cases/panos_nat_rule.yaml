@@ -1,0 +1,18 @@
+- name: Create NAT SSH rule for 10.0.1.101
+  panos_nat_rule:
+    destination:
+    - 10.0.0.100
+    destination_zone: external
+    dnat_address: 10.0.1.101
+    dnat_port: '22'
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    rule_name: Web SSH
+    service: service-tcp-221
+    snat_interface: ethernet1/2
+    snat_type: dynamic-ip-and-port
+    source:
+    - any
+    source_zone:
+    - external
+    username: '{{ username }}'

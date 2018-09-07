@@ -1,0 +1,41 @@
+- aci_switch_leaf_selector:
+    from: 1011
+    host: apic
+    leaf: leaf_selector_name
+    leaf_node_blk: node_blk_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    policy_group: somepolicygroupname
+    state: present
+    to: 1011
+    username: admin
+  name: adding a switch policy leaf profile selector associated Node Block range (w/
+    policy group)
+- aci_switch_leaf_selector:
+    from: 1011
+    host: apic
+    leaf: leaf_selector_name
+    leaf_node_blk: node_blk_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: present
+    to: 1011
+    username: admin
+  name: adding a switch policy leaf profile selector associated Node Block range (w/o
+    policy group)
+- aci_switch_leaf_selector:
+    host: apic
+    leaf: leaf_selector_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Removing a switch policy leaf profile selector
+- aci_switch_leaf_selector:
+    host: apic
+    leaf: leaf_selector_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Querying a switch policy leaf profile selector

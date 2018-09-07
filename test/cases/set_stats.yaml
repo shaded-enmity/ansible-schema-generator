@@ -1,0 +1,14 @@
+- set_stats:
+    data:
+      packages_installed: 31
+- set_stats:
+    data:
+      another_stat: '{{ some_registered_var.results | map(attribute=''ansible_facts.some_fact'')
+        | list }}'
+      one_stat: 11
+      other_stat: '{{ local_var * 2 }}'
+    per_host: false
+- set_stats:
+    aggregate: false
+    data:
+      the_answer: 42

@@ -1,0 +1,35 @@
+- ec2_vpc_route_table:
+    region: us-west-1
+    routes:
+    - dest: 0.0.0.0/0
+      gateway_id: '{{ igw.gateway_id }}'
+    subnets:
+    - '{{ jumpbox_subnet.subnet.id }}'
+    - '{{ frontend_subnet.subnet.id }}'
+    - '{{ vpn_subnet.subnet_id }}'
+    tags:
+      Name: Public
+    vpc_id: vpc-1245678
+  name: Set up public subnet route table
+  register: public_route_table
+- ec2_vpc_route_table:
+    region: us-west-1
+    routes:
+    - dest: 0.0.0.0/0
+      instance_id: '{{ nat.instance_id }}'
+    subnets:
+    - '{{ application_subnet.subnet.id }}'
+    - Database Subnet
+    - 10.0.0.0/8
+    tags:
+      Name: Internal
+    vpc_id: vpc-1245678
+  name: Set up NAT-protected route table
+  register: nat_route_table
+- ec2_vpc_route_table:
+    lookup: id
+    region: us-west-1
+    route_table_id: '{{ route_table.id }}'
+    state: absent
+    vpc_id: vpc-1245678
+  name: delete route table

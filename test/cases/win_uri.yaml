@@ -1,0 +1,19 @@
+- name: Perform a GET and Store Output
+  register: http_output
+  win_uri:
+    url: http://example.com/endpoint
+- name: Hit a Specific Host on the Server
+  win_uri:
+    headers:
+      host: www.somesite.com
+    method: GET
+    url: http://example.com/
+- name: Perform a HEAD on an Endpoint
+  win_uri:
+    method: HEAD
+    url: http://www.example.com/
+- name: POST a Body to an Endpoint
+  win_uri:
+    body: '{ ''some'': ''json'' }'
+    method: POST
+    url: http://www.somesite.com/

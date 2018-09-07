@@ -1,0 +1,36 @@
+- name: Create new volume named foo
+  purefa_volume:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    name: foo
+    size: 1T
+    state: present
+- name: Extend the size of an existing volume named foo
+  purefa_volume:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    name: foo
+    size: 2T
+    state: present
+- name: Delete and eradicate volume named foo
+  purefa_volume:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    eradicate: true
+    fa_url: 10.10.10.2
+    name: foo
+    state: absent
+- name: Create clone of volume bar named foo
+  purefa_volume:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    name: foo
+    state: present
+    target: bar
+- name: Overwrite volume bar with volume foo
+  purefa_volume:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    name: foo
+    overwrite: true
+    state: present
+    target: bar

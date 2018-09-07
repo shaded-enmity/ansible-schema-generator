@@ -1,0 +1,16 @@
+- make:
+    chdir: /home/ubuntu/cool-project
+- become: true
+  make:
+    chdir: /home/ubuntu/cool-project
+    target: install
+- make:
+    chdir: /home/ubuntu/cool-project
+    params:
+      BACKEND: lapack
+      NUM_THREADS: 4
+    target: all
+- make:
+    chdir: /home/ubuntu/cool-project
+    file: /some-project/Makefile
+    target: all

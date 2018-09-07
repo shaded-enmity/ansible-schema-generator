@@ -1,0 +1,17 @@
+- ec2_customer_gateway_facts: null
+  name: Gather facts about all customer gateways
+- ec2_customer_gateway_facts:
+    filters:
+      tag:AltName: test-customer-gateway-alt
+      tag:Name: test-customer-gateway
+    region: ap-southeast-2
+  name: Gather facts about a filtered list of customer gateways, based on tags
+  register: cust_gw_facts
+- ec2_customer_gateway_facts:
+    customer_gateway_ids:
+    - cgw-48841a09
+    - cgw-fec021ce
+    region: ap-southeast-2
+  name: Gather facts about a specific customer gateway by specifying customer gateway
+    ID
+  register: cust_gw_facts

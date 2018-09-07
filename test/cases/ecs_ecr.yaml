@@ -1,0 +1,22 @@
+- ecs_ecr:
+    name: needs-policy-object
+    policy:
+      Statement:
+      - Action:
+        - ecr:GetDownloadUrlForLayer
+        - ecr:BatchGetImage
+        - ecr:BatchCheckLayerAvailability
+        Effect: Allow
+        Principal:
+          AWS: '{{ read_only_arn }}'
+        Sid: read-only
+      Version: '2008-10-17'
+  name: set-policy as object
+- ecs_ecr:
+    name: needs-policy-string
+    policy: '{{ lookup(''template'', ''policy.json.j2'') }}'
+  name: set-policy as string
+- ecs_ecr:
+    delete_policy: true
+    name: needs-no-policy
+  name: delete-policy

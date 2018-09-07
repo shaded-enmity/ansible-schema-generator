@@ -1,0 +1,11 @@
+- name: Collect all facts from the device
+  onyx_facts:
+    gather_subset: all
+- name: Collect only the interfaces facts
+  onyx_facts:
+    gather_subset:
+    - interfaces
+- name: Do not collect version facts
+  onyx_facts:
+    gather_subset:
+    - '!version'

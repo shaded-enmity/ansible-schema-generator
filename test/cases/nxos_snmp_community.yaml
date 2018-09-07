@@ -1,0 +1,4 @@
+- nxos_snmp_community:
+    community: TESTING7
+    group: network-operator
+    state: present

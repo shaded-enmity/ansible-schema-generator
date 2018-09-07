@@ -1,0 +1,17 @@
+- helm:
+    chart:
+      name: memcached
+      source:
+        location: https://kubernetes-charts.storage.googleapis.com
+        type: repo
+      version: 0.4.0
+    host: localhost
+    name: my-memcached
+    namespace: default
+    state: installed
+  name: Install helm chart
+- helm:
+    host: localhost
+    name: my-memcached
+    state: absent
+  name: Uninstall helm chart

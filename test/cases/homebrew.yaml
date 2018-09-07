@@ -1,0 +1,34 @@
+- homebrew:
+    name: foo
+    state: present
+- homebrew:
+    name: foo
+    path: /my/other/location/bin
+    state: present
+- homebrew:
+    name: foo
+    state: present
+    update_homebrew: true
+- homebrew:
+    name: foo
+    state: latest
+    update_homebrew: true
+- homebrew:
+    update_homebrew: true
+    upgrade_all: true
+- homebrew:
+    name: foo
+    state: head
+- homebrew:
+    name: foo
+    state: linked
+- homebrew:
+    name: foo
+    state: absent
+- homebrew:
+    name: foo,bar
+    state: absent
+- homebrew:
+    install_options: with-baz,enable-debug
+    name: foo
+    state: present

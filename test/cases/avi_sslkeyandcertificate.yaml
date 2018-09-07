@@ -1,0 +1,23 @@
+- avi_sslkeyandcertificate:
+    certificate:
+      certificate: '-----BEGIN CERTIFICATE-----
+
+        ....
+
+        -----END CERTIFICATE-----
+
+        '
+      self_signed: true
+    controller: 10.10.27.90
+    key: '-----BEGIN PRIVATE KEY-----
+
+      ....
+
+      -----END PRIVATE KEY-----
+
+      '
+    name: MyTestCert
+    password: AviNetworks123!
+    type: SSL_CERTIFICATE_TYPE_VIRTUALSERVICE
+    username: admin
+  name: Create a SSL Key and Certificate

@@ -1,0 +1,16 @@
+- sqs_queue:
+    default_visibility_timeout: 120
+    delivery_delay: 30
+    maximum_message_size: 1024
+    message_retention_period: 86400
+    name: my-queue
+    policy: '{{ json_dict }}'
+    receive_message_wait_time: 20
+    redrive_policy:
+      deadLetterTargetArn: arn:aws:sqs:eu-west-1:123456789012:my-dead-queue
+      maxReceiveCount: 5
+    region: ap-southeast-2
+- sqs_queue:
+    name: my-queue
+    region: ap-southeast-2
+    state: absent

@@ -1,0 +1,7 @@
+- avi_backup:
+    controller: 10.10.25.42
+    name: sample_backup
+    password: something
+    state: present
+    username: admin
+  name: Example to create Backup object

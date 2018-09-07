@@ -1,0 +1,23 @@
+- na_cdot_license:
+    hostname: '{{ netapp_hostname }}'
+    licenses:
+      cifs: null
+      fcp: null
+      flexclone: null
+      iscsi: null
+      nfs: null
+      snaprestore: null
+    password: '{{ netapp_password }}'
+    serial_number: null
+    username: '{{ netapp_username }}'
+  name: Add licenses
+- na_cdot_license:
+    hostname: '{{ netapp_hostname }}'
+    licenses:
+      nfs: remove
+    password: '{{ netapp_password }}'
+    remove_expired: true
+    remove_unused: false
+    serial_number: null
+    username: '{{ netapp_username }}'
+  name: Remove licenses

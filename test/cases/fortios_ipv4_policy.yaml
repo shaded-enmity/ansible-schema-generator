@@ -1,0 +1,50 @@
+- fortios_ipv4_policy:
+    dst_addr: all
+    host: 192.168.0.254
+    id: 42
+    logtraffic: disable
+    nat: true
+    password: password
+    policy_action: accept
+    service: dns
+    src_addr: internal_network
+    state: present
+    username: admin
+  name: Allow external DNS call
+- fortios_ipv4_policy:
+    dst_addr: webservers
+    host: 192.168.0.254
+    id: 42
+    password: password
+    policy_action: accept
+    services:
+    - http
+    - https
+    src_addr: all
+    state: present
+    username: admin
+  name: Public Web
+- fortios_ipv4_policy:
+    comment: no comment (created by ansible)
+    dst_addr: all
+    dst_intf:
+    - vl2000
+    - vl3000
+    host: 192.168.0.254
+    id: 42
+    logtraffic: disable
+    nat: true
+    password: password
+    policy_action: accept
+    services:
+    - HTTP
+    - HTTPS
+    src_addr:
+    - some_serverA
+    - some_serverB
+    src_intf: vl1000
+    state: present
+    username: admin
+  name: Some Policy
+  tags:
+  - policy

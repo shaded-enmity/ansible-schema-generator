@@ -1,0 +1,7 @@
+- pkgutil:
+    name: CSWcommon
+    state: present
+- pkgutil:
+    name: CSWnrpe
+    site: ftp://myinternal.repo/opencsw/kiel
+    state: latest

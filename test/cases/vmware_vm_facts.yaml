@@ -1,0 +1,23 @@
+- delegate_to: localhost
+  name: Gather all registered virtual machines
+  register: vmfacts
+  vmware_vm_facts:
+    hostname: esxi_or_vcenter_ip_or_hostname
+    password: password
+    username: username
+- delegate_to: localhost
+  name: Gather only registered virtual machine templates
+  register: template_facts
+  vmware_vm_facts:
+    hostname: esxi_or_vcenter_ip_or_hostname
+    password: password
+    username: username
+    vm_type: template
+- delegate_to: localhost
+  name: Gather only registered virtual machines
+  register: vm_facts
+  vmware_vm_facts:
+    hostname: esxi_or_vcenter_ip_or_hostname
+    password: password
+    username: username
+    vm_type: vm

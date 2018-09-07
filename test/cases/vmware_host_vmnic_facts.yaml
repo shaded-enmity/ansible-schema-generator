@@ -1,0 +1,14 @@
+- name: Gather facts about vmnics of all ESXi Host in the given Cluster
+  register: cluster_host_vmnics
+  vmware_host_vmnic_facts:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Gather facts about vmnics of an ESXi Host
+  register: host_vmnics
+  vmware_host_vmnic_facts:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

@@ -1,0 +1,10 @@
+- azure_rm_loadbalancer_facts:
+    name: Testing
+    resource_group: TestRG
+  name: Get facts for one load balancer
+- azure_rm_loadbalancer_facts: null
+  name: Get facts for all load balancers
+- azure_rm_loadbalancer_facts:
+    tags:
+    - testing
+  name: Get facts by tags

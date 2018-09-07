@@ -1,0 +1,16 @@
+- junos_system:
+    domain-search:
+    - ansible.com
+    - redhat.com
+    - juniper.com
+    domain_name: test.example.com
+    hostname: junos01
+  name: configure hostname and domain name
+- junos_system:
+    state: absent
+  name: remove configuration
+- junos_system:
+    name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+  name: configure name servers

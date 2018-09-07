@@ -1,0 +1,20 @@
+- azure_rm_virtualmachineimage_facts:
+    location: eastus
+    offer: CentOS
+    publisher: OpenLogic
+    sku: '7.1'
+    version: 7.1.20160308
+  name: Get facts for a specific image
+- azure_rm_virtualmachineimage_facts:
+    location: eastus
+    offer: CentOS
+    publisher: OpenLogic
+    sku: '7.1'
+  name: List available versions
+- azure_rm_virtualmachineimage_facts:
+    location: eastus
+    publisher: OpenLogic
+  name: List available offers
+- azure_rm_virtualmachineimage_facts:
+    location: eastus
+  name: List available publishers

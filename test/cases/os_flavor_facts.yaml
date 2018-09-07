@@ -1,0 +1,24 @@
+- os_flavor_facts:
+    cloud: mycloud
+- os_flavor_facts:
+    cloud: mycloud
+    name: xlarge-flavor
+- os_flavor_facts:
+    cloud: mycloud
+    ram: '512'
+- os_flavor_facts:
+    cloud: mycloud
+    ram: '>=1024'
+- os_flavor_facts:
+    cloud: mycloud
+    limit: 1
+    ram: MIN
+- os_flavor_facts:
+    cloud: mycloud
+    ram: '>=1024'
+    vcpus: '2'
+- os_flavor_facts:
+    cloud: mycloud
+    ephemeral: <30
+    ram: '>=1024'
+    vcpus: '2'

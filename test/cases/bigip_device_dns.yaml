@@ -1,0 +1,13 @@
+- bigip_device_dns:
+    name_servers:
+    - 208.67.222.222
+    - 208.67.220.220
+    password: secret
+    search:
+    - localdomain
+    - lab.local
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Set the DNS settings on the BIG-IP

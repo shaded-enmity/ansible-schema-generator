@@ -1,0 +1,17 @@
+- opkg:
+    name: foo
+    state: present
+- opkg:
+    name: foo
+    state: present
+    update_cache: true
+- opkg:
+    name: foo
+    state: absent
+- opkg:
+    name: foo,bar
+    state: absent
+- opkg:
+    force: overwrite
+    name: foo
+    state: present

@@ -1,0 +1,7 @@
+- name: Add tower project
+  tower_project:
+    description: Foo bar project
+    name: Foo
+    organization: test
+    state: present
+    tower_config_file: ~/tower_cli.cfg

@@ -1,0 +1,25 @@
+- name: configure link aggregation group
+  onyx_linkagg:
+    members:
+    - Eth1/1
+    - Eth1/2
+    name: Po1
+- name: remove configuration
+  onyx_linkagg:
+    name: Po1
+    state: absent
+- name: Create aggregate of linkagg definitions
+  onyx_linkagg:
+    aggregate:
+    - members:
+      - Eth1/1
+      name: Po1
+    - members:
+      - Eth1/2
+      name: Po2
+- name: Remove aggregate of linkagg definitions
+  onyx_linkagg:
+    aggregate:
+    - name: Po1
+    - name: Po2
+    state: absent

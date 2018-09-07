@@ -1,0 +1,13 @@
+- ec2_ami_find:
+    ami_tags:
+      project: website
+    no_result_action: fail
+    owner: self
+  register: ami_find
+- ec2_ami_find:
+    name: ubuntu/images/ebs/ubuntu-trusty-14.04-amd64-server-*
+    owner: 099720109477
+    sort: name
+    sort_end: 1
+    sort_order: descending
+  register: ami_find

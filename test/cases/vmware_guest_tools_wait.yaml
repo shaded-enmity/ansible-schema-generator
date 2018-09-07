@@ -1,0 +1,19 @@
+- delegate_to: localhost
+  name: Wait for VMware tools to become available by UUID
+  register: facts
+  vmware_guest_tools_wait:
+    hostname: 192.168.1.209
+    password: vmware
+    username: administrator@vsphere.local
+    uuid: 421e4592-c069-924d-ce20-7e7533fab926
+    validate_certs: false
+- delegate_to: localhost
+  name: Wait for VMware tools to become available by name
+  register: facts
+  vmware_guest_tools_wait:
+    folder: /datacenter1/vm
+    hostname: 192.168.1.209
+    name: test-vm
+    password: vmware
+    username: administrator@vsphere.local
+    validate_certs: false

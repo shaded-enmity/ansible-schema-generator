@@ -1,0 +1,145 @@
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: enable
+  name: Test Vlag  - enable
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: auto-recovery
+    vlagArg2: 266
+  name: Test Vlag - autorecovery
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: config-consistency
+    vlagArg2: strict
+  name: Test Vlag - config-consistency
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: isl
+    vlagArg2: 23
+  name: Test Vlag - isl
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: mac-address-table
+  name: Test Vlag  - mac-address-table
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: peer-gateway
+  name: Test Vlag - peer-gateway
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: priority
+    vlagArg2: 1313
+  name: Test Vlag - priority
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: startup-delay
+    vlagArg2: 323
+  name: Test Vlag - startup-delay
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: tier-id
+    vlagArg2: 313
+  name: Test Vlag  - tier-id
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: vrrp
+  name: Test Vlag - vrrp
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: instance
+    vlagArg2: 33
+    vlagArg3: 333
+  name: Test Vlag - instance
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: instance
+    vlagArg2: '33'
+  name: Test Vlag - instance2
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: hlthchk
+    vlagArg2: keepalive-attempts
+    vlagArg3: 13
+  name: Test Vlag  - keepalive-attempts
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: hlthchk
+    vlagArg2: keepalive-interval
+    vlagArg3: 131
+  name: Test Vlag - keepalive-interval
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: hlthchk
+    vlagArg2: retry-interval
+    vlagArg3: 133
+  name: Test Vlag - retry-interval
+- cnos_vlag:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType'']}}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_vlag_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass'']}}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user'']}}'
+    vlagArg1: hlthchk
+    vlagArg2: peer-ip
+    vlagArg3: 1.2.3.4
+  name: Test Vlag - peer ip

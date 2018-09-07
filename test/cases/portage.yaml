@@ -1,0 +1,26 @@
+- portage:
+    package: foo
+    state: present
+- portage:
+    package: foo
+    state: absent
+- portage:
+    package: foo
+    update: true
+- portage:
+    getbinpkg: true
+    package: foo
+- portage:
+    package: '@world'
+    usepkgonly: true
+- portage:
+    deep: true
+    package: '@world'
+    sync: true
+    update: true
+- portage:
+    depclean: true
+- portage:
+    depclean: true
+    package: foo
+    state: absent

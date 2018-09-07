@@ -1,0 +1,5 @@
+- azure_rm_mysqldatabase:
+    name: db1
+    resource_group: TestGroup
+    server_name: testserver
+  name: Create (or update) MySQL Database

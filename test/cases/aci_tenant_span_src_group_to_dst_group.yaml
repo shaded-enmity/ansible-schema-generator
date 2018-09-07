@@ -1,0 +1,8 @@
+- aci_tenant_span_src_group_to_dst_group:
+    description: '{{ description }}'
+    dst_group: '{{ dst_group }}'
+    host: apic
+    password: SomeSecretPassword
+    src_group: '{{ src_group }}'
+    tenant: production
+    username: admin

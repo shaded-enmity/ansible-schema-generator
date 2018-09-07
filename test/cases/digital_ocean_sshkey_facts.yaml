@@ -1,0 +1,2 @@
+- digital_ocean_sshkey_facts:
+    oauth_token: '{{ my_do_key }}'

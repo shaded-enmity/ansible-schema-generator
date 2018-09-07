@@ -1,0 +1,69 @@
+- aci_epg:
+    ap: intranet
+    bd: prod_bd
+    description: Web Intranet EPG
+    epg: web_epg
+    host: apic
+    password: SomeSecretPassword
+    preferred_group: true
+    tenant: production
+    username: admin
+  name: Add a new EPG
+- aci_epg:
+    ap: ticketing
+    bd: '{{ item.bd }}'
+    description: Ticketing EPG
+    epg: '{{ item.epg }}'
+    host: apic
+    intra_epg_isolation: unenforced
+    password: SomeSecretPassword
+    priority: unspecified
+    state: present
+    tenant: production
+    username: admin
+  with_items:
+  - bd: web_bd
+    epg: web
+  - bd: database_bd
+    epg: database
+- aci_epg:
+    app_profile: intranet
+    epg: web_epg
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: production
+    username: admin
+    validate_certs: false
+  name: Remove an EPG
+- aci_epg:
+    ap: ticketing
+    epg: web_epg
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: production
+    username: admin
+  name: Query an EPG
+- aci_epg:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all EPGs
+- aci_epg:
+    epg: web_epg
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+    validate_certs: false
+  name: Query all EPGs with a Specific Name
+- aci_epg:
+    ap: ticketing
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+    validate_certs: false
+  name: Query all EPGs of an App Profile

@@ -1,0 +1,70 @@
+- aci_bd_subnet:
+    bd: database
+    gateway: 10.1.1.1
+    host: apic
+    mask: 24
+    password: SomeSecretPassword
+    tenant: production
+    username: admin
+  name: create a subnet
+- aci_bd_subnet:
+    bd: database
+    description: SQL Servers
+    gateway: 10.1.2.1
+    host: apic
+    mask: 23
+    password: SomeSecretPassword
+    route_profile: corp_route_profile
+    route_profile_l3_out: corp
+    scope: public
+    subnet_name: sql
+    tenant: production
+    username: admin
+  name: create a subnet with options
+- aci_bd_subnet:
+    bd: database
+    gateway: 10.1.1.1
+    host: apic
+    mask: 24
+    password: SomeSecretPassword
+    scope:
+    - private
+    - shared
+    tenant: production
+    username: admin
+  name: update a subnets scope to private and shared
+- aci_bd_subnet:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: get all subnets
+- aci_bd_subnet:
+    gateway: 10.1.1.1
+    host: apic
+    mask: 24
+    password: SomeSecretPassword
+    state: query
+    tenant: production
+    username: admin
+  name: get all subnets of specific gateway in specified tenant
+- aci_bd_subnet:
+    bd: database
+    gateway: 10.1.1.1
+    host: apic
+    mask: 24
+    password: SomeSecretPassword
+    state: query
+    tenant: production
+    username: admin
+  name: get specific subnet
+- aci_bd_subnet:
+    bd: database
+    gateway: 10.1.1.1
+    host: apic
+    mask: 24
+    password: SomeSecretPassword
+    state: absent
+    tenant: production
+    username: admin
+  name: delete a subnet

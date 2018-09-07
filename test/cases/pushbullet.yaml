@@ -1,0 +1,19 @@
+- pushbullet:
+    api_key: ABC123abc123ABC123abc123ABC123ab
+    device: Chrome
+    title: You may see this on Google Chrome
+- pushbullet:
+    api_key: ABC123abc123ABC123abc123ABC123ab
+    body: http://docs.ansible.com/
+    device: Chrome
+    push_type: link
+    title: Ansible Documentation
+- pushbullet:
+    api_key: ABC123abc123ABC123abc123ABC123ab
+    channel: my-awesome-channel
+    title: Broadcasting a message to the
+- pushbullet:
+    api_key: ABC123abc123ABC123abc123ABC123ab
+    body: Error rate on signup service is over 90% for more than 2 minutes
+    channel: my-awesome-channel
+    title: ALERT! Signup service is down

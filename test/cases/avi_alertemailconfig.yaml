@@ -1,0 +1,7 @@
+- avi_alertemailconfig:
+    controller: 10.10.25.42
+    name: sample_alertemailconfig
+    password: something
+    state: present
+    username: admin
+  name: Example to create AlertEmailConfig object

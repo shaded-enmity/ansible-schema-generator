@@ -1,0 +1,29 @@
+- cloudscale_floating_ip:
+    api_token: xxxxxx
+    ip_version: 4
+    reverse_ptr: my-server.example.com
+    server: 47cec963-fcd2-482f-bdb6-24461b2d47b1
+  name: Request a floating IP
+  register: floating_ip
+- cloudscale_floating_ip:
+    api_token: xxxxxx
+    ip: 192.0.2.123
+    server: ea3b39a3-77a8-4d0b-881d-0bb00a1e7f48
+  name: Move floating IP to backup server
+- cloudscale_floating_ip:
+    api_token: xxxxxx
+    ip_version: 6
+    prefix_length: 56
+    server: 47cec963-fcd2-482f-bdb6-24461b2d47b1
+  name: Request a floating IP
+  register: floating_ip
+- cloudscale_floating_ip:
+    api_token: xxxxxx
+    ip: '{{ floating_ip.network | ip }}'
+    server: ea3b39a3-77a8-4d0b-881d-0bb00a1e7f48
+  name: Move floating IP to backup server
+- cloudscale_floating_ip:
+    api_token: xxxxxx
+    ip: 192.0.2.123
+    state: absent
+  name: Release floating IP

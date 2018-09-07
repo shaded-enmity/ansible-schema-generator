@@ -1,0 +1,32 @@
+- aci_config_rollback:
+    compare_export_policy: config_backup
+    compare_snapshot: run-2017-08-27T23-43-56
+    export_policy: config_backup
+    host: apic
+    password: SomeSecretPassword
+    snapshot: run-2017-08-28T06-24-01
+    state: preview
+    username: admin
+  name: Compare Snapshot Files
+- aci_config_rollback:
+    export_policy: config_backup
+    host: apic
+    import_policy: rollback_config
+    password: SomeSecretPassword
+    snapshot: run-2017-08-28T06-24-01
+    state: rollback
+    username: admin
+  name: Rollback Configuration
+- aci_config_rollback:
+    description: Rollback 8-27 changes
+    export_policy: config_backup
+    fail_on_decrypt: true
+    host: apic
+    import_mode: atomic
+    import_policy: rollback_config
+    import_type: replace
+    password: SomeSecretPassword
+    snapshot: run-2017-08-28T06-24-01
+    state: rollback
+    username: admin
+  name: Rollback Configuration

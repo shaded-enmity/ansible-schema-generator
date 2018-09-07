@@ -1,0 +1,5 @@
+- name: Warn logged in users of impending upgrade
+  win_msg:
+    display_seconds: 60
+    msg: Automated upgrade about to start.  Please save your work and log off before
+      {{ deployment_start_time }}

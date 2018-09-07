@@ -1,0 +1,25 @@
+- ovirt_quotas:
+    clusters:
+    - cpu: 10
+      memory: 20
+      name: cluster1
+    data_center: dcX
+    name: quota1
+- ovirt_quotas:
+    clusters:
+    - cpu: 15
+      memory: 30
+    data_center: dcX
+    name: quota2
+- ovirt_quotas:
+    data_center: dcX
+    name: quota3
+    storage_grace: 40
+    storage_threshold: 60
+    storages:
+    - name: data1
+      size: 100
+- ovirt_quotas:
+    data_center: dcX
+    name: quota1
+    state: absent

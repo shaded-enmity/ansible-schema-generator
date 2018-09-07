@@ -1,0 +1,24 @@
+- bigip_sys_db:
+    key: boot.quiet
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    value: disable
+  delegate_to: localhost
+  name: Set the boot.quiet DB variable on the BIG-IP
+- bigip_sys_db:
+    key: setup.run
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    value: false
+  delegate_to: localhost
+  name: Disable the initial setup screen
+- bigip_sys_db:
+    key: setup.run
+    password: secret
+    server: lb.mydomain.com
+    state: reset
+    user: admin
+  delegate_to: localhost
+  name: Reset the initial setup screen

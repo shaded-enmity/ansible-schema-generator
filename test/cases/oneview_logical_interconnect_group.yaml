@@ -1,0 +1,44 @@
+- delegate_to: localhost
+  name: Ensure that the Logical Interconnect Group is present
+  oneview_logical_interconnect_group:
+    config: /etc/oneview/oneview_config.json
+    data:
+      enclosureType: C7000
+      interconnectMapTemplate:
+        interconnectMapEntryTemplates:
+        - logicalDownlinkUri: null
+          logicalLocation:
+            locationEntries:
+            - relativeValue: 1
+              type: Bay
+            - relativeValue: 1
+              type: Enclosure
+          permittedInterconnectTypeName: HP VC Flex-10/10D Module
+      name: Test Logical Interconnect Group
+      uplinkSets: []
+    state: present
+- delegate_to: localhost
+  name: Ensure that the Logical Interconnect Group has the specified scopes
+  oneview_logical_interconnect_group:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: Test Logical Interconnect Group
+      scopeUris:
+      - /rest/scopes/00SC123456
+      - /rest/scopes/01SC123456
+    state: present
+- delegate_to: localhost
+  name: Ensure that the Logical Interconnect Group is present with name 'Test'
+  oneview_logical_interconnect_group:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: New Logical Interconnect Group
+      newName: Test
+    state: present
+- delegate_to: localhost
+  name: Ensure that the Logical Interconnect Group is absent
+  oneview_logical_interconnect_group:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: New Logical Interconnect Group
+    state: absent

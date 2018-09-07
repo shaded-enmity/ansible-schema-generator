@@ -1,0 +1,16 @@
+- delegate_to: localhost
+  ecs_attribute:
+    attributes:
+    - flavor: test
+    - migrated
+    cluster: test-cluster
+    ec2_instance_id: '{{ ec2_id }}'
+    state: present
+- delegate_to: localhost
+  ecs_attribute:
+    attributes:
+    - flavor: test
+    - migrated
+    cluster: test-cluster
+    ec2_instance_id: '{{ ec2_id }}'
+    state: absent

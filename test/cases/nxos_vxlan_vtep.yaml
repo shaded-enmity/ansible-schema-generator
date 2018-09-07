@@ -1,0 +1,10 @@
+- nxos_vxlan_vtep:
+    description: default
+    host: '{{ inventory_hostname }}'
+    host_reachability: default
+    interface: nve1
+    password: '{{ pwd }}'
+    shutdown: default
+    source_interface: Loopback0
+    source_interface_hold_down_time: 30
+    username: '{{ un }}'

@@ -1,0 +1,36 @@
+- gcp_healthcheck:
+    credentials_file: '{{ credentials_file }}'
+    healthcheck_name: my-healthcheck
+    healthcheck_type: HTTP
+    project_id: '{{ project_id }}'
+    service_account_email: '{{ service_account_email }}'
+    state: present
+  name: Create Minimum HealthCheck
+- gcp_healthcheck:
+    check_interval: 10
+    credentials_file: '{{ credentials_file }}'
+    healthcheck_name: my-healthcheck
+    healthcheck_type: HTTP
+    healthy_threshhold: 1
+    host: my-host
+    project_id: '{{ project_id }}'
+    request_path: /hc
+    service_account_email: '{{ service_account_email }}'
+    state: present
+    timeout: 30
+    unhealthy_threshhold: 2
+  name: Create HTTP HealthCheck
+- gcp_healthcheck:
+    check_interval: 5
+    credentials_file: '{{ credentials_file }}'
+    healthcheck_name: '{{ https_healthcheck }}'
+    healthcheck_type: HTTPS
+    healthy_threshold: 1
+    host_header: my-host
+    project_id: '{{ project_id }}'
+    request_path: /hc
+    service_account_email: '{{ service_account_email }}'
+    state: present
+    timeout: 5
+    unhealthy_threshold: 2
+  name: Create HTTPS HealthCheck

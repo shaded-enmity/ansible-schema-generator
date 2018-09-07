@@ -1,0 +1,22 @@
+- delegate_to: localhost
+  gitlab_user:
+    login_token: WnUzDsxjy8230-Dy_k
+    server_url: http://gitlab.example.com
+    state: absent
+    username: myusername
+    validate_certs: false
+  name: Delete Gitlab User
+- delegate_to: localhost
+  gitlab_user:
+    email: me@example.com
+    login_password: MySecretPassword
+    login_user: dj-wasabi
+    name: My Name
+    password: mysecretpassword
+    server_url: https://gitlab.dj-wasabi.local
+    sshkey_file: ssh-rsa AAAAB3NzaC1yc...
+    sshkey_name: MySSH
+    state: present
+    username: myusername
+    validate_certs: true
+  name: Create Gitlab User

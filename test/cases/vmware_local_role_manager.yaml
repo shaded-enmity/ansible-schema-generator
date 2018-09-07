@@ -1,0 +1,24 @@
+- name: Add local role to ESXi
+  vmware_local_role_manager:
+    hostname: esxi_hostname
+    local_role_name: vmware_qa
+    password: vmware
+    state: present
+    username: root
+- name: Add local role with privileges to ESXi
+  vmware_local_role_manager:
+    hostname: esxi_hostname
+    local_privilege_ids:
+    - Folder.Create
+    - Folder.Delete
+    local_role_name: vmware_qa
+    password: vmware
+    state: present
+    username: root
+- name: Remove local role from ESXi
+  vmware_local_role_manager:
+    hostname: esxi_hostname
+    local_role_name: vmware_qa
+    password: vmware
+    state: absent
+    username: root

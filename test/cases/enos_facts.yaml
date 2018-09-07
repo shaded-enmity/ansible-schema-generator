@@ -1,0 +1,11 @@
+- enos_facts:
+    gather_subset: all
+    provider: '{{ cli }}'
+- enos_facts:
+    gather_subset:
+    - config
+    provider: '{{ cli }}'
+- enos_facts:
+    gather_subset:
+    - '!hardware'
+    provider: '{{ cli }}'

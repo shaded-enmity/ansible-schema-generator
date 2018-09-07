@@ -1,0 +1,10 @@
+- nxos_portchannel:
+    group: 99
+    host: '{{ inventory_hostname }}'
+    members:
+    - Ethernet1/1
+    - Ethernet1/2
+    mode: active
+    password: '{{ pwd }}'
+    state: present
+    username: '{{ un }}'

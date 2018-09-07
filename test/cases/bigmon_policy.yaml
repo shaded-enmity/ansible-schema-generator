@@ -1,0 +1,8 @@
+- bigmon_policy:
+    action: drop
+    controller: '{{ inventory_hostname }}'
+    name: policy1
+    policy_description: DC 1 traffic policy
+    state: present
+    validate_certs: false
+  name: policy to aggregate filter and deliver data center (DC) 1 traffic

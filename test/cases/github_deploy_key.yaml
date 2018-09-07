@@ -1,0 +1,39 @@
+- github_deploy_key:
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAwXxn7kIMNWzcDfou...
+    name: new-deploy-key
+    owner: johndoe
+    password: supersecretpassword
+    read_only: true
+    repo: example
+    username: johndoe
+- github_deploy_key:
+    force: true
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAwXxn7kIMNWzcDfou...
+    name: new-deploy-key
+    owner: johndoe
+    password: supersecretpassword
+    repository: example
+    state: absent
+    username: johndoe
+- github_deploy_key:
+    force: true
+    key: '{{ lookup(''file'', ''~/.ssh/github.pub'') }}'
+    name: new-deploy-key
+    owner: johndoe
+    repository: example
+    token: ABAQDAwXxn7kIMNWzcDfo...
+- github_deploy_key:
+    key: '{{ lookup(''file'', ''~/.ssh/github.pub'') }}'
+    name: replace-deploy-key
+    owner: johndoe
+    password: supersecretpassword
+    repository: example
+    username: johndoe
+- github_deploy_key:
+    key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDAwXxn7kIMNWzcDfou...
+    name: new-deploy-key-2
+    otp: 123456
+    owner: johndoe
+    password: supersecretpassword
+    repo: example
+    username: johndoe

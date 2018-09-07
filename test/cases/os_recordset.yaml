@@ -1,0 +1,21 @@
+- os_recordset:
+    cloud: mycloud
+    description: test recordset
+    name: www
+    records:
+    - 10.1.1.1
+    recordset_type: primary
+    state: present
+    ttl: 3600
+    zone: example.net.
+- os_recordset:
+    cloud: mycloud
+    name: www
+    state: present
+    ttl: 7200
+    zone: example.net.
+- os_recordset:
+    cloud: mycloud
+    name: www
+    state: absent
+    zone: example.net.

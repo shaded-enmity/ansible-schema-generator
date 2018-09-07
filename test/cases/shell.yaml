@@ -1,0 +1,8 @@
+- shell: somescript.sh >> somelog.txt
+- args:
+    chdir: somedir/
+    creates: somelog.txt
+  shell: somescript.sh >> somelog.txt
+- args:
+    executable: /bin/bash
+  shell: cat < /tmp/*txt

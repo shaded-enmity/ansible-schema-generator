@@ -1,0 +1,25 @@
+- name: Start sv dnscache, if not running
+  runit:
+    name: dnscache
+    state: started
+- name: Stop sv dnscache, if running
+  runit:
+    name: dnscache
+    state: stopped
+- name: Kill sv dnscache, in all cases
+  runit:
+    name: dnscache
+    state: killed
+- name: Restart sv dnscache, in all cases
+  runit:
+    name: dnscache
+    state: restarted
+- name: Reload sv dnscache, in all cases
+  runit:
+    name: dnscache
+    state: reloaded
+- name: Use alternative sv directory location
+  runit:
+    name: dnscache
+    service_dir: /run/service
+    state: reloaded

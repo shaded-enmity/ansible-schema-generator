@@ -1,0 +1,20 @@
+- name: Configure LAN Connectivity Policy
+  ucs_lan_connectivity:
+    hostname: 172.16.143.150
+    name: Cntr-LAN-Boot
+    password: password
+    username: admin
+    vnic_list:
+    - adapter_policy: Linux
+      name: Fabric-A
+      vnic_template: vNIC-Template-A
+    - adapter_policy: Linux
+      name: Fabric-B
+      vnic_template: vNIC-Template-B
+- name: Remove LAN Connectivity Policy
+  ucs_lan_connectivity:
+    hostname: 172.16.143.150
+    name: Cntr-LAN-Boot
+    password: password
+    state: absent
+    username: admin

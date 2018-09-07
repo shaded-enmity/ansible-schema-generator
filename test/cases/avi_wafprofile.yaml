@@ -1,0 +1,7 @@
+- avi_wafprofile:
+    controller: 10.10.25.42
+    name: sample_wafprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create WafProfile object

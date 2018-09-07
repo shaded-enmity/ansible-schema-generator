@@ -1,0 +1,25 @@
+- delegate_to: localhost
+  twilio:
+    account_sid: ACXXXXXXXXXXXXXXXXX
+    auth_token: ACXXXXXXXXXXXXXXXXX
+    from_number: 15552014545
+    msg: All servers with webserver role are now configured.
+    to_number: 15553035681
+- delegate_to: localhost
+  twilio:
+    account_sid: ACXXXXXXXXXXXXXXXXX
+    auth_token: ACXXXXXXXXXXXXXXXXX
+    from_number: 15553258899
+    msg: This server configuration is now complete.
+    to_number:
+    - 15551113232
+    - 12025551235
+    - 19735559010
+- delegate_to: localhost
+  twilio:
+    account_sid: ACXXXXXXXXXXXXXXXXX
+    auth_token: ACXXXXXXXXXXXXXXXXX
+    from_number: 15552014545
+    media_url: https://demo.twilio.com/logo.png
+    msg: Deployment complete!
+    to_number: 15553035681

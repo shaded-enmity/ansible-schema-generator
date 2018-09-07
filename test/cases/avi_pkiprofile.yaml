@@ -1,0 +1,7 @@
+- avi_pkiprofile:
+    controller: 10.10.25.42
+    name: sample_pkiprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create PKIProfile object

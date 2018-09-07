@@ -1,0 +1,17 @@
+- flowadm:
+    flow: ssh_out
+    link: vnic0
+    local_port: 22
+    maxbw: 100M
+    state: present
+    transport: tcp
+- flowadm:
+    name: dns
+    state: resetted
+- flowadm:
+    dsfield: 0x2e:0xfc
+    flow: efphb-flow
+    link: bge0
+    maxbw: 500M
+    priority: high
+    state: present

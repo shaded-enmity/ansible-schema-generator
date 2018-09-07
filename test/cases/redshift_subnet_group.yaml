@@ -1,0 +1,3 @@
+- redshift_subnet_group:
+    group_name: redshift-subnet
+    state: absent

@@ -1,0 +1,27 @@
+- name: Gather facts about previously created networks
+  os_networks_facts:
+    auth:
+      auth_url: https://identity.example.com
+      password: password
+      project_name: someproject
+      username: user
+- name: Gather facts about a previously created network by name
+  os_networks_facts:
+    auth:
+      auth_url: https://identity.example.com
+      password: password
+      project_name: someproject
+      username: user
+    name: network1
+- name: Gather facts about a previously created network with filter
+  os_networks_facts:
+    auth:
+      auth_url: https://identity.example.com
+      password: password
+      project_name: someproject
+      username: user
+    filters:
+      subnets:
+      - 057d4bdf-6d4d-4728-bb0f-5ac45a6f7400
+      - 443d4dc0-91d4-4998-b21c-357d10433483
+      tenant_id: 55e2ce24b2a245b09f181bf025724cbe

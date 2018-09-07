@@ -1,0 +1,9 @@
+- authorized_key:
+    key: '{{ lookup(''file'', ''/home/charlie/.ssh/id_rsa.pub'') }}'
+    manage_dir: false
+    path: /etc/ssh/authorized_keys/charlie
+    user: charlie
+- authorized_key:
+    key: '{{ lookup(''file'', ''/home/charlie/.ssh/id_rsa.pub'') }}'
+    key_options: no-port-forwarding,from="10.0.1.1"
+    user: charlie

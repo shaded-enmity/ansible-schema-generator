@@ -1,0 +1,18 @@
+- junos_lldp:
+    state: enabled
+  name: Enable LLDP service
+- junos_lldp:
+    state: disabled
+  name: Disable LLDP service
+- junos_lldp:
+    hold_multiplier: 5
+    interval: 10
+    state: present
+    transmit_delay: 30
+  name: Set LLDP parameters
+- junos_lldp:
+    hold_multiplier: 5
+    interval: 10
+    state: absent
+    transmit_delay: 30
+  name: Delete LLDP parameters

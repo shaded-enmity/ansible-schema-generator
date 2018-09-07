@@ -1,0 +1,2 @@
+- ovirt_networks_facts:
+    pattern: name=vlan1*

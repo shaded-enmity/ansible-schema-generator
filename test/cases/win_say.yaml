@@ -1,0 +1,18 @@
+- name: Warn of impending deployment
+  win_say:
+    msg: Warning, deployment commencing in 5 minutes, please log out.
+- name: Using a different voice and a start sound
+  win_say:
+    msg: Warning, deployment commencing in 5 minutes, please log out.
+    start_sound_path: C:\Windows\Media\ding.wav
+    voice: Microsoft Hazel Desktop
+- name: With start and end sound
+  win_say:
+    end_sound_path: C:\Windows\Media\chimes.wav
+    msg: New software installed
+    start_sound_path: C:\Windows\Media\Windows Balloon.wav
+- name: Text from file example
+  win_say:
+    end_sound_path: C:\Windows\Media\chimes.wav
+    msg_file: AppData\Local\Temp\morning_report.txt
+    start_sound_path: C:\Windows\Media\Windows Balloon.wav

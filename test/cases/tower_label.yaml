@@ -1,0 +1,6 @@
+- name: Add label to tower organization
+  tower_label:
+    name: Custom Label
+    organization: My Organization
+    state: present
+    tower_config_file: ~/tower_cli.cfg

@@ -1,0 +1,28 @@
+- aci_aep:
+    aep: ACI-AEP
+    description: default
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: Add a new AEP
+- aci_aep:
+    aep: ACI-AEP
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove an existing AEP
+- aci_aep:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all AEPs
+- aci_aep:
+    aep: ACI-AEP
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query a specific AEP

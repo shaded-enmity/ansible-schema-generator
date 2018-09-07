@@ -1,0 +1,13 @@
+- avi_cloudconnectoruser:
+    controller: '{{ controller }}'
+    name: root
+    password: '{{ password }}'
+    private_key: '-----BEGIN RSA PRIVATE KEY-----
+
+      -----END RSA PRIVATE KEY-----''
+
+      '
+    public_key: ssh-rsa ...
+    tenant_ref: admin
+    username: '{{ username }}'
+  name: Create a Cloud connector user that is used for integration into cloud platforms

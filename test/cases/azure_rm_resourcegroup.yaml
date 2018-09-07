@@ -1,0 +1,11 @@
+- azure_rm_resourcegroup:
+    location: westus
+    name: Testing
+    tags:
+      delete: never
+      testing: testing
+  name: Create a resource group
+- azure_rm_resourcegroup:
+    name: Testing
+    state: absent
+  name: Delete a resource group

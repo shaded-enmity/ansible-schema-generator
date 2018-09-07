@@ -1,0 +1,63 @@
+- deploy_helper:
+    path: /path/to/root
+  name: Initialize the deploy root and gather facts
+- deploy_helper:
+    path: /path/to/root
+    release: '{{ deploy_helper.new_release }}'
+    state: finalize
+  name: Finalize the deploy, removing the unfinished file and switching the symlink
+- deploy_helper:
+    path: /path/to/root
+    state: query
+  name: Run 'state=query' to gather facts without changing anything
+- deploy_helper:
+    path: /path/to/root
+    release: '{{ deploy_helper.new_release }}'
+    state: present
+  name: Initialize the deploy root
+- deploy_helper:
+    current_path: /var/www/active
+    path: /path/to/root
+    releases_path: /var/www/project/releases
+    shared_path: /var/www/shared
+- deploy_helper:
+    path: /path/to/root
+    release: v1.1.1
+    state: present
+- deploy_helper:
+    path: /path/to/root
+    release: '{{ deploy_helper.new_release }}'
+    state: finalize
+- deploy_helper:
+    path: /path/to/root
+    release: '{{ deploy_helper.new_release }}'
+    state: finalize
+    unfinished_filename: README.md
+- deploy_helper:
+    clean: false
+    path: /path/to/root
+    release: '{{ deploy_helper.new_release }}'
+    state: finalize
+- deploy_helper:
+    path: /path/to/root
+    state: clean
+- deploy_helper:
+    path: /path/to/root
+    state: clean
+- deploy_helper:
+    path: /path/to/root
+    state: present
+- deploy_helper:
+    keep_releases: 10
+    path: /path/to/root
+    release: '{{ deploy_helper.new_release }}'
+    state: finalize
+- deploy_helper:
+    keep_releases: 10
+    path: /path/to/root
+    state: clean
+- deploy_helper:
+    path: /path/to/root
+    state: absent
+- deploy_helper:
+    path: /path/to/root

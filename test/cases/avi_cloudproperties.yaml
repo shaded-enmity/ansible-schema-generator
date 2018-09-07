@@ -1,0 +1,7 @@
+- avi_cloudproperties:
+    controller: 10.10.25.42
+    name: sample_cloudproperties
+    password: something
+    state: present
+    username: admin
+  name: Example to create CloudProperties object

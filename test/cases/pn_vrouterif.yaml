@@ -1,0 +1,25 @@
+- name: Add vrouter-interface
+  pn_vrouterif:
+    pn_clipassword: admin
+    pn_cliusername: admin
+    pn_interface_ip: 101.101.101.2/24
+    pn_vlan: 101
+    pn_vrouter_name: ansible-vrouter
+    state: present
+- name: Add VRRP..
+  pn_vrouterif:
+    pn_clipassword: admin
+    pn_cliusername: admin
+    pn_interface_ip: 101.101.101.2/24
+    pn_vlan: 101
+    pn_vrouter_name: ansible-vrouter
+    pn_vrrp_ip: 101.101.101.1/24
+    pn_vrrp_priority: 100
+    state: present
+- name: Remove vrouter-interface
+  pn_vrouterif:
+    pn_clipassword: admin
+    pn_cliusername: admin
+    pn_interface_ip: 101.101.101.2/24
+    pn_vrouter_name: ansible-vrouter
+    state: absent

@@ -1,0 +1,42 @@
+- aci_static_binding_to_epg:
+    ap: accessport_code_app
+    deploy_immediacy: lazy
+    encap_id: 222
+    epg: accessport_epg1
+    host: apic
+    interface: 1/7
+    interface_mode: untagged
+    interface_type: switch_port
+    leafs: 101
+    password: SomeSecretPassword
+    pod_id: 1
+    state: present
+    tenant: accessport-code-cert
+    username: admin
+  name: Deploy Static Path binding for given EPG
+- aci_static_binding_to_epg:
+    ap: accessport_code_app
+    epg: accessport_epg1
+    host: apic
+    interface: 1/7
+    interface_type: switch_port
+    leafs: 101
+    password: SomeSecretPassword
+    pod: 1
+    state: absent
+    tenant: accessport-code-cert
+    username: admin
+  name: Remove Static Path binding for given EPG
+- aci_static_binding_to_epg:
+    ap: accessport_code_app
+    epg: accessport_epg1
+    host: apic
+    interface: 1/7
+    interface_type: switch_port
+    leafs: 101
+    password: SomeSecretPassword
+    pod: 1
+    state: query
+    tenant: accessport-code-cert
+    username: admin
+  name: Get specific Static Path binding for given EPG

@@ -1,0 +1,14 @@
+- aireos_config:
+    lines: sysname testDevice
+  name: configure configuration
+- aireos_config:
+    diff_against: intended
+    intended: '{{ lookup(''file'', ''master.cfg'') }}'
+  name: diff the running-config against a provided config
+- aireos_config:
+    before: acl delete testACL
+    lines:
+    - acl create testACL
+    - acl rule protocol testACL 1 any
+    - acl rule direction testACL 3 in
+  name: load new acl into device

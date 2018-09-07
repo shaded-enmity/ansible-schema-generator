@@ -1,0 +1,28 @@
+- cisco_spark:
+    message: '**Cisco Spark Ansible Module - Room Message in Markdown**'
+    message_type: markdown
+    personal_token: '{{ token }}'
+    recipient_id: '{{ room_id }}'
+    recipient_type: roomId
+  name: Cisco Spark - Markdown Message to a Room
+- cisco_spark:
+    message: Cisco Spark Ansible Module - Room Message in Text
+    message_type: text
+    personal_token: '{{ token }}'
+    recipient_id: '{{ room_id }}'
+    recipient_type: roomId
+  name: Cisco Spark - Text Message to a Room
+- cisco_spark:
+    message: Cisco Spark Ansible Module - Text Message to Individual by ID
+    message_type: text
+    personal_token: '{{ token }}'
+    recipient_id: '{{ person_id}}'
+    recipient_type: toPersonId
+  name: Cisco Spark - Text Message by an Individuals ID
+- cisco_spark:
+    message: Cisco Spark Ansible Module - Text Message to Individual by E-Mail
+    message_type: text
+    personal_token: '{{ token }}'
+    recipient_id: '{{ person_email }}'
+    recipient_type: toPersonEmail
+  name: Cisco Spark - Text Message by an Individuals E-Mail Address

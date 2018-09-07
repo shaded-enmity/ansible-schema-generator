@@ -1,0 +1,34 @@
+- name: Upload
+  netact_cm_command:
+    dn: PLMN-PLMN/MRBTS-746
+    extra_opts: -btsContentInUse true
+    operation: Upload
+    opsname: Uploading_test
+- name: Provision
+  netact_cm_command:
+    backupPlanName: myBackupPlanName
+    createBackupPlan: true
+    dn: PLMN-PLMN/MRBTS-746
+    operation: Provision
+    opsname: Provision_test
+    planName: mySiteTemplate
+    type: actual
+- name: Export and fetching data from target
+  netact_cm_command:
+    fileName: exportTest.xml
+    operation: Export
+    opsname: Export_test
+    planName: mySiteTemplate
+    type: actual
+- name: Import
+  netact_cm_command:
+    extra_ops: enablePolicyPlans true
+    fileFormat: CSV
+    fileName: myCSVFile
+    operation: Import
+    opsname: Import_test
+    planName: myPlanName
+    type: plan
+- name: Test failure of the module
+  netact_cm_command:
+    name: fail me

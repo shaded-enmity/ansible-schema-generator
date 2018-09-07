@@ -1,0 +1,18 @@
+- bigip_virtual_address:
+    address: 10.10.10.10
+    partition: Common
+    password: secret
+    server: lb.mydomain.net
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add virtual address
+- bigip_virtual_address:
+    address: 10.10.10.10
+    password: secret
+    server: lb.mydomain.net
+    state: present
+    use_route_advertisement: true
+    user: admin
+  delegate_to: localhost
+  name: Enable route advertisement on the virtual address

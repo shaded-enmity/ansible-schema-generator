@@ -1,0 +1,8 @@
+- hipchat:
+    msg: Ansible task finished
+    room: notif
+- hipchat:
+    api: https://api.hipchat.com/v2/
+    msg: Ansible task finished
+    room: notify
+    token: OAUTH2_TOKEN

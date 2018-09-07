@@ -1,0 +1,7 @@
+- aci_tenant_span_dst_group:
+    description: '{{ descr }}'
+    dst_group: '{{ dst_group }}'
+    host: apic
+    password: SomeSecretPassword
+    tenant: '{{ tenant }}'
+    username: admin

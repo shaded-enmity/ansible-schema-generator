@@ -1,0 +1,15 @@
+- cloudfront_origin_access_identity:
+    caller_reference: this is an example reference
+    comment: this is an example comment
+    state: present
+  name: create an origin access identity
+- cloudfront_origin_access_identity:
+    caller_reference: this is an example reference
+    comment: this is a new comment
+    origin_access_identity_id: E17DRN9XUOAHZX
+  name: update an existing origin access identity using caller_reference as an identifier
+- cloudfront_origin_access_identity:
+    caller_reference: this is an example reference
+    comment: this is a new comment
+    state: absent
+  name: delete an existing origin access identity using caller_reference as an identifier

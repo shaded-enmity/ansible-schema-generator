@@ -1,0 +1,30 @@
+- name: add filesystem audit rule for a folder
+  win_audit_rule:
+    audit_flags: success,failure
+    inheritance_flags: ContainerInherit,ObjectInherit
+    path: c:\inetpub\wwwroot\website
+    rights: write,delete,changepermissions
+    user: BUILTIN\Users
+- name: add filesystem audit rule for a file
+  win_audit_rule:
+    audit_flags: success,failure
+    inheritance_flags: None
+    path: c:\inetpub\wwwroot\website\web.config
+    rights: write,delete,changepermissions
+    user: BUILTIN\Users
+- name: add registry audit rule
+  win_audit_rule:
+    audit_flags: success
+    path: hklm:\software
+    rights: delete
+    user: BUILTIN\Users
+- name: remove filesystem audit rule
+  win_audit_rule:
+    path: c:\inetpub\wwwroot\website
+    state: absent
+    user: BUILTIN\Users
+- name: remove registry audit rule
+  win_audit_rule:
+    path: hklm:\software
+    state: absent
+    user: BUILTIN\Users

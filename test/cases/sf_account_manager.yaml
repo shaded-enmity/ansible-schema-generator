@@ -1,0 +1,22 @@
+- name: Create Account
+  sf_account_manager:
+    hostname: '{{ solidfire_hostname }}'
+    name: TenantA
+    password: '{{ solidfire_password }}'
+    state: present
+    username: '{{ solidfire_username }}'
+- name: Modify Account
+  sf_account_manager:
+    hostname: '{{ solidfire_hostname }}'
+    name: TenantA
+    new_name: TenantA-Renamed
+    password: '{{ solidfire_password }}'
+    state: present
+    username: '{{ solidfire_username }}'
+- name: Delete Account
+  sf_account_manager:
+    hostname: '{{ solidfire_hostname }}'
+    name: TenantA-Renamed
+    password: '{{ solidfire_password }}'
+    state: absent
+    username: '{{ solidfire_username }}'

@@ -1,0 +1,5 @@
+- udm_share:
+    host: ucs.example.com
+    name: home
+    path: /home
+    sambaName: Home

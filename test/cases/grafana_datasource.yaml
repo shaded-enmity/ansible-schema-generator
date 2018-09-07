@@ -1,0 +1,12 @@
+- grafana_datasource:
+    basic_auth: true
+    basic_auth_password: xxxxxxxx
+    basic_auth_user: grafana
+    database: my-index_*
+    grafana_url: http://grafana.company.com
+    json_data: '{"esVersion":5, "timeField": "@timestamp"}'
+    name: my_elastic
+    state: present
+    type: elasticsearch
+    url: https://elasticsearch.company.com:9200
+  name: Create elasticsearch datasource

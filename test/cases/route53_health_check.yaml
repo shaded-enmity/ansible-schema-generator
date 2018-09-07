@@ -1,0 +1,12 @@
+- register: my_health_check
+  route53_health_check:
+    failure_threshold: 2
+    fqdn: host1.example.com
+    request_interval: 10
+    resource_path: /
+    state: present
+    string_match: Hello
+    type: HTTP_STR_MATCH
+- route53_health_check:
+    fqdn: host1.example.com
+    state: absent

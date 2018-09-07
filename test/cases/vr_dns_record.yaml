@@ -1,0 +1,40 @@
+- name: Ensure an A record exists
+  vr_dns_record:
+    data: 10.10.10.10
+    domain: example.com
+    name: www
+    ttl: 3600
+- name: Ensure a second A record exists for round robin LB
+  vr_dns_record:
+    data: 10.10.10.11
+    domain: example.com
+    multiple: true
+    name: www
+    ttl: 60
+- name: Ensure a CNAME record exists
+  vr_dns_record:
+    data: www.example.com
+    domain: example.com
+    name: web
+    record_type: CNAME
+- name: Ensure MX record exists
+  vr_dns_record:
+    data: '{{ item.data }}'
+    domain: example.com
+    multiple: true
+    priority: '{{ item.priority }}'
+    record_type: MX
+  with_items:
+  - data: mx1.example.com
+    priority: 10
+  - data: mx2.example.com
+    priority: 10
+  - data: mx3.example.com
+    priority: 20
+- name: Ensure MX record is absent in case multiple exists
+  vr_dns_record:
+    data: mx1.example.com
+    domain: example.com
+    multiple: true
+    record_type: MX
+    state: absent

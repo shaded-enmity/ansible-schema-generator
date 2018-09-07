@@ -1,0 +1,76 @@
+- jira:
+    description: Created using Ansible
+    issuetype: Task
+    operation: create
+    password: '{{ pass }}'
+    project: ANS
+    summary: Example Issue
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Create an issue
+  register: issue
+- jira:
+    comment: A comment added by Ansible
+    issue: '{{ issue.meta.key }}'
+    operation: comment
+    password: '{{ pass }}'
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Comment on issue
+- jira:
+    assignee: ssmith
+    issue: '{{ issue.meta.key}}'
+    operation: edit
+    password: '{{ pass }}'
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Assign an issue using free-form fields
+- jira:
+    assignee: ssmith
+    description: Created and assigned using Ansible
+    issuetype: Task
+    operation: create
+    password: '{{ pass }}'
+    project: ANS
+    summary: Assigned issue
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Create an assigned issue
+- args:
+    fields:
+      labels:
+      - autocreated
+      - ansible
+  jira:
+    issue: '{{ issue.meta.key }}'
+    operation: edit
+    password: '{{ pass }}'
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Set the labels on an issue using free-form fields
+- jira:
+    issue: ANS-63
+    operation: fetch
+    password: '{{ pass }}'
+    project: ANS
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Get an issue
+  register: issue
+- jira:
+    inwardissue: HSP-1
+    linktype: Relates
+    operation: link
+    outwardissue: MKY-1
+    password: '{{ pass }}'
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Create link from HSP-1 to MKY-1
+- jira:
+    issue: '{{ issue.meta.key }}'
+    operation: transition
+    password: '{{ pass }}'
+    status: Done
+    uri: '{{ server }}'
+    username: '{{ user }}'
+  name: Close the issue

@@ -1,0 +1,32 @@
+- connection: local
+  name: configure a network
+  nios_network:
+    comment: this is a test comment
+    network: 192.168.10.0/24
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: set dhcp options for a network
+  nios_network:
+    comment: this is a test comment
+    network: 192.168.10.0/24
+    options:
+    - name: domain-name
+      value: ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: remove a network
+  nios_network:
+    network: 192.168.10.0/24
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: absent

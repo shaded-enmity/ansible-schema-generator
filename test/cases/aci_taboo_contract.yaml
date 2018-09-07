@@ -1,0 +1,30 @@
+- aci_taboo_contract:
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    taboo_contract: taboo_contract_test
+    tenant: ansible_test
+    username: admin
+  name: Add taboo contract
+- aci_taboo_contract:
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    taboo_contract: taboo_contract_test
+    tenant: ansible_test
+    username: admin
+  name: Remove taboo contract
+- aci_taboo_contract:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all taboo contracts
+- aci_taboo_contract:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    taboo_contract: taboo_contract_test
+    tenant: ansible_test
+    username: admin
+  name: Query a specific taboo contract

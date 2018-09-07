@@ -1,0 +1,25 @@
+- name: Radius Server Basic settings
+  nxos_aaa_server:
+    deadtime: 20
+    directed_request: enabled
+    host: inventory_hostname }}
+    password: pwd }}
+    server_timeout: 9
+    server_type: radius
+    username: un }}
+- name: Tacacs Server Basic settings
+  nxos_aaa_server:
+    deadtime: 19
+    directed_request: disabled
+    host: inventory_hostname }}
+    password: pwd }}
+    server_timeout: 8
+    server_type: tacacs
+    username: un }}
+- name: AAA Server Global Key
+  nxos_aaa_server:
+    global_key: test_key
+    host: inventory_hostname }}
+    password: pwd }}
+    server_type: radius
+    username: un }}

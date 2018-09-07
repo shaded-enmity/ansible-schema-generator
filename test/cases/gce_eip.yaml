@@ -1,0 +1,14 @@
+- gce_eip:
+    credentials_file: '{{ credentials_file }}'
+    name: my-global-ip
+    project_id: '{{ project_id }}'
+    region: global
+    service_account_email: '{{ service_account_email }}'
+    state: present
+- gce_eip:
+    credentials_file: '{{ credentials_file }}'
+    name: my-global-ip
+    project_id: '{{ project_id }}'
+    region: us-east1
+    service_account_email: '{{ service_account_email }}'
+    state: present

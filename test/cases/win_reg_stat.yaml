@@ -1,0 +1,7 @@
+- register: current_version
+  win_reg_stat:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+- register: common_files_dir
+  win_reg_stat:
+    name: CommonFilesDir
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion

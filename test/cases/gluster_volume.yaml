@@ -1,0 +1,43 @@
+- gluster_volume:
+    bricks: /bricks/brick1/g1
+    cluster:
+    - 192.0.2.10
+    - 192.0.2.11
+    name: test1
+    rebalance: true
+    state: present
+  name: create gluster volume
+  run_once: true
+- gluster_volume:
+    name: test1
+    options:
+      performance.cache-size: 256MB
+    state: present
+  name: tune
+- gluster_volume:
+    name: test1
+    state: started
+  name: start gluster volume
+- gluster_volume:
+    directory: /foo
+    name: test1
+    quota: 20.0MB
+    state: present
+  name: limit usage
+- gluster_volume:
+    name: test1
+    state: stopped
+  name: stop gluster volume
+- gluster_volume:
+    name: test1
+    state: absent
+  name: remove gluster volume
+- gluster_volume:
+    bricks: /bricks/brick1/g2,/bricks/brick2/g2
+    cluster:
+    - 192.0.2.10
+    - 192.0.2.11
+    name: test2
+    state: present
+  name: create gluster volume with multiple bricks
+  run_once: true

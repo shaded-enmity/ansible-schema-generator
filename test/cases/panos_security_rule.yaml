@@ -1,0 +1,88 @@
+- name: add an SSH inbound rule to devicegroup
+  panos_security_rule:
+    action: allow
+    application:
+    - ssh
+    category:
+    - any
+    description: SSH rule test
+    destination_ip:
+    - 1.1.1.1
+    destination_zone:
+    - private
+    devicegroup: Cloud Edge
+    hip_profiles:
+    - any
+    ip_address: '{{ ip_address }}'
+    operation: add
+    password: '{{ password }}'
+    rule_name: SSH permit
+    service:
+    - application-default
+    source_ip:
+    - any
+    source_user:
+    - any
+    source_zone:
+    - public
+    tag_name:
+    - ProjectX
+    username: '{{ username }}'
+- name: add a rule to allow HTTP multimedia only from CDNs
+  panos_security_rule:
+    action: allow
+    application:
+    - http-video
+    - http-audio
+    category:
+    - content-delivery-networks
+    description: Allow HTTP multimedia only to host at 1.1.1.1
+    destination_ip:
+    - 1.1.1.1
+    destination_zone:
+    - private
+    hip_profiles:
+    - any
+    ip_address: 10.5.172.91
+    operation: add
+    password: paloalto
+    rule_name: HTTP Multimedia
+    service:
+    - service-http
+    - service-https
+    source_ip:
+    - any
+    source_user:
+    - any
+    source_zone:
+    - public
+    username: admin
+- name: add a more complex rule that uses security profiles
+  panos_security_rule:
+    action: allow
+    antivirus: default
+    ip_address: '{{ ip_address }}'
+    log_end: true
+    log_start: false
+    operation: add
+    password: '{{ password }}'
+    rule_name: Allow HTTP w profile
+    spyware: default
+    url_filtering: default
+    username: '{{ username }}'
+    vulnerability: default
+    wildfire_analysis: default
+- name: delete a devicegroup security rule
+  panos_security_rule:
+    api_key: '{{ api_key }}'
+    devicegroup: DC Firewalls
+    ip_address: '{{ ip_address }}'
+    operation: delete
+    rule_name: Allow telnet
+- name: find a specific security rule
+  panos_security_rule:
+    ip_address: '{{ ip_address }}'
+    operation: find
+    password: '{{ password }}'
+    rule_name: Allow RDP to DCs
+  register: result

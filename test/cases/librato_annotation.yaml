@@ -1,0 +1,23 @@
+- librato_annotation:
+    api_key: XXXXXXXXXXXXXXXXX
+    description: This is a detailed description of the config change
+    source: foo.bar
+    title: App Config Change
+    user: user@example.com
+- librato_annotation:
+    api_key: XXXXXXXXXXXXXXXXXX
+    description: this is a detailed description of a deployment
+    links:
+    - href: http://www.example.com/deploy
+      rel: example
+    name: code.deploy
+    title: app code deploy
+    user: user@example.com
+- librato_annotation:
+    api_key: XXXXXXXXXXXXXXXXXX
+    description: This is a detailed description of maintenance
+    end_time: 1395954406
+    name: maintenance
+    start_time: 1395940006
+    title: Maintenance window
+    user: user@example.com

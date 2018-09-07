@@ -1,0 +1,11 @@
+- swdepot:
+    depot: repository:/path
+    name: unzip-6.0
+    state: installed
+- swdepot:
+    depot: repository:/path
+    name: unzip
+    state: latest
+- swdepot:
+    name: unzip
+    state: absent

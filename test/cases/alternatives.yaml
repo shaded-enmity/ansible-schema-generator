@@ -1,0 +1,14 @@
+- alternatives:
+    name: java
+    path: /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
+  name: correct java version selected
+- alternatives:
+    link: /etc/hadoop/conf
+    name: hadoop-conf
+    path: /etc/hadoop/conf.ansible
+  name: alternatives link created
+- alternatives:
+    name: java
+    path: /usr/lib/jvm/java-7-openjdk-i386/jre/bin/java
+    priority: -10
+  name: make java 32 bit an alternative with low priority

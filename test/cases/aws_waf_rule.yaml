@@ -1,0 +1,17 @@
+- aws_waf_rule:
+    conditions:
+    - name: my_regex_condition
+      negated: false
+      type: regex
+    - name: my_geo_condition
+      negated: false
+      type: geo
+    - name: my_byte_condition
+      negated: true
+      type: byte
+    name: my_waf_rule
+  name: create WAF rule
+- aws_waf_rule:
+    name: my_waf_rule
+    state: absent
+  name: remove WAF rule

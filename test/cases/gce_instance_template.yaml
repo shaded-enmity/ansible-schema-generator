@@ -1,0 +1,9 @@
+- gce_instance_template:
+    credentials_file: /path/to/your-key.json
+    image_family: ubuntu-1604-lts
+    name: foo
+    project_id: your-project-name
+    service_account_email: your-sa@your-project-name.iam.gserviceaccount.com
+    size: n1-standard-1
+    state: present
+  name: create instance template named foo

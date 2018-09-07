@@ -1,0 +1,23 @@
+- name: ensure a server is a domain controller
+  win_domain_controller:
+    dns_domain_name: ansible.vagrant
+    domain_admin_password: password123!
+    domain_admin_user: testguy@ansible.vagrant
+    log_path: c:\ansible_win_domain_controller.txt
+    safe_mode_password: password123!
+    state: domain_controller
+- win_domain_controller:
+    domain_admin_password: password123!
+    domain_admin_user: testguy@ansible.vagrant
+    local_admin_password: password123!
+    log_path: c:\ansible_win_domain_controller.txt
+    state: member_server
+- name: promote server as a read only domain controller
+  win_domain_controller:
+    dns_domain_name: ansible.vagrant
+    domain_admin_password: password123!
+    domain_admin_user: testguy@ansible.vagrant
+    read_only: true
+    safe_mode_password: password123!
+    site_name: London
+    state: domain_controller

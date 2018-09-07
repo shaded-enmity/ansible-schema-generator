@@ -1,0 +1,28 @@
+- cnos_image:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    imgpath: /root/cnos_images/G8272-10.1.0.112.img
+    imgtype: os
+    outputfile: ./results/test_image_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    protocol: sftp
+    serverip: 10.241.106.118
+    serverpassword: root123
+    serverusername: root
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Image transfer
+- cnos_image:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    imgpath: /anil/G8272-10.2.0.34.img
+    imgtype: os
+    outputfile: ./results/test_image_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    protocol: tftp
+    serverip: 10.241.106.118
+    serverpassword: root123
+    serverusername: root
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Image tftp

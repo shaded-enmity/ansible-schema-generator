@@ -1,0 +1,5 @@
+- nxos_pim:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    ssm_range: 232.0.0.0/8
+    username: '{{ un }}'

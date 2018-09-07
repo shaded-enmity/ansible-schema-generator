@@ -1,0 +1,17 @@
+- cloudformation_facts:
+    stack_name: my-cloudformation-stack
+- cloudformation_facts:
+    stack_name: '{{ stack_name }}'
+  register: my_stack
+- cloudformation_facts:
+    all_facts: true
+    stack_name: my-cloudformation-stack
+- cloudformation_facts:
+    stack_name: my-cloudformation-stack
+    stack_policy: true
+    stack_resources: true
+- cloudformation_facts:
+    all_facts: true
+    stack_name: nonexistent-stack
+  failed_when: cloudformation['nonexistent-stack'] is undefined
+  name: try to get facts about a stack but fail if it doesn't exist

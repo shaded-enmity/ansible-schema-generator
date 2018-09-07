@@ -1,0 +1,21 @@
+- ignore_errors: true
+  name: create stack
+  os_stack:
+    environment:
+    - /path/to/resource-registry.yaml
+    - /path/to/environment.yaml
+    name: '{{ stack_name }}'
+    parameters:
+      bmc_flavor: m1.medium
+      bmc_image: CentOS
+      external_net: '{{ external_net_param }}'
+      image: CentOS
+      key_name: default
+      my_flavor: m1.large
+      name: undercloud
+      node_count: 2
+      private_net: '{{ private_net_param }}'
+    state: present
+    tag: '{{ tag_name }}'
+    template: /path/to/my_stack.yaml
+  register: stack_create

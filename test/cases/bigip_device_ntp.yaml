@@ -1,0 +1,17 @@
+- bigip_device_ntp:
+    ntp_servers:
+    - 192.0.2.23
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Set NTP server
+- bigip_device_ntp:
+    password: secret
+    server: lb.mydomain.com
+    timezone: America/Los_Angeles
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Set timezone

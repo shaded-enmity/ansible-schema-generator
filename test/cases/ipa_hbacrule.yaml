@@ -1,0 +1,27 @@
+- ipa_hbacrule:
+    description: Allow all users to access any host from any host
+    hostcategory: all
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: allow_all
+    servicecategory: all
+    state: present
+    usercategory: all
+- ipa_hbacrule:
+    description: Allow all developers to access any database from any host
+    hostgroup:
+    - db-server
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: allow_all_developers_access_to_db
+    state: present
+    usergroup:
+    - developers
+- ipa_hbacrule:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: rule_to_be_deleted
+    state: absent

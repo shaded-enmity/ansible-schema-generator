@@ -1,0 +1,64 @@
+- name: check security rules for Google DNS
+  panos_match_rule:
+    application: dns
+    destination_ip: 8.8.8.8
+    destination_port: '53'
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    protocol: '17'
+    rule_type: security
+    source_ip: 10.0.0.0
+    username: '{{ username }}'
+  register: result
+- name: check security rules inbound SSH with user match
+  panos_match_rule:
+    destination_ip: 192.168.100.115
+    destination_port: '22'
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    protocol: '6'
+    rule_type: security
+    source_ip: 0.0.0.0
+    source_user: mydomain\jsmith
+    username: '{{ username }}'
+  register: result
+- name: check NAT rules for source NAT
+  panos_match_rule:
+    destination_ip: 0.0.0.0
+    destination_zone: Internet
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    protocol: '6'
+    rule_type: nat
+    source_ip: 10.10.118.50
+    source_zone: Prod-DMZ
+    to_interface: ethernet1/2
+    username: '{{ username }}'
+  register: result
+- name: check NAT rules for inbound web
+  panos_match_rule:
+    destination_ip: 192.168.118.50
+    destination_port: '80'
+    destination_zone: Prod DMZ
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    protocol: '6'
+    rule_type: nat
+    source_ip: 0.0.0.0
+    source_zone: Internet
+    to_interface: ethernet1/1
+    username: '{{ username }}'
+  register: result
+- name: check security rules for outbound POP3 in vsys4
+  panos_match_rule:
+    application: pop3
+    destination_ip: 4.3.2.1
+    destination_port: '110'
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    protocol: '6'
+    rule_type: security
+    source_ip: 10.0.0.0
+    username: '{{ username }}'
+    vsys_id: vsys4
+  register: result

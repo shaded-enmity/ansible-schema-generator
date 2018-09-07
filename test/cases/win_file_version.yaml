@@ -1,0 +1,4 @@
+- name: Get acm instance version
+  register: exe_file_version
+  win_file_version:
+    path: C:\Windows\System32\cmd.exe

@@ -1,0 +1,7 @@
+- udm_dns_zone:
+    interfaces:
+    - 192.0.2.1
+    nameserver:
+    - ucs.example.com
+    type: forward_zone
+    zone: example.com

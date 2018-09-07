@@ -1,0 +1,23 @@
+- gcp_forwarding_rule:
+    credentials_file: '{{ credentials_file }}'
+    forwarding_rule_name: my-forwarding_rule
+    port_range: 80
+    project_id: '{{ project_id }}'
+    protocol: TCP
+    region: global
+    service_account_email: '{{ service_account_email }}'
+    state: present
+    target: my-target-proxy
+  name: Create Minimum GLOBAL Forwarding_Rule
+- gcp_forwarding_rule:
+    address: my-reserved-static-address-name
+    credentials_file: '{{ credentials_file }}'
+    forwarding_rule_name: my-forwarding_rule
+    port_range: 80
+    project_id: '{{ project_id }}'
+    protocol: TCP
+    region: global
+    service_account_email: '{{ service_account_email }}'
+    state: present
+    target: my-target-proxy
+  name: Create Forwarding_Rule w/reserved static address

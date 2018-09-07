@@ -1,0 +1,20 @@
+- ios_system:
+    domain_name: test.example.com
+    domain_search:
+    - ansible.com
+    - redhat.com
+    - cisco.com
+    hostname: ios01
+  name: configure hostname and domain name
+- ios_system:
+    state: absent
+  name: remove configuration
+- ios_system:
+    lookup_enabled: true
+    lookup_source: MgmtEth0/0/CPU0/0
+  name: configure DNS lookup sources
+- ios_system:
+    name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+  name: configure name servers

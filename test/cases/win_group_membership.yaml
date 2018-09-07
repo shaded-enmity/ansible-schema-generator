@@ -1,0 +1,14 @@
+- name: Add a local and domain user to a local group
+  win_group_membership:
+    members:
+    - NewLocalAdmin
+    - DOMAIN\TestUser
+    name: Remote Desktop Users
+    state: present
+- name: Remove a domain group and service user from a local group
+  win_group_membership:
+    members:
+    - DOMAIN\TestGroup
+    - NT AUTHORITY\SYSTEM
+    name: Backup Operators
+    state: absent

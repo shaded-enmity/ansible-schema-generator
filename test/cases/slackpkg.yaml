@@ -1,0 +1,9 @@
+- slackpkg:
+    name: foo
+    state: present
+- slackpkg:
+    name: foo,bar
+    state: absent
+- slackpkg:
+    name: foo
+    state: latest

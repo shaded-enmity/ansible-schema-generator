@@ -1,0 +1,14 @@
+- asa_command:
+    commands:
+    - show version
+    provider: '{{ cli }}'
+- asa_command:
+    commands:
+    - show asp drop
+    - show memory
+    provider: '{{ cli }}'
+- asa_command:
+    commands:
+    - show version
+    context: system
+    provider: '{{ cli }}'

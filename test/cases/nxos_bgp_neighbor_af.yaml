@@ -1,0 +1,8 @@
+- name: configure RR client
+  nxos_bgp_neighbor_af:
+    afi: ipv4
+    asn: 65535
+    neighbor: 3.3.3.3
+    route_reflector_client: true
+    safi: unicast
+    state: present

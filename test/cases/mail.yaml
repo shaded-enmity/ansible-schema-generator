@@ -1,0 +1,56 @@
+- delegate_to: localhost
+  mail:
+    subject: System {{ ansible_hostname }} has been successfully provisioned.
+  name: Example playbook sending mail to root
+- delegate_to: localhost
+  mail:
+    body: System {{ ansible_hostname }} has been successfully provisioned.
+    host: smtp.gmail.com
+    password: mysecret
+    port: 587
+    subject: Ansible-report
+    to: John Smith <john.smith@example.com>
+    username: username@gmail.com
+  name: Sending an e-mail using Gmail SMTP servers
+- delegate_to: localhost
+  mail:
+    attach:
+    - /etc/group
+    - /tmp/avatar2.png
+    body: Hello, this is an e-mail. I hope you like it ;-)
+    cc: Charlie Root <root@localhost>
+    charset: us-ascii
+    from: jane@example.net (Jane Jolie)
+    headers:
+    - Reply-To=john@example.com
+    - X-Special="Something or other"
+    host: 127.0.0.1
+    port: 2025
+    subject: Ansible-report
+    to:
+    - John Doe <j.d@example.org>
+    - Suzie Something <sue@example.com>
+  name: Send e-mail to a bunch of users, attaching files
+- mail:
+    body: System {{ ansible_hostname }} has been successfully provisioned.
+    host: localhost
+    port: 25
+    subject: Ansible-report
+    to: John Smith <john.smith@example.com>
+  name: Sending an e-mail using the remote machine, not the Ansible controller node
+- mail:
+    body: System {{ ansible_hostname }} has been successfully provisioned.
+    host: localhost
+    port: 25
+    secure: always
+    subject: Ansible-report
+    to: John Smith <john.smith@example.com>
+  name: Sending an e-mail using Legacy SSL to the remote machine
+- mail:
+    body: System {{ ansible_hostname }} has been successfully provisioned.
+    host: localhost
+    port: 25
+    secure: starttls
+    subject: Ansible-report
+    to: John Smith <john.smith@example.com>
+  name: Sending an e-mail using StartTLS to the remote machine

@@ -1,0 +1,40 @@
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    system_mode_maintenance: true
+    username: '{{ un }}'
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    system_mode_maintenance: false
+    username: '{{ un }}'
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    state: present
+    system_mode_maintenance_on_reload_reset_reason: manual_reload
+    username: '{{ un }}'
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    state: present
+    system_mode_maintenance_on_reload_reset_reason: hw_error
+    username: '{{ un }}'
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    state: absent
+    system_mode_maintenance_on_reload_reset_reason: manual_reload
+    username: '{{ un }}'
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    state: present
+    system_mode_maintenance_timeout: 30
+    username: '{{ un }}'
+- nxos_gir:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    state: absent
+    system_mode_maintenance_timeout: 30
+    username: '{{ un }}'

@@ -1,0 +1,46 @@
+- ec2_group:
+    aws_access_key: ACCESS
+    aws_secret_key: SECRET
+    description: an example EC2 group
+    name: example
+    region: eu-west-1a
+    rules:
+    - cidr_ip: 0.0.0.0/0
+      from_port: 80
+      proto: tcp
+      to_port: 80
+    - cidr_ip: 10.0.0.0/8
+      from_port: 22
+      proto: tcp
+      to_port: 22
+    - from_port: 443
+      group_id: amazon-elb/sg-87654321/amazon-elb-sg
+      proto: tcp
+      to_port: 443
+    - from_port: 3306
+      group_id: 123412341234/sg-87654321/exact-name-of-sg
+      proto: tcp
+      to_port: 3306
+    - cidr_ip: 10.0.0.0/8
+      from_port: 10050
+      proto: udp
+      to_port: 10050
+    - from_port: 10051
+      group_id: sg-12345678
+      proto: udp
+      to_port: 10051
+    - cidr_ip: 10.0.0.0/8
+      from_port: 8
+      proto: icmp
+      to_port: -1
+    - group_name: example
+      proto: all
+    rules_egress:
+    - cidr_ip: 0.0.0.0/0
+      from_port: 80
+      group_desc: other example EC2 group
+      group_name: example-other
+      proto: tcp
+      to_port: 80
+    vpc_id: 12345
+  name: example ec2 group

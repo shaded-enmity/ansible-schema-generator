@@ -1,0 +1,19 @@
+- name: get cpu metrics
+  sensu_check:
+    command: /etc/sensu/plugins/system/cpu-mpstat-metrics.rb
+    handlers: relay
+    interval: 60
+    metric: true
+    name: cpu_load
+    subscribers: common
+- name: check nginx process
+  sensu_check:
+    command: /etc/sensu/plugins/processes/check-procs.rb -f /var/run/nginx.pid
+    handlers: default
+    interval: 60
+    name: nginx_running
+    subscribers: nginx
+- name: check disk
+  sensu_check:
+    name: check_disk_capacity
+    state: absent

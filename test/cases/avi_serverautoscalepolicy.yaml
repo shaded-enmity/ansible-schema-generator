@@ -1,0 +1,7 @@
+- avi_serverautoscalepolicy:
+    controller: 10.10.25.42
+    name: sample_serverautoscalepolicy
+    password: something
+    state: present
+    username: admin
+  name: Example to create ServerAutoScalePolicy object

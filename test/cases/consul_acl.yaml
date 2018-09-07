@@ -1,0 +1,48 @@
+- consul_acl:
+    host: consul1.example.com
+    mgmt_token: some_management_acl
+    name: Foo access
+    rules:
+    - key: foo
+      policy: read
+    - key: private/foo
+      policy: deny
+  name: create an ACL with rules
+- consul_acl:
+    host: consul1.example.com
+    mgmt_token: some_management_acl
+    name: Foo access
+    rules:
+    - key: foo
+      policy: read
+    token: my-token
+  name: create an ACL with a specific token
+- consul_acl:
+    host: consul1.example.com
+    mgmt_token: some_management_acl
+    name: Foo access
+    rules:
+    - event: bbq
+      policy: write
+    - key: foo
+      policy: read
+    - key: private
+      policy: deny
+    - keyring: write
+    - node: hgs4
+      policy: write
+    - operator: read
+    - policy: write
+      query: ''
+    - policy: write
+      service: consul
+    - policy: write
+      session: standup
+    token: some_client_token
+  name: update the rules associated to an ACL token
+- consul_acl:
+    host: consul1.example.com
+    mgmt_token: some_management_acl
+    state: absent
+    token: 172bd5c8-9fe9-11e4-b1b0-3c15c2c9fd5e
+  name: remove a token

@@ -1,0 +1,15 @@
+- lightsail:
+    blueprint_id: ubuntu_16_04
+    bundle_id: nano_1_0
+    key_pair_name: id_rsa
+    name: myinstance
+    region: us-east-1
+    state: present
+    user_data: ' echo ''hello world'' > /home/ubuntu/test.txt'
+    wait_timeout: 500
+    zone: us-east-1a
+  register: my_instance
+- lightsail:
+    name: myinstance
+    region: us-east-1
+    state: absent

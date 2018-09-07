@@ -1,0 +1,21 @@
+- name: create a new user
+  vyos_user:
+    configured_password: password
+    name: ansible
+    state: present
+- name: remove all users except admin
+  vyos_user:
+    purge: true
+- name: set multiple users to level operator
+  vyos_user:
+    aggregate:
+    - name: netop
+    - name: netend
+    level: operator
+    state: present
+- name: Change Password for User netop
+  vyos_user:
+    configured_password: '{{ new_password }}'
+    name: netop
+    state: present
+    update_password: always

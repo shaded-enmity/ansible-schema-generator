@@ -1,0 +1,65 @@
+- ovirt_templates:
+    cluster: Default
+    cpu_profile: Default
+    description: Test
+    name: mytemplate
+    vm: rhel7
+- cluster: mycluster
+  export_domain: myexport
+  name: mytemplate
+  ovirt_templates: null
+  state: imported
+  storage_domain: mystorage
+- ovirt_templates:
+    name: mytemplate
+    state: absent
+- cluster: mycluster
+  name: mytemplate
+  ovirt_templates: null
+  state: registered
+  storage_domain: mystorage
+- cluster: mycluster
+  id: 1111-1111-1111-1111
+  ovirt_templates: null
+  state: registered
+  storage_domain: mystorage
+- allow_partial_import: 'True'
+  cluster: mycluster
+  id: 1111-1111-1111-1111
+  ovirt_templates: null
+  state: registered
+  storage_domain: mystorage
+- ovirt_templates:
+    cluster: mycluster
+    id: 1111-1111-1111-1111
+    state: registered
+    storage_domain: mystorage
+    vnic_profile_mappings:
+    - source_network_name: mynetwork
+      source_profile_name: mynetwork
+      target_profile_id: 3333-3333-3333-3333
+    - source_network_name: mynetwork2
+      source_profile_name: mynetwork2
+      target_profile_id: 4444-4444-4444-4444
+- ovirt_templates:
+    cluster: mycluster
+    cluster_mappings:
+    - dest_name: cluster_B
+      source_name: cluster_A
+    domain_mappings:
+    - dest_name: Domain_B
+      source_name: Domain_A
+    id: 1111-1111-1111-1111
+    role_mappings:
+    - dest_name: Role_B
+      source_name: Role_A
+    state: registered
+    storage_domain: mystorage
+- ovirt_templates:
+    cluster: mycluster
+    image_disk: centos7
+    image_provider: glance_domain
+    name: mytemplate
+    state: imported
+    storage_domain: mystorage
+    template_image_disk_name: centos7_from_glance

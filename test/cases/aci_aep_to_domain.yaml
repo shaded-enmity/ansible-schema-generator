@@ -1,0 +1,33 @@
+- aci_aep_to_domain:
+    aep: test_aep
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: Add AEP to domain binding
+- aci_aep_to_domain:
+    aep: test_aep
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove AEP to domain binding
+- aci_aep_to_domain:
+    aep: test_aep
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query our AEP to domain binding
+- aci_aep_to_domain:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all AEP to domain bindings

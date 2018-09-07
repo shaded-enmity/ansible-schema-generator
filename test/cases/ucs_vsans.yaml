@@ -1,0 +1,14 @@
+- name: Configure VSAN
+  ucs_vsans:
+    hostname: 172.16.143.150
+    name: vsan110
+    password: password
+    username: admin
+    vlan_id: '110'
+    vsan_id: '110'
+- name: Remove VSAN
+  ucs_vsans:
+    hostname: 172.16.143.150
+    name: vsan110
+    password: password
+    username: admin

@@ -1,0 +1,17 @@
+- gce_tag:
+    instance_name: staging-server
+    state: present
+    tags: http-server,https-server,staging
+    zone: us-central1-a
+  name: Add tags to instance
+- gce_tag:
+    instance_name: test-server
+    state: absent
+    tags: foo,bar
+  name: Remove tags from instance in default zone (us-central1-a)
+- gce_tag:
+    instance_pattern: test-server-*
+    state: present
+    tags: foo,bar
+    zone: us-central1-a
+  name: Add tags to instances in zone that match pattern

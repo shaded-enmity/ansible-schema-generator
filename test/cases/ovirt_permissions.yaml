@@ -1,0 +1,15 @@
+- name: Add user user1 from authorization provider example.com-authz
+  ovirt_permissions:
+    authz_name: example.com-authz
+    object_name: myvm
+    object_type: vm
+    role: UserVmManager
+    user_name: user1
+- name: Remove permission from user
+  ovirt_permissions:
+    authz_name: example.com-authz
+    object_name: mycluster
+    object_type: cluster
+    role: ClusterAdmin
+    state: absent
+    user_name: user1

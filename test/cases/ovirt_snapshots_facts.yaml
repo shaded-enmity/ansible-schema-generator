@@ -1,0 +1,3 @@
+- ovirt_snapshots_facts:
+    description: update*
+    vm: centos7

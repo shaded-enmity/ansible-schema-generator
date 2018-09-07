@@ -1,0 +1,52 @@
+- name: Create a new instance and attaches to a network and passes metadata to the
+    instance
+  os_server:
+    auth:
+      auth_url: https://identity.example.com
+      password: admin
+      project_name: admin
+      username: admin
+    flavor: 4
+    image: 4f905f38-e52a-43d2-b6ec-754a13ffb529
+    key_name: ansible_key
+    meta:
+      group: uge_master
+      hostname: test1
+    name: vm1
+    nics:
+    - net-id: 34605f38-e52a-25d2-b6ec-754a13ffb723
+    - net-name: another_network
+    state: present
+    timeout: 200
+- name: Creates a new instance and attaches to a network and passes metadata to the
+    instance
+  os_server:
+    auth:
+      auth_url: https://identity.example.com
+      password: admin
+      project_name: admin
+      username: admin
+    flavor: 4
+    image: 4f905f38-e52a-43d2-b6ec-754a13ffb529
+    key_name: ansible_key
+    meta: hostname=test1,group=uge_master
+    name: vm1
+    nics:
+    - net-id: 34605f38-e52a-25d2-b6ec-754a13ffb723
+    - net-name: another_network
+    state: present
+    timeout: 200
+- name: Creates a new instance and attaches to a specific network
+  os_server:
+    auth:
+      auth_url: https://identity.example.com
+      password: admin
+      project_name: admin
+      username: admin
+    flavor: 4
+    image: 4f905f38-e52a-43d2-b6ec-754a13ffb529
+    key_name: ansible_key
+    name: vm1
+    network: another_network
+    state: present
+    timeout: 200

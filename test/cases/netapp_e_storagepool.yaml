@@ -1,0 +1,9 @@
+- name: No disk groups
+  netapp_e_storagepool:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    name: '{{ item }}'
+    ssid: '{{ ssid }}'
+    state: absent
+    validate_certs: '{{ netapp_api_validate_certs }}'

@@ -1,0 +1,12 @@
+- name: Gather facts about all ESXi Host in given Cluster
+  vmware_host_config_facts:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Gather facts about ESXi Host
+  vmware_host_config_facts:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

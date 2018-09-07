@@ -1,0 +1,23 @@
+- pkgin:
+    name: foo
+    state: present
+- pkgin:
+    name: foo
+    update_cache: true
+- pkgin:
+    name: foo
+    state: absent
+- pkgin:
+    name: foo,bar
+    state: absent
+- pkgin:
+    update_cache: true
+- pkgin:
+    upgrade: true
+- pkgin:
+    full_upgrade: true
+- pkgin:
+    force: true
+    full_upgrade: true
+- pkgin:
+    clean: true

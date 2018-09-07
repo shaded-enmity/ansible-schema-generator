@@ -1,0 +1,136 @@
+- ec2:
+    assign_public_ip: true
+    count: 3
+    group: webserver
+    image: ami-123456
+    instance_type: t2.micro
+    key_name: mykey
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+- ec2:
+    assign_public_ip: true
+    count: 5
+    group: databases
+    image: ami-123456
+    instance_tags:
+      db: postgres
+    instance_type: t2.micro
+    key_name: mykey
+    monitoring: true
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+    wait_timeout: 500
+- ec2:
+    assign_public_ip: true
+    group: webserver
+    image: ami-123456
+    instance_type: c3.medium
+    key_name: mykey
+    monitoring: true
+    volumes:
+    - delete_on_termination: true
+      device_name: /dev/sdb
+      iops: 1000
+      snapshot: snap-abcdef12
+      volume_size: 100
+      volume_type: io1
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+    wait_timeout: 500
+- ec2:
+    assign_public_ip: true
+    exact_count: 1
+    group: webserver
+    image: ami-123456
+    instance_type: c3.medium
+    key_name: mykey
+    volumes:
+    - device_name: /dev/xvda
+      volume_size: 8
+      volume_type: gp2
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+    wait_timeout: 500
+- ec2:
+    assign_public_ip: true
+    count: 5
+    group:
+    - databases
+    - internal-services
+    - sshable
+    - and-so-forth
+    image: ami-6e649707
+    instance_tags:
+      db: postgres
+    instance_type: m1.large
+    key_name: mykey
+    monitoring: true
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+    wait_timeout: 500
+- ec2:
+    assign_public_ip: true
+    count: 5
+    group: webserver
+    image: ami-6e649707
+    instance_type: m1.large
+    key_name: mykey
+    monitoring: true
+    volumes:
+    - device_name: /dev/sdb
+      snapshot: snap-abcdef12
+      volume_size: 10
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+    wait_timeout: 500
+- ec2:
+    assign_public_ip: true
+    group_id: sg-1dc53f72
+    image: ami-6e649707
+    instance_type: m1.small
+    keypair: mykey
+    spot_launch_group: report_generators
+    spot_price: 0.24
+    spot_wait_timeout: 600
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+- ec2:
+    image: ami-f005ba11
+    instance_type: t2.small
+    key_name: mykey
+    network_interface: eni-deadbeef
+- ec2:
+    image: ami-f005ba11
+    instance_type: t2.small
+    key_name: mykey
+    network_interfaces:
+    - eni-deadbeef
+    - eni-5ca1ab1e
+- ec2:
+    assign_public_ip: true
+    count_tag: foo
+    exact_count: 5
+    group: webserver
+    image: ami-40603AD1
+    instance_tags:
+      foo: bar
+    instance_type: c1.medium
+    key_name: mykey
+    vpc_subnet_id: subnet-29e63245
+    wait: true
+- ec2:
+    assign_public_ip: true
+    count_tag:
+    - foo
+    - bar
+    - baz: bang
+    exact_count: 5
+    group: webserver
+    image: ami-40603AD1
+    instance_tags:
+      Name: database
+      dbtype: postgres
+    instance_type: c1.medium
+    key_name: mykey
+    vpc_subnet_id: subnet-29e63245
+    wait: true

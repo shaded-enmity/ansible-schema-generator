@@ -1,0 +1,14 @@
+- delegate_to: localhost
+  name: Setup ssl certkey
+  netscaler_ssl_certkey:
+    cert: server.crt
+    certkey: certirificate_1
+    expirymonitor: enabled
+    inform: PEM
+    key: server.key
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    notificationperiod: 30
+    nsip: 172.18.0.2
+    passplain: somesecret
+    password: false

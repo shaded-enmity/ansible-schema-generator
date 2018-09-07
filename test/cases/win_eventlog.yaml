@@ -1,0 +1,35 @@
+- name: Add a new event log with two custom sources
+  win_eventlog:
+    name: MyNewLog
+    sources:
+    - NewLogSource1
+    - NewLogSource2
+    state: present
+- name: Change the category and message resource files used for NewLogSource1
+  win_eventlog:
+    category_file: C:\NewApp\CustomCategories.dll
+    message_file: C:\NewApp\CustomMessages.dll
+    name: MyNewLog
+    sources:
+    - NewLogSource1
+    state: present
+- name: Change the maximum size and overflow action for MyNewLog
+  win_eventlog:
+    maximum_size: 16MB
+    name: MyNewLog
+    overflow_action: DoNotOverwrite
+    state: present
+- name: Clear event entries for MyNewLog
+  win_eventlog:
+    name: MyNewLog
+    state: clear
+- name: Remove NewLogSource2 from MyNewLog
+  win_eventlog:
+    name: MyNewLog
+    sources:
+    - NewLogSource2
+    state: absent
+- name: Remove MyNewLog and all remaining sources
+  win_eventlog:
+    name: MyNewLog
+    state: absent

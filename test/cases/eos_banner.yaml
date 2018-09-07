@@ -1,0 +1,15 @@
+- eos_banner:
+    banner: login
+    state: present
+    text: 'this is my login banner
+
+      that contains a multiline
+
+      string
+
+      '
+  name: configure the login banner
+- eos_banner:
+    banner: motd
+    state: absent
+  name: remove the motd banner

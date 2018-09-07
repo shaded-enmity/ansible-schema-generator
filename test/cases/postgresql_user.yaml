@@ -1,0 +1,30 @@
+- postgresql_user:
+    db: acme
+    name: django
+    password: ceec4eif7ya
+    priv: CONNECT/products:ALL
+- postgresql_user:
+    name: rails
+    password: secret
+    role_attr_flags: CREATEDB,NOSUPERUSER
+- postgresql_user:
+    db: acme
+    fail_on_user: false
+    name: test
+    priv: ALL/products:ALL
+    state: absent
+- postgresql_user:
+    db: test
+    name: test
+    priv: ALL
+    state: absent
+- postgresql_user:
+    db: acme
+    expire: infinity
+    name: django
+    password: mysupersecretword
+    priv: CONNECT/products:ALL
+- postgresql_user:
+    db: test
+    password: null
+    user: test

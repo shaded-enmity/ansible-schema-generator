@@ -1,0 +1,30 @@
+- aci_switch_policy_vpc_protection_group:
+    host: apic
+    password: SomeSecretPassword
+    protection_group: leafPair101-vpcGrp
+    protection_group_id: 6
+    state: present
+    switch_1_id: 1011
+    switch_2_id: 1012
+    username: admin
+  name: Add vPC Protection Group
+- aci_switch_policy_vpc_protection_group:
+    host: apic
+    password: SomeSecretPassword
+    protection_group: leafPair101-vpcGrp
+    state: absent
+    username: admin
+  name: Remove Explicit vPC Protection Group
+- aci_switch_policy_vpc_protection_group:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query vPC Protection Groups
+- aci_switch_policy_vpc_protection_group:
+    host: apic
+    password: SomeSecretPassword
+    protection_group: leafPair101-vpcGrp
+    state: query
+    username: admin
+  name: Query our vPC Protection Group

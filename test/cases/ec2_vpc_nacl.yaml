@@ -1,0 +1,73 @@
+- ec2_vpc_nacl:
+    egress:
+    - - 100
+      - all
+      - allow
+      - 0.0.0.0/0
+      - null
+      - null
+      - null
+      - null
+    ingress:
+    - - 100
+      - tcp
+      - allow
+      - 0.0.0.0/0
+      - null
+      - null
+      - 22
+      - 22
+    - - 200
+      - tcp
+      - allow
+      - 0.0.0.0/0
+      - null
+      - null
+      - 80
+      - 80
+    - - 300
+      - icmp
+      - allow
+      - 0.0.0.0/0
+      - 0
+      - 8
+    name: prod-dmz-nacl
+    region: ap-southeast-2
+    state: present
+    subnets:
+    - prod-dmz-1
+    - prod-dmz-2
+    tags:
+      CostCode: CC1234
+      Description: production DMZ
+      Project: phoenix
+    vpc_id: vpc-12345678
+  name: Create and associate production DMZ network ACL with DMZ subnets
+- ec2_vpc_nacl:
+    name: prod-dmz-nacl
+    region: ap-southeast-2
+    state: present
+    subnets:
+    - prod-dmz-1
+    - prod-dmz-2
+    tags:
+      CostCode: CC1234
+      Description: production DMZ
+      Project: phoenix
+    vpc_id: vpc-12345678
+  name: Remove the ingress and egress rules - defaults to deny all
+- ec2_vpc_nacl:
+    name: prod-dmz-nacl
+    region: ap-southeast-2
+    state: present
+    vpc_id: vpc-12345678
+  name: Remove the NACL subnet associations and tags
+- ec2_vpc_nacl:
+    name: prod-dmz-nacl
+    state: absent
+    vpc_id: vpc-12345678
+  name: Delete nacl and subnet associations
+- ec2_vpc_nacl:
+    nacl_id: acl-33b4ee5b
+    state: absent
+  name: Delete nacl by its id

@@ -1,0 +1,6 @@
+- cs_facts: null
+  name: Gather cloudstack facts
+- cs_facts:
+    filter: cloudstack_instance_id
+    meta_data_host: 169.254.169.254
+  name: Gather cloudstack facts

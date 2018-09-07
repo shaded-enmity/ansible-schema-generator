@@ -1,0 +1,29 @@
+- ecs_service:
+    cluster: new_cluster
+    desired_count: 0
+    name: console-test-service
+    state: present
+    task_definition: new_cluster-task:1
+- ecs_service:
+    cluster: new_cluster
+    name: default
+    state: present
+- ecs_service:
+    cluster: new_cluster
+    name: default
+    state: absent
+- ecs_service:
+    cluster: test-cluster
+    deployment_configuration:
+      maximum_percent: 150
+      minimum_healthy_percent: 75
+    desired_count: 3
+    name: test-service
+    placement_constraints:
+    - expression: attribute:flavor==test
+      type: memberOf
+    placement_strategy:
+    - field: memory
+      type: binpack
+    state: present
+    task_definition: test-task-definition

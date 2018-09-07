@@ -1,0 +1,69 @@
+- bigip_security_port_list:
+    name: foo
+    password: secret
+    ports:
+    - 80
+    - 443
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create a simple port list
+- bigip_security_port_list:
+    name: foo
+    password: secret
+    ports:
+    - 3389
+    - 8080
+    - 25
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Override the above list of ports with a new list
+- bigip_security_port_list:
+    name: foo
+    password: secret
+    port_ranges:
+    - 25-30
+    - 80-500
+    - 50-78
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create port list with series of ranges
+- bigip_security_port_list:
+    name: foo
+    password: secret
+    port_ranges:
+    - 25-30
+    - 80-500
+    - 50-78
+    ports:
+    - 8080
+    - 443
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Use multiple types of port arguments
+- bigip_security_port_list:
+    name: foo
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove port list
+- bigip_security_port_list:
+    name: lot-of-ports
+    password: secret
+    ports: '{{ lookup(''file'', ''my-large-port-list.txt'').split(''
+
+      '') }}'
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create port list from a file with one port per line

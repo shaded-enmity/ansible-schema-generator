@@ -1,0 +1,10 @@
+- os_port_facts:
+    cloud: mycloud
+- os_port_facts:
+    cloud: mycloud
+    port: 6140317d-e676-31e1-8a4a-b1913814a471
+- os_port_facts:
+    cloud: mycloud
+    filters:
+      device_id: 1038a010-3a37-4a9d-82ea-652f1da36597
+      status: ACTIVE

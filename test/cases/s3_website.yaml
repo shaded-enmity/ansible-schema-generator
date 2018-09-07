@@ -1,0 +1,12 @@
+- s3_website:
+    name: mybucket.com
+    redirect_all_requests: example.com
+    state: present
+- s3_website:
+    name: mybucket.com
+    state: absent
+- s3_website:
+    error_key: errors/404.htm
+    name: mybucket.com
+    state: present
+    suffix: home.htm

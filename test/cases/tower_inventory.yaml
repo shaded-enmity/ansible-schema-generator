@@ -1,0 +1,7 @@
+- name: Add tower inventory
+  tower_inventory:
+    description: Our Foo Cloud Servers
+    name: Foo Inventory
+    organization: Bar Org
+    state: present
+    tower_config_file: ~/tower_cli.cfg

@@ -1,0 +1,56 @@
+- cloudflare_dns:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+    record: test
+    type: A
+    value: 127.0.0.1
+    zone: my.com
+  register: record
+- cloudflare_dns:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+    state: present
+    type: CNAME
+    value: example.com
+    zone: my.com
+- cloudflare_dns:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+    state: present
+    ttl: 600
+    type: CNAME
+    value: example.com
+    zone: my.com
+- cloudflare_dns:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+    state: absent
+    type: CNAME
+    value: example.com
+    zone: my.com
+- cloudflare_dns:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+    proxied: true
+    state: present
+    type: CNAME
+    value: example.com
+    zone: my.com
+- cloudflare_dns:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+    domain: my.com
+    record: test
+    solo: true
+    state: present
+    type: TXT
+    value: unique value
+- cloudflare_dns:
+    domain: my.com
+    port: 3500
+    priority: 10
+    proto: tcp
+    service: foo
+    type: SRV
+    value: fooserver.my.com
+    weight: 20

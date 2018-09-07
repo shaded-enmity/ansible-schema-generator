@@ -1,0 +1,15 @@
+- delegate_to: local
+  snmp_facts:
+    community: public
+    host: '{{ inventory_hostname }}'
+    version: v2c
+- delegate_to: localhost
+  snmp_facts:
+    authkey: abc12345
+    host: '{{ inventory_hostname }}'
+    integrity: sha
+    level: authPriv
+    privacy: aes
+    privkey: def6789
+    username: snmp-user
+    version: v3

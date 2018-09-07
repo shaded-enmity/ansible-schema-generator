@@ -1,0 +1,15 @@
+- name: Configure VLAN
+  ucs_vlans:
+    hostname: 172.16.143.150
+    id: '2'
+    name: vlan2
+    native: 'yes'
+    password: password
+    username: admin
+- name: Remove VLAN
+  ucs_vlans:
+    hostname: 172.16.143.150
+    name: vlan2
+    password: password
+    state: absent
+    username: admin

@@ -1,0 +1,4 @@
+- nxos_snmp_host:
+    community: TESTING
+    snmp_host: 3.3.3.3
+    state: present

@@ -1,0 +1,36 @@
+- avi_httppolicyset:
+    controller: 10.10.27.90
+    http_request_policy: null
+    is_internal_policy: false
+    name: test-HTTP-Policy-Set
+    password: AviNetworks123!
+    rules:
+    - enable: true
+      index: 1
+      match:
+        path:
+          match_case: INSENSITIVE
+          match_criteria: EQUALS
+          match_str:
+          - /test1
+      name: test-test1
+      switching_action:
+        action: HTTP_SWITCHING_SELECT_POOL
+        pool_ref: /api/pool?name=testpool1
+        status_code: HTTP_LOCAL_RESPONSE_STATUS_CODE_200
+    - enable: true
+      index: 2
+      match:
+        path:
+          match_case: INSENSITIVE
+          match_criteria: CONTAINS
+          match_str:
+          - /test2
+      name: test-test2
+      switching_action:
+        action: HTTP_SWITCHING_SELECT_POOL
+        pool_ref: /api/pool?name=testpool2
+        status_code: HTTP_LOCAL_RESPONSE_STATUS_CODE_200
+    tenant_ref: admin
+    username: admin
+  name: Create a HTTP Policy set two switch between testpool1 and testpool2

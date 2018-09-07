@@ -1,0 +1,53 @@
+- name: Grab a user record
+  snow_record:
+    instance: dev99999
+    lookup_field: sys_id
+    number: 62826bf03710200044e0bfc8bcbe5df1
+    password: my_password
+    state: present
+    table: sys_user
+    username: ansible_test
+- name: Create an incident
+  register: new_incident
+  snow_record:
+    data:
+      priority: 2
+      severity: 3
+      short_description: This is a test incident opened by Ansible
+    instance: dev99999
+    password: my_password
+    state: present
+    username: ansible_test
+- name: Delete the record we just made
+  snow_record:
+    instance: dev99999
+    number: '{{new_incident[''record''][''number'']}}'
+    password: xxxxxxx
+    state: absent
+    username: admin
+- failed_when: false
+  name: Delete a non-existant record
+  snow_record:
+    instance: dev99999
+    number: 9872354
+    password: my_password
+    state: absent
+    username: ansible_test
+- name: Update an incident
+  snow_record:
+    data:
+      work_notes: Been working all day on this thing.
+    instance: dev99999
+    number: INC0000055
+    password: my_password
+    state: present
+    username: ansible_test
+- name: Attach a file to an incident
+  snow_record:
+    attachment: README.md
+    instance: dev99999
+    number: INC0000055
+    password: my_password
+    state: present
+    username: ansible_test
+  tags: attach

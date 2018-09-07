@@ -1,0 +1,7 @@
+- avi_dnspolicy:
+    controller: 10.10.25.42
+    name: sample_dnspolicy
+    password: something
+    state: present
+    username: admin
+  name: Example to create DnsPolicy object

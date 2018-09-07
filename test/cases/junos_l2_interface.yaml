@@ -1,0 +1,35 @@
+- junos_l2_interface:
+    access_vlan: red
+    active: true
+    description: interface-access
+    mode: access
+    name: ge-0/0/1
+    state: present
+  name: Configure interface in access mode
+- junos_l2_interface:
+    active: true
+    description: interface-trunk
+    mode: trunk
+    name: ge-0/0/1
+    native_vlan: 100
+    state: present
+    trunk_vlans:
+    - blue
+    - green
+  name: Configure interface in trunk mode
+- junos_l2_interface:
+    active: true
+    aggregate:
+    - access_vlan: red
+      description: test-interface-access
+      mode: access
+      name: ge-0/0/1
+    - description: test-interface-trunk
+      mode: trunk
+      name: ge-0/0/2
+      native_vlan: 100
+      trunk_vlans:
+      - blue
+      - green
+    state: present
+  name: Configure interface in access and trunk mode using aggregate

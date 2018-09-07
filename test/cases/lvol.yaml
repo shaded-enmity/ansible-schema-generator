@@ -1,0 +1,102 @@
+- lvol:
+    lv: test
+    size: 512
+    vg: firefly
+  name: Create a logical volume of 512m
+- lvol:
+    lv: test
+    pvs: /dev/sda,/dev/sdb
+    size: 512
+    vg: firefly
+  name: Create a logical volume of 512m with disks /dev/sda and /dev/sdb
+- lvol:
+    lv: lvcache
+    opts: --type cache-pool
+    size: 512m
+    vg: firefly
+  name: Create cache pool logical volume
+- lvol:
+    lv: test
+    size: 512g
+    vg: firefly
+  name: Create a logical volume of 512g.
+- lvol:
+    lv: test
+    size: 100%FREE
+    vg: firefly
+  name: Create a logical volume the size of all remaining space in the volume group
+- lvol:
+    lv: test
+    opts: -r 16
+    size: 512g
+    vg: firefly
+  name: Create a logical volume with special options
+- lvol:
+    lv: test
+    size: 1024
+    vg: firefly
+  name: Extend the logical volume to 1024m.
+- lvol:
+    lv: test
+    size: +100%FREE
+    vg: firefly
+  name: Extend the logical volume to consume all remaining space in the volume group
+- lvol:
+    lv: test
+    resizefs: true
+    size: 100%PVS
+    vg: firefly
+  name: Extend the logical volume to take all remaining space of the PVs
+- lvol:
+    force: true
+    lv: test
+    size: 80%VG
+    vg: firefly
+  name: Resize the logical volume to % of VG
+- lvol:
+    force: true
+    lv: test
+    size: 512
+    vg: firefly
+  name: Reduce the logical volume to 512m
+- lvol:
+    lv: test
+    shrink: false
+    size: 512
+    vg: firefly
+  name: Set the logical volume to 512m and do not try to shrink if size is lower than
+    current one
+- lvol:
+    force: true
+    lv: test
+    state: absent
+    vg: firefly
+  name: Remove the logical volume.
+- lvol:
+    lv: test
+    size: 100m
+    snapshot: snap1
+    vg: firefly
+  name: Create a snapshot volume of the test logical volume.
+- lvol:
+    active: false
+    lv: test
+    vg: firefly
+  name: Deactivate a logical volume
+- lvol:
+    active: false
+    lv: test
+    size: 512g
+    vg: firefly
+  name: Create a deactivated logical volume
+- lvol:
+    size: 512g
+    thinpool: testpool
+    vg: firefly
+  name: Create a thin pool of 512g
+- lvol:
+    lv: test
+    size: 128g
+    thinpool: testpool
+    vg: firefly
+  name: Create a thin volume of 128g

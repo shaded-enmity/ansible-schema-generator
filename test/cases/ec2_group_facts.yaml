@@ -1,0 +1,26 @@
+- ec2_group_facts: null
+- ec2_group_facts:
+    filters:
+      vpc-id: vpc-12345678
+- ec2_group_facts:
+    filters:
+      vpc-id: vpc-12345678
+- ec2_group_facts:
+    filters:
+      group-name: example-1
+- ec2_group_facts:
+    filters:
+      group-id: sg-12345678
+- ec2_group_facts:
+    filters:
+      group_id: sg-12345678
+      vpc-id: vpc-12345678
+- ec2_group_facts:
+    filters:
+      group-name:
+      - example-1
+      - example-2
+      - example-3
+- ec2_group_facts:
+    filters:
+      tag:Name: Example

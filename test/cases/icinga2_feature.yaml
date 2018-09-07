@@ -1,0 +1,4 @@
+- icinga2_feature:
+    name: ido-pgsql
+    state: present
+  name: Enable ido-pgsql feature

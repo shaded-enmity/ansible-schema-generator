@@ -1,0 +1,8 @@
+- nxos_facts:
+    gather_subset: all
+- nxos_facts:
+    gather_subset:
+    - config
+- nxos_facts:
+    gather_subset:
+    - '!hardware'

@@ -1,0 +1,6 @@
+- ecs_service_facts:
+    cluster: test-cluster
+    details: true
+    service: console-test-service
+- ecs_service_facts:
+    cluster: test-cluster

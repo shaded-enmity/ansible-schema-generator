@@ -1,0 +1,15 @@
+- openvswitch_bridge:
+    bridge: br-int
+    state: present
+- openvswitch_bridge:
+    bridge: br-int
+    parent: br-parent
+    state: present
+    vlan: 405
+- args:
+    external_ids:
+      bridge-id: br-int
+  openvswitch_bridge:
+    bridge: br-int
+    fail_mode: secure
+    state: present

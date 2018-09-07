@@ -1,0 +1,15 @@
+- grafana_dashboard:
+    grafana_api_key: XXXXXXXXXXXX
+    grafana_url: http://grafana.company.com
+    message: Updated by ansible
+    overwrite: true
+    path: /path/to/dashboards/foo.json
+    state: present
+  name: Import Grafana dashboard foo
+- grafana_dashboard:
+    grafana_api_key: XXXXXXXXXXXX
+    grafana_url: http://grafana.company.com
+    path: /path/to/dashboards/foo.json
+    slug: foo
+    state: export
+  name: Export dashboard

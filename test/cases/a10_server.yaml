@@ -1,0 +1,12 @@
+- a10_server:
+    host: a10.mydomain.com
+    partition: mypartition
+    password: mypassword
+    server: test
+    server_ip: 1.1.1.100
+    server_ports:
+    - port_num: 8080
+      protocol: tcp
+    - port_num: 8443
+      protocol: TCP
+    username: myadmin

@@ -1,0 +1,7 @@
+- avi_snmptrapprofile:
+    controller: 10.10.25.42
+    name: sample_snmptrapprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create SnmpTrapProfile object

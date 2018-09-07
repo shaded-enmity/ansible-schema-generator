@@ -1,0 +1,33 @@
+- manageiq_policies:
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    policy_profiles:
+    - name: openscap profile
+    resource_name: EngLab
+    resource_type: provider
+  name: Assign new policy_profile for a provider in ManageIQ
+- manageiq_policies:
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    policy_profiles:
+    - name: openscap profile
+    resource_name: EngLab
+    resource_type: provider
+    state: absent
+  name: Unassign a policy_profile for a provider in ManageIQ
+- manageiq_policies:
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    resource_name: EngLab
+    resource_type: provider
+    state: list
+  name: List current policy_profile and policies for a provider in ManageIQ

@@ -1,0 +1,25 @@
+- openvswitch_port:
+    bridge: br-ex
+    port: eth2
+    state: present
+- openvswitch_port:
+    bridge: bridge-loop
+    port: eth6
+    set: Interface eth6
+    state: present
+- openvswitch_port:
+    bridge: br-ex
+    port: vlan10
+    set: Interface vlan10
+    state: present
+    tag: 10
+- args:
+    external_ids:
+      attached-mac: 00:00:5E:00:53:23
+      iface-id: '{{ inventory_hostname }}-vifeth6'
+      iface-status: active
+      vm-id: '{{ inventory_hostname }}'
+  openvswitch_port:
+    bridge: br-int
+    port: vifeth6
+    state: present

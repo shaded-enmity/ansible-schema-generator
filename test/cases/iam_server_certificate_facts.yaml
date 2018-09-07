@@ -1,0 +1,7 @@
+- iam_server_certificate_facts:
+    name: production-cert
+  register: server_cert
+- failed_when: '{{ server_cert.results | length == 0 }}'
+  iam_server_certificate_facts:
+    name: production-cert
+  register: server_cert

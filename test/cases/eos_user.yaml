@@ -1,0 +1,21 @@
+- eos_user:
+    name: ansible
+    sshkey: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+    state: present
+  name: create a new user
+- eos_user:
+    purge: true
+  name: remove all users except admin
+- eos_user:
+    aggregate:
+    - name: netop
+    - name: netend
+    privilege: 15
+    state: present
+  name: set multiple users to privilege level 15
+- eos_user:
+    configured_password: '{{ new_password }}'
+    state: present
+    update_password: always
+    username: netop
+  name: Change Password for User netop

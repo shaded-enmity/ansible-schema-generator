@@ -1,0 +1,30 @@
+- junos_banner:
+    banner: login
+    state: present
+    text: 'this is my login banner
+
+      that contains a multiline
+
+      string
+
+      '
+  name: configure the login banner
+- junos_banner:
+    banner: motd
+    state: absent
+  name: remove the motd banner
+- junos_banner:
+    active: false
+    banner: motd
+    state: present
+  name: deactivate the motd banner
+- junos_banner:
+    active: true
+    banner: motd
+    state: present
+  name: activate the motd banner
+- junos_banner:
+    banner: motd
+    state: present
+    text: '{{ lookup(''file'', ''./config_partial/raw_banner.cfg'') }}'
+  name: Configure banner from file

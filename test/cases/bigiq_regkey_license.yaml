@@ -1,0 +1,19 @@
+- bigiq_regkey_license:
+    accept_eula: true
+    license_key: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
+    password: secret
+    regkey_pool: foo-pool
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add a registration key license to a pool
+- bigiq_regkey_license:
+    license_key: XXXXX-XXXXX-XXXXX-XXXXX-XXXXX
+    password: secret
+    regkey_pool: foo-pool
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove a registration key license from a pool

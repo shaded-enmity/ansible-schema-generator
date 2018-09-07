@@ -1,0 +1,20 @@
+- bigip_device_group_member:
+    device_group: device_trust_group
+    name: '{{ inventory_hostname }}'
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add the current device to the "device_trust_group" device group
+- bigip_device_group_member:
+    device_group: device_trust_group
+    name: '{{ item }}'
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add the hosts in the current scope to "device_trust_group"
+  run_once: true
+  with_items: '{{ hostvars.keys() }}'

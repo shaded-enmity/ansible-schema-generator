@@ -1,0 +1,6 @@
+- eos_lldp:
+    state: present
+  name: Enable LLDP service
+- eos_lldp:
+    state: absent
+  name: Disable LLDP service

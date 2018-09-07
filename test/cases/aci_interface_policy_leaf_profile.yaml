@@ -1,0 +1,28 @@
+- aci_interface_policy_leaf_profile:
+    description: leafintprfname description
+    host: apic
+    leaf_interface_profile: leafintprfname
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: Add a new leaf_interface_profile
+- aci_interface_policy_leaf_profile:
+    host: apic
+    leaf_interface_profile: leafintprfname
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove a leaf_interface_profile
+- aci_interface_policy_leaf_profile:
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove all leaf_interface_profiles
+- aci_interface_policy_leaf_profile:
+    host: apic
+    leaf_interface_profile: leafintprfname
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query a leaf_interface_profile

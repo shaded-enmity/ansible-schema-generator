@@ -1,0 +1,8 @@
+- aci_interface_policy_fc:
+    description: '{{ description }}'
+    fc_policy: '{{ fc_policy }}'
+    host: '{{ hostname }}'
+    password: '{{ password }}'
+    port_mode: '{{ port_mode }}'
+    state: present
+    username: '{{ username }}'

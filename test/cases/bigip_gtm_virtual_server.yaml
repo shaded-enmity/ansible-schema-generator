@@ -1,0 +1,9 @@
+- bigip_gtm_virtual_server:
+    password: secret
+    server: lb.mydomain.com
+    state: enabled
+    user: admin
+    virtual_server_name: myname
+    virtual_server_server: myserver
+  delegate_to: localhost
+  name: Enable virtual server

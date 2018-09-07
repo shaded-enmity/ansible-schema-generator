@@ -1,0 +1,28 @@
+- maven_artifact:
+    artifact_id: junit
+    dest: /tmp/junit-latest.jar
+    group_id: junit
+- maven_artifact:
+    artifact_id: junit
+    dest: /tmp/junit-4.11.jar
+    group_id: junit
+    version: 4.11
+- maven_artifact:
+    artifact_id: library-name
+    dest: /tmp/library-name-latest.jar
+    group_id: com.company
+    password: pass
+    repository_url: https://repo.company.com/maven
+    username: user
+- maven_artifact:
+    artifact_id: web-app
+    dest: /var/lib/tomcat7/webapps/web-app.war
+    extension: war
+    group_id: com.company
+    repository_url: https://repo.company.com/maven
+- maven_artifact:
+    artifact_id: spring-core
+    dest: /tmp/
+    group_id: org.springframework
+    keep_name: true
+    version: latest

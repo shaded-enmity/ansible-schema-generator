@@ -1,0 +1,7 @@
+- avi_cluster:
+    controller: 10.10.25.42
+    name: sample_cluster
+    password: something
+    state: present
+    username: admin
+  name: Example to create Cluster object

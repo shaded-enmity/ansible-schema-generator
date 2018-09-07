@@ -1,0 +1,20 @@
+- ovirt_disks:
+    format: cow
+    interface: virtio
+    name: myvm_disk
+    size: 10GiB
+    vm_name: rhel7
+- ovirt_disks:
+    interface: virtio
+    logical_unit:
+      address: 10.34.63.204
+      id: 1IET_000d0001
+      target: iqn.2016-08-09.brq.str-01:omachace
+    vm_name: rhel7
+- ovirt_disks:
+    format: cow
+    interface: virtio
+    name: myvm_disk
+    size: 10GiB
+    state: detached
+    vm_name: rhel7

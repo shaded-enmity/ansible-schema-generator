@@ -1,0 +1,26 @@
+- junos_lldp_interface:
+    name: ge-0/0/5
+    state: present
+  name: Configure LLDP on specific interfaces
+- junos_lldp_interface:
+    name: ge-0/0/5
+    state: disabled
+  name: Disable LLDP on specific interfaces
+- junos_lldp_interface:
+    name: ge-0/0/5
+    state: enabled
+  name: Enable LLDP on specific interfaces
+- junos_lldp_interface:
+    name: ge-0/0/5
+    state: present
+  name: Delete LLDP configuration on specific interfaces
+- junos_lldp_interface:
+    active: false
+    name: ge-0/0/5
+    state: present
+  name: Deactivate LLDP on specific interfaces
+- junos_lldp_interface:
+    active: true
+    name: ge-0/0/5
+    state: present
+  name: Activate LLDP on specific interfaces

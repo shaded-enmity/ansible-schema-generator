@@ -1,0 +1,6 @@
+- ec2_vpc_net_facts: null
+- ec2_vpc_net_facts:
+    vpc_ids: vpc-00112233
+- ec2_vpc_net_facts:
+    filters:
+      tag:Name: Example

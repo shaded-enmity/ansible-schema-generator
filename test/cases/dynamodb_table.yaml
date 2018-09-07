@@ -1,0 +1,33 @@
+- dynamodb_table:
+    hash_key_name: id
+    hash_key_type: STRING
+    name: my-table
+    range_key_name: create_time
+    range_key_type: NUMBER
+    read_capacity: 2
+    region: us-east-1
+    tags:
+      tag_name: tag_value
+    write_capacity: 2
+- dynamodb_table:
+    name: my-table
+    read_capacity: 10
+    region: us-east-1
+    write_capacity: 10
+- dynamodb_table:
+    indexes:
+    - hash_key_name: id
+      includes:
+      - other_field
+      - other_field2
+      name: NamedIndex
+      range_key_name: create_time
+      read_capacity: 10
+      type: global_include
+      write_capacity: 10
+    name: my-table
+    region: us-east-1
+- dynamodb_table:
+    name: my-table
+    region: us-east-1
+    state: absent

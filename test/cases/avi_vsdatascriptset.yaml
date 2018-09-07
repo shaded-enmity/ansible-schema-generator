@@ -1,0 +1,7 @@
+- avi_vsdatascriptset:
+    controller: 10.10.25.42
+    name: sample_vsdatascriptset
+    password: something
+    state: present
+    username: admin
+  name: Example to create VSDataScriptSet object

@@ -1,0 +1,11 @@
+- ipmi_boot:
+    bootdev: hd
+    name: test.testdomain.com
+    password: password
+    user: admin
+- ipmi_boot:
+    bootdev: network
+    name: test.testdomain.com
+    password: password
+    state: absent
+    user: admin

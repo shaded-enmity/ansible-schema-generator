@@ -1,0 +1,36 @@
+- archive:
+    dest: /path/to/foo.tgz
+    path: /path/to/foo
+  name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+- archive:
+    path: /path/to/foo
+    remove: true
+  name: Compress regular file /path/to/foo into /path/to/foo.gz and remove it
+- archive:
+    format: zip
+    path: /path/to/foo
+  name: Create a zip archive of /path/to/foo
+- archive:
+    dest: /path/file.tar.bz2
+    format: bz2
+    path:
+    - /path/to/foo
+    - /path/wong/foo
+  name: Create a bz2 archive of multiple files, rooted at /path
+- archive:
+    dest: /path/file.tar.bz2
+    exclude_path:
+    - /path/to/foo/bar
+    - /path/to/foo/baz
+    format: bz2
+    path:
+    - /path/to/foo/*
+  name: Create a bz2 archive of a globbed path, while excluding specific dirnames
+- archive:
+    dest: /path/file.tar.bz2
+    exclude_path:
+    - /path/to/foo/ba*
+    format: bz2
+    path:
+    - /path/to/foo/*
+  name: Create a bz2 archive of a globbed path, while excluding a glob of dirnames

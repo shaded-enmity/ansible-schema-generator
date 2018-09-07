@@ -1,0 +1,28 @@
+- digital_ocean_certificate:
+    leaf_certificate: '-----BEGIN CERTIFICATE----- MIIFDmg2Iaw== -----END CERTIFICATE-----'
+    name: production
+    oauth_token: b7d03a6947b217efb6f3ec3bd365652
+    private_key: '-----BEGIN PRIVATE KEY----- MIIEvgIBADANBgkqhkM8OI7pRpgyj1I -----END
+      PRIVATE KEY-----'
+    state: present
+  name: create a certificate
+- digital_ocean_certificate:
+    leaf_certificate: '{{ lookup(''file'', ''test.cert'') }}'
+    name: production
+    oauth_token: '{{ oauth_token }}'
+    private_key: '{{ lookup(''file'', ''test.key'') }}'
+    state: present
+  name: create a certificate using file lookup plugin
+- digital_ocean_certificate:
+    certificate_chain: '{{ lookup(''file'', ''chain.cert'') }}'
+    leaf_certificate: '{{ lookup(''file'', ''test.cert'') }}'
+    name: production
+    oauth_token: '{{ oauth_token }}'
+    private_key: '{{ lookup(''file'', ''test.key'') }}'
+    state: present
+  name: create a certificate with trust chain
+- digital_ocean_certificate:
+    name: production
+    oauth_token: '{{ oauth_token }}'
+    state: absent
+  name: remove a certificate

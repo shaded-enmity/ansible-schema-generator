@@ -1,0 +1,13 @@
+- dladm_vnic:
+    link: bnx0
+    name: vnic0
+    state: present
+- dladm_vnic:
+    link: aggr0
+    mac: 00:00:5E:00:53:23
+    name: vnic1
+    vlan: 4
+- dladm_vnic:
+    link: bnx0
+    name: vnic0
+    state: absent

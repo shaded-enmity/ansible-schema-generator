@@ -1,0 +1,32 @@
+- aci_aaa_user_certificate:
+    aaa_user: admin
+    certificate_data: '{{ lookup("file", "pki/admin.crt") }}'
+    certificate_name: admin
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: Add a certificate to user
+- aci_aaa_user_certificate:
+    aaa_user: admin
+    certificate_name: admin
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove a certificate of a user
+- aci_aaa_user_certificate:
+    aaa_user: admin
+    certificate_name: admin
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query a certificate of a user
+- aci_aaa_user_certificate:
+    aaa_user: admin
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all certificates of a user

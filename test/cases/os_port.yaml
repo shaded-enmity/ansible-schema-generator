@@ -1,0 +1,50 @@
+- os_port:
+    auth:
+      auth_url: https://region-b.geo-1.identity.hpcloudsvc.com:35357/v2.0/
+      password: admin
+      project_name: admin
+      username: admin
+    name: port1
+    network: foo
+    state: present
+- os_port:
+    auth:
+      auth_url: https://region-b.geo-1.identity.hpcloudsvc.com:35357/v2.0/
+      password: admin
+      project_name: admin
+      username: admin
+    fixed_ips:
+    - ip_address: 10.1.0.21
+    name: port1
+    network: foo
+    state: present
+- os_port:
+    auth:
+      auth_url: https://region-b.geo-1.identity.hpcloudsvc.com:35357/v2.0/
+      password: admin
+      project_name: admin
+      username: admin
+    name: port1
+    network: foo
+    no_security_groups: true
+    state: present
+- os_port:
+    auth:
+      auth_url: https://region-b.geo-1.identity.hpcloudsvc.com:35357/v2.0/d
+      password: admin
+      project_name: admin
+      username: admin
+    name: port1
+    security_groups: 1496e8c7-4918-482a-9172-f4f00fc4a3a5,057d4bdf-6d4d-472...
+    state: present
+- os_port:
+    auth:
+      auth_url: https://region-b.geo-1.identity.hpcloudsvc.com:35357/v2.0/d
+      password: admin
+      project_name: admin
+      username: admin
+    name: port1
+    security_groups:
+    - 1496e8c7-4918-482a-9172-f4f00fc4a3a5
+    - 057d4bdf-6d4d-472...
+    state: present

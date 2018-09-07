@@ -1,0 +1,21 @@
+- name: Configure SAN Connectivity Policy
+  ucs_san_connectivity:
+    hostname: 172.16.143.150
+    name: Cntr-FC-Boot
+    password: password
+    username: admin
+    vhba_list:
+    - adapter_policy: Linux
+      name: Fabric-A
+      vhba_template: vHBA-Template-A
+    - adapter_policy: Linux
+      name: Fabric-B
+      vhba_template: vHBA-Template-B
+    wwnn_pool: WWNN-Pool
+- name: Remove SAN Connectivity Policy
+  ucs_san_connectivity:
+    hostname: 172.16.143.150
+    name: Cntr-FC-Boot
+    password: password
+    state: absent
+    username: admin

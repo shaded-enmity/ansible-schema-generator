@@ -1,0 +1,48 @@
+- eos_linkagg:
+    group: 10
+    state: present
+  name: create link aggregation group
+- eos_linkagg:
+    group: 10
+    state: absent
+  name: delete link aggregation group
+- eos_linkagg:
+    group: 200
+    members:
+    - Ethernet0
+    - Ethernet1
+    min_links: 3
+    mode: active
+  name: set link aggregation group to members
+- eos_linkagg:
+    group: 200
+    members:
+    - Ethernet1
+    min_links: 3
+    mode: active
+  name: remove link aggregation group from Ethernet0
+- eos_linkagg:
+    aggregate:
+    - group: 3
+      members:
+      - Ethernet1
+      mode: true
+    - group: 100
+      members:
+      - Ethernet2
+      min_links: 3
+      mode: passive
+  name: Create aggregate of linkagg definitions
+- eos_linkagg:
+    aggregate:
+    - group: 3
+      members:
+      - Ethernet1
+      mode: true
+    - group: 100
+      members:
+      - Ethernet2
+      min_links: 3
+      mode: passive
+    state: absent
+  name: Remove aggregate of linkagg definitions

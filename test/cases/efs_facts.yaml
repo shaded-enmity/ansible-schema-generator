@@ -1,0 +1,12 @@
+- efs_facts: null
+  register: result
+- efs_facts:
+    name: myTestNameTag
+- efs_facts:
+    id: fs-1234abcd
+- efs_facts:
+    tags:
+      name: myTestNameTag
+    targets:
+    - subnet-1a2b3c4d
+    - sg-4d3c2b1a

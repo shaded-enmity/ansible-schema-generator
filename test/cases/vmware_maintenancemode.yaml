@@ -1,0 +1,10 @@
+- name: Enter VSAN-Compliant Maintenance Mode
+  vmware_maintenancemode:
+    esxi_hostname: esxi.host.example
+    evacuate: true
+    hostname: vc_host
+    password: vc_pass
+    state: present
+    timeout: 3600
+    username: vc_user
+    vsan: ensureObjectAccessibility

@@ -1,0 +1,14 @@
+- profitbricks_volume:
+    auto_increment: true
+    count: 5
+    datacenter: Tardis One
+    name: vol%02d
+    state: present
+    wait_timeout: 500
+- profitbricks_volume:
+    datacenter: Tardis One
+    instance_ids:
+    - vol01
+    - vol02
+    state: absent
+    wait_timeout: 500

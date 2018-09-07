@@ -1,0 +1,57 @@
+- manageiq_user:
+    email: jdoe@example.com
+    group: EvmGroup-user
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    name: Jane Doe
+    password: VerySecret
+    userid: jdoe
+  name: Create a new user in ManageIQ
+- manageiq_user:
+    email: jdoe@example.com
+    group: EvmGroup-user
+    manageiq_connection:
+      token: sometoken
+      url: http://127.0.0.1:3000
+      verify_ssl: false
+    name: Jane Doe
+    password: VerySecret
+    userid: jdoe
+  name: Create a new user in ManageIQ using a token
+- manageiq_user:
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    state: absent
+    userid: jdoe
+  name: Delete a user in ManageIQ
+- manageiq_user:
+    manageiq_connection:
+      token: sometoken
+      url: http://127.0.0.1:3000
+      verify_ssl: false
+    state: absent
+    userid: jdoe
+  name: Delete a user in ManageIQ using a token
+- manageiq_user:
+    email: jaustine@example.com
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    userid: jdoe
+  name: Update email of user in ManageIQ
+- manageiq_user:
+    email: jaustine@example.com
+    manageiq_connection:
+      token: sometoken
+      url: http://127.0.0.1:3000
+      verify_ssl: false
+    userid: jdoe
+  name: Update email of user in ManageIQ using a token

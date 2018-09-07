@@ -1,0 +1,98 @@
+- rhevm:
+    name: demo
+    password: '{{ rhev.admin.pass }}'
+    server: rhevm01
+    state: info
+    user: '{{ rhev.admin.name }}'
+- rhevm:
+    cluster: centos
+    image: centos7_x64
+    name: demo
+    password: '{{ rhev.admin.pass }}'
+    server: rhevm01
+    state: present
+    user: '{{ rhev.admin.name }}'
+- rhevm:
+    cluster: RH
+    image: centos7_x64
+    name: uptime_server
+    password: '{{ rhev.admin.pass }}'
+    server: rhevm01
+    state: down
+    user: '{{ rhev.admin.name }}'
+- rhevm:
+    boot_order:
+    - network
+    - hd
+    cluster: RH
+    disks:
+    - domain: ssd-san
+      name: root
+      size: 10
+    - domain: 15kiscsi-san
+      name: swap
+      size: 10
+    - domain: 15kiscsi-san
+      name: opt
+      size: 10
+    - domain: 10kiscsi-san
+      name: var
+      size: 10
+    - domain: sata-san
+      name: home
+      size: 10
+    ifaces:
+    - name: eth0
+      vlan: vlan2202
+    - name: eth1
+      vlan: vlan36
+    - name: eth2
+      vlan: vlan38
+    - name: eth3
+      vlan: vlan2202
+    name: server007
+    password: '{{ rhev.admin.pass }}'
+    server: rhevm01
+    state: present
+    type: server
+    user: '{{ rhev.admin.name }}'
+    vmcpu: 4
+    vmmem: 2
+- rhevm:
+    cd_drive: rhev-tools-setup.iso
+    name: server007
+    password: '{{ rhev.admin.pass }}'
+    state: cd
+    user: '{{ rhev.admin.name }}'
+- rhevm:
+    cluster: rhevm01
+    ifaces:
+    - name: em1
+    - name: em2
+    - ip: 172.31.224.200
+      name: p3p1
+      netmask: 255.255.254.0
+    - ip: 172.31.225.200
+      name: p3p2
+      netmask: 255.255.254.0
+    - bond:
+      - em1
+      - em2
+      ip: 172.31.222.200
+      management: true
+      name: bond0
+      netmask: 255.255.255.0
+      network: rhevm
+    - gateway: 10.2.36.254
+      ip: 10.2.36.200
+      name: bond0.36
+      netmask: 255.255.254.0
+      network: vlan36
+    - name: bond0.2202
+      network: vlan2202
+    - name: bond0.38
+      network: vlan38
+    name: ovirt_node007
+    password: '{{ rhevm.admin.pass }}'
+    state: present
+    type: host

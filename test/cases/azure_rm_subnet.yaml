@@ -1,0 +1,12 @@
+- azure_rm_subnet:
+    address_prefix_cidr: 10.1.0.0/24
+    name: foobar
+    resource_group: Testing
+    virtual_network_name: My_Virtual_Network
+  name: Create a subnet
+- azure_rm_subnet:
+    name: foobar
+    resource_group: Testing
+    state: absent
+    virtual_network_name: My_Virtual_Network
+  name: Delete a subnet

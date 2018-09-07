@@ -1,0 +1,2 @@
+- ovirt_storage_domains_facts:
+    pattern: name=data* and datacenter=west

@@ -1,0 +1,19 @@
+- name: Import Zabbix Template
+  zabbix_template:
+    login_password: password
+    login_user: username
+    server_url: http://127.0.0.1
+    state: present
+    template_groups: Templates
+    template_json:
+      templates:
+      - applications:
+        - name: Test Application
+        description: Testing template import
+        groups:
+        - name: Templates
+        name: Template for Testing
+        template: Test Template
+      version: '3.2'
+      zabbix_export: null
+    template_name: Test Template

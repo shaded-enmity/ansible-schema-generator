@@ -1,0 +1,11 @@
+- os_user_role:
+    cloud: mycloud
+    project: project1
+    role: admin
+    user: admin
+- os_user_role:
+    cloud: mycloud
+    domain: newyork
+    role: admin
+    state: absent
+    user: barney

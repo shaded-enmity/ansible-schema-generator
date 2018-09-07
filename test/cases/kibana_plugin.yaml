@@ -1,0 +1,13 @@
+- kibana_plugin:
+    name: elasticsearch/marvel
+    state: present
+  name: Install Elasticsearch head plugin
+- kibana_plugin:
+    name: elasticsearch/marvel
+    state: present
+    version: 2.3.3
+  name: Install specific version of a plugin
+- kibana_plugin:
+    name: elasticsearch/marvel
+    state: absent
+  name: Uninstall Elasticsearch head plugin

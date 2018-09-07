@@ -1,0 +1,39 @@
+- bigip_policy_rule:
+    actions:
+    - pool: pool-svrs
+      type: forward
+    conditions:
+    - path_begins_with_any: /ABC
+      type: http_uri
+    name: rule3
+    policy: Policy-Foo
+  name: Add a rule to the new policy
+- bigip_policy_rule:
+    actions: '{{ item.actions }}'
+    conditions: '{{ item.conditions }}'
+    name: '{{ item.name }}'
+    policy: Policy-Foo
+  loop:
+  - actions:
+    - pool: pool-svrs
+      type: forward
+    conditions:
+    - path_starts_with: /euro
+      type: http_uri
+    name: rule1
+  - actions:
+    - pool: pool-svrs
+      type: forward
+    conditions:
+    - path_starts_with: /HomePage/
+      type: http_uri
+    name: rule2
+  name: Add multiple rules to the new policy
+- bigip_policy_rule:
+    actions:
+    - type: ignore
+    conditions:
+    - type: all_traffic
+    name: rule1
+    policy: Policy-Foo
+  name: Remove all rules and confitions from the rule

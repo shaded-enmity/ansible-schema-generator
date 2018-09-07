@@ -1,0 +1,29 @@
+- get_url:
+    dest: /etc/foo.conf
+    mode: 288
+    url: http://example.com/path/file.conf
+  name: download foo.conf
+- get_url:
+    dest: /etc/foo.conf
+    force_basic_auth: true
+    url: http://example.com/path/file.conf
+  name: download file and force basic auth
+- get_url:
+    dest: /etc/foo.conf
+    headers: key:value,key:value
+    url: http://example.com/path/file.conf
+  name: download file with custom HTTP headers
+- get_url:
+    checksum: sha256:b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c
+    dest: /etc/foo.conf
+    url: http://example.com/path/file.conf
+  name: download file with check (sha256)
+- get_url:
+    checksum: md5:66dffb5228a211e61d6d7ef4a86f5758
+    dest: /etc/foo.conf
+    url: http://example.com/path/file.conf
+  name: download file with check (md5)
+- get_url:
+    dest: /tmp/afilecopy.txt
+    url: file:///tmp/afile.txt
+  name: download file from a file path

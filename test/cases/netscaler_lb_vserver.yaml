@@ -1,0 +1,33 @@
+- delegate_to: localhost
+  name: Create a load balancing vserver bound to services
+  netscaler_lb_vserver:
+    ipv46: 6.93.3.3
+    name: lb_vserver_1
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    port: 80
+    servicebindings:
+    - servicename: service-http-1
+      weight: 80
+    - servicename: service-http-2
+      weight: 20
+    servicetype: HTTP
+    state: present
+    timeout: 12
+    validate_certs: false
+- delegate_to: localhost
+  name: Create load balancing vserver bound to servicegroup
+  netscaler_lb_vserver:
+    ipv46: 6.92.2.2
+    name: lb_vserver_2
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    port: 80
+    servicegroupbindings:
+    - servicegroupname: service-group-1
+    servicetype: HTTP
+    state: present
+    timeout: 10
+    validate_certs: false

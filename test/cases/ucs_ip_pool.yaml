@@ -1,0 +1,35 @@
+- name: Configure IPv4 address pools
+  ucs_ip_pool:
+    default_gw: 192.168.0.1
+    first_addr: 192.168.0.10
+    hostname: 172.16.143.150
+    last_addr: 192.168.0.19
+    name: ip-A
+    order: sequential
+    password: password
+    primary_dns: 172.16.143.136
+    subnet_mask: 255.255.255.0
+    username: admin
+- name: Configure IPv6 address pools
+  ucs_ip_pool:
+    hostname: 172.16.143.150
+    ipv6_default_gw: fe80::1cae:7992:d7a1:ecff
+    ipv6_first_addr: fe80::1cae:7992:d7a1:ed07
+    ipv6_last_addr: fe80::1cae:7992:d7a1:edfe
+    name: ipv6-B
+    password: password
+    username: admin
+- name: Remove IPv4 address pools
+  ucs_ip_pool:
+    hostname: 172.16.143.150
+    name: ip-A
+    password: password
+    state: absent
+    username: admin
+- name: Remove IPv6 address pools
+  ucs_ip_pool:
+    hostname: 172.16.143.150
+    name: ipv6-B
+    password: password
+    state: absent
+    username: admin

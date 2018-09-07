@@ -1,0 +1,10 @@
+- ovirt_vmpools:
+    cluster: mycluster
+    name: myvmpool
+    prestarted: 2
+    template: rhel7
+    vm_count: 2
+    vm_per_user: 1
+- ovirt_vmpools:
+    name: myvmpool
+    state: absent

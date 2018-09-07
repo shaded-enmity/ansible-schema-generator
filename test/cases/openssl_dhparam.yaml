@@ -1,0 +1,8 @@
+- openssl_dhparam:
+    path: /etc/ssl/dhparams.pem
+- openssl_dhparam:
+    path: /etc/ssl/dhparams.pem
+    size: 2048
+- openssl_dhparam:
+    force: true
+    path: /etc/ssl/dhparams.pem

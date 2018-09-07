@@ -1,0 +1,5 @@
+- nxos_file_copy:
+    host: '{{ inventory_hostname }}'
+    local_file: ./test_file.txt
+    password: '{{ pwd }}'
+    username: '{{ un }}'

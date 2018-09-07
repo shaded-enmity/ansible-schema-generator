@@ -1,0 +1,181 @@
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+      proxy_protocol: true
+    - instance_port: 80
+      instance_protocol: http
+      load_balancer_port: 443
+      protocol: https
+      ssl_certificate_id: arn:aws:iam::123456789012:server-certificate/company/servercerts/ProdServerCert
+    name: test-please-delete
+    state: present
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    instance_ids:
+    - i-abcd1234
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: test-vpc
+    purge_instance_ids: true
+    scheme: internal
+    state: present
+    subnets:
+    - subnet-abcd1234
+    - subnet-1a2b3c4d
+- delegate_to: localhost
+  elb_classic_lb:
+    access_logs:
+      interval: 5
+      s3_location: my-bucket
+      s3_prefix: logs
+    health_check:
+      healthy_threshold: 10
+      interval: 30
+      ping_path: /index.html
+      ping_port: 80
+      ping_protocol: http
+      response_timeout: 5
+      unhealthy_threshold: 2
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: test-please-delete
+    state: present
+    zones:
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    name: test-please-delete
+    state: absent
+- delegate_to: localhost
+  elb_classic_lb:
+    name: test-please-delete
+    state: absent
+    wait: true
+- delegate_to: localhost
+  elb_classic_lb:
+    name: test-please-delete
+    state: absent
+    wait: true
+    wait_timeout: 600
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: test-please-delete
+    purge_listeners: false
+    state: present
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: test-please-delete
+    purge_zones: true
+    state: present
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: New ELB
+    purge_subnets: true
+    region: us-west-2
+    security_group_ids: sg-123456, sg-67890
+    state: present
+    subnets: subnet-123456,subnet-67890
+- delegate_to: localhost
+  elb_classic_lb:
+    connection_draining_timeout: 60
+    cross_az_load_balancing: 'yes'
+    idle_timeout: 300
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: New ELB
+    region: us-east-1
+    state: present
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: New ELB
+    region: us-east-1
+    state: present
+    stickiness:
+      enabled: true
+      expiration: 300
+      type: loadbalancer
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: New ELB
+    region: us-east-1
+    state: present
+    stickiness:
+      cookie: SESSIONID
+      enabled: true
+      type: application
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: New ELB
+    region: us-east-1
+    state: present
+    tags:
+      Name: New ELB
+      client: Bob
+      stack: production
+    zones:
+    - us-east-1a
+    - us-east-1d
+- delegate_to: localhost
+  elb_classic_lb:
+    listeners:
+    - instance_port: 80
+      load_balancer_port: 80
+      protocol: http
+    name: New ELB
+    region: us-east-1
+    state: present
+    tags: {}
+    zones:
+    - us-east-1a
+    - us-east-1d

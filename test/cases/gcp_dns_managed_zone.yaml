@@ -1,0 +1,11 @@
+- gcp_dns_managed_zone:
+    auth_kind: service_account
+    description: test zone
+    dns_name: test.somewild2.example.com.
+    name: testObject
+    project: testProject
+    scopes:
+    - https://www.googleapis.com/auth/ndev.clouddns.readwrite
+    service_account_file: /tmp/auth.pem
+    state: present
+  name: Create a Managed Zone

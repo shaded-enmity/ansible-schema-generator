@@ -1,0 +1,29 @@
+- ipa_group:
+    gidnumber: 54321
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: oinstall
+    state: present
+- ipa_group:
+    group:
+    - sysops
+    - appops
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: ops
+- ipa_group:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: sysops
+    user:
+    - linus
+    - larry
+- ipa_group:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: sysops
+    state: absent

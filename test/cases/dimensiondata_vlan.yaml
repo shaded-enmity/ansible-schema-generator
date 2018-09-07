@@ -1,0 +1,24 @@
+- dimensiondata_vlan:
+    description: A test VLAN
+    location: NA5
+    name: my_vlan1
+    network_domain: test_network
+    private_ipv4_base_address: 192.168.23.0
+    private_ipv4_prefix_size: 24
+    region: na
+    state: present
+    wait: true
+- dimensiondata_vlan:
+    location: NA5
+    name: my_vlan1
+    network_domain: test_network
+    region: na
+    state: readonly
+    wait: true
+- dimensiondata_vlan:
+    location: NA5
+    name: my_vlan_1
+    network_domain: test_network
+    region: na
+    state: absent
+    wait: true

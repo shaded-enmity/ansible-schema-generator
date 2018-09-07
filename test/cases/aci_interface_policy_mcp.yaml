@@ -1,0 +1,7 @@
+- aci_interface_policy_mcp:
+    admin_state: '{{ admin_state }}'
+    description: '{{ descr }}'
+    host: '{{ hostname }}'
+    mcp: '{{ mcp }}'
+    password: '{{ password }}'
+    username: '{{ username }}'

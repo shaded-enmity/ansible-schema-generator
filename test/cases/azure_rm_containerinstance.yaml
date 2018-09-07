@@ -1,0 +1,15 @@
+- azure_rm_containerinstance:
+    containers:
+    - image: httpd
+      memory: 1.5
+      name: mycontainer1
+      ports:
+      - 80
+    ip_address: public
+    name: mynewcontainergroup
+    os_type: linux
+    ports:
+    - 80
+    - 81
+    resource_group: testrg
+  name: Create sample container group

@@ -1,0 +1,6 @@
+- win_reboot: null
+- when: update_result.reboot_required
+  win_reboot: null
+- win_reboot:
+    reboot_timeout_sec: 3600
+    shutdown_timeout_sec: 3600

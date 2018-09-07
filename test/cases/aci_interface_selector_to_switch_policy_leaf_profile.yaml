@@ -1,0 +1,25 @@
+- aci_interface_selector_to_switch_policy_leaf_profile:
+    host: apic
+    interface_selector: interface_profile_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: Associating an interface selector profile to a switch policy leaf profile
+- aci_interface_selector_to_switch_policy_leaf_profile:
+    host: apic
+    interface_selector: interface_profile_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove an interface selector profile associated with a switch policy leaf
+    profile
+- aci_interface_selector_to_switch_policy_leaf_profile:
+    host: apic
+    interface_selector: interface_profile_name
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query an interface selector profile associated with a switch policy leaf profile

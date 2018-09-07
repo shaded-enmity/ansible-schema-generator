@@ -1,0 +1,34 @@
+- gce_labels:
+    credentials_file: '{{ credentials_file }}'
+    labels:
+      environment: test
+      experiment-name: kennedy
+      webserver-frontend: homepage
+    project_id: '{{ project_id }}'
+    resource_url: https://www.googleapis.com/compute/beta/projects/myproject/zones/us-central1-f/instances/example-instance
+    service_account_email: '{{ service_account_email }}'
+    state: present
+  name: Add labels on an existing instance (using resource_url)
+- gce_labels:
+    credentials_file: '{{ credentials_file }}'
+    labels:
+      environment: test
+      experiment-name: kennedy
+      webserver-frontend: homepage
+    project_id: '{{ project_id }}'
+    resource_location: global
+    resource_name: my-custom-image
+    resource_type: images
+    service_account_email: '{{ service_account_email }}'
+    state: present
+  name: Add labels on an image (using resource params)
+- gce_labels:
+    credentials_file: '{{ credentials_file }}'
+    labels:
+      environment: prod
+      experiment-name: kennedy
+    project_id: '{{ project_id }}'
+    resource_url: https://www.googleapis.com/compute/beta/projects/myproject/zones/us-central1-f/instances/example-instance
+    service_account_email: '{{ service_account_email }}'
+    state: absent
+  name: Remove specified labels from the GCE instance

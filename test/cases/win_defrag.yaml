@@ -1,0 +1,15 @@
+- name: Defragment all local volumes (in parallel)
+  win_defrag:
+    parallel: true
+- name: 'Defragment all local volumes, except C: and D:'
+  win_defrag:
+    exclude_volumes:
+    - C
+    - D
+- name: 'Defragment volume D: with normal priority'
+  win_defrag:
+    include_volumes: D
+    priority: normal
+- name: Consolidate free space (useful when reducing volumes)
+  win_defrag:
+    freespace_consolidation: true

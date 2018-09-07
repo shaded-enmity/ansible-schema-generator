@@ -1,0 +1,21 @@
+- ios_vlan:
+    name: test-vlan
+    state: present
+    vlan_id: 100
+  name: Create vlan
+- ios_vlan:
+    interfaces:
+    - GigabitEthernet0/0
+    - GigabitEthernet0/1
+    vlan_id: 100
+  name: Add interfaces to VLAN
+- ios_vlan:
+    associated_interfaces:
+    - GigabitEthernet0/0
+    - GigabitEthernet0/1
+    vlan_id: 100
+  name: Check if interfaces is assigned to VLAN
+- ios_vlan:
+    state: absent
+    vlan_id: 100
+  name: Delete vlan

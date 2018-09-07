@@ -1,0 +1,57 @@
+- junos_vrf:
+    description: test-vrf-1
+    interfaces:
+    - ge-0/0/3
+    - ge-0/0/2
+    name: test-1
+    rd: 1.1.1.1:10
+    state: present
+    target: target:65514:113
+  name: Configure vrf configuration
+- junos_vrf:
+    description: test-vrf-1
+    interfaces:
+    - ge-0/0/3
+    - ge-0/0/2
+    name: test-1
+    rd: 1.1.1.1:10
+    state: absent
+    target: target:65514:113
+  name: Remove vrf configuration
+- junos_vrf:
+    active: false
+    description: test-vrf-1
+    interfaces:
+    - ge-0/0/3
+    - ge-0/0/2
+    name: test-1
+    rd: 1.1.1.1:10
+    target: target:65514:113
+  name: Deactivate vrf configuration
+- junos_vrf:
+    active: true
+    description: test-vrf-1
+    interfaces:
+    - ge-0/0/3
+    - ge-0/0/2
+    name: test-1
+    rd: 1.1.1.1:10
+    target: target:65514:113
+  name: Activate vrf configuration
+- junos_vrf:
+    aggregate:
+    - description: test-vrf-1
+      interfaces:
+      - ge-0/0/3 - ge-0/0/2
+      name: test-1
+      rd: 1.1.1.1:10
+      target: target:65514:113
+    - description: test-vrf-2
+      interfaces:
+      - ge-0/0/4
+      - ge-0/0/5
+      name: test-2
+      rd: 2.2.2.2:10
+      target: target:65515:114
+  name: Create vrf using aggregate
+  state: present

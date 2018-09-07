@@ -1,0 +1,34 @@
+- aci_aaa_user:
+    aaa_password: AnotherSecretPassword
+    aaa_user: dag
+    email: dag@wieers.com
+    expiration: never
+    expires: false
+    first_name: Dag
+    host: apic
+    last_name: Wieers
+    password: SomeSecretPassword
+    phone: 1-234-555-678
+    state: present
+    username: admin
+  name: Add a user
+- aci_aaa_user:
+    aaa_user: dag
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove a user
+- aci_aaa_user:
+    aaa_user: dag
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query a user
+- aci_aaa_user:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all users

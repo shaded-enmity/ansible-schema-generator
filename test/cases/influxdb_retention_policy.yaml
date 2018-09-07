@@ -1,0 +1,32 @@
+- influxdb_retention_policy:
+    database_name: '{{influxdb_database_name}}'
+    duration: 1h
+    hostname: '{{influxdb_ip_address}}'
+    policy_name: test
+    replication: 1
+    ssl: true
+    validate_certs: true
+  name: create 1 hour retention policy
+- influxdb_retention_policy:
+    database_name: '{{influxdb_database_name}}'
+    duration: 1d
+    hostname: '{{influxdb_ip_address}}'
+    policy_name: test
+    replication: 1
+  name: create 1 day retention policy
+- influxdb_retention_policy:
+    database_name: '{{influxdb_database_name}}'
+    duration: 1w
+    hostname: '{{influxdb_ip_address}}'
+    policy_name: test
+    replication: 1
+  name: create 1 week retention policy
+- influxdb_retention_policy:
+    database_name: '{{influxdb_database_name}}'
+    duration: INF
+    hostname: '{{influxdb_ip_address}}'
+    policy_name: test
+    replication: 1
+    ssl: false
+    validate_certs: false
+  name: create infinite retention policy

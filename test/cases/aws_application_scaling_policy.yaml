@@ -1,0 +1,25 @@
+- aws_application_scaling_policy: null
+  name: scaling_policy
+  policy_name: test_policy
+  policy_type: StepScaling
+  resource_id: service/poc-pricing/test-as
+  scalable_dimension: ecs:service:DesiredCount
+  service_namespace: ecs
+  state: present
+  step_scaling_policy_configuration:
+    AdjustmentType: ChangeInCapacity
+    Cooldown: 123
+    MetricAggregationType: Average
+    StepAdjustments:
+    - MetricIntervalUpperBound: 123
+      ScalingAdjustment: 2
+    - MetricIntervalLowerBound: 123
+      ScalingAdjustment: -2
+- aws_application_scaling_policy:
+    policy_name: test_policy
+    policy_type: StepScaling
+    resource_id: service/cluster-name/service-name
+    scalable_dimension: ecs:service:DesiredCount
+    service_namespace: ecs
+    state: absent
+  name: scaling_policy

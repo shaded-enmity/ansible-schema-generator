@@ -1,0 +1,18 @@
+- udm_user:
+    firstname: Foo
+    lastname: Bar
+    name: FooBar
+    password: secure_password
+- udm_user:
+    firstname: Foo
+    lastname: Bar
+    name: foo
+    ou: school
+    password: secure_password
+    subpath: cn=teachers,cn=users
+- udm_user:
+    firstname: Foo
+    lastname: Bar
+    name: foo
+    password: secure_password
+    position: cn=teachers,cn=users,ou=school,dc=school,dc=example,dc=com

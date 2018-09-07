@@ -1,0 +1,36 @@
+- jenkins_job:
+    config: '{{ lookup(''file'', ''templates/test.xml'') }}'
+    name: test
+    password: admin
+    url: http://localhost:8080
+    user: admin
+- jenkins_job:
+    config: '{{ lookup(''template'', ''templates/test.xml.j2'') }}'
+    name: test
+    token: asdfasfasfasdfasdfadfasfasdfasdfc
+    url: http://localhost:8080
+    user: admin
+- jenkins_job:
+    name: test
+    password: admin
+    state: absent
+    url: http://localhost:8080
+    user: admin
+- jenkins_job:
+    name: test
+    state: absent
+    token: asdfasfasfasdfasdfadfasfasdfasdfc
+    url: http://localhost:8080
+    user: admin
+- jenkins_job:
+    enabled: false
+    name: test
+    password: admin
+    url: http://localhost:8080
+    user: admin
+- jenkins_job:
+    enabled: false
+    name: test
+    token: asdfasfasfasdfasdfadfasfasdfasdfc
+    url: http://localhost:8080
+    user: admin

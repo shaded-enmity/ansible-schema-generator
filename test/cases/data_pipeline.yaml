@@ -1,0 +1,46 @@
+- data_pipeline:
+    name: test-dp
+    objects: '{{pipelineObjects}}'
+    parameters: '{{pipelineParameters}}'
+    region: us-west-2
+    state: present
+    tags:
+      key1: val1
+      key2: val2
+    values: '{{pipelineValues}}'
+- data_pipeline: null
+  name: test-dp
+  objects:
+  - fields:
+    - key: period
+      stringValue: 1 days
+    - key: type
+      stringValue: Schedule
+    - key: startAt
+      stringValue: FIRST_ACTIVATION_DATE_TIME
+    id: DefaultSchedule
+    name: Every 1 day
+  - fields:
+    - key: resourceRole
+      stringValue: my_resource_role
+    - key: role
+      stringValue: DataPipelineDefaultRole
+    - key: pipelineLogUri
+      stringValue: s3://my_s3_log.txt
+    - key: scheduleType
+      stringValue: cron
+    - key: schedule
+      refValue: DefaultSchedule
+    - key: failureAndRerunMode
+      stringValue: CASCADE
+    id: Default
+    name: Default
+  state: active
+- data_pipeline:
+    name: test-dp
+    region: us-west-2
+    state: active
+- data_pipeline:
+    name: test-dp
+    region: us-west-2
+    state: absent

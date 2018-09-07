@@ -1,0 +1,31 @@
+- aci_ap:
+    ap: default
+    description: default ap
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    tenant: production
+    username: admin
+  name: Add a new AP
+- aci_ap:
+    ap: default
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: production
+    username: admin
+  name: Remove an AP
+- aci_ap:
+    ap: default
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: production
+    username: admin
+  name: Query an AP
+- aci_ap:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all APs

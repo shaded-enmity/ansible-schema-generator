@@ -1,0 +1,4 @@
+- mongodb_parameter:
+    param: syncdelay
+    param_type: int
+    value: 60

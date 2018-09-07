@@ -1,0 +1,16 @@
+- ec2_ami_facts:
+    image_ids: ami-5b488823
+  name: gather facts about an AMI using ami-id
+- ec2_ami_facts:
+    filters:
+      tag:Name: webapp
+  name: gather facts about all AMIs with tag key Name and value webapp
+- ec2_ami_facts:
+    filters:
+      name: foobar
+  name: gather facts about an AMI with 'AMI Name' equal to foobar
+- ec2_ami_facts:
+    filters:
+      name: ubuntu/images/ubuntu-zesty-17.04-*
+    owners: 099720109477
+  name: gather facts about Ubuntu 17.04 AMIs published by Canonical (099720109477)

@@ -1,0 +1,7 @@
+- delegate_to: localhost
+  name: Gather vmware host facts
+  register: host_facts
+  vmware_host_facts:
+    hostname: esxi_ip_or_hostname
+    password: password
+    username: username

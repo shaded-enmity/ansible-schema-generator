@@ -1,0 +1,56 @@
+- bigip_gtm_server:
+    datacenter: /Common/New York
+    devices:
+    - address: 1.1.1.1
+      name: server_1
+    - address: 2.2.2.1
+      name: server_2
+      translation: 192.168.2.1
+    - address: 2.2.2.2
+      name: server_2
+    - addresses:
+      - address: 3.3.3.1
+      - address: 3.3.3.2
+      name: server_3
+    - addresses:
+      - address: 4.4.4.1
+        translation: 192.168.14.1
+      - address: 4.4.4.2
+      name: server_4
+    link_discovery: disabled
+    name: GTM_Server
+    password: secret
+    server: lb.mydomain.com
+    server_type: bigip
+    user: admin
+    virtual_server_discovery: disabled
+  delegate_to: localhost
+  name: Create server "GTM_Server"
+- bigip_gtm_server:
+    datacenter: /Common/New York
+    devices:
+    - address: 1.1.1.1
+      name: server_1
+    - address: 2.2.2.1
+      name: server_2
+      translation: 192.168.2.1
+    - address: 2.2.2.2
+      name: server_2
+    - addresses:
+      - address: 3.3.3.1
+      - address: 3.3.3.2
+      name: server_3
+    - addresses:
+      - address: 4.4.4.1
+        translation: 192.168.14.1
+      - address: 4.4.4.2
+      name: server_4
+    link_discovery: disabled
+    name: GTM_Server
+    password: secret
+    server: lb.mydomain.com
+    server_type: bigip
+    user: admin
+    virtual_server_discovery: disabled
+  delegate_to: localhost
+  name: Create server "GTM_Server" with expanded keys

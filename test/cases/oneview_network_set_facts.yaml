@@ -1,0 +1,51 @@
+- delegate_to: localhost
+  name: Gather facts about all Network Sets
+  no_log: true
+  oneview_network_set_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather paginated, filtered, and sorted facts about Network Sets
+  no_log: true
+  oneview_network_set_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    params:
+      count: 3
+      filter: name='netset001'
+      sort: name:descending
+      start: 0
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about all Network Sets, excluding Ethernet networks
+  no_log: true
+  oneview_network_set_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    options:
+    - withoutEthernet
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about a Network Set by name
+  no_log: true
+  oneview_network_set_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: Name of the Network Set
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about a Network Set by name, excluding Ethernet networks
+  no_log: true
+  oneview_network_set_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: Name of the Network Set
+    options:
+    - withoutEthernet
+    password: my_password
+    username: administrator

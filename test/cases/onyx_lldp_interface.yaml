@@ -1,0 +1,28 @@
+- name: Configure LLDP on specific interfaces
+  onyx_lldp_interface:
+    name: Eth1/1
+    state: present
+- name: Disable LLDP on specific interfaces
+  onyx_lldp_interface:
+    name: Eth1/1
+    state: disabled
+- name: Enable LLDP on specific interfaces
+  onyx_lldp_interface:
+    name: Eth1/1
+    state: enabled
+- name: Delete LLDP on specific interfaces
+  onyx_lldp_interface:
+    name: Eth1/1
+    state: absent
+- name: Create aggregate of LLDP interface configurations
+  onyx_lldp_interface:
+    aggregate:
+    - name: Eth1/1
+    - name: Eth1/2
+    state: present
+- name: Delete aggregate of LLDP interface configurations
+  onyx_lldp_interface:
+    aggregate:
+    - name: Eth1/1
+    - name: Eth1/2
+    state: absent

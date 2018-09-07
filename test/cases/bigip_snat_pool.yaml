@@ -1,0 +1,28 @@
+- bigip_snat_pool:
+    members:
+    - 10.10.10.10
+    - 20.20.20.20
+    name: my-snat-pool
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add the SNAT pool 'my-snat-pool'
+- bigip_snat_pool:
+    member: 30.30.30.30
+    name: my-snat-pool
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Change the SNAT pool's members to a single member
+- bigip_snat_pool:
+    name: johnd
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove the SNAT pool 'my-snat-pool'

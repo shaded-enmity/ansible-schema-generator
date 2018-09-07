@@ -1,0 +1,23 @@
+- name: Set Eth1/1 IPv4 address
+  onyx_l3_interface:
+    ipv4: 192.168.0.1/24
+    name: Eth1/1
+- name: Remove Eth1/1 IPv4 address
+  onyx_l3_interface:
+    name: Eth1/1
+    state: absent
+- name: Set IP addresses on aggregate
+  onyx_l3_interface:
+    aggregate:
+    - ipv4: 192.168.2.10/24
+      name: Eth1/1
+    - ipv4: 192.168.3.10/24
+      name: Eth1/2
+- name: Remove IP addresses on aggregate
+  onyx_l3_interface:
+    aggregate:
+    - ipv4: 192.168.2.10/24
+      name: Eth1/1
+    - ipv4: 192.168.3.10/24
+      name: Eth1/2
+    state: absent

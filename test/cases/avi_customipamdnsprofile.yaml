@@ -1,0 +1,7 @@
+- avi_customipamdnsprofile:
+    controller: 10.10.25.42
+    name: sample_customipamdnsprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create CustomIpamDnsProfile object

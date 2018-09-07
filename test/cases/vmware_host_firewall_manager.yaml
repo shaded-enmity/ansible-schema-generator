@@ -1,0 +1,29 @@
+- name: Enable vvold rule set for all ESXi Host in given Cluster
+  vmware_host_firewall_manager:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    rules:
+    - enabled: true
+      name: vvold
+    username: '{{ vcenter_username }}'
+- name: Enable vvold rule set for an ESXi Host
+  vmware_host_firewall_manager:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    rules:
+    - enabled: true
+      name: vvold
+    username: '{{ vcenter_username }}'
+- name: Manage multiple rule set for an ESXi Host
+  vmware_host_firewall_manager:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    rules:
+    - enabled: true
+      name: vvold
+    - enabled: false
+      name: CIMHttpServer
+    username: '{{ vcenter_username }}'

@@ -1,0 +1,25 @@
+- bigip_monitor_tcp_half_open:
+    ip: 10.10.10.10
+    name: my_tcp_monitor
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create TCP Monitor
+- bigip_monitor_tcp_half_open:
+    name: my_tcp_monitor
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove TCP Monitor
+- bigip_monitor_tcp_half_open:
+    name: my_tcp_monitor
+    password: secret
+    port: 514
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Add half-open monitor for all addresses, port 514

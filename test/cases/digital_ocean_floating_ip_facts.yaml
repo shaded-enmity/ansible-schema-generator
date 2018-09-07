@@ -1,0 +1,3 @@
+- digital_ocean_floating_ip_facts: null
+  name: Gather facts about all Floating IPs
+  register: result

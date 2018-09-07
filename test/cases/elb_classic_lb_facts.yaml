@@ -1,0 +1,10 @@
+- elb_classic_lb_facts: null
+  register: elb_facts
+- elb_classic_lb_facts:
+    names: frontend-prod-elb
+  register: elb_facts
+- elb_classic_lb_facts:
+    names:
+    - frontend-prod-elb
+    - backend-prod-elb
+  register: elb_facts

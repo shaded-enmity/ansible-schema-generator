@@ -1,0 +1,13 @@
+- junos_facts: null
+  name: collect default set of facts
+- junos_facts:
+    config: true
+  name: collect default set of facts and configuration
+- junos_facts:
+    config: true
+    config_format: set
+  name: collect default set of facts and configuration in set format
+- junos_facts:
+    config: true
+    config_format: xml
+  name: collect default set of facts and configuration in XML and JSON format

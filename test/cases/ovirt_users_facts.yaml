@@ -1,0 +1,2 @@
+- ovirt_users_facts:
+    pattern: name=john*

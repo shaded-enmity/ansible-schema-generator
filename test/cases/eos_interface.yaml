@@ -1,0 +1,53 @@
+- eos_interface:
+    description: test-interface
+    mtu: 512
+    name: ethernet1
+    speed: 100full
+  name: configure interface
+- eos_interface:
+    name: ethernet1
+    state: absent
+  name: remove interface
+- eos_interface:
+    enabled: true
+    name: ethernet1
+  name: make interface up
+- eos_interface:
+    enabled: false
+    name: ethernet1
+  name: make interface down
+- eos_interface:
+    name: ethernet1
+    rx_rate: le(0)
+    state: up
+    tx_rate: ge(0)
+  name: Check intent arguments
+- eos_interface:
+    name: ethernet1
+    neighbors:
+    - host: netdev
+      port: eth0
+  name: Check neighbors intent arguments
+- eos_interface:
+    enabled: false
+    name: ethernet1
+    state: down
+  name: Configure interface in disabled state and check if the operational state is
+    disabled or not
+- eos_interface:
+    aggregate:
+    - description: test-interface-1
+      mtu: 256
+      name: ethernet1
+    - description: test-interface-2
+      mtu: 516
+      name: ethernet2
+    speed: 100full
+    state: present
+  name: Add interface using aggregate
+- eos_interface:
+    aggregate:
+    - name: loopback9
+    - name: loopback10
+    state: absent
+  name: Delete interface using aggregate

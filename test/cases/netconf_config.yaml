@@ -1,0 +1,26 @@
+- name: use lookup filter to provide xml configuration
+  netconf_config:
+    host: 10.0.0.1
+    password: admin
+    username: admin
+    xml: '{{ lookup(''file'', ''./config.xml'') }}'
+- name: set ntp server in the device
+  netconf_config:
+    host: 10.0.0.1
+    password: admin
+    username: admin
+    xml: "<config xmlns:xc=\"urn:ietf:params:xml:ns:netconf:base:1.0\">\n    <system\
+      \ xmlns=\"urn:ietf:params:xml:ns:yang:ietf-system\">\n        <ntp>\n      \
+      \      <enabled>true</enabled>\n            <server>\n                <name>ntp1</name>\n\
+      \                <udp><address>127.0.0.1</address></udp>\n            </server>\n\
+      \        </ntp>\n    </system>\n</config>\n"
+- name: wipe ntp configuration
+  netconf_config:
+    host: 10.0.0.1
+    password: admin
+    username: admin
+    xml: "<config xmlns:xc=\"urn:ietf:params:xml:ns:netconf:base:1.0\">\n    <system\
+      \ xmlns=\"urn:ietf:params:xml:ns:yang:ietf-system\">\n        <ntp>\n      \
+      \      <enabled>false</enabled>\n            <server operation=\"remove\">\n\
+      \                <name>ntp1</name>\n            </server>\n        </ntp>\n\
+      \    </system>\n</config>\n"

@@ -1,0 +1,76 @@
+- oneandone_load_balancer:
+    auth_token: oneandone_private_api_key
+    datacenter: US
+    description: Testing creation of load balancer with ansible
+    health_check_interval: 40
+    health_check_test: TCP
+    method: ROUND_ROBIN
+    name: ansible load balancer
+    persistence: true
+    persistence_time: 1200
+    rules:
+    - port_balancer: 80
+      port_server: 80
+      protocol: TCP
+      source: 0.0.0.0
+    wait: true
+    wait_timeout: 500
+- oneandone_load_balancer:
+    auth_token: oneandone_private_api_key
+    name: ansible load balancer
+    state: absent
+    wait: true
+    wait_timeout: 500
+- oneandone_load_balancer:
+    auth_token: oneandone_private_api_key
+    description: Testing the update of a load balancer with ansible
+    load_balancer: ansible load balancer
+    name: ansible load balancer updated
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_load_balancer:
+    add_server_ips:
+    - server identifier (id or name)
+    auth_token: oneandone_private_api_key
+    description: Adding server to a load balancer with ansible
+    load_balancer: ansible load balancer updated
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_load_balancer:
+    auth_token: oneandone_private_api_key
+    description: Removing server from a load balancer with ansible
+    load_balancer: ansible load balancer updated
+    remove_server_ips:
+    - B2504878540DBC5F7634EB00A07C1EBD (server's ip id)
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_load_balancer:
+    add_rules:
+    - port_balancer: 70
+      port_server: 70
+      protocol: TCP
+      source: 0.0.0.0
+    - port_balancer: 60
+      port_server: 60
+      protocol: TCP
+      source: 0.0.0.0
+    auth_token: oneandone_private_api_key
+    description: Adding rules to a load balancer with ansible
+    load_balancer: ansible load balancer updated
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_load_balancer:
+    auth_token: oneandone_private_api_key
+    description: Adding rules to a load balancer with ansible
+    load_balancer: ansible load balancer updated
+    remove_rules:
+    - rule_id
+    - rule_id
+    - '...'
+    state: update
+    wait: true
+    wait_timeout: 500

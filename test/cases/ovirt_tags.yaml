@@ -1,0 +1,21 @@
+- ovirt_tags:
+    name: mytag
+    vms:
+    - vm1
+    - vm2
+- ovirt_tags:
+    name: mytag
+    state: attached
+    vms:
+    - vm3
+- ovirt_tags:
+    name: mytag
+    state: detached
+    vms:
+    - vm3
+- ovirt_tags:
+    name: mytag
+    vms: []
+- ovirt_tags:
+    name: mytag
+    state: absent

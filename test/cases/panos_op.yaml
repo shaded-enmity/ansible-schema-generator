@@ -1,0 +1,12 @@
+- name: show list of all interfaces
+  panos_op:
+    cmd: show interfaces all
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    username: '{{ username }}'
+- name: show system info
+  panos_op:
+    cmd: show system info
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    username: '{{ username }}'

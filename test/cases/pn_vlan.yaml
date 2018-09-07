@@ -1,0 +1,9 @@
+- name: create a VLAN
+  pn_vlan:
+    pn_scope: fabric
+    pn_vlanid: 1854
+    state: present
+- name: delete VLANs
+  pn_vlan:
+    pn_vlanid: 1854
+    state: absent

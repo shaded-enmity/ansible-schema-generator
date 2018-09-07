@@ -1,0 +1,4 @@
+- kernel_blacklist:
+    name: nouveau
+    state: present
+  name: Blacklist the nouveau driver module

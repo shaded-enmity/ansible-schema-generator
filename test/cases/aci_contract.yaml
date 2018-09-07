@@ -1,0 +1,32 @@
+- aci_contract:
+    contract: web_to_db
+    description: Communication between web-servers and database
+    host: apic
+    password: SomeSecretPassword
+    scope: application-profile
+    state: present
+    tenant: production
+    username: admin
+  name: Add a new contract
+- aci_contract:
+    contract: web_to_db
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: production
+    username: admin
+  name: Remove an existing contract
+- aci_contract:
+    contract: web_to_db
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: production
+    username: admin
+  name: Query a specific contract
+- aci_contract:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all contracts

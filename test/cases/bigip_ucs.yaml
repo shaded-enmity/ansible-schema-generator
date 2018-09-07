@@ -1,0 +1,53 @@
+- bigip_ucs:
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    ucs: /root/bigip.localhost.localdomain.ucs
+    user: admin
+  delegate_to: localhost
+  name: Upload UCS
+- bigip_ucs:
+    password: secret
+    server: lb.mydomain.com
+    state: installed
+    ucs: /root/bigip.localhost.localdomain.ucs
+    user: admin
+  delegate_to: localhost
+  name: Install (upload, install) UCS.
+- bigip_ucs:
+    no_license: true
+    password: secret
+    server: lb.mydomain.com
+    state: installed
+    ucs: /root/bigip.localhost.localdomain.ucs
+    user: admin
+  delegate_to: localhost
+  name: Install (upload, install) UCS without installing the license portion
+- bigip_ucs:
+    no_license: true
+    no_platform_check: true
+    password: secret
+    server: lb.mydomain.com
+    state: installed
+    ucs: /root/bigip.localhost.localdomain.ucs
+    user: admin
+  delegate_to: localhost
+  name: Install (upload, install) UCS except the license, and bypassing the platform
+    check
+- bigip_ucs:
+    passphrase: MyPassphrase1234
+    password: secret
+    server: lb.mydomain.com
+    state: installed
+    ucs: /root/bigip.localhost.localdomain.ucs
+    user: admin
+  delegate_to: localhost
+  name: Install (upload, install) UCS using a passphrase necessary to load the UCS
+- bigip_ucs:
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    ucs: bigip.localhost.localdomain.ucs
+    user: admin
+  delegate_to: localhost
+  name: Remove uploaded UCS file

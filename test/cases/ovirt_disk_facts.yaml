@@ -1,0 +1,2 @@
+- ovirt_disk_facts:
+    pattern: name=centos*

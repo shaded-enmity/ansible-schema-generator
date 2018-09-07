@@ -1,0 +1,23 @@
+- name: configure interface
+  onyx_interface:
+    description: test-interface
+    mtu: 512
+    name: Eth1/2
+    speed: 100 GB
+- name: make interface up
+  onyx_interface:
+    enabled: true
+    name: Eth1/2
+- name: make interface down
+  onyx_interface:
+    enabled: false
+    name: Eth1/2
+- name: Check intent arguments
+  onyx_interface:
+    name: Eth1/2
+    state: up
+- name: Config + intent
+  onyx_interface:
+    enabled: false
+    name: Eth1/2
+    state: down

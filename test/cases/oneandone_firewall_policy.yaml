@@ -1,0 +1,64 @@
+- oneandone_firewall_policy:
+    auth_token: oneandone_private_api_key
+    description: Testing creation of firewall policies with ansible
+    name: ansible-firewall-policy
+    rules:
+    - port_from: 80
+      port_to: 80
+      protocol: TCP
+      source: 0.0.0.0
+    wait: true
+    wait_timeout: 500
+- oneandone_firewall_policy:
+    auth_token: oneandone_private_api_key
+    name: ansible-firewall-policy
+    state: absent
+- oneandone_firewall_policy:
+    auth_token: oneandone_private_api_key
+    description: Testing creation of firewall policies with ansible - updated
+    firewall_policy: ansible-firewall-policy
+    name: ansible-firewall-policy-updated
+    state: update
+- oneandone_firewall_policy:
+    add_server_ips:
+    - server_identifier (id or name)
+    - server_identifier
+    auth_token: oneandone_private_api_key
+    firewall_policy: ansible-firewall-policy-updated
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_firewall_policy:
+    auth_token: oneandone_private_api_key
+    firewall_policy: ansible-firewall-policy-updated
+    remove_server_ips:
+    - B2504878540DBC5F7634EB00A07C1EBD (server's IP id)
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_firewall_policy:
+    add_rules:
+    - port_from: 70
+      port_to: 70
+      protocol: TCP
+      source: 0.0.0.0
+    - port_from: 60
+      port_to: 60
+      protocol: TCP
+      source: 0.0.0.0
+    auth_token: oneandone_private_api_key
+    description: Adding rules to an existing firewall policy
+    firewall_policy: ansible-firewall-policy-updated
+    state: update
+    wait: true
+    wait_timeout: 500
+- oneandone_firewall_policy:
+    auth_token: oneandone_private_api_key
+    firewall_policy: ansible-firewall-policy-updated
+    remove_rules:
+    - rule_id
+    - rule_id
+    - '...'
+    state: update
+    wait: true
+    wait_timeout: 500

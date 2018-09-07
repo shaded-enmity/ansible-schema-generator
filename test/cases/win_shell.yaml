@@ -1,0 +1,9 @@
+- win_shell: C:\somescript.ps1 >> c:\somelog.txt
+- args:
+    chdir: c:\somedir
+    creates: c:\somelog.txt
+  win_shell: C:\somescript.ps1 >> c:\somelog.txt
+- args:
+    executable: cmd
+  register: homedir_out
+  win_shell: echo %HOMEDIR%

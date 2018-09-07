@@ -1,0 +1,21 @@
+- aruba_config:
+    lines: hostname {{ inventory_hostname }}
+  name: configure top level configuration
+- aruba_config:
+    diff_against: intended
+    intended: '{{ lookup(''file'', ''master.cfg'') }}'
+  name: diff the running-config against a provided config
+- aruba_config:
+    lines:
+    - description test interface
+    - ip access-group 1 in
+    parents: interface gigabitethernet 0/0/0
+  name: configure interface settings
+- aruba_config:
+    before: no ip access-list standard 1
+    lines:
+    - permit host 10.10.10.10
+    - ipv6 permit host fda9:97d6:32a3:3e59::3333
+    match: exact
+    parents: ip access-list standard 1
+  name: load new acl into device

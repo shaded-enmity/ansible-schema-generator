@@ -1,0 +1,23 @@
+- include_vars:
+    file: stuff.yml
+    name: stuff
+- include_vars: '{{ item }}'
+  with_first_found:
+  - '{{ ansible_distribution }}.yml'
+  - '{{ ansible_os_family }}.yml'
+  - default.yml
+- include_vars: myvars.yml
+- include_vars:
+    dir: vars/all
+- include_vars:
+    dir: vars/all
+    name: test
+- include_vars:
+    depth: 1
+    dir: vars/services
+- include_vars:
+    dir: vars
+    files_matching: bastion.yml
+- include_vars:
+    dir: vars
+    ignore_files: bastion.yml

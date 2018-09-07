@@ -1,0 +1,8 @@
+- name: Create a database
+  webfaction_db:
+    login_name: '{{webfaction_user}}'
+    login_password: '{{webfaction_passwd}}'
+    machine: '{{webfaction_machine}}'
+    name: '{{webfaction_user}}_db1'
+    password: mytestsql
+    type: mysql

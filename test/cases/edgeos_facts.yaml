@@ -1,0 +1,9 @@
+- edgeos_facts:
+    gather_subset: all
+  name: collect all facts from the device
+- edgeos_facts:
+    gather_subset: config
+  name: collect only the config and default facts
+- edgeos_facts:
+    gather_subset: '!config'
+  name: collect everything exception the config

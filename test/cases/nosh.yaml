@@ -1,0 +1,8 @@
+- name: restart unbound or start it if not already running
+  nosh:
+    name: unbound
+    state: restarted
+- name: reload fail2ban or start it if not already running
+  nosh:
+    name: fail2ban
+    state: reloaded

@@ -1,0 +1,26 @@
+- bigip_ssl_certificate:
+    content: '{{ lookup(''file'', ''/path/to/cert.crt'') }}'
+    name: certificate-name
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Use a file lookup to import PEM Certificate
+- bigip_ssl_certificate:
+    content: '{{ lookup(''file'', ''/path/to/ca-chain.crt'') }}'
+    name: ca-chain-name
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Use a file lookup to import CA certificate chain
+- bigip_ssl_certificate:
+    name: certificate-name
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Delete Certificate

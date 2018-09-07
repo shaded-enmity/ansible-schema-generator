@@ -1,0 +1,34 @@
+- name: Create vlan
+  vyos_vlan:
+    interfaces: eth1
+    name: vlan-100
+    state: present
+    vlan_id: 100
+- name: Add interfaces to VLAN
+  vyos_vlan:
+    interfaces:
+    - eth1
+    - eth2
+    vlan_id: 100
+- name: Configure virtual interface address
+  vyos_vlan:
+    address: 172.26.100.37/24
+    interfaces: eth1
+    vlan_id: 100
+- name: vlan interface config + intent
+  vyos_vlan:
+    associated_interfaces:
+    - eth0
+    interfaces: eth0
+    vlan_id: 100
+- name: vlan intent check
+  vyos_vlan:
+    associated_interfaces:
+    - eth3
+    - eth4
+    vlan_id: 100
+- name: Delete vlan
+  vyos_vlan:
+    interfaces: eth1
+    state: absent
+    vlan_id: 100

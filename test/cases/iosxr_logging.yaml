@@ -1,0 +1,62 @@
+- iosxr_logging:
+    dest: host
+    level: critical
+    name: 10.10.10.1
+    state: present
+  name: configure logging for syslog server host
+- iosxr_logging:
+    hostnameprefix: host1
+    state: absent
+  name: add hostnameprefix configuration
+- iosxr_logging:
+    facility: local1
+    state: present
+  name: add facility configuration
+- iosxr_logging:
+    dest: console
+    level: debugging
+    state: present
+  name: configure console logging level
+- iosxr_logging:
+    dest: monitor
+    level: errors
+    state: present
+  name: configure monitor logging level
+- iosxr_logging:
+    dest: file
+    level: errors
+    name: file_name
+    size: 2048
+    state: present
+  name: configure syslog to a file
+- iosxr_logging:
+    dest: buffered
+    size: 5100000
+  name: configure buffered logging with size
+- iosxr_logging:
+    aggregate:
+    - dest: console
+      level: warning
+    - dest: buffered
+      size: 4800000
+    - dest: file
+      name: file3
+      size: 2048
+    - dest: host
+      level: critical
+      name: host3
+  name: Configure logging using aggregate
+- iosxr_logging:
+    aggregate:
+    - dest: console
+      level: warning
+    - dest: buffered
+      size: 4800000
+    - dest: file
+      name: file3
+      size: 2048
+    - dest: host
+      level: critical
+      name: host3
+    state: absent
+  name: Delete logging using aggregate

@@ -1,0 +1,15 @@
+- delegate_to: localhost
+  logicmonitor_facts:
+    company: yourcompany
+    password: ImaLuigi,number1!
+    target: host
+    user: Luigi
+  name: query a list of hosts
+- delegate_to: localhost
+  logicmonitor_facts:
+    company: yourcompany
+    fullpath: /servers/production
+    password: itsame.Mario!
+    target: hostgroup
+    user: mario
+  name: query a host group

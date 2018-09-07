@@ -1,0 +1,46 @@
+- delegate_to: localhost
+  dnsimple:
+    account_api_token: dummyapitoken
+    account_email: test@example.com
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    state: present
+  register: records
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    state: absent
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    record: test
+    type: A
+    value: 127.0.0.1
+  register: record
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    record_ids: '{{ record["id"] }}'
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    record: ''
+    state: present
+    type: CNAME
+    value: example.com
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    record: ''
+    state: present
+    ttl: 600
+    type: CNAME
+    value: example.com
+- delegate_to: localhost
+  dnsimple:
+    domain: my.com
+    record: ''
+    state: absent
+    type: CNAME
+    value: example.com

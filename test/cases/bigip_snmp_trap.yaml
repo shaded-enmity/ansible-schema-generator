@@ -1,0 +1,24 @@
+- bigip_snmp_trap:
+    community: general
+    destination: 1.2.3.4
+    name: my-trap1
+    network: management
+    password: secret
+    port: 9000
+    server: lb.mydomain.com
+    snmp_version: 1
+    user: admin
+  delegate_to: localhost
+  name: Create snmp v1 trap
+- bigip_snmp_trap:
+    community: general
+    destination: 5.6.7.8
+    name: my-trap2
+    network: default
+    password: secret
+    port: 7000
+    server: lb.mydomain.com
+    snmp_version: 2c
+    user: admin
+  delegate_to: localhost
+  name: Create snmp v2 trap

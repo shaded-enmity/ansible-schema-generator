@@ -1,0 +1,6 @@
+- honeybadger_deployment:
+    environment: staging
+    repo: git@github.com:user/repo.git
+    revision: b6826b8
+    token: AAAAAA
+    user: ansible

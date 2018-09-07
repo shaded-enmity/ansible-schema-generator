@@ -1,0 +1,208 @@
+- name: Creates a new Virtual Machine from template named 'rhel7_template'
+  ovirt_vms:
+    cluster: mycluster
+    name: myvm
+    state: present
+    template: rhel7_template
+- name: Register VM
+  ovirt_vms:
+    cluster: mycluster
+    name: myvm
+    state: registered
+    storage_domain: mystorage
+- name: Register VM using id
+  ovirt_vms:
+    cluster: mycluster
+    id: 1111-1111-1111-1111
+    state: registered
+    storage_domain: mystorage
+- name: Register VM, allowing partial import
+  ovirt_vms:
+    allow_partial_import: 'True'
+    cluster: mycluster
+    id: 1111-1111-1111-1111
+    state: registered
+    storage_domain: mystorage
+- name: Register VM with vnic profile mappings and reassign bad macs
+  ovirt_vms:
+    cluster: mycluster
+    id: 1111-1111-1111-1111
+    reassign_bad_macs: 'True'
+    state: registered
+    storage_domain: mystorage
+    vnic_profile_mappings:
+    - source_network_name: mynetwork
+      source_profile_name: mynetwork
+      target_profile_id: 3333-3333-3333-3333
+    - source_network_name: mynetwork2
+      source_profile_name: mynetwork2
+      target_profile_id: 4444-4444-4444-4444
+- name: Register VM with mappings
+  ovirt_vms:
+    affinity_group_mappings:
+    - dest_name: Affinity_B
+      source_name: Affinity_A
+    affinity_label_mappings:
+    - dest_name: Label_B
+      source_name: Label_A
+    cluster: mycluster
+    cluster_mappings:
+    - dest_name: cluster_B
+      source_name: cluster_A
+    domain_mappings:
+    - dest_name: Domain_B
+      source_name: Domain_A
+    id: 1111-1111-1111-1111
+    lun_mappings:
+    - dest_logical_unit_address: 10.34.63.204
+      dest_logical_unit_id: 1IET_000d0002
+      dest_logical_unit_port: 3260
+      dest_logical_unit_portal: 1
+      dest_logical_unit_target: iqn.2016-08-09.brq.str-02:omachace
+      dest_storage_type: iscsi
+      source_logical_unit_address: 10.34.63.203
+      source_logical_unit_id: 1IET_000d0001
+      source_logical_unit_port: 3260
+      source_logical_unit_portal: 1
+      source_logical_unit_target: iqn.2016-08-09.brq.str-01:omachace
+      source_storage_type: iscsi
+    role_mappings:
+    - dest_name: Role_B
+      source_name: Role_A
+    state: registered
+    storage_domain: mystorage
+- name: Creates a stateless VM which will always use latest template version
+  ovirt_vms:
+    cluster: mycluster
+    name: myvm
+    template: rhel7
+    use_latest_template_version: true
+- ovirt_vms:
+    cluster: brq01
+    cpu_cores: 2
+    cpu_shares: 1024
+    cpu_sockets: 2
+    disks:
+    - bootable: true
+      name: rhel7_disk
+    memory: 2GiB
+    name: myvm
+    nics:
+    - name: nic1
+    operating_system: rhel_7x64
+    state: present
+    type: server
+- name: Run VM with cloud init
+  ovirt_vms:
+    cloud_init:
+      custom_script: "write_files:\n - content: |\n     Hello, world!\n   path: /tmp/greeting.txt\n\
+        \   permissions: '0644'\n"
+      host_name: example.com
+      nic_boot_protocol: static
+      nic_gateway: 10.34.63.254
+      nic_ip_address: 10.34.60.86
+      nic_name: eth1
+      nic_netmask: 255.255.252.0
+      nic_on_boot: true
+      root_password: super_password
+      user_name: root
+    cluster: Default
+    high_availability: true
+    high_availability_priority: 50
+    memory: 1GiB
+    name: rhel7
+    template: rhel7
+- name: Run VM with cloud init, with multiple network interfaces
+  ovirt_vms:
+    cloud_init_nics:
+    - nic_boot_protocol: dhcp
+      nic_name: eth0
+      nic_on_boot: true
+    - nic_boot_protocol: static
+      nic_gateway: 10.34.63.254
+      nic_ip_address: 10.34.60.86
+      nic_name: eth1
+      nic_netmask: 255.255.252.0
+      nic_on_boot: true
+    cluster: mycluster
+    name: rhel7_4
+    template: rhel7
+- name: Run VM with sysprep
+  ovirt_vms:
+    cluster: Default
+    high_availability: true
+    memory: 3GiB
+    name: windows2012R2_AD
+    sysprep:
+      host_name: windowsad.example.com
+      root_password: SuperPassword123
+      user_name: Administrator
+    template: windows2012R2
+- name: Migrate/Run VM to/on host named 'host1'
+  ovirt_vms:
+    host: host1
+    name: myvm
+    state: running
+- name: Change VMs CD
+  ovirt_vms:
+    cd_iso: drivers.iso
+    name: myvm
+- name: Eject VMs CD
+  ovirt_vms:
+    cd_iso: ''
+    name: myvm
+- name: Boot VM from CD
+  ovirt_vms:
+    boot_devices:
+    - cdrom
+    cd_iso: centos7_x64.iso
+    name: myvm
+- name: Stop vm
+  ovirt_vms:
+    name: myvm
+    state: stopped
+- name: Upgrade memory to already created VM
+  ovirt_vms:
+    memory: 4GiB
+    name: myvm
+- name: Hot plug memory to already created and running VM (VM won't be restarted)
+  ovirt_vms:
+    memory: 4GiB
+    name: myvm
+- ovirt_vms:
+    boot_devices:
+    - network
+    name: myvm
+    state: next_run
+- name: Import virtual machine from VMware
+  ovirt_vms:
+    cluster: mycluster
+    name: vmware_win10
+    poll_interval: 30
+    state: stopped
+    timeout: 1800
+    vmware:
+      name: windows10
+      password: password
+      storage_domain: mynfs
+      url: vpx://user@1.2.3.4/Folder1/Cluster1/2.3.4.5?no_verify=1
+      username: user
+- name: Create vm from template and create all disks on specific storage domain
+  ovirt_vms:
+    cluster: mycluster
+    name: vm_test
+    nics:
+    - name: nic1
+    storage_domain: mynfs
+    template: mytemplate
+- name: Remove VM, if VM is running it will be stopped
+  ovirt_vms:
+    name: myvm
+    state: absent
+- ovirt_vms:
+    boot_menu: true
+    name: myvm
+    quota_id: '{{ ovirt_quotas[0][''id''] }}'
+    serial_console: true
+    sso: false
+    usb_support: true

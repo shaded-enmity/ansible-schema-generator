@@ -1,0 +1,17 @@
+- ipa_hostgroup:
+    host:
+    - db.example.com
+    hostgroup:
+    - mysql-server
+    - oracle-server
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: databases
+    state: present
+- ipa_hostgroup:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: databases
+    state: absent

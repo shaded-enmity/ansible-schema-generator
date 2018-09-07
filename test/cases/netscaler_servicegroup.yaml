@@ -1,0 +1,24 @@
+- delegate_to: localhost
+  name: Setup http service with ip members
+  netscaler_servicegroup:
+    monitorbindings:
+    - monitorname: monitor-1
+      weight: 50
+    - monitorname: monitor-2
+      weight: 50
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    servicegroupname: service-group-1
+    servicemembers:
+    - ip: 10.78.78.78
+      port: 80
+      weight: 50
+    - ip: 10.79.79.79
+      port: 80
+      weight: 40
+    - port: 80
+      servername: server-1
+      weight: 10
+    servicetype: HTTP
+    state: present

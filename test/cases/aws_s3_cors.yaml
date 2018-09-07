@@ -1,0 +1,18 @@
+- aws_s3_cors:
+    name: mys3bucket
+    rules:
+    - allowed_headers:
+      - Authorization
+      allowed_methods:
+      - GET
+      - POST
+      allowed_origins:
+      - http://www.example.com/
+      expose_headers:
+      - x-amz-server-side-encryption
+      - x-amz-request-id
+      max_age_seconds: 30000
+    state: present
+- aws_s3_cors:
+    name: mys3bucket
+    state: absent

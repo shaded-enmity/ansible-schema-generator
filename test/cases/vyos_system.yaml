@@ -1,0 +1,14 @@
+- name: configure hostname and domain-name
+  vyos_system:
+    domain_name: test.example.com
+    host_name: vyos01
+- name: remove all configuration
+  vyos_system:
+    state: absent
+- name: configure name servers
+  vyos_system: name_servers - 8.8.8.8 - 8.8.4.4
+- name: configure domain search suffixes
+  vyos_system:
+    domain_search:
+    - sub1.example.com
+    - sub2.example.com

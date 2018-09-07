@@ -1,0 +1,8 @@
+- bigip_ucs_fetch:
+    dest: /tmp/cs_backup.ucs
+    password: secret
+    server: lb.mydomain.com
+    src: cs_backup.ucs
+    user: admin
+  delegate_to: localhost
+  name: Download a new UCS

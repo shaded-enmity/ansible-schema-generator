@@ -1,0 +1,3 @@
+- os_server_facts:
+    cloud: rax-dfw
+    server: web*

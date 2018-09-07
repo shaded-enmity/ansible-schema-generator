@@ -1,0 +1,10 @@
+- delegate_to: localhost
+  name: Configure netscaler content switching action
+  netscaler_cs_action:
+    name: action-1
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    state: present
+    targetlbvserver: lb_vserver_1
+    validate_certs: false

@@ -1,0 +1,8 @@
+- name: configure rollback location
+  sros_rollback:
+    provider: '{{ cli }}'
+    rollback_location: cb3:/ansible
+- name: remove all rollback configuration
+  sros_rollback:
+    provider: '{{ cli }}'
+    state: absent

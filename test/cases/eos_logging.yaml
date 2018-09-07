@@ -1,0 +1,31 @@
+- eos_logging:
+    dest: host
+    name: 172.16.0.1
+    state: present
+  name: configure host logging
+- eos_logging:
+    dest: host
+    name: 172.16.0.1
+    state: absent
+  name: remove host logging configuration
+- eos_logging:
+    dest: console
+    facility: local7
+    level: debugging
+    state: present
+  name: configure console logging level and facility
+- eos_logging:
+    dest: true
+  name: enable logging to all
+- eos_logging:
+    dest: buffered
+    size: 5000
+  name: configure buffer size
+- eos_logging:
+    aggregate:
+    - dest: console
+      level: warnings
+    - dest: buffered
+      size: 480000
+    state: present
+  name: Configure logging using aggregate

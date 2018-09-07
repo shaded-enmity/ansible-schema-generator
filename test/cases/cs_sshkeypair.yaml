@@ -1,0 +1,12 @@
+- cs_sshkeypair:
+    name: linus@example.com
+  delegate_to: localhost
+  register: key
+- cs_sshkeypair:
+    name: linus@example.com
+    state: absent
+  delegate_to: localhost
+- cs_sshkeypair:
+    name: linus@example.com
+    public_key: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+  delegate_to: localhost

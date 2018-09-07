@@ -1,0 +1,23 @@
+- bigip_device_sshd:
+    banner: enabled
+    banner_text: banner text goes here
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set the banner for the SSHD service from a string
+- bigip_device_sshd:
+    banner: enabled
+    banner_text: '{{ lookup(''file'', ''/path/to/file'') }}'
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set the banner for the SSHD service from a file
+- bigip_device_sshd:
+    password: secret
+    port: 2222
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set the SSHD service to run on port 2222

@@ -1,0 +1,9 @@
+- ovirt_affinity_label_facts:
+    name: label*
+- ovirt_affinity_label_facts:
+    vm: postgres*
+- ovirt_affinity_label_facts:
+    host: west*
+- ovirt_affinity_label_facts:
+    host: west*
+    vm: postgres*

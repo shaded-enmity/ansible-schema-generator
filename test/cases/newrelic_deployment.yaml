@@ -1,0 +1,5 @@
+- newrelic_deployment:
+    app_name: myapp
+    revision: '1.0'
+    token: AAAAAA
+    user: ansible deployment

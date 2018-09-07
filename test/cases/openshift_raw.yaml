@@ -1,0 +1,96 @@
+- name: Create a project
+  openshift_raw:
+    api_version: v1
+    description: Testing
+    display_name: This is a test project.
+    kind: Project
+    name: testing
+    state: present
+- name: Create a Persistent Volume Claim from an inline definition
+  openshift_raw:
+    definition:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: elastic-volume
+        namespace: testing
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+    state: present
+- name: Create a Deployment from an inline definition
+  openshift_raw:
+    definition:
+      apiVersion: v1
+      kind: DeploymentConfig
+      metadata:
+        labels:
+          app: galaxy
+          service: elastic
+        name: elastic
+        namespace: testing
+      spec:
+        template:
+          metadata:
+            labels:
+              app: galaxy
+              service: elastic
+          replicas: 1
+          spec:
+            containers:
+            - command:
+              - elasticsearch
+              image: ansible/galaxy-elasticsearch:2.4.6
+              name: elastic
+              volumeMounts:
+              - mountPath: /usr/share/elasticsearch/data
+                name: elastic-volume
+            volumes:
+            - name: elastic-volume
+              persistentVolumeClaim:
+                claimName: elastic-volume
+          strategy:
+            type: Rolling
+    state: present
+- name: Remove an existing Deployment
+  openshift_raw:
+    api_version: v1
+    kind: DeploymentConfig
+    name: elastic
+    namespace: testing
+    state: absent
+- name: Create a Secret
+  openshift_raw:
+    definition:
+      apiVersion: v1
+      data:
+        password: '{{ ''foobard'' | b64encode }}'
+        username: '{{ ''admin'' | b64encode }}'
+      kind: Secret
+      metadata:
+        name: mysecret
+        namespace: testing
+      type: Opaque
+- name: Retrieve a Secret
+  openshift_raw:
+    api: v1
+    kind: Secret
+    name: mysecret
+    namespace: testing
+  register: mysecret
+- name: Create a Deployment by reading the definition from a local file
+  openshift_raw:
+    src: /testing/deployment.yml
+    state: present
+- name: Read definition file from the Ansible controller file system
+  openshift_raw:
+    definition: '{{ lookup(''file'', ''/testing/deployment.yml'') | from_yaml }}'
+    state: present
+- name: Read definition file from the Ansible controller file system after Jinja templating
+  openshift_raw:
+    definition: '{{ lookup(''template'', ''/testing/deployment.yml'') | from_yaml
+      }}'
+    state: present

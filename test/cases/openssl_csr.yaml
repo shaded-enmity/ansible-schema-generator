@@ -1,0 +1,39 @@
+- openssl_csr:
+    common_name: www.ansible.com
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_csr:
+    common_name: www.ansible.com
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_passphrase: ansible
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_csr:
+    common_name: www.ansible.com
+    country_name: FR
+    email_address: jdoe@ansible.com
+    organization_name: Ansible
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_csr:
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+    subject_alt_name: DNS:www.ansible.com,DNS:m.ansible.com
+- openssl_csr:
+    common_name: www.ansible.com
+    force: true
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_csr:
+    common_name: www.ansible.com
+    extended_key_usage:
+    - clientAuth
+    key_usage:
+    - digitalSignature
+    - keyAgreement
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_csr:
+    common_name: www.ansible.com
+    ocsp_must_staple: true
+    path: /etc/ssl/csr/www.ansible.com.csr
+    privatekey_path: /etc/ssl/private/ansible.com.pem

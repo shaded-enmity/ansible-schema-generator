@@ -1,0 +1,28 @@
+- name: Add or modify ansible.example.org A to 192.168.1.1"
+  nsupdate:
+    key_name: nsupdate
+    key_secret: +bFQtBCta7j2vWkjPkAFtgA==
+    record: ansible
+    server: 10.1.1.1
+    value: 192.168.1.1
+    zone: example.org
+- name: Add or modify ansible.example.org A to 192.168.1.1, 192.168.1.2 and 192.168.1.3"
+  nsupdate:
+    key_name: nsupdate
+    key_secret: +bFQtBCta7j2vWkjPkAFtgA==
+    record: ansible
+    server: 10.1.1.1
+    value:
+    - 192.168.1.1
+    - 192.168.1.2
+    - 192.168.1.3
+    zone: example.org
+- name: Remove puppet.example.org CNAME
+  nsupdate:
+    key_name: nsupdate
+    key_secret: +bFQtBCta7j2vWkjPkAFtgA==
+    record: puppet
+    server: 10.1.1.1
+    state: absent
+    type: CNAME
+    zone: example.org

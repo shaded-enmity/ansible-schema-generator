@@ -1,0 +1,7 @@
+- name: configure VLAN ID and name
+  onyx_vlan:
+    name: test-vlan
+    vlan_id: 20
+- name: remove configuration
+  onyx_vlan:
+    state: absent

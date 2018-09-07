@@ -1,0 +1,6 @@
+- bigmon_chain:
+    controller: '{{ inventory_hostname }}'
+    name: MyChain
+    state: present
+    validate_certs: false
+  name: bigmon inline service chain

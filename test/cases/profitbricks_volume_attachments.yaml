@@ -1,0 +1,12 @@
+- profitbricks_volume_attachments:
+    datacenter: Tardis One
+    server: node002
+    state: present
+    volume: vol01
+    wait_timeout: 500
+- profitbricks_volume_attachments:
+    datacenter: Tardis One
+    server: node002
+    state: absent
+    volume: vol01
+    wait_timeout: 500

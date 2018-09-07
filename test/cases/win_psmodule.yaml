@@ -1,0 +1,19 @@
+- name: Add a powershell module
+  win_psmodule:
+    name: PowershellModule
+    state: present
+- name: Add a powershell module and register a repository
+  win_psmodule:
+    name: MyCustomModule
+    repository: MyRepository
+    state: present
+    url: https://myrepo.com
+- name: Remove a powershell module
+  win_psmodule:
+    name: PowershellModule
+    state: absent
+- name: Remove a powershell module and a repository
+  win_psmodule:
+    name: MyCustomModule
+    repository: MyRepository
+    state: absent

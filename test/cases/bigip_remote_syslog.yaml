@@ -1,0 +1,17 @@
+- bigip_remote_syslog:
+    password: secret
+    remote_host: 10.10.10.10
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Add a remote syslog server to log to
+- bigip_remote_syslog:
+    password: secret
+    remote_host: 10.10.10.10
+    remote_port: 1234
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Add a remote syslog server on a non-standard port to log to

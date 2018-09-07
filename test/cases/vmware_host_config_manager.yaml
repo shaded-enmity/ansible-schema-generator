@@ -1,0 +1,26 @@
+- name: Manage Log level setting for all ESXi Host in given Cluster
+  vmware_host_config_manager:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    options:
+      Config.HostAgent.log.level: info
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Manage Log level setting for an ESXi Host
+  vmware_host_config_manager:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    options:
+      Config.HostAgent.log.level: verbose
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Manage multiple settings for an ESXi Host
+  vmware_host_config_manager:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    options:
+      Annotations.WelcomeMessage: Hello World
+      Config.HostAgent.log.level: verbose
+      Config.HostAgent.plugins.solo.enableMob: false
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

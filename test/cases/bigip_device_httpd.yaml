@@ -1,0 +1,21 @@
+- bigip_device_httpd:
+    auth_name: BIG-IP
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set the BIG-IP authentication realm name
+- bigip_device_httpd:
+    auth_pam_idle_timeout: 1200
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set the auth pam timeout to 3600 seconds
+- bigip_device_httpd:
+    auth_pam_validate_ip: true
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set the validate IP settings

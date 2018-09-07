@@ -1,0 +1,7 @@
+- nxos_vxlan_vtep_vni:
+    host: '{{ inventory_hostname }}'
+    ingress_replication: default
+    interface: nve1
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+    vni: 6000

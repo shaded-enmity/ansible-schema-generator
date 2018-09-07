@@ -1,0 +1,11 @@
+- proxysql_scheduler:
+    filename: /opt/maintenance.py
+    interval_ms: 1000
+    load_to_runtime: false
+    login_password: admin
+    login_user: admin
+    state: present
+- proxysql_scheduler:
+    config_file: ~/proxysql.cnf
+    filename: /opt/old_script.py
+    state: absent

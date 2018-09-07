@@ -1,0 +1,10 @@
+- proxysql_backend_servers:
+    hostname: mysql01
+    load_to_runtime: false
+    login_password: admin
+    login_user: admin
+    state: present
+- proxysql_backend_servers:
+    config_file: ~/proxysql.cnf
+    hostname: mysql02
+    state: absent

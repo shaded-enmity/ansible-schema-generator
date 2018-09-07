@@ -1,0 +1,17 @@
+- delegate_to: localhost
+  hpilo_boot:
+    host: YOUR_ILO_ADDRESS
+    image: http://some-web-server/iso/boot.iso
+    login: YOUR_ILO_LOGIN
+    media: cdrom
+    password: YOUR_ILO_PASSWORD
+  name: Task to boot a system using an ISO from an HP iLO interface only if the system
+    is an HP server
+  when: cmdb_hwmodel.startswith('HP ')
+- delegate_to: localhost
+  hpilo_boot:
+    host: YOUR_ILO_HOST
+    login: YOUR_ILO_LOGIN
+    password: YOUR_ILO_PASSWORD
+    state: poweroff
+  name: Power off a server

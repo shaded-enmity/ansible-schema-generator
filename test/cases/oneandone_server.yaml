@@ -1,0 +1,36 @@
+- oneandone_server:
+    appliance: C5A349786169F140BCBC335675014C08
+    auth_token: oneandone_private_api_key
+    auto_increment: true
+    count: 3
+    datacenter: US
+    fixed_instance_size: XL
+    hostname: node%02d
+- oneandone_server:
+    appliance: C5A349786169F140BCBC335675014C08
+    auth_token: oneandone_private_api_key
+    cores_per_processor: 4
+    count: 3
+    datacenter: ES
+    hdds:
+    - is_main: false
+      size: 50
+    hostname: node%02d
+    ram: 8.0
+    ssh_key: SSH_PUBLIC_KEY
+    vcore: 2
+    wait: true
+    wait_interval: 10
+    wait_timeout: 600
+- oneandone_server:
+    auth_token: oneandone_private_api_key
+    server: node01
+    state: absent
+- oneandone_server:
+    auth_token: oneandone_private_api_key
+    server: node01
+    state: running
+- oneandone_server:
+    auth_token: oneandone_private_api_key
+    server: node01
+    state: stopped

@@ -1,0 +1,73 @@
+- name: Create a simple Connector Card
+  office_365_connector_card:
+    text: Hello, World!
+    webhook: https://outlook.office.com/webhook/GUID/IncomingWebhook/GUID/GUID
+- name: Create a Connector Card with the full format
+  office_365_connector_card:
+    color: E81123
+    sections:
+    - actions:
+      - '@type': ActionCard
+        actions:
+        - '@type': HttpPOST
+          name: Save
+          target: http://...
+        inputs:
+        - '@type': TextInput
+          id: comment
+          is_multiline: true
+          title: Input's title property
+        name: Comment
+      - '@type': ActionCard
+        actions:
+        - '@type': HttpPOST
+          name: Save
+          target: http://...
+        inputs:
+        - '@type': DateInput
+          id: dueDate
+          title: Input's title property
+        name: Due Date
+      - '@type': HttpPOST
+        name: Action's name prop.
+        target: http://...
+      - '@type': OpenUri
+        name: Action's name prop
+        targets:
+        - os: default
+          uri: http://...
+      activity_image: http://connectorsdemo.azurewebsites.net/images/MSC12_Oscar_002.jpg
+      activity_subtitle: This is the section's **activitySubtitle** property
+      activity_text: This is the section's **activityText** property.
+      activity_title: This is the section's **activityTitle** property
+      facts:
+      - name: This is a fact name
+        value: This is a fact value
+      - name: This is a fact name
+        value: This is a fact value
+      - name: This is a fact name
+        value: This is a fact value
+      hero_image:
+        image: http://connectorsdemo.azurewebsites.net/images/WIN12_Scene_01.jpg
+        title: This is the image's alternate text
+      images:
+      - image: http://connectorsdemo.azurewebsites.net/images/MicrosoftSurface_024_Cafe_OH-06315_VS_R1c.jpg
+        title: This is the image's alternate text
+      - image: http://connectorsdemo.azurewebsites.net/images/WIN12_Scene_01.jpg
+        title: This is the image's alternate text
+      - image: http://connectorsdemo.azurewebsites.net/images/WIN12_Anthony_02.jpg
+        title: This is the image's alternate text
+      text: This is the section's text property. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua.
+      title: This is the **section's title** property
+    - start_group: true
+      text: This second section is visually separated from the first one by setting
+        its **startGroup** property to true.
+      title: This is the title of a **second section**
+    summary: This is the summary property
+    text: This is the **card's text** property. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+      aliqua.
+    title: This is the **card's title** property
+    webhook: https://outlook.office.com/webhook/GUID/IncomingWebhook/GUID/GUID

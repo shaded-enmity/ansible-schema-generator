@@ -1,0 +1,10 @@
+- name: Create 2 TB VDO volume vdo1 on device /dev/md0
+  vdo:
+    device: /dev/md0
+    logicalsize: 2T
+    name: vdo1
+    state: present
+- name: Remove VDO volume vdo1
+  vdo:
+    name: vdo1
+    state: absent

@@ -1,0 +1,21 @@
+- name: send configuration commands to IOS
+  telnet:
+    command:
+    - terminal length 0
+    - configure terminal
+    - hostname ios01
+    login_prompt: 'Username: '
+    password: cisco
+    prompts:
+    - '[>|#]'
+    user: cisco
+- name: run show commands
+  telnet:
+    command:
+    - terminal length 0
+    - show version
+    login_prompt: 'Username: '
+    password: cisco
+    prompts:
+    - '[>|#]'
+    user: cisco

@@ -1,0 +1,98 @@
+- delegate_to: localhost
+  name: Add a server
+  netscaler_nitro_request:
+    attributes:
+      ipaddress: 192.168.1.1
+      name: test-server-1
+    name: test-server-1
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: add
+    resource: server
+- delegate_to: localhost
+  name: Update server
+  netscaler_nitro_request:
+    attributes:
+      ipaddress: 192.168.1.2
+      name: test-server-1
+    name: test-server-1
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: update
+    resource: server
+- delegate_to: localhost
+  name: Get server
+  netscaler_nitro_request:
+    name: test-server-1
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: get
+    resource: server
+  register: result
+- delegate_to: localhost
+  name: Delete server
+  netscaler_nitro_request:
+    name: test-server-1
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: delete
+    resource: server
+  register: result
+- delegate_to: localhost
+  name: Rename server
+  netscaler_nitro_request:
+    action: rename
+    attributes:
+      name: test-server-1
+      newname: test-server-2
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: action
+    resource: server
+- delegate_to: localhost
+  name: Get server by args
+  netscaler_nitro_request:
+    args:
+      name: test-server-1
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: get_by_args
+    resource: server
+  register: result
+- delegate_to: localhost
+  name: Get server by filter
+  netscaler_nitro_request:
+    filter:
+      ipaddress: 192.168.1.2
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ nsip }}'
+    operation: get_filtered
+    resource: server
+  register: result
+- delegate_to: localhost
+  name: Do mas login
+  netscaler_nitro_request:
+    nitro_pass: '{{ nitro_pass }}'
+    nitro_user: '{{ nitro_user }}'
+    nsip: '{{ mas_ip }}'
+    operation: mas_login
+  register: login_result
+- delegate_to: localhost
+  name: Add resource through MAS proxy
+  netscaler_nitro_request:
+    attributes:
+      ipaddress: 192.168.1.7
+      name: test-server-1
+    instance_ip: '{{ nsip }}'
+    name: test-server-1
+    nitro_auth_token: '{{ login_result.nitro_auth_token }}'
+    nsip: '{{ mas_ip }}'
+    operation: add
+    resource: server

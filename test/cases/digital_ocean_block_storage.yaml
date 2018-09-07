@@ -1,0 +1,27 @@
+- digital_ocean_block_storage:
+    api_token: <TOKEN>
+    block_size: 10
+    command: create
+    region: nyc1
+    state: present
+    volume_name: nyc1-block-storage
+- digital_ocean_block_storage:
+    api_token: <TOKEN>
+    command: create
+    region: nyc1
+    state: absent
+    volume_name: nyc1-block-storage
+- digital_ocean_block_storage:
+    api_token: <TOKEN>
+    command: attach
+    droplet_id: <ID>
+    region: nyc1
+    state: present
+    volume_name: nyc1-block-storage
+- digital_ocean_block_storage:
+    api_token: <TOKEN>
+    command: attach
+    droplet_id: <ID>
+    region: nyc1
+    state: absent
+    volume_name: nyc1-block-storage

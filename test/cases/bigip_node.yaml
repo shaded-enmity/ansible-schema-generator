@@ -1,0 +1,60 @@
+- bigip_node:
+    host: 10.20.30.40
+    name: 10.20.30.40
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add node
+- bigip_node:
+    host: 10.20.30.40
+    monitors:
+    - /Common/icmp
+    name: mytestserver
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add node with a single 'ping' monitor
+- bigip_node:
+    description: Our best server yet
+    name: 10.20.30.40
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Modify node description
+- bigip_node:
+    name: 10.20.30.40
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Delete node
+- bigip_node:
+    name: 10.20.30.40
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: disabled
+    user: admin
+  delegate_to: localhost
+  name: Force node offline
+- bigip_node:
+    fqdn: foo.bar.com
+    name: 10.20.30.40
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add node by their FQDN

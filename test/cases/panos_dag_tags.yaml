@@ -1,0 +1,26 @@
+- name: Create the tags to map IP addresses
+  panos_dag_tags:
+    description: Tags to allow certain IP's to access various SaaS Applications
+    ip_address: '{{ ip_address }}'
+    ip_to_register: '{{ ip_to_register }}'
+    operation: add
+    password: '{{ password }}'
+    tag_names: '{{ tag_names }}'
+  tags: adddagip
+- name: List the IP address to tag mapping
+  panos_dag_tags:
+    description: List the IP address to tag mapping
+    ip_address: '{{ ip_address }}'
+    operation: list
+    password: '{{ password }}'
+    tag_names: '{{ tag_names }}'
+  tags: listdagip
+- name: Unregister an IP address from a tag mapping
+  panos_dag_tags:
+    description: Unregister IP address from tag mappings
+    ip_address: '{{ ip_address }}'
+    ip_to_register: '{{ ip_to_register }}'
+    operation: delete
+    password: '{{ password }}'
+    tag_names: '{{ tag_names }}'
+  tags: deletedagip

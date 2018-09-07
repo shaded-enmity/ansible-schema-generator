@@ -1,0 +1,132 @@
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    vmid: 100
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    net: '{"net0":"virtio,bridge=vmbr1,rate=200", "net1":"e1000,bridge=vmbr2,"}'
+    node: sabrewulf
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    cores: 4
+    name: spynal
+    net: '{"net0":"virtio,bridge=vmbr1,rate=200"}'
+    node: sabrewulf
+    vcpus: 2
+    virtio: '{"virtio0":"VMs_LVM:10", "virtio1":"VMs:2,format=qcow2", "virtio2":"VMs:5,format=raw"}'
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    clone: spynal
+    format: qcow2
+    name: zavala
+    node: sabrewulf
+    storage: VMs
+    timeout: 500
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    clone: arbitrary_name
+    format: raw
+    name: zavala
+    newid: 152
+    node: sabrewulf
+    storage: LVM_STO
+    timeout: 300
+    vmid: 108
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    lock: snapshot
+    name: spynal
+    node: sabrewulf
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    protection: true
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    state: started
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    state: stopped
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    force: true
+    name: spynal
+    node: sabrewulf
+    state: stopped
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    state: restarted
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    state: absent
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    state: current
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    cpu: 8
+    memory: 16384
+    name: spynal
+    node: sabrewulf
+    update: true
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    delete: args,template,cpulimit
+    name: spynal
+    node: sabrewulf
+- proxmox_kvm:
+    api_host: helldorado
+    api_password: secret
+    api_user: root@pam
+    name: spynal
+    node: sabrewulf
+    revert: template,cpulimit

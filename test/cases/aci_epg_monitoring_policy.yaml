@@ -1,0 +1,7 @@
+- aci_epg_monitoring_policy:
+    description: '{{ description }}'
+    host: '{{ hostname }}'
+    monitoring_policy: '{{ monitoring_policy }}'
+    password: '{{ password }}'
+    tenant: '{{ tenant }}'
+    username: '{{ username }}'

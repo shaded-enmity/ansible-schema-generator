@@ -1,0 +1,4 @@
+- delegate_to: localhost
+  say:
+    msg: '{{ inventory_hostname }} is all done'
+    voice: Zarvox

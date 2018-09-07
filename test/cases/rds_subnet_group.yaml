@@ -1,0 +1,10 @@
+- rds_subnet_group:
+    description: My Fancy Ex Parrot Subnet Group
+    name: norwegian-blue
+    state: present
+    subnets:
+    - subnet-aaaaaaaa
+    - subnet-bbbbbbbb
+- rds_subnet_group:
+    name: norwegian-blue
+    state: absent

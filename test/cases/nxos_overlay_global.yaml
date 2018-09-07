@@ -1,0 +1,5 @@
+- nxos_overlay_global:
+    anycast_gateway_mac: b.b.b
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    username: '{{ un }}'

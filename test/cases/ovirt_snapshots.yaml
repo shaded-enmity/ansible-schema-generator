@@ -1,0 +1,17 @@
+- ovirt_snapshots:
+    description: MySnapshot
+    vm_name: rhel7
+  register: snapshot
+- ovirt_snapshots:
+    description: SnapWithMem
+    use_memory: true
+    vm_name: rhel7
+  register: snapshot
+- ovirt_snapshots:
+    snapshot_id: '{{ snapshot.id }}'
+    state: restore
+    vm_name: rhel7
+- ovirt_snapshots:
+    snapshot_id: '{{ snapshot.id }}'
+    state: absent
+    vm_name: rhel7

@@ -1,0 +1,16 @@
+- bigip_monitor_snmp_dca:
+    name: my_monitor
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create SNMP DCS monitor
+- bigip_monitor_snmp_dca:
+    name: my_monitor
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove TCP Echo Monitor

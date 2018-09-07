@@ -1,0 +1,7 @@
+- avi_wafpolicy:
+    controller: 10.10.25.42
+    name: sample_wafpolicy
+    password: something
+    state: present
+    username: admin
+  name: Example to create WafPolicy object

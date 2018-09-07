@@ -1,0 +1,22 @@
+- name: No thin volume
+  netapp_e_volume:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    log_path: /tmp/volume.log
+    name: NewThinVolumeByAnsible
+    ssid: '{{ ssid }}'
+    state: absent
+    validate_certs: '{{ netapp_api_validate_certs }}'
+  when: check_volume
+- name: No fat volume
+  netapp_e_volume:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    log_path: /tmp/volume.log
+    name: NewVolumeByAnsible
+    ssid: '{{ ssid }}'
+    state: absent
+    validate_certs: '{{ netapp_api_validate_certs }}'
+  when: check_volume

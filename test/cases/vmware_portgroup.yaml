@@ -1,0 +1,46 @@
+- name: Add Management Network VM Portgroup
+  vmware_portgroup:
+    hostname: esxi_hostname
+    password: esxi_password
+    portgroup_name: portgroup_name
+    switch_name: vswitch_name
+    username: esxi_username
+    vlan_id: vlan_id
+- name: Add Portgroup with Promiscuous Mode Enabled
+  vmware_portgroup:
+    hostname: esxi_hostname
+    network_policy:
+      promiscuous_mode: true
+    password: esxi_password
+    portgroup_name: portgroup_name
+    switch_name: vswitch_name
+    username: esxi_username
+- name: Add Management Network VM Portgroup to specific hosts
+  vmware_portgroup:
+    hostname: vCenter_hostname
+    hosts:
+    - esxi_hostname_one
+    password: esxi_password
+    portgroup_name: portgroup_name
+    switch_name: vswitch_name
+    username: esxi_username
+    vlan_id: vlan_id
+- name: Add Management Network VM Portgroup to all hosts in a cluster
+  vmware_portgroup:
+    cluster_name: rh_engineering
+    hostname: vCenter_hostname
+    password: esxi_password
+    portgroup_name: portgroup_name
+    switch_name: vswitch_name
+    username: esxi_username
+    vlan_id: vlan_id
+- name: Remove Management Network VM Portgroup to all hosts in a cluster
+  vmware_portgroup:
+    cluster_name: rh_engineering
+    hostname: vCenter_hostname
+    password: esxi_password
+    portgroup_name: portgroup_name
+    state: absent
+    switch_name: vswitch_name
+    username: esxi_username
+    vlan_id: vlan_id

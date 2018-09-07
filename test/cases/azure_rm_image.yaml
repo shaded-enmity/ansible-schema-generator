@@ -1,0 +1,20 @@
+- azure_rm_image:
+    name: foobar
+    resource_group: Testing
+    source: testvm001
+  name: Create an image from a virtual machine
+- azure_rm_image:
+    data_disk_sources:
+    - datadisk001
+    - datadisk002
+    name: foobar
+    os_type: Linux
+    resource_group: Testing
+    source: /subscriptions/XXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXX/resourceGroups/Testing/providers/Microsoft.Compute/disks/disk001
+  name: Create an image from os disk
+- azure_rm_image:
+    name: foobar
+    resource_group: Testing
+    source: testvm001
+    state: absent
+  name: Delete an image

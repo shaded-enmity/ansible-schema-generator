@@ -1,0 +1,18 @@
+- bigip_provision:
+    level: nominal
+    module: pem
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Provision PEM at "nominal" level
+- bigip_provision:
+    level: dedicated
+    module: swg
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Provision a dedicated SWG. This will unprovision every other module

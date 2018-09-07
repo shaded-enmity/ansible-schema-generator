@@ -1,0 +1,19 @@
+- influxdb_write:
+    data_points:
+    - fields:
+        value: 2000
+      measurement: connections
+      tags:
+        host: server01
+        region: us-west
+      time: '{{ ansible_date_time.iso8601 }}'
+    - fields:
+        value: 3000
+      measurement: connections
+      tags:
+        host: server02
+        region: us-east
+      time: '{{ ansible_date_time.iso8601 }}'
+    database_name: '{{influxdb_database_name}}'
+    hostname: '{{influxdb_ip_address}}'
+  name: Write points into database

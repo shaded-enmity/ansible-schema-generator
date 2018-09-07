@@ -1,0 +1,12 @@
+- nxos_udld:
+    aggressive: disabled
+    host: '{{ inventory_hostname }}'
+    msg_time: 20
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+- nxos_udld:
+    aggressive: enabled
+    host: '{{ inventory_hostname }}'
+    msg_time: 15
+    password: '{{ pwd }}'
+    username: '{{ un }}'

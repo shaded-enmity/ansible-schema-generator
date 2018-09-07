@@ -1,0 +1,32 @@
+- osx_defaults:
+    domain: com.apple.Safari
+    key: IncludeInternalDebugMenu
+    state: present
+    type: bool
+    value: true
+- osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleMeasurementUnits
+    state: present
+    type: string
+    value: Centimeters
+- osx_defaults:
+    domain: com.apple.screensaver
+    host: currentHost
+    key: showClock
+    type: int
+    value: 1
+- osx_defaults:
+    key: AppleMeasurementUnits
+    type: string
+    value: Centimeters
+- osx_defaults:
+    key: AppleLanguages
+    type: array
+    value:
+    - en
+    - nl
+- osx_defaults:
+    domain: com.geekchimp.macable
+    key: ExampleKeyToRemove
+    state: absent

@@ -1,0 +1,13 @@
+- name: Presence of storage system
+  netapp_e_storage_system:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    controller_addresses:
+    - '{{ item.value.address1 }}'
+    - '{{ item.value.address2 }}'
+    ssid: '{{ item.key }}'
+    state: present
+    validate_certs: '{{ netapp_api_validate_certs }}'
+  when: check_storage_system
+  with_dict: '{{ storage_systems }}'

@@ -1,0 +1,12 @@
+- elasticsearch_plugin:
+    name: mobz/elasticsearch-head
+    state: present
+- elasticsearch_plugin:
+    name: mobz/elasticsearch-head
+    version: 2.0.0
+- elasticsearch_plugin:
+    name: mobz/elasticsearch-head
+    state: absent
+- elasticsearch_plugin:
+    name: analysis-icu
+    state: present

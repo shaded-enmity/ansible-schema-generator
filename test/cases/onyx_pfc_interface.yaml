@@ -1,0 +1,4 @@
+- name: configure PFC
+  onyx_pfc_interface:
+    name: Eth1/1
+    state: enabled

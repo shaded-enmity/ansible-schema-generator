@@ -1,0 +1,20 @@
+- avi_networksecuritypolicy:
+    controller: '{{ controller }}'
+    name: vs-gurutest-ns
+    password: '{{ password }}'
+    rules:
+    - action: NETWORK_SECURITY_POLICY_ACTION_TYPE_DENY
+      age: 0
+      enable: true
+      index: 1
+      log: false
+      match:
+        client_ip:
+          group_refs:
+          - Demo:known_attackers
+          match_criteria: IS_IN
+      name: Rule 1
+    tenant_ref: Demo
+    username: '{{ username }}'
+  name: Create a network security policy to block clients represented by ip group
+    known_attackers

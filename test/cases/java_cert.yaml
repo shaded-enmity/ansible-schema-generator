@@ -1,0 +1,30 @@
+- java_cert:
+    cert_port: 443
+    cert_url: google.com
+    keystore_pass: changeit
+    keystore_path: /usr/lib/jvm/jre7/lib/security/cacerts
+    state: present
+  name: Import SSL certificate from google.com to a given cacerts keystore
+- java_cert:
+    cert_url: google.com
+    executable: /usr/lib/jvm/jre7/bin/keytool
+    keystore_pass: changeit
+    keystore_path: /usr/lib/jvm/jre7/lib/security/cacerts
+    state: absent
+  name: Remove certificate with given alias from a keystore
+- java_cert:
+    cert_url: google.com
+    keystore_create: true
+    keystore_pass: changeit
+    keystore_path: /tmp/cacerts
+    state: present
+  name: Import SSL certificate from google.com to a keystore, create it if it doesn't
+    exist
+- java_cert:
+    cert_alias: default
+    keystore_create: true
+    keystore_pass: changeit
+    keystore_path: /opt/wildfly/standalone/configuration/defaultkeystore.jks
+    pkcs12_path: /tmp/importkeystore.p12
+    state: present
+  name: Import a pkcs12 keystore with a specified alias, create it if it doesn't exist

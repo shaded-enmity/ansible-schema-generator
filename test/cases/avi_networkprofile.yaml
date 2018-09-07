@@ -1,0 +1,13 @@
+- avi_networkprofile:
+    controller: '{{ controller }}'
+    name: System-UDP-Fast-Path
+    password: '{{ password }}'
+    profile:
+      type: PROTOCOL_TYPE_UDP_FAST_PATH
+      udp_fast_path_profile:
+        per_pkt_loadbalance: false
+        session_idle_timeout: 10
+        snat: true
+    tenant_ref: admin
+    username: '{{ username }}'
+  name: Create a network profile for an UDP application

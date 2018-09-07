@@ -1,0 +1,7 @@
+- avi_certificatemanagementprofile:
+    controller: 10.10.25.42
+    name: sample_certificatemanagementprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create CertificateManagementProfile object

@@ -1,0 +1,25 @@
+- eos_l2_interface:
+    name: Ethernet1
+    state: absent
+  name: Ensure Ethernet1 does not have any switchport
+- eos_l2_interface:
+    access_vlan: 20
+    mode: access
+    name: Ethernet1
+  name: Ensure Ethernet1 is configured for access vlan 20
+- eos_l2_interface:
+    mode: trunk
+    name: Ethernet1
+    native_vlan: 10
+    trunk_allowed_vlans: 2-50
+  name: Ensure Ethernet1 is a trunk port and ensure 2-50 are being tagged (doesn't
+    mean others aren't also being tagged)
+- eos_l2_interface:
+    aggregate:
+    - access_vlan: 20
+      mode: access
+      name: ethernet1
+    - mode: trunk
+      name: ethernet2
+      native_vlan: 10
+  name: Set switchports on aggregate

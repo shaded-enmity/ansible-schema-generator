@@ -1,0 +1,12 @@
+- awall:
+    name: foo,bar
+    state: enabled
+  name: Enable "foo" and "bar" policy
+- awall:
+    activate: false
+    name: foo,bar
+    state: disabled
+  name: Disable "foo" and "bar" policy and activate new rules
+- awall:
+    activate: true
+  name: Activate currently enabled firewall rules

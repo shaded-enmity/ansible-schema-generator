@@ -1,0 +1,18 @@
+- s3_bucket:
+    name: mys3bucket
+- s3_bucket:
+    ceph: true
+    name: mys3bucket
+    s3_url: http://your-ceph-rados-gateway-server.xxx
+- s3_bucket:
+    force: true
+    name: mys3bucket
+    state: absent
+- s3_bucket:
+    name: mys3bucket
+    policy: '{{ lookup(''file'',''policy.json'') }}'
+    requester_pays: true
+    tags:
+      another: tag2
+      example: tag1
+    versioning: true

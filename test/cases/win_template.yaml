@@ -1,0 +1,9 @@
+- name: Create a file from a Jinja2 template
+  win_template:
+    dest: C:\temp\file.conf
+    src: /mytemplates/file.conf.j2
+- name: Create a Unix-style file from a Jinja2 template
+  win_template:
+    dest: C:\share\unix\config.conf
+    newline_sequence: \n
+    src: unix/config.conf.j2

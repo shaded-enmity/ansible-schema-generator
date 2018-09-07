@@ -1,0 +1,5 @@
+- raw: yum -y install python-simplejson
+- raw: dnf install -y python2 python2-dnf libselinux-python
+- args:
+    executable: /bin/bash
+  raw: cat < /tmp/*txt

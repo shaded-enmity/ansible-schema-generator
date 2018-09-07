@@ -1,0 +1,19 @@
+- openssl_publickey:
+    path: /etc/ssl/public/ansible.com.pem
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_publickey:
+    format: OpenSSH
+    path: /etc/ssl/public/ansible.com.pem
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_publickey:
+    path: /etc/ssl/public/ansible.com.pem
+    privatekey_passphrase: ansible
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_publickey:
+    force: true
+    path: /etc/ssl/public/ansible.com.pem
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+- openssl_publickey:
+    path: /etc/ssl/public/ansible.com.pem
+    privatekey_path: /etc/ssl/private/ansible.com.pem
+    state: absent

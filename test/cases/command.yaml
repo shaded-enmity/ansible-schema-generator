@@ -1,0 +1,5 @@
+- command: /sbin/shutdown -t now
+- args:
+    chdir: somedir/
+    creates: /path/to/database
+  command: /usr/bin/make_database.sh arg1 arg2

@@ -1,0 +1,13 @@
+- nxos_ospf_vrf:
+    host: '{{ inventory_hostname }}'
+    ospf: 1
+    password: '{{ pwd }}'
+    state: present
+    timer_throttle_lsa_hold: 1100
+    timer_throttle_lsa_max: 3000
+    timer_throttle_lsa_start: 60
+    timer_throttle_spf_hold: 1000
+    timer_throttle_spf_max: 2000
+    timer_throttle_spf_start: 50
+    username: '{{ un }}'
+    vrf: test

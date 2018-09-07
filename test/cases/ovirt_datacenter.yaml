@@ -1,0 +1,8 @@
+- ovirt_datacenter:
+    compatibility_version: 4.0
+    local: true
+    name: mydatacenter
+    quota_mode: enabled
+- ovirt_datacenter:
+    name: mydatacenter
+    state: absent

@@ -1,0 +1,8 @@
+- sysctl:
+    name: vm.swappiness
+    state: present
+    value: 5
+- sysctl:
+    name: kernel.panic
+    state: absent
+    sysctl_file: /etc/sysctl.conf

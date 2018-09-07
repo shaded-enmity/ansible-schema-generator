@@ -1,0 +1,14 @@
+- atomic_container:
+    backend: ostree
+    image: rhel/etcd
+    name: etcd
+    state: latest
+    system: true
+    values:
+    - ETCD_NAME=etcd.server
+- atomic_container:
+    backend: ostree
+    image: rhel/etcd
+    name: etcd
+    state: absent
+    system: true

@@ -1,0 +1,10 @@
+- ec2_placement_group:
+    name: my-cluster
+    state: present
+- ec2_placement_group:
+    name: my-cluster
+    state: present
+    strategy: spread
+- ec2_placement_group:
+    name: my-cluster
+    state: absent

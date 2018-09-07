@@ -1,0 +1,9 @@
+- avi_microservicegroup:
+    controller: '{{ controller }}'
+    description: Group created by my Secure My App UI.
+    name: vs-msg-marketing
+    password: '{{ password }}'
+    tenant_ref: admin
+    username: '{{ username }}'
+  name: Create a Microservice Group that can be used for setting up Network security
+    policy

@@ -1,0 +1,72 @@
+- azure_rm_dnsrecordset:
+    record_type: A
+    records:
+    - entry: 192.168.100.101
+    - entry: 192.168.100.102
+    - entry: 192.168.100.103
+    relative_name: www
+    resource_group: Testing
+    state: present
+    zone_name: testing.com
+  name: ensure an "A" record set with multiple records
+- azure_rm_dnsrecordset:
+    record_type: A
+    relative_name: www
+    resource_group: Testing
+    state: absent
+    zone_name: testing.com
+  name: delete a record set
+- azure_rm_dnsrecordset:
+    record_type: '{{ item.type }}'
+    records: '{{ item.records }}'
+    relative_name: '{{ item.name }}'
+    resource_group: Testing
+    state: present
+    zone_name: testing.com
+  name: create multiple "A" record sets with multiple records
+  with_items:
+  - name: servera
+    records:
+    - entry: 10.10.10.20
+    - entry: 10.10.10.21
+    type: A
+  - name: serverb
+    records:
+    - entry: 10.10.10.30
+    - entry: 10.10.10.41
+    type: A
+  - name: serverc
+    records:
+    - entry: 10.10.10.40
+    - entry: 10.10.10.41
+    type: A
+- azure_rm_dnsrecordset:
+    record_type: SRV
+    records:
+    - entry: sip.testing.com
+      port: 5060
+      preference: 10
+      priority: 20
+      weight: 10
+    relative_name: _sip._tcp.testing.com
+    resource_group: Testing
+    state: present
+    time_to_live: 7200
+    zone_name: testing.com
+  name: create SRV records in a new record set
+- azure_rm_dnsrecordset:
+    record_type: PTR
+    records:
+    - entry: servera.testing.com
+    relative_name: 192.168.100.101.in-addr.arpa
+    resource_group: Testing
+    zone_name: testing.com
+  name: create PTR record in a new record set
+- azure_rm_dnsrecordset:
+    record_type: TXT
+    records:
+    - entry: v=spf1 a -all
+    relative_name: mail.testing.com
+    resource_group: Testing
+    zone_name: testing.com
+  name: create TXT record in a new record set

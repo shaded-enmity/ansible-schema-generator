@@ -1,0 +1,15 @@
+- os_project_facts:
+    cloud: awesomecloud
+- os_project_facts:
+    cloud: awesomecloud
+    name: demoproject
+- os_project_facts:
+    cloud: awesomecloud
+    domain: admindomain
+    name: demoproject
+- os_project_facts:
+    cloud: awesomecloud
+    domain: admindomain
+    filters:
+      enabled: false
+    name: demoproject

@@ -1,0 +1,32 @@
+- connection: local
+  name: configure an ipv4 host record
+  nios_host_record:
+    ipv4:
+    - address: 192.168.10.1
+    name: host.ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: add a comment to an existing host record
+  nios_host_record:
+    comment: this is a test comment
+    ipv4:
+    - address: 192.168.10.1
+    name: host.ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: remove a host record from the system
+  nios_host_record:
+    name: host.ansible.com
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: absent

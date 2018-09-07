@@ -1,0 +1,104 @@
+- name: Update pamd rule's control in /etc/pam.d/system-auth
+  pamd:
+    control: required
+    module_path: pam_faillock.so
+    name: system-auth
+    new_control: sufficient
+    type: auth
+- name: Update pamd rule's complex control in /etc/pam.d/system-auth
+  pamd:
+    control: '[success=1 default=ignore]'
+    module_path: pam_succeed_if.so
+    name: system-auth
+    new_control: '[success=2 default=ignore]'
+    type: session
+- name: Insert a new rule before an existing rule
+  pamd:
+    control: required
+    module_path: pam_faillock.so
+    name: system-auth
+    new_control: sufficient
+    new_module_path: pam_faillock.so
+    new_type: auth
+    state: before
+    type: auth
+- name: Insert a new rule pam_wheel.so with argument 'use_uid' after an         existing
+    rule pam_rootok.so
+  pamd:
+    control: sufficient
+    module_arguments: use_uid
+    module_path: pam_rootok.so
+    name: su
+    new_control: required
+    new_module_path: pam_wheel.so
+    new_type: auth
+    state: after
+    type: auth
+- name: Remove module arguments from an existing rule
+  pamd:
+    control: required
+    module_arguments: ''
+    module_path: pam_faillock.so
+    name: system-auth
+    state: updated
+    type: auth
+- name: Replace all module arguments in an existing rule
+  pamd:
+    control: required
+    module_arguments: preauth silent deny=3 unlock_time=604800 fail_interval=900
+    module_path: pam_faillock.so
+    name: system-auth
+    state: updated
+    type: auth
+- name: Remove specific arguments from a rule
+  pamd:
+    module_arguments: crond,quiet
+    module_path: pam_succeed_if.so
+    name: system-auth
+    state: args_absent
+    type: session control='[success=1 default=ignore]'
+- name: Ensure specific arguments are present in a rule
+  pamd:
+    control: '[success=1 default=ignore]'
+    module_arguments: crond,quiet
+    module_path: pam_succeed_if.so
+    name: system-auth
+    state: args_present
+    type: session
+- name: Ensure specific arguments are present in a rule (alternative)
+  pamd:
+    control: '[success=1 default=ignore]'
+    module_arguments:
+    - crond
+    - quiet
+    module_path: pam_succeed_if.so
+    name: system-auth
+    state: args_present
+    type: session
+- name: Module arguments requiring commas must be listed as a Yaml list
+  pamd:
+    control: required
+    module_arguments:
+    - listsep=,
+    module_path: pam_access.so
+    name: special-module
+    state: args_present
+    type: account
+- name: Update specific argument value in a rule
+  pamd:
+    control: required
+    module_arguments: fail_interval=300
+    module_path: pam_faillock.so
+    name: system-auth
+    state: args_present
+    type: auth
+- name: Add pam common-auth rule for duo
+  pamd:
+    control: requisite
+    module_path: pam_sss.so
+    name: common-auth
+    new_control: '[success=1 default=ignore]'
+    new_module_path: /lib64/security/pam_duo.so
+    new_type: auth
+    state: after
+    type: auth

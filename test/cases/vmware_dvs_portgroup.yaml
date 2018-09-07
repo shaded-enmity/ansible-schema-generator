@@ -1,0 +1,65 @@
+- connection: local
+  name: Create vlan portgroup
+  vmware_dvs_portgroup:
+    hostname: vcenter_ip_or_hostname
+    num_ports: 120
+    password: vcenter_password
+    portgroup_name: vlan-123-portrgoup
+    portgroup_type: earlyBinding
+    state: present
+    switch_name: dvSwitch
+    username: vcenter_username
+    vlan_id: 123
+- connection: local
+  name: Create vlan trunk portgroup
+  vmware_dvs_portgroup:
+    hostname: vcenter_ip_or_hostname
+    num_ports: 120
+    password: vcenter_password
+    portgroup_name: vlan-trunk-portrgoup
+    portgroup_type: earlyBinding
+    state: present
+    switch_name: dvSwitch
+    username: vcenter_username
+    vlan_id: 1-1000
+    vlan_trunk: true
+- connection: local
+  name: Create no-vlan portgroup
+  vmware_dvs_portgroup:
+    hostname: vcenter_ip_or_hostname
+    num_ports: 120
+    password: vcenter_password
+    portgroup_name: no-vlan-portrgoup
+    portgroup_type: earlyBinding
+    state: present
+    switch_name: dvSwitch
+    username: vcenter_username
+    vlan_id: 0
+- connection: local
+  name: Create vlan portgroup with all security and port policies
+  vmware_dvs_portgroup:
+    hostname: vcenter_ip_or_hostname
+    network_policy:
+      forged_transmits: true
+      mac_changes: true
+      promiscuous: true
+    num_ports: 120
+    password: vcenter_password
+    port_policy:
+      block_override: true
+      ipfix_override: true
+      live_port_move: true
+      network_rp_override: true
+      port_config_reset_at_disconnect: true
+      security_override: true
+      shaping_override: true
+      traffic_filter_override: true
+      uplink_teaming_override: true
+      vendor_config_override: true
+      vlan_override: true
+    portgroup_name: vlan-123-portrgoup
+    portgroup_type: earlyBinding
+    state: present
+    switch_name: dvSwitch
+    username: vcenter_username
+    vlan_id: 123

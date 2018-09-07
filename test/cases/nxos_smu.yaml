@@ -1,0 +1,5 @@
+- nxos_smu:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    pkg: nxos.CSCuz65185-n9k_EOR-1.0.0-7.0.3.I2.2d.lib32_n9000.rpm
+    username: '{{ un }}'

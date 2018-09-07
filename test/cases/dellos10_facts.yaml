@@ -1,0 +1,8 @@
+- dellos10_facts:
+    gather_subset: all
+- dellos10_facts:
+    gather_subset:
+    - config
+- dellos10_facts:
+    gather_subset:
+    - '!hardware'

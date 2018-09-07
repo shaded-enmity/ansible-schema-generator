@@ -1,0 +1,18 @@
+- ec2_vpc_igw_facts:
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about all Internet Gateways for an account or profile
+  register: igw_facts
+- ec2_vpc_igw_facts:
+    filters:
+      tag:Name: igw-123
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about a filtered list of Internet Gateways
+  register: igw_facts
+- ec2_vpc_igw_facts:
+    internet_gateway_ids: igw-c1231234
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about a specific internet gateway by InternetGatewayId
+  register: igw_facts

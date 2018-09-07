@@ -14,6 +14,4 @@ export ANSIBLE_DIR=ansible/
 export ARGSPEC_PATH=ansible-stable/test/sanity/validate-modules/module_args.py
 ./generate.sh
 
-for TC in test/cases/*; do
-  echo "import jsonschema, json, yaml; jsonschema.validate(list(yaml.load_all(open(\"$TC\").read())), json.loads(open(\"generated/ansible-stable-2.5.json\").read()))" | python
-done
+python test.py

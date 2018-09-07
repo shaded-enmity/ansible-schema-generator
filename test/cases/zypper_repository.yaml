@@ -1,0 +1,21 @@
+- zypper_repository:
+    name: nvidia-repo
+    repo: ftp://download.nvidia.com/opensuse/12.2
+    state: present
+- zypper_repository:
+    name: nvidia-repo
+    repo: ftp://download.nvidia.com/opensuse/12.2
+    state: absent
+- zypper_repository:
+    repo: http://download.opensuse.org/repositories/devel:/languages:/python/SLE_11_SP3/devel:languages:python.repo
+- zypper_repository:
+    repo: '*'
+    runrefresh: true
+- zypper_repository:
+    auto_import_keys: true
+    repo: http://download.opensuse.org/repositories/systemsmanagement/openSUSE_Leap_42.1/
+- zypper_repository:
+    name: my_ci_repo
+    repo: http://my_internal_ci_repo/repo
+    runrefresh: true
+    state: present

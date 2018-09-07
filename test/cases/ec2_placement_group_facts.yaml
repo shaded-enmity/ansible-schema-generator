@@ -1,0 +1,7 @@
+- ec2_placement_group_facts: null
+  register: all_ec2_placement_groups
+- ec2_placement_group_facts:
+    names:
+    - my-cluster
+    - my-other-cluster
+  register: specific_ec2_placement_groups

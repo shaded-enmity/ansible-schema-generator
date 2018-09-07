@@ -1,0 +1,43 @@
+- cloudtrail:
+    name: default
+    region: us-east-1
+    s3_bucket_name: mylogbucket
+    s3_key_prefix: cloudtrail
+    state: present
+  name: create single region cloudtrail
+- cloudtrail:
+    cloudwatch_logs_log_group_arn: arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*
+    cloudwatch_logs_role_arn: arn:aws:iam::123456789012:role/CloudTrail_CloudWatchLogs_Role
+    enable_log_file_validation: true
+    is_multi_region_trail: true
+    kms_key_id: alias/MyAliasName
+    name: default
+    region: us-east-1
+    s3_bucket_name: mylogbucket
+    state: present
+    tags:
+      Name: default
+      environment: dev
+  name: create multi-region trail with validation and tags
+- cloudtrail:
+    kms_key_id: arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+    name: default
+    s3_bucket_name: mylogbucket
+    state: present
+  name: show another valid kms_key_id
+- cloudtrail:
+    enable_log_file_validation: true
+    enable_logging: false
+    is_multi_region_trail: true
+    name: default
+    region: us-east-1
+    s3_bucket_name: mylogbucket
+    state: present
+    tags:
+      Name: default
+      environment: dev
+  name: pause logging the trail we just created
+- cloudtrail:
+    name: default
+    state: absent
+  name: delete a trail

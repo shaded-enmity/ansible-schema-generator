@@ -1,0 +1,36 @@
+- name: create link aggregation group
+  nxos_linkagg:
+    group: 99
+    state: present
+- name: delete link aggregation group
+  nxos_linkagg:
+    group: 99
+    state: absent
+- name: set link aggregation group to members
+  nxos_linkagg:
+    group: 10
+    members:
+    - Ethernet1/2
+    - Ethernet1/4
+    min_links: 3
+    mode: active
+- name: remove link aggregation group from Ethernet1/2
+  nxos_linkagg:
+    group: 10
+    members:
+    - Ethernet1/4
+    min_links: 3
+    mode: active
+- name: Create aggregate of linkagg definitions
+  nxos_linkagg:
+    aggregate:
+    - group: 3
+    - group: 100
+      min_links: 3
+- name: Remove aggregate of linkagg definitions
+  nxos_linkagg:
+    aggregate:
+    - group: 3
+    - group: 100
+      min_links: 3
+    state: absent

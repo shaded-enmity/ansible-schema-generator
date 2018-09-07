@@ -1,0 +1,14 @@
+- delegate_to: localhost
+  gather_facts: false
+  name: Setup http service
+  netscaler_service:
+    ipaddress: 10.78.0.1
+    monitor_bindings:
+    - monitor-1
+    name: service-http-1
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    port: 80
+    servicetype: HTTP
+    state: present

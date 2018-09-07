@@ -1,0 +1,14 @@
+- gce_img:
+    name: test-image
+    source: test-disk
+    state: present
+    zone: us-central1-a
+- gce_img:
+    name: test-image
+    source: https://storage.googleapis.com/bucket/path/to/image.tgz
+- gce_img:
+    name: test-image
+    source: gs://bucket/path/to/image.tgz
+- gce_img:
+    name: test-image
+    state: absent

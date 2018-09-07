@@ -1,0 +1,13 @@
+- name: create website
+  webfaction_site:
+    host: myhost.webfaction.com
+    https: false
+    login_name: '{{webfaction_user}}'
+    login_password: '{{webfaction_passwd}}'
+    name: testsite1
+    site_apps:
+    - - testapp1
+      - /
+    state: present
+    subdomains:
+    - testsite1.my_domain.org

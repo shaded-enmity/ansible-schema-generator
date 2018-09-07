@@ -1,0 +1,30 @@
+- ipa_role:
+    description: Database Administrators
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: dba
+    state: present
+    user:
+    - pinky
+    - brain
+- ipa_role:
+    description: Just another role
+    group:
+    - editors
+    host:
+    - host01.example.com
+    hostgroup:
+    - hostgroup01
+    name: another-role
+    privilege:
+    - Group Administrators
+    - User Administrators
+    service:
+    - service01
+- ipa_role:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: dba
+    state: absent

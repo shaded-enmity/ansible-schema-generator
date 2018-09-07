@@ -1,0 +1,8 @@
+- proxysql_global_variables:
+    login_password: admin
+    login_user: admin
+    value: 4096
+    variable: mysql-max_connections
+- proxysql_global_variables:
+    config_file: ~/proxysql.cnf
+    variable: mysql-default_query_delay

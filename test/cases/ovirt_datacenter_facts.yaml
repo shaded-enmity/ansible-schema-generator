@@ -1,0 +1,2 @@
+- ovirt_datacenter_facts:
+    pattern: name=production*

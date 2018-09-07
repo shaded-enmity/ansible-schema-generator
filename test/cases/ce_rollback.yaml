@@ -1,0 +1,6 @@
+- ce_rollback:
+    action: rollback
+    commit_id: 1000000748
+    provider: '{{ cli }}'
+  name: Ensure commit_id is exist, and specifies the label of the configuration rollback
+    point to which system configurations are expected to roll back.

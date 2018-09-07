@@ -1,0 +1,44 @@
+- name: search for shared address object
+  panos_object:
+    address: DevNet
+    ip_address: '{{ ip_address }}'
+    operation: find
+    password: '{{ password }}'
+    username: '{{ username }}'
+- name: create an address group in devicegroup using API key
+  panos_object:
+    addressgroup: Prod_DB_Svrs
+    api_key: '{{ api_key }}'
+    description: Production DMZ database servers
+    devicegroup: DMZ Firewalls
+    ip_address: '{{ ip_address }}'
+    operation: add
+    static_value:
+    - prod-db1
+    - prod-db2
+    - prod-db3
+    tag_name: DMZ
+- name: create a global service for TCP 3306
+  panos_object:
+    api_key: '{{ api_key }}'
+    description: MySQL on tcp/3306
+    destination_port: '3306'
+    ip_address: '{{ ip_address }}'
+    operation: add
+    protocol: tcp
+    serviceobject: mysql-3306
+- name: create a global tag
+  panos_object:
+    color: yellow
+    description: Associated with Project X
+    ip_address: '{{ ip_address }}'
+    operation: add
+    password: '{{ password }}'
+    tag_name: ProjectX
+    username: '{{ username }}'
+- name: delete an address object from a devicegroup using API key
+  panos_object:
+    addressobject: Win2K test
+    api_key: '{{ api_key }}'
+    ip_address: '{{ ip_address }}'
+    operation: delete

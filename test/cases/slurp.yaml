@@ -1,0 +1,4 @@
+- name: Find out what the remote machine's mounts are
+  register: mounts
+  slurp:
+    src: /proc/mounts

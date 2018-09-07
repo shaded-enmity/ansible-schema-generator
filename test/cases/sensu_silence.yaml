@@ -1,0 +1,22 @@
+- name: Silence server1.example.dev
+  sensu_silence:
+    creator: '{{ ansible_user_id }}'
+    reason: Performing maintenance
+    subscription: client:server1.example.dev
+- name: Silence CPU_Usage check for server1.example.dev
+  sensu_silence:
+    check: CPU_Usage
+    creator: '{{ ansible_user_id }}'
+    reason: Investigation alert issue
+    subscription: client:server1.example.dev
+  silence:
+    server1.example.dev:
+      reason: Deployment in progress
+    server2.example.dev:
+      reason: Deployment in progress
+- name: Silence several clients from a dict
+  sensu_silence:
+    creator: '{{ ansible_user_id }}'
+    reason: '{{ item.value.reason }}'
+    subscription: client:{{ item.key }}
+  with_dict: '{{ silence }}'

@@ -1,0 +1,10 @@
+- ec2_vpc_route_table_facts: null
+- ec2_vpc_route_table_facts:
+    filters:
+      route-table-id: rtb-00112233
+- ec2_vpc_route_table_facts:
+    filters:
+      tag:Name: Example
+- ec2_vpc_route_table_facts:
+    filters:
+      vpc-id: vpc-abcdef00

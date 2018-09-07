@@ -1,0 +1,39 @@
+- name: Create a named maintenance window for host www1 for 90 minutes
+  zabbix_maintenance:
+    host_name: www1.example.com
+    login_password: pAsSwOrD
+    login_user: ansible
+    minutes: 90
+    name: Update of www1
+    server_url: https://monitoring.example.com
+    state: present
+- name: Create a named maintenance window for host www1 and host groups Office and
+    Dev
+  zabbix_maintenance:
+    host_groups:
+    - Office
+    - Dev
+    host_name: www1.example.com
+    login_password: pAsSwOrD
+    login_user: ansible
+    name: Update of www1
+    server_url: https://monitoring.example.com
+    state: present
+- name: Create a named maintenance window for hosts www1 and db1, without data collection.
+  zabbix_maintenance:
+    collect_data: false
+    host_names:
+    - www1.example.com
+    - db1.example.com
+    login_password: pAsSwOrD
+    login_user: ansible
+    name: update
+    server_url: https://monitoring.example.com
+    state: present
+- name: Remove maintenance window by name
+  zabbix_maintenance:
+    login_password: pAsSwOrD
+    login_user: ansible
+    name: Test1
+    server_url: https://monitoring.example.com
+    state: absent

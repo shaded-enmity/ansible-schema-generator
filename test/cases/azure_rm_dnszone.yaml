@@ -1,0 +1,10 @@
+- azure_rm_dnszone:
+    name: example.com
+    resource_group: Testing
+    state: present
+  name: Create a DNS zone
+- azure_rm_dnszone:
+    name: example.com
+    resource_group: Testing
+    state: absent
+  name: Delete a DNS zone

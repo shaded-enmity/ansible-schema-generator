@@ -1,0 +1,58 @@
+- mysql_user:
+    host: localhost
+    name: ''
+    state: absent
+- mysql_user:
+    host_all: true
+    name: ''
+    state: absent
+- mysql_user:
+    name: bob
+    password: 12345
+    priv: '*.*:ALL'
+    state: present
+- mysql_user:
+    encrypted: true
+    name: bob
+    password: '*EE0D72C1085C46C5278932678FBE2C6A782821B4'
+    priv: '*.*:ALL'
+    state: present
+- mysql_user:
+    name: bob
+    password: 12345
+    priv: '*.*:ALL,GRANT'
+    state: present
+- mysql_user:
+    append_privs: true
+    name: bob
+    priv: '*.*:REQUIRESSL'
+    state: present
+- mysql_user:
+    login_password: 123456
+    login_user: root
+    name: sally
+    state: absent
+- mysql_user:
+    host_all: true
+    name: sally
+    state: absent
+- mysql_user:
+    name: replication
+    password: 12345
+    priv: '*.*:REPLICATION CLIENT'
+    state: present
+- mysql_user:
+    name: bob
+    password: 12345
+    priv: '*.*:USAGE'
+    state: present
+- mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: root
+    password: abc123
+- mysql_user:
+    name: bob
+    password: 12345
+    priv: '*.*:USAGE'
+    sql_log_bin: false
+    state: present

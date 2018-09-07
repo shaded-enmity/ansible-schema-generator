@@ -1,0 +1,29 @@
+- gcp_url_map:
+    credentials_file: '{{ credentials_file }}'
+    default_service: my-backend-service
+    project_id: '{{ project_id }}'
+    service_account_email: '{{ service_account_email }}'
+    state: present
+    url_map_name: my-url_map
+  name: Create Minimal Url_Map
+- gcp_url_map:
+    credentials_file: '{{ credentials_file }}'
+    default_service: default-backend-service
+    host_rules:
+    - hosts:
+      - '*.'
+      path_matcher: path-matcher-one
+    path_matchers:
+    - default_service: bes-pathmatcher-one-default
+      description: path matcher one
+      name: path-matcher-one
+      path_rules:
+      - paths:
+        - /data
+        - /aboutus
+        service: my-one-bes
+    project_id: '{{ project_id }}'
+    service_account_email: '{{ service_account_email }}'
+    state: present
+    url_map_name: my-url-map-pm
+  name: Create UrlMap with pathmatcher

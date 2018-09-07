@@ -1,0 +1,15 @@
+- name: Write an entry to a Windows event log
+  win_eventlog_entry:
+    event_id: 1234
+    log: MyNewLog
+    message: This is a test log entry.
+    source: NewLogSource1
+- name: Write another entry to a different Windows event log
+  win_eventlog_entry:
+    category: 5
+    entry_type: Error
+    event_id: 5000
+    log: AnotherLog
+    message: An error has occurred.
+    raw_data: 10,20
+    source: MyAppSource

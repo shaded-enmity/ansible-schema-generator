@@ -1,0 +1,17 @@
+- bigip_software_update:
+    auto_check: true
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Enable automatic update checking
+- bigip_software_update:
+    auto_check: false
+    auto_phone_home: false
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Disable automatic update checking and phoning home

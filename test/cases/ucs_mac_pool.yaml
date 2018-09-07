@@ -1,0 +1,16 @@
+- name: Configure MAC address pool
+  ucs_mac_pool:
+    first_addr: 00:25:B5:00:66:00
+    hostname: 172.16.143.150
+    last_addr: 00:25:B5:00:67:F3
+    name: mac-A
+    order: sequential
+    password: password
+    username: admin
+- name: Remove MAC address pool
+  ucs_mac_pool:
+    hostname: 172.16.143.150
+    name: mac-A
+    password: password
+    state: absent
+    username: admin

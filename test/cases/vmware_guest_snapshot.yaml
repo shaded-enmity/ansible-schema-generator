@@ -1,0 +1,76 @@
+- delegate_to: localhost
+  name: Create snapshot
+  vmware_guest_snapshot:
+    datacenter: datacenter_name
+    description: snap1_description
+    folder: /myfolder
+    hostname: 192.168.1.209
+    name: dummy_vm
+    password: vmware
+    snapshot_name: snap1
+    state: present
+    username: administrator@vsphere.local
+- delegate_to: localhost
+  name: Remove a snapshot
+  vmware_guest_snapshot:
+    datacenter: datacenter_name
+    folder: /myfolder
+    hostname: 192.168.1.209
+    name: dummy_vm
+    password: vmware
+    snapshot_name: snap1
+    state: remove
+    username: administrator@vsphere.local
+- delegate_to: localhost
+  name: Revert to a snapshot
+  vmware_guest_snapshot:
+    datacenter: datacenter_name
+    folder: /myfolder
+    hostname: 192.168.1.209
+    name: dummy_vm
+    password: vmware
+    snapshot_name: snap1
+    state: revert
+    username: administrator@vsphere.local
+- delegate_to: localhost
+  name: Remove all snapshots of a VM
+  vmware_guest_snapshot:
+    datacenter: datacenter_name
+    folder: /myfolder
+    hostname: 192.168.1.209
+    name: dummy_vm
+    password: vmware
+    state: remove_all
+    username: administrator@vsphere.local
+- delegate_to: localhost
+  name: Take snapshot of a VM using quiesce and memory flag on
+  vmware_guest_snapshot:
+    hostname: 192.168.1.209
+    memory_dump: true
+    name: dummy_vm
+    password: vmware
+    quiesce: true
+    snapshot_name: dummy_vm_snap_0001
+    state: present
+    username: administrator@vsphere.local
+- delegate_to: localhost
+  name: Remove a snapshot and snapshot subtree
+  vmware_guest_snapshot:
+    hostname: 192.168.1.209
+    name: dummy_vm
+    password: vmware
+    remove_children: true
+    snapshot_name: snap1
+    state: remove
+    username: administrator@vsphere.local
+- delegate_to: localhost
+  name: Rename a snapshot
+  vmware_guest_snapshot:
+    hostname: 192.168.1.209
+    name: dummy_vm
+    new_description: renamed snapshot today
+    new_snapshot_name: im_renamed
+    password: vmware
+    snapshot_name: current_snap_name
+    state: present
+    username: administrator@vsphere.local

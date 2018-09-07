@@ -1,0 +1,6 @@
+- nxos_pim_rp_address:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    rp_address: 10.1.1.20
+    state: present
+    username: '{{ un }}'

@@ -1,0 +1,2 @@
+- ecs_taskdefinition_facts:
+    task_definition: test-td

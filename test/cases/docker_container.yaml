@@ -1,0 +1,114 @@
+- docker_container:
+    image: busybox
+    name: mydata
+    volumes:
+    - /data
+  name: Create a data container
+- docker_container:
+    command: redis-server --appendonly yes
+    exposed_ports:
+    - 6379
+    image: redis
+    name: myredis
+    recreate: true
+    state: present
+    volumes_from:
+    - mydata
+  name: Re-create a redis container
+- docker_container:
+    devices:
+    - /dev/sda:/dev/xvda:rwm
+    env:
+      SECRET_KEY: ssssh
+    image: someuser/appimage
+    links:
+    - myredis:aliasedredis
+    name: myapplication
+    ports:
+    - 8080:9000
+    - 127.0.0.1:8081:9001/udp
+    restart: true
+    state: started
+  name: Restart a container
+- docker_container:
+    command: sleep infinity
+    image: ubuntu:14.04
+    name: mycontainer
+    state: present
+  name: Container present
+- docker_container:
+    name: mycontainer
+    state: stopped
+  name: Stop a container
+- docker_container:
+    command: sleep 1d
+    image: someuser/anotherappimage
+    name: container{{ item }}
+    recreate: true
+  name: Start 4 load-balanced containers
+  with_sequence: count=4
+- docker_container:
+    name: ohno
+    state: absent
+  name: remove container
+- docker_container:
+    image: busybox
+    log_driver: syslog
+    log_options:
+      syslog-address: tcp://my-syslog-server:514
+      syslog-facility: daemon
+      syslog-tag: myservice
+    name: myservice
+  name: Syslogging output
+- docker_container:
+    image: postgres:latest
+    name: db_test
+    networks:
+    - name: '{{ docker_network_name }}'
+  name: Create db container and connect to network
+- docker_container:
+    image: ubuntu:14.04
+    name: sleeper
+    networks:
+    - aliases:
+      - sleepyzz
+      ipv4_address: 172.1.1.100
+      links:
+      - db_test:db
+      name: TestingNet
+    - name: TestingNet2
+  name: Start container, connect to network and link
+- docker_container:
+    command: sleep infinity
+    image: ubuntu:14.04
+    name: sleepy
+  name: Start a container with a command
+- docker_container:
+    docker_container: null
+    name: sleepy
+    networks:
+    - ipv4_address: 172.1.1.18
+      links:
+      - sleeper
+      name: TestingNet
+    - ipv4_address: 172.1.10.20
+      name: TestingNet2
+  name: Add container to networks
+- docker_container:
+    name: sleepy
+    networks:
+    - aliases:
+      - sleepyz
+      - zzzz
+      name: TestingNet
+  name: Update network with aliases
+- docker_container:
+    name: sleepy
+    networks:
+    - name: TestingNet2
+    purge_networks: true
+  name: Remove container from one network
+- docker_container:
+    name: sleepy
+    purge_networks: true
+  name: Remove container from all networks

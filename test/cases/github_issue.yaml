@@ -1,0 +1,7 @@
+- github_issue:
+    action: get_status
+    issue: 23642
+    organization: ansible
+    repo: ansible
+  name: Check if GitHub issue is closed or not
+  register: r

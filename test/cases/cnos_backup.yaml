@@ -1,0 +1,56 @@
+- cnos_backup:
+    configType: running-config
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_backup_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    protocol: sftp
+    rcpath: /root/cnos/G8272-running-config.txt
+    serverip: 10.241.106.118
+    serverpassword: root123
+    serverusername: root
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Running Config Backup
+- cnos_backup:
+    configType: startup-config
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_backup_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    protocol: sftp
+    rcpath: /root/cnos/G8272-startup-config.txt
+    serverip: 10.241.106.118
+    serverpassword: root123
+    serverusername: root
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Startup Config Backup
+- cnos_backup:
+    configType: running-config
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_backup_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    protocol: tftp
+    rcpath: /anil/G8272-running-config.txt
+    serverip: 10.241.106.118
+    serverpassword: root123
+    serverusername: root
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Running Config Backup -TFTP
+- cnos_backup:
+    configType: startup-config
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_backup_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    protocol: tftp
+    rcpath: /anil/G8272-startup-config.txt
+    serverip: 10.241.106.118
+    serverpassword: root123
+    serverusername: root
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Startup Config Backup - TFTP

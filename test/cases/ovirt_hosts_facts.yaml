@@ -1,0 +1,2 @@
+- ovirt_hosts_facts:
+    pattern: name=host* and datacenter=west

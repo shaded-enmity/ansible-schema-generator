@@ -1,0 +1,29 @@
+- ec2_vpc_endpoint_facts:
+    query: services
+    region: ap-southeast-2
+  name: List supported AWS endpoint services
+  register: supported_endpoint_services
+- ec2_vpc_endpoint_facts:
+    query: endpoints
+    region: ap-southeast-2
+  name: Get all endpoints in ap-southeast-2 region
+  register: existing_endpoints
+- ec2_vpc_endpoint_facts:
+    filters:
+      vpc-endpoint-state:
+      - available
+      - pending
+      vpc-id:
+      - vpc-12345678
+      - vpc-87654321
+    query: endpoints
+    region: ap-southeast-2
+  name: Get all endpoints with specific filters
+  register: existing_endpoints
+- ec2_vpc_endpoint_facts:
+    query: endpoints
+    region: ap-southeast-2
+    vpc_endpoint_ids:
+    - vpce-12345678
+  name: Get details on specific endpoint
+  register: endpoint_details

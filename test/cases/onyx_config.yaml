@@ -1,0 +1,4 @@
+- onyx_config:
+    lines:
+    - snmp-server community
+    - snmp-server host 10.2.2.2 traps version 2c

@@ -1,0 +1,6 @@
+- name: Enable LLDP service
+  nxos_lldp:
+    state: present
+- name: Disable LLDP service
+  nxos_lldp:
+    state: absent

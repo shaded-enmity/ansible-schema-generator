@@ -1,0 +1,42 @@
+- delegate_to: localhost
+  name: Send notification message via Rocket Chat
+  rocketchat:
+    domain: chat.example.com
+    msg: '{{ inventory_hostname }} completed'
+    token: thetoken/generatedby/rocketchat
+- delegate_to: localhost
+  name: Send notification message via Rocket Chat all options
+  rocketchat:
+    channel: null
+    domain: chat.example.com
+    icon_url: http://www.example.com/some-image-file.png
+    link_names: 0
+    msg: '{{ inventory_hostname }} completed'
+    token: thetoken/generatedby/rocketchat
+    username: Ansible on {{ inventory_hostname }}
+- delegate_to: localhost
+  name: insert a color bar in front of the message for visibility purposes and use
+    the default webhook icon and name configured in rocketchat
+  rocketchat:
+    color: good
+    domain: chat.example.com
+    icon_url: ''
+    msg: '{{ inventory_hostname }} is alive!'
+    token: thetoken/generatedby/rocketchat
+    username: ''
+- delegate_to: localhost
+  name: Use the attachments API
+  rocketchat:
+    attachments:
+    - color: null
+      fields:
+      - short: true
+        title: System A
+        value: 'load average: 0,74, 0,66, 0,63'
+      - short: true
+        title: System B
+        value: 'load average: 5,16, 4,64, 2,43'
+      text: Display my system load on host A and B
+      title: System load
+    domain: chat.example.com
+    token: thetoken/generatedby/rocketchat

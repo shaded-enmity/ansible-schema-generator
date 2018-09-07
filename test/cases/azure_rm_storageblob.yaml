@@ -1,0 +1,22 @@
+- azure_rm_storageblob:
+    container: foo
+    resource_group: testing
+    state: absent
+    storage_account_name: clh0002
+  name: Remove container foo
+- azure_rm_storageblob:
+    blob: graylog.png
+    container: foo
+    content_type: application/image
+    public_access: container
+    resource_group: Testing
+    src: ./files/graylog.png
+    storage_account_name: clh0002
+  name: Create container foo and upload a file
+- azure_rm_storageblob:
+    blob: graylog.png
+    container: foo
+    dest: ~/tmp/images/graylog.png
+    resource_group: Testing
+    storage_account_name: clh0002
+  name: Download the file

@@ -1,0 +1,5 @@
+- name: Check connections to MVIP and SVIP
+  sf_check_connections:
+    hostname: '{{ solidfire_hostname }}'
+    password: '{{ solidfire_password }}'
+    username: '{{ solidfire_username }}'

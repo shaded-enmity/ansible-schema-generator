@@ -1,0 +1,9 @@
+- cnos_template:
+    commandfile: ./commands/demo_template_{{ inventory_hostname }}_commands.txt
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/demo_template_command_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Applying CLI commands on Switches

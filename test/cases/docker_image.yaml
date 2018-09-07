@@ -1,0 +1,44 @@
+- docker_image:
+    name: pacur/centos-7
+  name: pull an image
+- docker_image:
+    name: pacur/centos-7
+    push: true
+    repository: dcoppenhagan/myimage
+    tag: 7.0
+  name: Tag and push to docker hub
+- docker_image:
+    name: centos
+    push: true
+    repository: localhost:5000/centos
+    tag: 7
+  name: Tag and push to local registry
+- docker_image:
+    name: registry.ansible.com/chouseknecht/sinatra
+    state: absent
+    tag: v1
+  name: Remove image
+- docker_image:
+    name: registry.ansible.com/chouseknecht/sinatra
+    path: ./sinatra
+    push: true
+    tag: v1
+  name: Build an image and push it to a private repo
+- docker_image:
+    archive_path: my_sinatra.tar
+    name: registry.ansible.com/chouseknecht/sinatra
+    tag: v1
+  name: Archive image
+- docker_image:
+    load_path: my_sinatra.tar
+    name: localhost:5000/myimages/sinatra
+    push: true
+    tag: v1
+  name: Load image from archive and push to a private registry
+- docker_image:
+    buildargs:
+      listen_port: 8080
+      log_volume: /var/log/myapp
+    name: myimage
+    path: /path/to/build/dir
+  name: Build image and with buildargs

@@ -1,0 +1,43 @@
+- junos_logging:
+    dest: console
+    facility: any
+    level: critical
+  name: configure console logging
+- junos_logging:
+    dest: console
+    state: absent
+  name: remove console logging configuration
+- junos_logging:
+    dest: file
+    facility: pfe
+    level: error
+    name: test
+  name: configure file logging
+- junos_logging:
+    files: 30
+    rotate_frequency: 10
+    size: 65536
+  name: configure logging parameter
+- junos_logging:
+    active: true
+    aggregate:
+    - facility: pfe
+      level: critical
+      name: test-1
+    - facility: kernel
+      level: emergency
+      name: test-2
+    dest: file
+  name: Configure file logging using aggregate
+- junos_logging:
+    aggregate:
+    - dest: file
+      facility: pfe
+      level: critical
+      name: test-1
+    - dest: file
+      facility: kernel
+      level: emergency
+      name: test-2
+    state: absent
+  name: Delete file logging using aggregate

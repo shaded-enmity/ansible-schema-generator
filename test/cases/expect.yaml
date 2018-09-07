@@ -1,0 +1,13 @@
+- expect:
+    command: passwd username
+    responses:
+      (?i)password: MySekretPa$$word
+  name: Case insensitve password string match
+- expect:
+    command: /path/to/custom/command
+    responses:
+      Question:
+      - response1
+      - response2
+      - response3
+  name: Generic question with multiple different responses

@@ -1,0 +1,96 @@
+- name: Create registry path MyCompany
+  win_regedit:
+    path: HKCU:\Software\MyCompany
+- name: Add or update registry path MyCompany, with entry 'hello', and containing
+    'world'
+  win_regedit:
+    data: world
+    name: hello
+    path: HKCU:\Software\MyCompany
+- name: Add or update registry path MyCompany, with dword entry 'hello', and containing
+    1337 as the decimal value
+  win_regedit:
+    data: 1337
+    name: hello
+    path: HKCU:\Software\MyCompany
+    type: dword
+- name: Add or update registry path MyCompany, with dword entry 'hello', and containing
+    0xff2500ae as the hex value
+  win_regedit:
+    data: 4280615086
+    name: hello
+    path: HKCU:\Software\MyCompany
+    type: dword
+- name: Add or update registry path MyCompany, with binary entry 'hello', and containing
+    binary data in hex-string format
+  win_regedit:
+    data: hex:be,ef,be,ef,be,ef,be,ef,be,ef
+    name: hello
+    path: HKCU:\Software\MyCompany
+    type: binary
+- name: Add or update registry path MyCompany, with binary entry 'hello', and containing
+    binary data in yaml format
+  win_regedit:
+    data:
+    - 190
+    - 239
+    - 190
+    - 239
+    - 190
+    - 239
+    - 190
+    - 239
+    - 190
+    - 239
+    name: hello
+    path: HKCU:\Software\MyCompany
+    type: binary
+- name: Add or update registry path MyCompany, with expand string entry 'hello'
+  win_regedit:
+    data: '%appdata%\local'
+    name: hello
+    path: HKCU:\Software\MyCompany
+    type: expandstring
+- name: Add or update registry path MyCompany, with multi string entry 'hello'
+  win_regedit:
+    data:
+    - hello
+    - world
+    name: hello
+    path: HKCU:\Software\MyCompany
+    type: multistring
+- name: Disable keyboard layout hotkey for all users (changes existing)
+  win_regedit:
+    data: 3
+    name: Layout Hotkey
+    path: HKU:\.DEFAULT\Keyboard Layout\Toggle
+    type: dword
+- name: Disable language hotkey for current users (adds new)
+  win_regedit:
+    data: 3
+    name: Language Hotkey
+    path: HKCU:\Keyboard Layout\Toggle
+    type: dword
+- name: Remove registry path MyCompany (including all entries it contains)
+  win_regedit:
+    delete_key: true
+    path: HKCU:\Software\MyCompany
+    state: absent
+- name: Clear the existing (Default) entry at path MyCompany
+  win_regedit:
+    delete_key: false
+    path: HKCU:\Software\MyCompany
+    state: absent
+- name: Remove entry 'hello' from registry path MyCompany
+  win_regedit:
+    name: hello
+    path: HKCU:\Software\MyCompany
+    state: absent
+- name: Change default mouse trailing settings for new users
+  win_regedit:
+    data: 10
+    hive: C:\Users\Default\NTUSER.dat
+    name: MouseTrails
+    path: HKLM:\ANSIBLE\Control Panel\Mouse
+    state: present
+    type: string

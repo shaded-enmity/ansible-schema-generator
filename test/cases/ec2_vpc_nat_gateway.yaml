@@ -1,0 +1,63 @@
+- ec2_vpc_nat_gateway:
+    client_token: abcd-12345678
+    eip_address: 52.1.1.1
+    region: ap-southeast-2
+    state: present
+    subnet_id: subnet-12345678
+  name: Create new nat gateway with client token.
+  register: new_nat_gateway
+- ec2_vpc_nat_gateway:
+    allocation_id: eipalloc-12345678
+    region: ap-southeast-2
+    state: present
+    subnet_id: subnet-12345678
+  name: Create new nat gateway using an allocation-id.
+  register: new_nat_gateway
+- ec2_vpc_nat_gateway:
+    eip_address: 52.1.1.1
+    region: ap-southeast-2
+    state: present
+    subnet_id: subnet-12345678
+    wait: true
+  name: Create new nat gateway, using an EIP address  and wait for available status.
+  register: new_nat_gateway
+- ec2_vpc_nat_gateway:
+    region: ap-southeast-2
+    state: present
+    subnet_id: subnet-12345678
+    wait: true
+  name: Create new nat gateway and allocate new EIP.
+  register: new_nat_gateway
+- ec2_vpc_nat_gateway:
+    if_exist_do_not_create: true
+    region: ap-southeast-2
+    state: present
+    subnet_id: subnet-12345678
+    wait: true
+  name: Create new nat gateway and allocate new EIP if a nat gateway does not yet
+    exist in the subnet.
+  register: new_nat_gateway
+- ec2_vpc_nat_gateway:
+    nat_gateway_id: '{{ item.NatGatewayId }}'
+    region: ap-southeast-2
+    release_eip: true
+    state: absent
+    wait: true
+  name: Delete nat gateway using discovered nat gateways from facts module.
+  register: delete_nat_gateway_result
+  with_items: '{{ gateways_to_remove.result }}'
+- ec2_vpc_nat_gateway:
+    nat_gateway_id: nat-12345678
+    region: ap-southeast-2
+    state: absent
+    wait: true
+    wait_timeout: 500
+  name: Delete nat gateway and wait for deleted status.
+- ec2_vpc_nat_gateway:
+    nat_gateway_id: nat-12345678
+    region: ap-southeast-2
+    release_eip: true
+    state: absent
+    wait: true
+    wait_timeout: 300
+  name: Delete nat gateway and release EIP.

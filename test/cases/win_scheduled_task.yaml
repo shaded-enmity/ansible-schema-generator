@@ -1,0 +1,74 @@
+- name: create a task to open 2 command prompts as SYSTEM
+  win_scheduled_task:
+    actions:
+    - arguments: /c hostname
+      path: cmd.exe
+    - arguments: /c whoami
+      path: cmd.exe
+    description: open command prompt
+    enabled: true
+    name: TaskName
+    state: present
+    triggers:
+    - start_boundary: '2017-10-09T09:00:00'
+      type: daily
+    username: SYSTEM
+- name: create task to run a PS script as NETWORK service on boot
+  win_scheduled_task:
+    actions:
+    - arguments: -ExecutionPolicy Unrestricted -NonInteractive -File C:\TestDir\Test.ps1
+      path: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+    description: Run a PowerShell script
+    name: TaskName2
+    run_level: highest
+    state: present
+    triggers:
+    - type: boot
+    username: NETWORK SERVICE
+- name: change above task to run under a domain user account, storing the passwords
+  win_scheduled_task:
+    logon_type: password
+    name: TaskName2
+    password: Password
+    username: DOMAIN\User
+- name: change the above task again, choosing not to store the password
+  win_scheduled_task:
+    logon_type: s4u
+    name: TaskName2
+    username: DOMAIN\User
+- name: create task with multiple triggers
+  win_scheduled_task:
+    actions:
+    - path: cmd.exe
+    name: TriggerTask
+    path: \Custom
+    triggers:
+    - type: daily
+    - type: monthlydow
+    username: SYSTEM
+- name: set logon type to password but don't force update the password
+  win_scheduled_task:
+    actions:
+    - path: cmd.exe
+    name: TriggerTask
+    password: password
+    path: \Custom
+    update_password: false
+    username: Administrator
+- name: disable a task that already exists
+  win_scheduled_task:
+    enabled: false
+    name: TaskToDisable
+- name: create a task that will be repeated every minute for five minutes
+  win_scheduled_task:
+    actions:
+    - arguments: /c hostname
+      path: cmd.exe
+    description: open command prompt
+    name: RepeatedTask
+    triggers:
+    - repetition:
+      - duration: PT5M
+        interval: PT1M
+        stop_at_duration_end: true
+      type: registration

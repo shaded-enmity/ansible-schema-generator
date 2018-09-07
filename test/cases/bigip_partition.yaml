@@ -1,0 +1,39 @@
+- bigip_partition:
+    name: foo
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Create partition "foo" using the default route domain
+- bigip_partition:
+    name: bar
+    password: secret
+    route_domain: 3
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Create partition "bar" using a custom route domain
+- bigip_partition:
+    name: foo
+    password: secret
+    route_domain: 8
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Change route domain of partition "foo"
+- bigip_partition:
+    description: Tenant CompanyA
+    name: foo
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set a description for partition "foo"
+- bigip_partition:
+    name: foo
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Delete the "foo" partition

@@ -1,0 +1,6 @@
+- ipadm_if:
+    name: vnic0
+    state: enabled
+- ipadm_if:
+    name: vnic0
+    state: disabled

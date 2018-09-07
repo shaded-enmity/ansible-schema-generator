@@ -1,0 +1,18 @@
+- os_server_group:
+    auth:
+      auth_url: https://identity.example.com
+      password: admin
+      project_name: admin
+      username: admin
+    name: my_server_group
+    policies:
+    - affinity
+    state: present
+- os_server_group:
+    auth:
+      auth_url: https://identity.example.com
+      password: admin
+      project_name: admin
+      username: admin
+    name: my_server_group
+    state: absent

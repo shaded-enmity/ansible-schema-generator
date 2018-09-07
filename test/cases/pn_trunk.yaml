@@ -1,0 +1,9 @@
+- name: create trunk
+  pn_trunk:
+    pn_name: spine-to-leaf
+    pn_ports: 11,12,13,14
+    state: present
+- name: delete trunk
+  pn_trunk:
+    pn_name: spine-to-leaf
+    state: absent

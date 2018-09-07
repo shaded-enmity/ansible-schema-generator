@@ -1,0 +1,13 @@
+- flowdock:
+    from_address: user@example.com
+    msg: test from ansible
+    source: my cool app
+    subject: test subject
+    token: AAAAAA
+    type: inbox
+- flowdock:
+    external_user_name: testuser
+    msg: test from ansible
+    tags: tag1,tag2,tag3
+    token: AAAAAA
+    type: chat

@@ -1,0 +1,9 @@
+- name: Set timezone to 'Romance Standard Time' (GMT+01:00)
+  win_timezone:
+    timezone: Romance Standard Time
+- name: Set timezone to 'GMT Standard Time' (GMT)
+  win_timezone:
+    timezone: GMT Standard Time
+- name: Set timezone to 'Central Standard Time' (GMT-06:00)
+  win_timezone:
+    timezone: Central Standard Time

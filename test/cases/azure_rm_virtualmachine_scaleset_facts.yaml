@@ -1,0 +1,12 @@
+- azure_rm_virtualmachine_scaleset_facts:
+    name: testvmss001
+    resource_group: Testing
+  name: Get facts for a virtual machine scale set
+- azure_rm_virtualmachine_scaleset_facts:
+    resource_group: Testing
+  name: Get facts for all virtual networks
+- azure_rm_virtualmachine_scaleset_facts:
+    resource_group: Testing
+    tags:
+    - testing
+  name: Get facts by tags

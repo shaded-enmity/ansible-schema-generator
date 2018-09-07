@@ -1,0 +1,40 @@
+- name: Create a VM folder on given datacenter
+  register: vm_folder_creation_result
+  vcenter_folder:
+    datacenter: datacenter_name
+    folder_name: sample_vm_folder
+    folder_type: vm
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Create a datastore folder on given datacenter
+  register: datastore_folder_creation_result
+  vcenter_folder:
+    datacenter: datacenter_name
+    folder_name: sample_datastore_folder
+    folder_type: datastore
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Create a sub folder under VM folder on given datacenter
+  register: sub_folder_creation_result
+  vcenter_folder:
+    datacenter: datacenter_name
+    folder_name: sample_sub_folder
+    hostname: '{{ vcenter_hostname }}'
+    parent_folder: vm_folder
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Delete a VM folder on given datacenter
+  register: vm_folder_deletion_result
+  vcenter_folder:
+    datacenter: datacenter_name
+    folder_name: sample_vm_folder
+    folder_type: vm
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: absent
+    username: '{{ vcenter_username }}'

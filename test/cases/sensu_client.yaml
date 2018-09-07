@@ -1,0 +1,31 @@
+- name: Configure Sensu client
+  sensu_client:
+    subscriptions:
+    - default
+- name: Configure Sensu client
+  notify:
+  - Restart sensu-client
+  register: client
+  sensu_client:
+    address: '{{ ansible_default_ipv4[''address''] }}'
+    keepalive:
+      custom:
+      - broadcast: irc
+      handlers:
+      - email
+      occurrences: 3
+      thresholds:
+        critical: 300
+        warning: 180
+    name: '{{ ansible_fqdn }}'
+    redact:
+    - password
+    socket:
+      bind: 127.0.0.1
+      port: 3030
+    subscriptions:
+    - default
+    - webserver
+- name: Delete the Sensu client configuration
+  sensu_client:
+    state: absent

@@ -1,0 +1,6 @@
+- name: Enable LLDP protocol
+  onyx_lldp:
+    state: present
+- name: Disable LLDP protocol
+  onyx_lldp:
+    state: lldp

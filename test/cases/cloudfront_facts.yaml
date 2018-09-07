@@ -1,0 +1,20 @@
+- cloudfront_facts:
+    summary: true
+- cloudfront_facts:
+    distribution: true
+    distribution_id: my-cloudfront-distribution-id
+- cloudfront_facts:
+    distribution: true
+    domain_name_alias: www.my-website.com
+- cloudfront_facts:
+    distribution_id: my-cloudfront-distribution-id
+    invalidation: true
+    invalidation_id: my-cloudfront-invalidation-id
+- cloudfront_facts:
+    origin_access_identity: true
+    origin_access_identity_id: my-cloudfront-origin-access-identity-id
+- cloudfront_facts:
+    origin_access_identity: true
+    origin_access_identity_id: my-cloudfront-origin-access-identity-id
+- cloudfront_facts:
+    all_lists: true

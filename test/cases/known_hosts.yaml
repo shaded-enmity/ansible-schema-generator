@@ -1,0 +1,5 @@
+- known_hosts:
+    key: '{{ lookup(''file'', ''pubkeys/foo.com.invalid'') }}'
+    name: foo.com.invalid
+    path: /etc/ssh/ssh_known_hosts
+  name: tell the host about our servers it might want to ssh to

@@ -1,0 +1,4 @@
+- aws_az_facts: null
+- aws_az_facts:
+    filters:
+      zone-name: eu-west-1a

@@ -1,0 +1,11 @@
+- nxos_vpc:
+    auto_recovery: true
+    domain: 100
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    peer_gw: true
+    pkl_dest: 192.168.100.4
+    pkl_src: 10.1.100.20
+    role_priority: 1000
+    system_priority: 2000
+    username: '{{ un }}'

@@ -1,0 +1,19 @@
+- azure_rm_availabilityset:
+    location: eastus
+    name: myavailabilityset
+    resource_group: Testing
+  name: Create an availability set with default options
+- azure_rm_availabilityset:
+    location: eastus
+    name: myavailabilityset
+    platform_fault_domain_count: 3
+    platform_update_domain_count: 5
+    resource_group: Testing
+    sku: Aligned
+  name: Create an availability set with advanced options
+- azure_rm_availabilityset:
+    location: eastus
+    name: myavailabilityset
+    resource_group: Testing
+    state: absent
+  name: Delete an availability set

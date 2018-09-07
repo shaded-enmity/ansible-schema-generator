@@ -1,0 +1,7 @@
+- nxos_vrf_af:
+    host: '{{ inventory_hostname }}'
+    ingress_replication: true
+    interface: nve1
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+    vni: 6000

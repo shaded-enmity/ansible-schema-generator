@@ -1,0 +1,16 @@
+- dimensiondata_network:
+    location: NA5
+    name: mynet
+    region: na
+- dimensiondata_network:
+    location: NA9
+    mcp_password: my_password
+    mcp_user: my_user
+    name: mynet
+    region: na
+    service_plan: ADVANCED
+- dimensiondata_network:
+    location: NA1
+    name: mynet
+    region: na
+    state: absent

@@ -1,0 +1,19 @@
+- bigip_monitor_tcp:
+    name: my_tcp_monitor
+    password: secret
+    receive: tcp string to receive
+    send: tcp string to send
+    server: lb.mydomain.com
+    state: present
+    type: tcp
+    user: admin
+  delegate_to: localhost
+  name: Create TCP Monitor
+- bigip_monitor_tcp:
+    name: my_tcp_monitor
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove TCP Monitor

@@ -1,0 +1,8 @@
+- systemd:
+    enabled: true
+    masked: false
+    name: httpd
+- systemd:
+    enabled: true
+    name: dnf-automatic.timer
+    state: started

@@ -1,0 +1,41 @@
+- name: configure console logging
+  vyos_logging:
+    dest: console
+    facility: all
+    level: crit
+- name: remove console logging configuration
+  vyos_logging:
+    dest: console
+    state: absent
+- name: configure file logging
+  vyos_logging:
+    dest: file
+    facility: local3
+    level: err
+    name: test
+- name: Add logging aggregate
+  vyos_logging:
+    aggregate:
+    - dest: file
+      facility: all
+      level: info
+      name: test1
+    - dest: file
+      facility: news
+      level: debug
+      name: test2
+    state: present
+- name: Remove logging aggregate
+  vyos_logging:
+    aggregate:
+    - dest: console
+      facility: all
+      level: info
+    - dest: console
+      facility: daemon
+      level: warning
+    - dest: file
+      facility: news
+      level: debug
+      name: test2
+    state: absent

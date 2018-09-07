@@ -1,0 +1,12 @@
+- name: enable failure auditing for the subcategory "File System"
+  win_audit_policy_system:
+    audit_type: failure
+    subcategory: File System
+- name: enable all auditing types for the category "Account logon events"
+  win_audit_policy_system:
+    audit_type: success, failure
+    category: Account logon events
+- name: disable auditing for the subcategory "File System"
+  win_audit_policy_system:
+    audit_type: none
+    subcategory: File System

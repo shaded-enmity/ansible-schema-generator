@@ -1,0 +1,5 @@
+- os_network:
+    cloud: mycloud
+    external: true
+    name: ext_network
+    state: present

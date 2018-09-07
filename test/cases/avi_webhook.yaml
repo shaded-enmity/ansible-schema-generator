@@ -1,0 +1,7 @@
+- avi_webhook:
+    controller: 10.10.25.42
+    name: sample_webhook
+    password: something
+    state: present
+    username: admin
+  name: Example to create Webhook object

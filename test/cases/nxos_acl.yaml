@@ -1,0 +1,9 @@
+- nxos_acl:
+    action: permit
+    dest: any
+    name: ANSIBLE
+    proto: tcp
+    provider: '{{ nxos_provider }}'
+    seq: 10
+    src: 1.1.1.1/24
+    state: present

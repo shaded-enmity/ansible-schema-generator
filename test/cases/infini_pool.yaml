@@ -1,0 +1,15 @@
+- infini_pool:
+    name: foo
+    password: secret
+    size: 10TB
+    system: ibox001
+    user: admin
+    vsize: 10TB
+  name: Make sure pool foo exists. Set pool physical capacity to 10TB
+- infini_pool:
+    name: foo
+    password: secret
+    ssd_cache: false
+    system: ibox001
+    user: admin
+  name: Disable SSD Cache on pool

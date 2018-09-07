@@ -1,0 +1,13 @@
+- mysql_replication:
+    mode: stopslave
+- mysql_replication:
+    mode: getmaster
+- mysql_replication:
+    master_host: 192.0.2.1
+    master_log_file: mysql-bin.000009
+    master_log_pos: 4578
+    mode: changemaster
+- mysql_replication:
+    login_host: ansible.example.com
+    login_port: 3308
+    mode: getslave

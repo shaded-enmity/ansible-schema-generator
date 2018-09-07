@@ -1,0 +1,38 @@
+- delegate_to: localhost
+  name: Create a Network Set
+  oneview_network_set:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: OneViewSDK Test Network Set
+      networkUris:
+      - Test Ethernet Network_1
+      - /rest/ethernet-networks/e4360c9d-051d-4931-b2aa-7de846450dd8
+    state: present
+- delegate_to: localhost
+  name: Update the Network Set name to 'OneViewSDK Test Network Set - Renamed' and
+    change the associated networks
+  oneview_network_set:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: OneViewSDK Test Network Set
+      networkUris:
+      - Test Ethernet Network_1
+      newName: OneViewSDK Test Network Set - Renamed
+    state: present
+- delegate_to: localhost
+  name: Delete the Network Set
+  oneview_network_set:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: OneViewSDK Test Network Set - Renamed
+    state: absent
+- delegate_to: localhost
+  name: Update the Network set with two scopes
+  oneview_network_set:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: OneViewSDK Test Network Set
+      scopeUris:
+      - /rest/scopes/01SC123456
+      - /rest/scopes/02SC123456
+    state: present

@@ -1,0 +1,7 @@
+- azure_rm_securitygroup_facts:
+    name: secgroup001
+    resource_group: Testing
+  name: Get facts for one security group
+- azure_rm_securitygroup_facts:
+    resource_group: Testing
+  name: Get facts for all security groups

@@ -1,0 +1,7 @@
+- name: enable protocols for MLAG
+  onyx_protocol:
+    dcb_pfc: enabled
+    ip_routing: enabled
+    lacp: enabled
+    mlag: enabled
+    spanning_tree: disabled

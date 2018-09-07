@@ -1,0 +1,22 @@
+- github_release:
+    action: latest_release
+    repo: testrepo
+    token: tokenabc1234567890
+    user: testuser
+  name: Get latest release of testuseer/testrepo
+- github_release:
+    action: latest_release
+    password: secret123
+    repo: testrepo
+    user: testuser
+  name: Get latest release of test repo using username and password. Ansible 2.4.
+- github_release:
+    action: create_release
+    body: Some description
+    name: My Release
+    repo: testrepo
+    tag: test
+    target: master
+    token: tokenabc1234567890
+    user: testuser
+  name: Create a new release

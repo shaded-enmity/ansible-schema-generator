@@ -1,0 +1,42 @@
+- name: Create new protection group
+  purefa_pg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    pgroup: foo
+- name: Create new protection group with snapshots disabled
+  purefa_pg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    enabled: false
+    fa_url: 10.10.10.2
+    pgroup: foo
+- name: Delete protection group
+  purefa_pg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    eradicate: true
+    fa_url: 10.10.10.2
+    pgroup: foo
+    state: absent
+- name: Create protection group for hostgroups
+  purefa_pg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    hostgroup:
+    - hg1
+    - hg2
+    pgroup: bar
+- name: Create protection group for hosts
+  purefa_pg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    host:
+    - host1
+    - host2
+    pgroup: bar
+- name: Create protection group for volumes
+  purefa_pg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    pgroup: bar
+    volume:
+    - vol1
+    - vol2

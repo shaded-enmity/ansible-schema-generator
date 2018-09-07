@@ -1,0 +1,18 @@
+- openvswitch_db:
+    col: other_config
+    key: max-idle
+    record: .
+    table: open_vswitch
+    value: 50000
+- openvswitch_db:
+    col: other_config
+    key: disable-in-band
+    record: br-int
+    table: Bridge
+    value: true
+- openvswitch_db:
+    col: other_config
+    key: disable-in-band
+    record: br-int
+    state: present
+    table: Bridge

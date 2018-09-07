@@ -1,0 +1,6 @@
+- nxos_vpc_interface:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    portchannel: 10
+    username: '{{ un }}'
+    vpc: 100

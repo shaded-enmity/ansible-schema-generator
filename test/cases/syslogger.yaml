@@ -1,0 +1,9 @@
+- name: Test syslog
+  syslogger:
+    facility: daemon
+    log_pid: true
+    msg: Hello from ansible
+    priority: err
+- name: Simple Usage
+  syslogger:
+    msg: I will end up as daemon.info

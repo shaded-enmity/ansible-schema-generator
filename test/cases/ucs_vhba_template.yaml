@@ -1,0 +1,16 @@
+- name: Configure vHBA template
+  ucs_vhba_template:
+    fabric: A
+    hostname: 172.16.143.150
+    name: vHBA-A
+    password: password
+    username: admin
+    vsan: VSAN-A
+    wwpn_pool: WWPN-Pool-A
+- name: Remote vHBA template
+  ucs_vhba_template:
+    hostname: 172.16.143.150
+    name: vHBA-A
+    password: password
+    state: absent
+    username: admin

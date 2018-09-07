@@ -1,0 +1,26 @@
+- pagerduty_alert:
+    api_key: yourapikey
+    desc: problem that led to this trigger
+    name: companyabc
+    service_key: xxx
+    state: triggered
+- pagerduty_alert:
+    api_key: yourapikey
+    client: Sample Monitoring Service
+    client_url: http://service.example.com
+    desc: problem that led to this trigger
+    incident_key: somekey
+    service_key: xxx
+    state: triggered
+- pagerduty_alert:
+    api_key: yourapikey
+    desc: some text for incident's log
+    incident_key: somekey
+    service_key: xxx
+    state: acknowledged
+- pagerduty_alert:
+    api_key: yourapikey
+    desc: some text for incident's log
+    incident_key: somekey
+    service_key: xxx
+    state: resolved

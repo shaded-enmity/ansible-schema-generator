@@ -1,0 +1,2 @@
+- import_playbook: otherplays.yaml
+  name: Include a play after another play

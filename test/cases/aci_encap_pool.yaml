@@ -1,0 +1,32 @@
+- aci_encap_pool:
+    description: Production VLANs
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    pool_type: vlan
+    state: present
+    username: admin
+  name: Add a new vlan pool
+- aci_encap_pool:
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    pool_type: vlan
+    state: absent
+    username: admin
+  name: Remove a vlan pool
+- aci_encap_pool:
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    pool_type: vlan
+    state: query
+    username: admin
+  name: Query a vlan pool
+- aci_encap_pool:
+    host: apic
+    password: SomeSecretPassword
+    pool_type: vlan
+    state: query
+    username: admin
+  name: Query all vlan pools

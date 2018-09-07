@@ -1,0 +1,7 @@
+- avi_backupconfiguration:
+    controller: 10.10.25.42
+    name: sample_backupconfiguration
+    password: something
+    state: present
+    username: admin
+  name: Example to create BackupConfiguration object

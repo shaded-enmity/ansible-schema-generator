@@ -1,0 +1,30 @@
+- name: Add repository
+  yum_repository:
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    description: EPEL YUM repo
+    name: epel
+- name: Add multiple repositories into the same file (1/2)
+  yum_repository:
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    description: EPEL YUM repo
+    file: external_repos
+    gpgcheck: false
+    name: epel
+- name: Add multiple repositories into the same file (2/2)
+  yum_repository:
+    baseurl: http://apt.sw.be/redhat/el7/en/$basearch/rpmforge
+    description: RPMforge YUM repo
+    enabled: false
+    file: external_repos
+    mirrorlist: http://mirrorlist.repoforge.org/el7/mirrors-rpmforge
+    name: rpmforge
+- name: Remove repository (and clean up left-over metadata)
+  notify: yum-clean-metadata
+  yum_repository:
+    name: epel
+    state: absent
+- name: Remove repository from a specific repo file
+  yum_repository:
+    file: external_repos
+    name: epel
+    state: absent

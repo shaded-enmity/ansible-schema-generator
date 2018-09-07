@@ -1,0 +1,9 @@
+- os_keystone_domain:
+    cloud: mycloud
+    description: Demo Domain
+    name: demo
+    state: present
+- os_keystone_domain:
+    cloud: mycloud
+    name: demo
+    state: absent

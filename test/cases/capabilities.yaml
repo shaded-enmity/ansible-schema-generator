@@ -1,0 +1,10 @@
+- capabilities:
+    capability: cap_sys_chroot+ep
+    path: /foo
+    state: present
+  name: Set cap_sys_chroot+ep on /foo
+- capabilities:
+    capability: cap_net_bind_service
+    path: /bar
+    state: absent
+  name: Remove cap_net_bind_service from /bar

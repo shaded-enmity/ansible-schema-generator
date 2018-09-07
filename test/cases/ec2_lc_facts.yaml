@@ -1,0 +1,6 @@
+- ec2_lc_facts: null
+- ec2_lc_facts:
+    name: example
+- ec2_lc_facts:
+    sort: created_time
+    sort_order: descending

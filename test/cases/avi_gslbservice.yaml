@@ -1,0 +1,7 @@
+- avi_gslbservice:
+    controller: 10.10.25.42
+    name: sample_gslbservice
+    password: something
+    state: present
+    username: admin
+  name: Example to create GslbService object

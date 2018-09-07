@@ -1,0 +1,10 @@
+- nxos_rollback:
+    checkpoint_file: backup.cfg
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+- nxos_rollback:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    rollback_to: backup.cfg
+    username: '{{ un }}'

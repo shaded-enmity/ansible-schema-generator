@@ -1,0 +1,7 @@
+- name: Add tower group
+  tower_group:
+    description: Local Host Group
+    inventory: Local Inventory
+    name: localhost
+    state: present
+    tower_config_file: ~/tower_cli.cfg

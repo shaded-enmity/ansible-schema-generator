@@ -1,0 +1,3 @@
+- monit:
+    name: httpd
+    state: started

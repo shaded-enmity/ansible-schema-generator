@@ -1,0 +1,17 @@
+- cnos_conditional_template:
+    commandfile: ./commands/vlag_1tier_leaf_switch1_{{ inventory_hostname }}_commands.txt
+    condition: '{{ hostvars[inventory_hostname][''condition'']}}'
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: anil
+    flag: leaf_switch1
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/vlag_1tier_leaf_switch1_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    port_range1: 17,18,29,30
+    portchannel_interface_number1: 1001
+    portchannel_mode1: active
+    slot_chassis_number1: 1/48
+    stp_mode1: disable
+    switchport_mode1: trunk
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Applying CLI template on VLAG Tier1 Leaf Switch1

@@ -1,0 +1,8 @@
+- interfaces_file:
+    backup: true
+    dest: /etc/network/interfaces.d/eth1.cfg
+    iface: eth1
+    option: mtu
+    state: present
+    value: 8000
+  register: eth1_cfg

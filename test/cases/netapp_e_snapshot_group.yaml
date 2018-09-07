@@ -1,0 +1,15 @@
+- name: Configure Snapshot group
+  netapp_e_snapshot_group:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    base_volume_name: SSGroup_test
+    delete_limit: 30
+    full_policy: purgepit
+    name=: OOSS_Group
+    repo_pct: 20
+    rollback_priority: medium
+    ssid: '{{ ssid }}'
+    storage_pool_name: Disk_Pool_1
+    validate_certs: '{{ netapp_api_validate_certs }}'
+    warning_threshold: 85

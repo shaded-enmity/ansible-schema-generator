@@ -1,0 +1,49 @@
+- ipa_host:
+    description: Example host
+    ip_address: 192.168.0.123
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    mac_address:
+    - 08:00:27:E3:B1:2D
+    - 52:54:00:BD:97:1E
+    name: host01.example.com
+    ns_hardware_platform: Lenovo T61
+    ns_host_location: Lab
+    ns_os_version: CentOS 7
+    state: present
+- ipa_host:
+    description: Example host
+    ip_address: 192.168.0.123
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: host01.example.com
+    random_password: true
+    state: present
+    validate_certs: false
+- ipa_host:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: host01.example.com
+    state: disabled
+- ipa_host:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: host01.example.com
+    user_certificate: []
+- ipa_host:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: host01.example.com
+    state: absent
+- ipa_host:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: host01.example.com
+    state: absent
+    update_dns: true

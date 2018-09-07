@@ -1,0 +1,44 @@
+- lambda:
+    environment_variables: '{{ item.env_vars }}'
+    handler: hello_python.my_handler
+    name: '{{ item.name }}'
+    role: arn:aws:iam::987654321012:role/lambda_basic_execution
+    runtime: python2.7
+    state: present
+    tags:
+      key1: value1
+    vpc_security_group_ids:
+    - sg-123abcde
+    - sg-edcba321
+    vpc_subnet_ids:
+    - subnet-123abcde
+    - subnet-edcba321
+    zip_file: '{{ item.zip_file }}'
+  name: looped creation
+  with_items:
+  - env_vars:
+      key1: first
+      key2: second
+    name: HelloWorld
+    zip_file: hello-code.zip
+  - env_vars:
+      key1: '1'
+      key2: '2'
+    name: ByeBye
+    zip_file: bye-code.zip
+- lambda:
+    handler: hello_python.my_handler
+    name: Lambda function
+    role: arn:aws:iam::987654321012:role/lambda_basic_execution
+    runtime: python2.7
+    state: present
+    tags: {}
+    zip_file: code.zip
+  name: remove tags
+- lambda:
+    name: '{{ item }}'
+    state: absent
+  name: Delete Lambda functions HelloWorld and ByeBye
+  with_items:
+  - HelloWorld
+  - ByeBye

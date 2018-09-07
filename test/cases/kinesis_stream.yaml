@@ -1,0 +1,55 @@
+- kinesis_stream:
+    name: test-stream
+    shards: 10
+    wait: true
+    wait_timeout: 600
+  name: Set up Kinesis Stream with 10 shards and wait for the stream to become ACTIVE
+  register: test_stream
+- kinesis_stream:
+    name: test-stream
+    shards: 10
+    tags:
+      Env: development
+    wait: true
+    wait_timeout: 600
+  name: Set up Kinesis Stream with 10 shards, tag the environment, and wait for the
+    stream to become ACTIVE
+  register: test_stream
+- kinesis_stream:
+    name: test-stream
+    retention_period: 48
+    shards: 10
+    tags:
+      Env: development
+    wait: true
+    wait_timeout: 600
+  name: Set up Kinesis Stream with 10 shards, tag the environment, increase the retention
+    period and wait for the stream to become ACTIVE
+  register: test_stream
+- kinesis_stream:
+    name: test-stream
+    state: absent
+    wait: true
+    wait_timeout: 600
+  name: Delete Kinesis Stream test-stream and wait for it to finish deleting.
+  register: test_stream
+- kinesis_stream:
+    encryption_state: enabled
+    encryption_type: KMS
+    key_id: alias/aws/kinesis
+    name: test-stream
+    state: present
+    wait: true
+    wait_timeout: 600
+  name: Encrypt Kinesis Stream test-stream.
+  register: test_stream
+- kinesis_stream:
+    encryption_state: disabled
+    encryption_type: KMS
+    key_id: alias/aws/kinesis
+    name: test-stream
+    state: present
+    wait: true
+    wait_timeout: 600
+  name: Encrypt Kinesis Stream test-stream.
+  register: test_stream

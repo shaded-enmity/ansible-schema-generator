@@ -1,0 +1,17 @@
+- influxdb_database:
+    database_name: '{{influxdb_database_name}}'
+    hostname: '{{influxdb_ip_address}}'
+  name: Create database
+- influxdb_database:
+    database_name: '{{influxdb_database_name}}'
+    hostname: '{{influxdb_ip_address}}'
+    state: absent
+  name: Destroy database
+- influxdb_database:
+    database_name: '{{influxdb_database_name}}'
+    hostname: '{{influxdb_ip_address}}'
+    password: '{{influxdb_password}}'
+    ssl: true
+    username: '{{influxdb_username}}'
+    validate_certs: true
+  name: Create database using custom credentials

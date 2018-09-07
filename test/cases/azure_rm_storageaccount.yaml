@@ -1,0 +1,13 @@
+- azure_rm_storageaccount:
+    name: clh0002
+    resource_group: Testing
+    state: absent
+  name: remove account, if it exists
+- azure_rm_storageaccount:
+    name: clh0002
+    resource_group: Testing
+    tags:
+    - testing: testing
+    - delete: on-exit
+    type: Standard_RAGRS
+  name: create an account

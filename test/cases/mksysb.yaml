@@ -1,0 +1,6 @@
+- mksysb:
+    exclude_files: true
+    exclude_wpar_files: true
+    name: myserver
+    storage_path: /repository/images
+  name: Running a backup image mksysb

@@ -1,0 +1,72 @@
+- delegate_to: localhost
+  name: Creates a Device Manager for the Brocade SAN provider with the given hostname
+    and credentials
+  oneview_san_manager:
+    config: /etc/oneview/oneview_config.json
+    data:
+      connectionInfo:
+      - name: Host
+        value: 172.18.15.1
+      - name: Port
+        value: 5989
+      - name: Username
+        value: username
+      - name: Password
+        value: password
+      - name: UseSsl
+        value: true
+      providerDisplayName: Brocade Network Advisor
+    state: present
+- delegate_to: localhost
+  name: Ensure a Device Manager for the Cisco SAN Provider is present
+  oneview_san_manager:
+    config: /etc/oneview/oneview_config.json
+    data:
+      connectionInfo:
+      - name: Host
+        value: 172.18.20.1
+      - name: SnmpPort
+        value: 161
+      - name: SnmpUserName
+        value: admin
+      - name: SnmpAuthLevel
+        value: authnopriv
+      - name: SnmpAuthProtocol
+        value: sha
+      - name: SnmpAuthString
+        value: password
+      name: 172.18.20.1
+      providerDisplayName: Cisco
+    state: present
+- delegate_to: localhost
+  name: Sets the SAN Manager connection information
+  oneview_san_manager:
+    config: /etc/oneview/oneview_config.json
+    data:
+      connectionInfo:
+      - name: Host
+        value: 172.18.15.1
+      - name: Port
+        value: '5989'
+      - name: Username
+        value: username
+      - name: Password
+        value: password
+      - name: UseSsl
+        value: true
+    state: connection_information_set
+- delegate_to: localhost
+  name: Refreshes the SAN Manager
+  oneview_san_manager:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: 172.18.15.1
+      refreshState: RefreshPending
+    state: present
+- delegate_to: localhost
+  name: Delete the SAN Manager recently created
+  oneview_san_manager:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: 172.18.15.1
+    state: absent

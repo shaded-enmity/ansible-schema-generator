@@ -1,0 +1,25 @@
+- delegate_to: localhost
+  name: Send default notification message via SNS
+  sns:
+    msg: '{{ inventory_hostname }} has completed the play.'
+    subject: Deploy complete!
+    topic: deploy
+- delegate_to: localhost
+  name: Send notification messages via SNS with short message for SMS
+  sns:
+    msg: '{{ inventory_hostname }} has completed the play.'
+    sms: deployed!
+    subject: Deploy complete!
+    topic: deploy
+- delegate_to: localhost
+  name: Send message with message_attributes
+  sns:
+    message_attributes:
+      channel:
+        data_type: String
+        string_value: mychannel
+      color:
+        data_type: String
+        string_value: green
+    msg: message with extra details!
+    topic: deploy

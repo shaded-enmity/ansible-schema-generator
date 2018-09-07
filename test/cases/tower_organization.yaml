@@ -1,0 +1,6 @@
+- name: Create tower organization
+  tower_organization:
+    description: Foo bar organization
+    name: Foo
+    state: present
+    tower_config_file: ~/tower_cli.cfg

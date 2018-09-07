@@ -1,0 +1,2 @@
+- name: run ngen tasks
+  win_dotnet_ngen: null

@@ -1,0 +1,4 @@
+- nxos_ntp_auth:
+    auth_type: text
+    key_id: 32
+    md5string: hello

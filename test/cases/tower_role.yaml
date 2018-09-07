@@ -1,0 +1,7 @@
+- name: Add jdoe to the member role of My Team
+  tower_role:
+    role: member
+    state: present
+    target_team: My Team
+    tower_config_file: ~/tower_cli.cfg
+    user: jdoe

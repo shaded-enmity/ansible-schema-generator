@@ -1,0 +1,26 @@
+- name: Set acceptance level to community for all ESXi Host in given Cluster
+  register: cluster_acceptance_level
+  vmware_host_acceptance:
+    acceptance_level: community
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Set acceptance level to vmware_accepted for the given ESXi Host
+  register: host_acceptance_level
+  vmware_host_acceptance:
+    acceptance_level: vmware_accepted
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Get acceptance level from the given ESXi Host
+  register: host_acceptance_level
+  vmware_host_acceptance:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: list
+    username: '{{ vcenter_username }}'

@@ -1,0 +1,43 @@
+- name: Create and install a zone, but don't boot it
+  solaris_zone:
+    config: set autoboot=true; add net; set physical=bge0; set address=10.1.1.1; end
+    name: zone1
+    path: /zones/zone1
+    root_password: Be9oX7OSwWoU.
+    sparse: true
+    state: present
+- name: Create and install a zone and boot it
+  solaris_zone:
+    config: set autoboot=true; add net; set physical=bge0; set address=10.1.1.1; end
+    name: zone1
+    path: /zones/zone1
+    root_password: Be9oX7OSwWoU.
+    state: running
+- name: Boot an already installed zone
+  solaris_zone:
+    name: zone1
+    state: running
+- name: Stop a zone
+  solaris_zone:
+    name: zone1
+    state: stopped
+- name: Destroy a zone
+  solaris_zone:
+    name: zone1
+    state: absent
+- name: Detach a zone
+  solaris_zone:
+    name: zone1
+    state: detached
+- name: Configure a zone, ready to be attached
+  solaris_zone:
+    config: set autoboot=true; add net; set physical=bge0; set address=10.1.1.1; end
+    name: zone1
+    path: /zones/zone1
+    root_password: Be9oX7OSwWoU.
+    state: configured
+- name: Attach zone1
+  solaris_zone:
+    attach_options: -u
+    name: zone1
+    state: attached

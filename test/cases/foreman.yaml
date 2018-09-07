@@ -1,0 +1,9 @@
+- delegate_to: localhost
+  foreman:
+    entity: organization
+    params:
+      name: My Cool New Organization
+    password: admin
+    server_url: https://fakeserver.com
+    username: admin
+  name: Create CI Organization

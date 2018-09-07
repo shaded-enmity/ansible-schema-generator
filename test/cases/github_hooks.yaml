@@ -1,0 +1,12 @@
+- github_hooks:
+    action: create
+    hookurl: http://11.111.111.111:2222
+    oauthkey: '{{ oauthkey }}'
+    repo: https://api.github.com/repos/pcgentry/Github-Auto-Deploy
+    user: '{{ gituser }}'
+- delegate_to: localhost
+  github_hooks:
+    action: cleanall
+    oauthkey: '{{ oauthkey }}'
+    repo: '{{ repo }}'
+    user: '{{ gituser }}'

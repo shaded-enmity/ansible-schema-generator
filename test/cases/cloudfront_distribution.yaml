@@ -1,0 +1,76 @@
+- cloudfront_distribution:
+    default_origin_domain_name: www.my-cloudfront-origin.com
+    state: present
+    tags:
+      Name: example distribution
+      Priority: '1'
+      Project: example project
+- cloudfront_distribution:
+    comment: modified by ansible cloudfront.py
+    distribution_id: E1RP5A2MJ8073O
+    state: present
+- cloudfront_distribution:
+    caller_reference: my cloudfront distribution 001
+    comment: modified by ansible cloudfront.py
+    state: present
+- cloudfront_distribution:
+    aliases:
+    - www.my-distribution-source.com
+    - zzz.aaa.io
+    comment: modified by cloudfront.py again
+    distribution_id: E1RP5A2MJ8073O
+    state: present
+- cloudfront_distribution:
+    aliases:
+    - www.my-distribution-source.com
+    - zzz.aaa.io
+    caller_reference: my test distribution
+    comment: modified by cloudfront.py again
+    state: present
+- cloudfront_distribution:
+    aliases:
+    - tested.com
+    comment: modified by cloudfront.py again
+    distribution_id: E15BU8SDCGSG57
+    purge_tags: true
+    state: present
+    tags:
+      Project: distribution 1.2
+- cloudfront_distribution:
+    caller_reference: unique test distribution id
+    comment: this is a cloudfront distribution with logging
+    default_cache_behavior:
+      allowed_methods:
+        cached_methods:
+        - GET
+        - HEAD
+        items:
+        - GET
+        - HEAD
+      compress: true
+      forwarded_values:
+        cookies:
+          forward: all
+        headers:
+        - '*'
+        query_string: true
+      smooth_streaming: true
+      target_origin_id: my test origin-000111
+      viewer_protocol_policy: allow-all
+    enabled: false
+    logging:
+      bucket: mylogbucket.s3.amazonaws.com
+      enabled: true
+      include_cookies: false
+      prefix: myprefix/
+    origins:
+    - custom_headers:
+      - header_name: MyCustomHeaderName
+        header_value: MyCustomHeaderValue
+      domain_name: www.example.com
+      id: my test origin-000111
+      origin_path: /production
+    state: present
+- cloudfront_distribution:
+    caller_reference: replaceable distribution
+    state: absent

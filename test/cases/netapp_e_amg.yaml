@@ -1,0 +1,11 @@
+- name: AMG create
+  netapp_e_amg:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    name: '{{amg_name}}'
+    new_name: '{{amg_array_name}}'
+    secondaryArrayId: '{{amg_secondaryArrayId}}'
+    ssid: '{{ ssid }}'
+    state: present
+  when: amg_create

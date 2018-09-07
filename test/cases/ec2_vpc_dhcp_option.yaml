@@ -1,0 +1,45 @@
+- ec2_vpc_dhcp_option:
+    delete_old: true
+    dns_servers:
+    - 10.0.0.1
+    - 10.0.1.1
+    domain_name: foo.example.com
+    inherit_existing: false
+    netbios_name_servers:
+    - 10.0.0.1
+    - 10.0.1.1
+    netbios_node_type: 2
+    ntp_servers:
+    - 10.0.0.2
+    - 10.0.1.2
+    region: us-east-1
+    vpc_id: vpc-123456
+- ec2_vpc_dhcp_option:
+    delete_old: false
+    dns_servers:
+    - '{{groups[''dns-primary'']}}'
+    - '{{groups[''dns-secondary'']}}'
+    inherit_existing: true
+    region: us-east-1
+    vpc_id: vpc-123456
+- ec2_vpc_dhcp_option:
+    dns_servers:
+    - 4.4.4.4
+    - 8.8.8.8
+    region: us-east-1
+    tags:
+      Environment: Test
+      Name: google servers
+- ec2_vpc_dhcp_option:
+    dns_servers:
+    - 4.4.4.4
+    - 8.8.8.8
+    region: us-east-1
+    tags:
+      Environment: Test
+      Name: google servers
+  state: absent
+- ec2_vpc_dhcp_option:
+    dhcp_options_id: dopt-12345678
+    region: us-east-1
+    vpc_id: vpc-123456

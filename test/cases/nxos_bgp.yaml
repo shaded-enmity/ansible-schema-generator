@@ -1,0 +1,8 @@
+- nxos_bgp:
+    asn: 65535
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    router_id: 1.1.1.1
+    state: present
+    username: '{{ un }}'
+    vrf: test

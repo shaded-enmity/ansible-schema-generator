@@ -1,0 +1,12 @@
+- aws_ses_identity:
+    identity: example@example.com
+    state: present
+  name: Ensure example@example.com email identity exists
+- aws_ses_identity:
+    email: example@example.com
+    state: absent
+  name: Delete example@example.com email identity
+- aws_ses_identity:
+    identity: example.com
+    state: present
+  name: Ensure example.com domain identity exists

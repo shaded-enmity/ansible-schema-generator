@@ -1,0 +1,15 @@
+- bundler:
+    executable: ~/.rvm/gems/2.1.5/bin/bundle
+    state: present
+- bundler:
+    exclude_groups: production
+    state: present
+- bundler:
+    deployment_mode: true
+    state: present
+- bundler:
+    gemfile: ../rails_project/Gemfile
+    state: present
+- bundler:
+    chdir: ~/rails_project
+    state: latest

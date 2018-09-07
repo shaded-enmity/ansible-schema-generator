@@ -1,0 +1,5 @@
+- elasticache_facts: null
+  name: obtain all Elasticache facts
+- elasticache_facts:
+    name: test_elasticache
+  name: obtain all facts for a single Elasticache cluster

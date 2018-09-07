@@ -1,0 +1,39 @@
+- name: Ensure user bob is present with address information
+  win_domain_user:
+    attributes:
+      telephoneNumber: 555-123456
+    city: Sometown
+    company: BobCo
+    country: US
+    firstname: Bob
+    groups:
+    - Domain Admins
+    name: bob
+    password: B0bP4ssw0rd
+    postal_code: 12345
+    state: present
+    state_province: IN
+    street: 123 4th St.
+    surname: Smith
+- name: Ensure user bob is created and use custom credentials to create the user
+  win_domain_user:
+    domain_password: SomePas2w0rd
+    domain_server: domain@DOMAIN.COM
+    domain_username: DOMAIN\admin-account
+    firstname: Bob
+    name: bob
+    password: B0bP4ssw0rd
+    state: present
+    surname: Smith
+- name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+  win_domain_user:
+    groups:
+    - Domain Admins
+    name: bob
+    password: B0bP4ssw0rd
+    path: ou=test,dc=domain,dc=local
+    state: present
+- name: Ensure user bob is absent
+  win_domain_user:
+    name: bob
+    state: absent

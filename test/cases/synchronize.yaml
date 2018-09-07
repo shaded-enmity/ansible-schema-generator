@@ -1,0 +1,92 @@
+- name: Synchronization of src on the control machine to dest on the remote hosts
+  synchronize:
+    dest: /some/absolute/path
+    src: some/relative/path
+- name: Synchronization using rsync protocol (push)
+  synchronize:
+    dest: rsync://somehost.com/path/
+    src: some/relative/path/
+- name: Synchronization using rsync protocol (pull)
+  synchronize:
+    dest: /some/absolute/path/
+    mode: pull
+    src: rsync://somehost.com/path/
+- delegate_to: delegate.host
+  name: Synchronization using rsync protocol on delegate host (push)
+  synchronize:
+    dest: rsync://somehost.com/path/
+    src: /some/absolute/path/
+- delegate_to: delegate.host
+  name: Synchronization using rsync protocol on delegate host (pull)
+  synchronize:
+    dest: /some/absolute/path/
+    mode: pull
+    src: rsync://somehost.com/path/
+- name: Synchronization without any --archive options enabled
+  synchronize:
+    archive: false
+    dest: /some/absolute/path
+    src: some/relative/path
+- name: Synchronization with --archive options enabled except for --recursive
+  synchronize:
+    dest: /some/absolute/path
+    recursive: false
+    src: some/relative/path
+- name: Synchronization with --archive options enabled except for --times, with --checksum
+    option enabled
+  synchronize:
+    checksum: true
+    dest: /some/absolute/path
+    src: some/relative/path
+    times: false
+- name: Synchronization without --archive options enabled except use --links
+  synchronize:
+    archive: false
+    dest: /some/absolute/path
+    links: true
+    src: some/relative/path
+- delegate_to: localhost
+  name: Synchronization of two paths both on the control machine
+  synchronize:
+    dest: /some/absolute/path
+    src: some/relative/path
+- name: Synchronization of src on the inventory host to the dest on the localhost
+    in pull mode
+  synchronize:
+    dest: /some/absolute/path
+    mode: pull
+    src: some/relative/path
+- delegate_to: delegate.host
+  name: Synchronization of src on delegate host to dest on the current inventory host.
+  synchronize:
+    dest: /second/absolute/path
+    src: /first/absolute/path
+- delegate_to: '{{ inventory_hostname }}'
+  name: Synchronize two directories on one remote host.
+  synchronize:
+    dest: /second/absolute/path
+    src: /first/absolute/path
+- name: Synchronize and delete files in dest on the remote host that are not found
+    in src of localhost.
+  synchronize:
+    delete: true
+    dest: /some/absolute/path
+    recursive: true
+    src: some/relative/path
+- name: Synchronize using an alternate rsync command
+  synchronize:
+    dest: /some/absolute/path
+    rsync_path: su -c rsync
+    src: some/relative/path
+- name: Synchronize passing in extra rsync options
+  synchronize:
+    dest: /var/www/helloworld
+    rsync_opts:
+    - --no-motd
+    - --exclude=.git
+    src: /tmp/helloworld
+- name: Use hardlinks when synchronizing filesystems
+  synchronize:
+    dest: /tmp/path_b/foo.txt
+    link_dest: /tmp/path_a/
+    src: /tmp/path_a/foo.txt

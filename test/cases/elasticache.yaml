@@ -1,0 +1,17 @@
+- elasticache:
+    cache_engine_version: 1.4.14
+    cache_port: 11211
+    cache_security_groups:
+    - default
+    engine: memcached
+    name: test-please-delete
+    node_type: cache.m1.small
+    num_nodes: 1
+    state: present
+    zone: us-east-1d
+- elasticache:
+    name: test-please-delete
+    state: absent
+- elasticache:
+    name: test-please-delete
+    state: rebooted

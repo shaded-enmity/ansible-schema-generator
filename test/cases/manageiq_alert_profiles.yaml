@@ -1,0 +1,22 @@
+- manageiq_alert_profiles:
+    alerts:
+    - Test Alert 01
+    - Test Alert 02
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    name: Test profile
+    resource_type: ContainerNode
+    state: present
+  name: Add an alert profile to ManageIQ
+- manageiq_alert_profiles:
+    manageiq_connection:
+      password: smartvm
+      url: http://127.0.0.1:3000
+      username: admin
+      verify_ssl: false
+    name: Test profile
+    state: absent
+  name: Delete an alert profile from ManageIQ

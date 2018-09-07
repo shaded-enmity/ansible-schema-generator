@@ -1,0 +1,33 @@
+- os_router:
+    cloud: mycloud
+    name: simple_router
+    state: present
+- os_router:
+    cloud: mycloud
+    name: simple_router
+    project: myproj
+    state: present
+- os_router:
+    cloud: mycloud
+    external_fixed_ips:
+    - ip: 172.24.4.2
+      subnet: public-subnet
+    interfaces:
+    - private-subnet
+    name: router1
+    network: ext_network1
+    state: present
+- os_router:
+    cloud: mycloud
+    external_fixed_ips:
+    - ip: 172.24.4.2
+      subnet: public-subnet
+    - ip: 2001:db8::3
+      subnet: ipv6-public-subnet
+    name: router1
+    network: ext_network1
+    state: present
+- os_router:
+    cloud: mycloud
+    name: router1
+    state: absent

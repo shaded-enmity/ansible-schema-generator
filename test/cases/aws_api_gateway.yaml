@@ -1,0 +1,12 @@
+- aws_api_gateway:
+    api_id: abc123321cba
+    state: present
+    swagger_file: my_api.yml
+  name: update API
+- aws_api_gateway:
+    api_id: abc123321cba
+    deploy_desc: Make auth fix available.
+    stage: production
+    state: present
+    swagger_file: my_api.yml
+  name: deploy API

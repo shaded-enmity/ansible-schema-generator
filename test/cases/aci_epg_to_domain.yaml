@@ -1,0 +1,39 @@
+- aci_epg_to_domain:
+    ap: anstest
+    domain: anstest
+    domain_type: phys
+    epg: anstest
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    tenant: anstest
+    username: admin
+  name: Add a new physical domain to EPG binding
+- aci_epg_to_domain:
+    ap: anstest
+    domain: anstest
+    domain_type: phys
+    epg: anstest
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: anstest
+    username: admin
+  name: Remove an existing physical domain to EPG binding
+- aci_epg_to_domain:
+    ap: anstest
+    domain: anstest
+    domain_type: phys
+    epg: anstest
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: anstest
+    username: admin
+  name: Query a specific physical domain to EPG binding
+- aci_epg_to_domain:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all domain to EPG bindings

@@ -1,0 +1,5 @@
+- nxos_evpn_global:
+    host: '{{ inventory_hostname }}'
+    nv_overlay_evpn: true
+    password: '{{ pwd }}'
+    username: '{{ un }}'

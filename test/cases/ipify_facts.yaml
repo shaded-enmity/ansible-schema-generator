@@ -1,0 +1,6 @@
+- ipify_facts: null
+  name: get my public IP
+- ipify_facts:
+    api_url: http://api.example.com/ipify
+    timeout: 20
+  name: get my public IP

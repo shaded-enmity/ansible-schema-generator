@@ -1,0 +1,7 @@
+- avi_actiongroupconfig:
+    controller: 10.10.25.42
+    name: sample_actiongroupconfig
+    password: something
+    state: present
+    username: admin
+  name: Example to create ActionGroupConfig object

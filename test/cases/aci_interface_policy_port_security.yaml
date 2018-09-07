@@ -1,0 +1,7 @@
+- aci_interface_policy_port_security:
+    description: '{{ descr }}'
+    host: '{{ inventory_hostname }}'
+    max_end_points: '{{ max_end_points }}'
+    password: '{{ password }}'
+    port_security: '{{ port_security }}'
+    username: '{{ username }}'

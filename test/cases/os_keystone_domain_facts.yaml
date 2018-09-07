@@ -1,0 +1,10 @@
+- os_keystone_domain_facts:
+    cloud: awesomecloud
+- os_keystone_domain_facts:
+    cloud: awesomecloud
+    name: demodomain
+- os_keystone_domain_facts:
+    cloud: awesomecloud
+    filters:
+      enabled: false
+    name: demodomain

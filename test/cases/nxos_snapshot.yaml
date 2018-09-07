@@ -1,0 +1,38 @@
+- nxos_snapshot:
+    action: create
+    description: Done with Ansible
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    path: /home/user/snapshots/
+    save_snapshot_locally: true
+    snapshot_name: test_snapshot
+    username: '{{ un }}'
+- nxos_snapshot:
+    action: delete
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    snapshot_name: test_snapshot
+    username: '{{ un }}'
+- nxos_snapshot:
+    action: delete_all
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+- nxos_snapshot:
+    element_key1: intf-name
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    row_id: ROW_intf
+    section: myshow
+    show_command: show ip interface brief
+    username: '{{ un }}'
+- nxos_snapshot:
+    action: compare
+    compare_option: summary
+    comparison_results_file: compare_snapshots.txt
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    path: ../snapshot_reports/
+    snapshot1: pre_snapshot
+    snapshot2: post_snapshot
+    username: '{{ un }}'

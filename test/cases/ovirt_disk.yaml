@@ -1,0 +1,38 @@
+- ovirt_disk:
+    format: cow
+    interface: virtio
+    name: myvm_disk
+    size: 10GiB
+    storage_domain: data
+    vm_name: rhel7
+- ovirt_disk:
+    interface: virtio
+    logical_unit:
+      address: 10.34.63.204
+      id: 1IET_000d0001
+      target: iqn.2016-08-09.brq.str-01:omachace
+    vm_name: rhel7
+- ovirt_disk:
+    format: cow
+    interface: virtio
+    name: myvm_disk
+    size: 10GiB
+    state: detached
+    vm_name: rhel7
+- ovirt_disk:
+    format: cow
+    image_path: /path/to/mydisk.qcow2
+    interface: virtio
+    name: mydisk
+    size: 10GiB
+    storage_domain: data
+    vm_name: myvm
+- ovirt_disk:
+    download_image_path: /home/user/mydisk.qcow2
+    id: 7de90f31-222c-436c-a1ca-7e655bd5b60c
+- ovirt_disk:
+    description: somedescriptionhere
+    name: mydisk
+    quota_id: '{{ ovirt_quotas[0][''id''] }}'
+    size: 10GiB
+    storage_domain: data

@@ -1,0 +1,7 @@
+- nxos_bgp_af:
+    advertise_l2vpn_evpn: true
+    afi: ipv4
+    asn: 65535
+    safi: unicast
+    state: present
+    vrf: TESTING

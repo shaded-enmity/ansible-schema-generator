@@ -1,0 +1,20 @@
+- name: change the guest account name
+  win_security_policy:
+    key: NewGuestName
+    section: System Access
+    value: Guest Account
+- name: set the maximum password age
+  win_security_policy:
+    key: MaximumPasswordAge
+    section: System Access
+    value: 15
+- name: do not store passwords using reversible encryption
+  win_security_policy:
+    key: ClearTextPassword
+    section: System Access
+    value: 0
+- name: enable system events
+  win_security_policy:
+    key: AuditSystemEvents
+    section: Event Audit
+    value: 1

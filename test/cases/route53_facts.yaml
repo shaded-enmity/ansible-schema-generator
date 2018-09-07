@@ -1,0 +1,44 @@
+- name: List all hosted zones
+  register: hosted_zones
+  route53_facts:
+    query: hosted_zone
+- name: Return a count of all hosted zones
+  register: hosted_zone_count
+  route53_facts:
+    hosted_zone_method: count
+    query: hosted_zone
+- name: List the first 20 resource record sets in a given hosted zone
+  register: record_sets
+  route53_facts:
+    hosted_zone_id: ZZZ1111112222
+    max_items: 20
+    profile: account_name
+    query: record_sets
+- name: List first 20 health checks
+  register: health_checks
+  route53_facts:
+    health_check_method: list
+    max_items: 20
+    query: health_check
+- name: Get health check last failure_reason
+  register: health_check_failure_reason
+  route53_facts:
+    health_check_id: 00000000-1111-2222-3333-12345678abcd
+    health_check_method: failure_reason
+    query: health_check
+- name: Retrieve reusable delegation set details
+  register: delegation_sets
+  route53_facts:
+    delegation_set_id: delegation id
+    query: reusable_delegation_set
+- name: setup of example for using next_marker
+  register: first_facts
+  route53_facts:
+    max_items: 1
+    query: hosted_zone
+- name: example for using next_marker
+  route53_facts:
+    max_items: 1
+    next_marker: '{{ first_facts.NextMarker }}'
+    query: hosted_zone
+  when: '{{ ''NextMarker'' in first_facts }}'

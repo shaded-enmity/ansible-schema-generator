@@ -1,0 +1,36 @@
+- s3_lifecycle:
+    expiration_days: 30
+    name: mybucket
+    prefix: /logs/
+    state: present
+    status: enabled
+- s3_lifecycle:
+    expiration_days: 90
+    name: mybucket
+    prefix: /logs/
+    state: present
+    status: enabled
+    transition_days: 7
+- s3_lifecycle:
+    expiration_date: '2030-12-30T00:00:00.000Z'
+    name: mybucket
+    prefix: /logs/
+    state: present
+    status: enabled
+    transition_date: '2020-12-30T00:00:00.000Z'
+- s3_lifecycle:
+    name: mybucket
+    prefix: /logs/
+    state: present
+    status: disabled
+- s3_lifecycle:
+    name: mybucket
+    prefix: /logs/
+    state: absent
+- s3_lifecycle:
+    name: mybucket
+    prefix: /backups/
+    state: present
+    status: enabled
+    storage_class: standard_ia
+    transition_days: 31

@@ -1,0 +1,31 @@
+- aci_vlan_pool:
+    description: Production VLANs
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    pool_allocation_mode: dynamic
+    state: present
+    username: admin
+  name: Add a new VLAN pool
+- aci_vlan_pool:
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    pool_allocation_mode: dynamic
+    state: absent
+    username: admin
+  name: Remove a VLAN pool
+- aci_vlan_pool:
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    pool_allocation_mode: dynamic
+    state: query
+    username: admin
+  name: Query a VLAN pool
+- aci_vlan_pool:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all VLAN pools

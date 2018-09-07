@@ -1,0 +1,10 @@
+- dynamodb_ttl:
+    attribute_name: cow_deleted_date
+    state: enable
+    table_name: cowfacts
+  name: enable TTL on my cowfacts table
+- dynamodb_ttl:
+    attribute_name: cow_deleted_date
+    state: disable
+    table_name: cowfacts
+  name: disable TTL on my cowfacts table

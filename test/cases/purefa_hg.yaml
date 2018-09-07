@@ -1,0 +1,22 @@
+- name: Create new hostgroup
+  purefa_hg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    hostgroup: foo
+- name: Delete hostgroup
+  purefa_hg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    hostgroup: foo
+    state: absent
+- name: Create host group with hosts and volumes
+  purefa_hg:
+    api_token: e31060a7-21fc-e277-6240-25983c6c4592
+    fa_url: 10.10.10.2
+    host:
+    - host1
+    - host2
+    hostgroup: bar
+    volume:
+    - vol1
+    - vol2

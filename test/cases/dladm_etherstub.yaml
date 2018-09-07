@@ -1,0 +1,6 @@
+- dladm_etherstub:
+    name: stub0
+    state: present
+- dladm_etherstub:
+    name: stub0
+    state: absent

@@ -1,0 +1,24 @@
+- azure_rm_sqldatabase:
+    location: eastus
+    name: testdb
+    resource_group: sqlcrudtest-4799
+    server_name: sqlcrudtest-5961
+  name: Create (or update) SQL Database
+- azure_rm_sqldatabase:
+    create_mode: restore
+    location: eastus
+    name: restoreddb
+    resource_group: sqlcrudtest-4799
+    restorable_dropped_database_id: /subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/s
+      ervers/testsvr/restorableDroppedDatabases/testdb2,131444841315030000
+    server_name: sqlcrudtest-5961
+  name: Restore SQL Database
+- azure_rm_sqldatabase:
+    create_mode: copy
+    location: eastus
+    name: copydb
+    resource_group: sqlcrudtest-4799
+    server_name: sqlcrudtest-5961
+    source_database_id: /subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/servers/tests
+      vr/databases/testdb
+  name: Create SQL Database in Copy Mode

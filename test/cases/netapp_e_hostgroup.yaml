@@ -1,0 +1,8 @@
+- name: Configure Hostgroup
+  netapp_e_hostgroup:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}'
+    api_username: '{{ netapp_api_username }}'
+    ssid: '{{ ssid }}'
+    state: present
+    validate_certs: '{{ netapp_api_validate_certs }}'

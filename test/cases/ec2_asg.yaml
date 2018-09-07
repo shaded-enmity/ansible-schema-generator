@@ -1,0 +1,40 @@
+- ec2_asg:
+    availability_zones:
+    - eu-west-1a
+    - eu-west-1b
+    desired_capacity: 5
+    launch_config_name: lc-1
+    load_balancers:
+    - lb1
+    - lb2
+    max_size: 10
+    min_size: 1
+    name: special
+    tags:
+    - environment: production
+      propagate_at_launch: false
+    vpc_zone_identifier:
+    - subnet-abcd1234
+    - subnet-1a2b3c4d
+- ec2_asg:
+    desired_capacity: 5
+    health_check_period: 60
+    health_check_type: ELB
+    launch_config_name: my_new_lc
+    max_size: 5
+    min_size: 5
+    name: myasg
+    region: us-east-1
+    replace_all_instances: true
+- ec2_asg:
+    desired_capacity: 5
+    health_check_period: 60
+    health_check_type: ELB
+    launch_config_name: my_new_lc
+    max_size: 5
+    min_size: 5
+    name: myasg
+    region: us-east-1
+    replace_instances:
+    - i-b345231
+    - i-24c2931

@@ -1,0 +1,8 @@
+- set_fact:
+    another_fact: '{{ some_registered_var.results | map(attribute=''ansible_facts.some_fact'')
+      | list }}'
+    one_fact: something
+    other_fact: '{{ local_var * 2 }}'
+- set_fact:
+    one_fact: true
+    other_fact: false

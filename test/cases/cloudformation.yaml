@@ -1,0 +1,32 @@
+- cloudformation:
+    disable_rollback: true
+    region: us-east-1
+    stack_name: ansible-cloudformation
+    state: present
+    tags:
+      Stack: ansible-cloudformation
+    template: files/cloudformation-example.json
+    template_parameters:
+      ClusterSize: 3
+      DiskType: ephemeral
+      InstanceType: m1.small
+      KeyName: jmartin
+  name: launch ansible cloudformation example
+- cloudformation:
+    disable_rollback: true
+    region: us-east-1
+    stack_name: ansible-cloudformation
+    state: present
+    tags:
+      Stack: ansible-cloudformation
+    template: roles/cloudformation/files/cloudformation-example.json
+    template_parameters:
+      ClusterSize: 3
+      DiskType: ephemeral
+      InstanceType: m1.small
+      KeyName: jmartin
+  name: launch ansible cloudformation example
+- cloudformation:
+    stack_name: ansible-cloudformation-old
+    state: absent
+  name: tear down old deployment

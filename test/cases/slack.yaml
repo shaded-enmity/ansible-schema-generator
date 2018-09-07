@@ -1,0 +1,45 @@
+- delegate_to: localhost
+  name: Send notification message via Slack
+  slack:
+    msg: '{{ inventory_hostname }} completed'
+    token: thetoken/generatedby/slack
+- delegate_to: localhost
+  name: Send notification message via Slack all options
+  slack:
+    channel: null
+    icon_url: http://www.example.com/some-image-file.png
+    link_names: 0
+    msg: '{{ inventory_hostname }} completed'
+    parse: none
+    token: thetoken/generatedby/slack
+    username: Ansible on {{ inventory_hostname }}
+- name: insert a color bar in front of the message for visibility purposes and use
+    the default webhook icon and name configured in Slack
+  slack:
+    color: good
+    icon_url: ''
+    msg: '{{ inventory_hostname }} is alive!'
+    token: thetoken/generatedby/slack
+    username: ''
+- name: Use the attachments API
+  slack:
+    attachments:
+    - color: null
+      fields:
+      - short: true
+        title: System A
+        value: 'load average: 0,74, 0,66, 0,63'
+      - short: true
+        title: System B
+        value: 'load average: 5,16, 4,64, 2,43'
+      text: Display my system load on host A and B
+      title: System load
+    token: thetoken/generatedby/slack
+- name: Send a message with a link using Slack markup
+  slack:
+    msg: We sent this message using <https://www.ansible.com|Ansible>!
+    token: thetoken/generatedby/slack
+- name: Send a message with angle brackets and ampersands
+  slack:
+    msg: This message has &lt;brackets&gt; &amp; ampersands in plain text.
+    token: thetoken/generatedby/slack

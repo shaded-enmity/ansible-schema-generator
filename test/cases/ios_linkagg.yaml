@@ -1,0 +1,32 @@
+- ios_linkagg:
+    group: 10
+    state: present
+  name: create link aggregation group
+- ios_linkagg:
+    group: 10
+    state: absent
+  name: delete link aggregation group
+- ios_linkagg:
+    group: 200
+    members:
+    - GigabitEthernet0/0
+    - GigabitEthernet0/1
+    mode: active
+  name: set link aggregation group to members
+- ios_linkagg:
+    group: 200
+    members:
+    - GigabitEthernet0/1
+    mode: active
+  name: remove link aggregation group from GigabitEthernet0/0
+- ios_linkagg:
+    aggregate:
+    - group: 3
+      members:
+      - GigabitEthernet0/1
+      mode: true
+    - group: 100
+      members:
+      - GigabitEthernet0/2
+      mode: passive
+  name: Create aggregate of linkagg definitions

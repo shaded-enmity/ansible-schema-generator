@@ -1,0 +1,25 @@
+- bigip_config:
+    password: secret
+    save: true
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Save the running configuration of the BIG-IP
+- bigip_config:
+    password: secret
+    reset: true
+    save: true
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Reset the BIG-IP configuration, for example, to RMA the device
+- bigip_config:
+    merge_content: '{{ lookup(''file'', ''/path/to/config.scf'') }}'
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Load an SCF configuration

@@ -1,0 +1,7 @@
+- cnos_factory:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_factory_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test Reset to factory

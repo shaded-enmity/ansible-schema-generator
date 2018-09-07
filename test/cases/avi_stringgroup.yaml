@@ -1,0 +1,18 @@
+- avi_stringgroup:
+    controller: '{{ controller }}'
+    kv:
+    - key: text/html
+    - key: text/xml
+    - key: text/plain
+    - key: text/css
+    - key: text/javascript
+    - key: application/javascript
+    - key: application/x-javascript
+    - key: application/xml
+    - key: application/pdf
+    name: System-Compressible-Content-Types
+    password: '{{ password }}'
+    tenant_ref: admin
+    type: SG_TYPE_STRING
+    username: '{{ username }}'
+  name: Create a string group configuration

@@ -1,0 +1,14 @@
+- name: Gather facts about all ESXi Host in given Cluster
+  register: cluster_host_packages
+  vmware_host_package_facts:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Gather facts about ESXi Host
+  register: host_packages
+  vmware_host_package_facts:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

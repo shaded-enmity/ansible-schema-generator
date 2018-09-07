@@ -1,0 +1,11 @@
+- bigip_static_route:
+    destination: 10.10.10.10
+    gateway_address: 10.2.2.3
+    name: test-route
+    netmask: 255.255.255.255
+    password: secret
+    server: lb.mydomain.come
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Create static route with gateway address

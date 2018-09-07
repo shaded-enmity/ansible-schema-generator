@@ -1,0 +1,39 @@
+- aci_interface_policy_leaf_policy_group:
+    description: policygroupname description
+    fibre_channel_interface_policy: whateverfcpolicy
+    host: apic
+    lag_type: link
+    link_level_policy: whateverlinklevelpolicy
+    password: SomeSecretPassword
+    policy_group: policygroupname
+    state: present
+    username: admin
+  name: Create a Port Channel (PC) Interface Policy Group
+- aci_interface_policy_leaf_policy_group:
+    fibre_channel_interface_policy: whateverfcpolicy
+    host: apic
+    lag_type: node
+    link_level_policy: whateverlinklevelpolicy
+    password: SomeSecretPassword
+    policy_group: policygroupname
+    state: present
+    username: admin
+  name: Create a Virtual Port Channel (VPC) Interface Policy Group (no description)
+- aci_interface_policy_leaf_policy_group:
+    fibre_channel_interface_policy: whateverfcpolicy
+    host: apic
+    lag_type: leaf
+    link_level_policy: whateverlinklevelpolicy
+    password: SomeSecretPassword
+    policy_group: policygroupname
+    state: present
+    username: admin
+  name: Create a Leaf Access Port Policy Group (no description)
+- aci_interface_policy_leaf_policy_group:
+    host: apic
+    lag_type: type_name
+    password: SomeSecretPassword
+    policy_group: policygroupname
+    state: absent
+    username: admin
+  name: Delete an Interface policy Leaf Policy Group

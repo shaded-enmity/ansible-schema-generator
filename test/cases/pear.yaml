@@ -1,0 +1,12 @@
+- pear:
+    name: Net_URL2
+    state: present
+- pear:
+    name: pecl/json_post
+    state: present
+- pear:
+    name: Net_URL2
+    state: latest
+- pear:
+    name: Net_URL2,pecl/json_post
+    state: absent

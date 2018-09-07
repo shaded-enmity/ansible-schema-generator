@@ -1,0 +1,15 @@
+- os_user_facts:
+    cloud: awesomecloud
+- os_user_facts:
+    cloud: awesomecloud
+    name: demouser
+- os_user_facts:
+    cloud: awesomecloud
+    domain: admindomain
+    name: demouser
+- os_user_facts:
+    cloud: awesomecloud
+    domain: admindomain
+    filters:
+      enabled: false
+    name: demouser

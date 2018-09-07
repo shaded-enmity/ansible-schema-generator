@@ -1,0 +1,11 @@
+- aws_direct_connect_virtual_interface:
+    connection_id: dxcon-XXXXXXXX
+    link_aggregation_group_id: LAG-XXXXXXXX
+    name: '{{ name }}'
+    state: present
+  name: create an association between a LAG and connection
+- aws_direct_connect_virtual_interface:
+    connection_id: dxcon-XXXXXXXX
+    state: absent
+    virtual_interface_id: dxv-XXXXXXXX
+  name: remove an association between a connection and virtual interface

@@ -1,0 +1,7 @@
+- azure_rm_sqlserver_facts:
+    resource_group: resource_group_name
+    server_name: server_name
+  name: Get instance of SQL Server
+- azure_rm_sqlserver_facts:
+    resource_group: resource_group_name
+  name: List instances of SQL Server

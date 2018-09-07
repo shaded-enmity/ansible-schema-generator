@@ -1,0 +1,4 @@
+- aws_region_facts: null
+- aws_region_facts:
+    filters:
+      region-name: eu-west-1

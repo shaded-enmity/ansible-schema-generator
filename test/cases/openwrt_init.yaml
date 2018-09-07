@@ -1,0 +1,12 @@
+- openwrt_init:
+    name: httpd
+    state: started
+- openwrt_init:
+    name: cron
+    state: stopped
+- openwrt_init:
+    name: httpd
+    state: reloaded
+- openwrt_init:
+    enabled: true
+    name: httpd

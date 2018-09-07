@@ -1,0 +1,39 @@
+- cloudscale_server:
+    api_token: xxxxxx
+    bulk_volume_size_gb: 100
+    flavor: flex-4
+    image: debian-8
+    name: my-shiny-cloudscale-server
+    ssh_keys: ssh-rsa XXXXXXXXXX...XXXX ansible@cloudscale
+    use_private_network: true
+  name: Start cloudscale.ch server
+  register: server1
+- cloudscale_server:
+    anti_affinity_with: '{{ server1.uuid }}'
+    api_token: xxxxxx
+    flavor: flex-8
+    image: ubuntu-16.04
+    name: my-other-shiny-server
+    ssh_keys: ssh-rsa XXXXXXXXXXX ansible@cloudscale
+  name: Start second cloudscale.ch server
+- cloudscale_server:
+    api_token: xxxxxx
+    state: stopped
+    uuid: '{{ server1.uuid }}'
+  name: Stop my first server
+- cloudscale_server:
+    api_token: xxxxxx
+    name: my-other-shiny-server
+    state: absent
+  name: Delete my second server
+- cloudscale_server:
+    api_token: xxxxxx
+    flavor: flex-4
+    image: debian-8
+    name: my-cloudscale-server-with-ssh-key
+    ssh_keys: ssh-rsa XXXXXXXXXXX ansible@cloudscale
+  delay: 2
+  name: Start server and wait for SSH host keys
+  register: server
+  retries: 60
+  until: server.ssh_fingerprints

@@ -1,0 +1,10 @@
+- ovirt_users:
+    domain: example.com-authz
+    name: user1
+- ovirt_users:
+    domain: example.com-authz
+    name: user1@ad2.example.com
+- ovirt_users:
+    authz_name: example.com-authz
+    name: user1
+    state: absent

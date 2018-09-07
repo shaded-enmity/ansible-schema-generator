@@ -1,0 +1,12 @@
+- profitbricks_nic:
+    datacenter: Tardis One
+    lan: 2
+    server: node002
+    state: present
+    wait_timeout: 500
+- profitbricks_nic:
+    datacenter: Tardis One
+    name: 7341c2454f
+    server: node002
+    state: absent
+    wait_timeout: 500

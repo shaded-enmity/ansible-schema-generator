@@ -1,0 +1,22 @@
+- iam_role:
+    assume_role_policy_document: '{{ lookup(''file'',''policy.json'') }}'
+    description: This is My New Role
+    name: mynewrole
+  name: Create a role with description
+- iam_role:
+    assume_role_policy_document: '{{ lookup(''file'',''policy.json'') }}'
+    managed_policy:
+    - arn:aws:iam::aws:policy/PowerUserAccess
+    name: mynewrole
+  name: Create a role and attach a managed policy called 'PowerUserAccess'
+- iam_role:
+    assume_role_policy_document: '{{ lookup(''file'',''policy.json'') }}'
+    managed_policy:
+    - null
+    name: mynewrole
+  name: Keep the role created above but remove all managed policies
+- iam_role:
+    assume_role_policy_document: '{{ lookup(''file'', ''policy.json'') }}'
+    name: mynewrole
+    state: absent
+  name: Delete the role

@@ -1,0 +1,25 @@
+- delegate_to: localhost
+  name: Ensure that FCoE Network is present using the default configuration
+  oneview_fcoe_network:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: Test FCoE Network
+      vlanId: 201
+    state: present
+- delegate_to: localhost
+  name: Update the FCOE network scopes
+  oneview_fcoe_network:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: New FCoE Network
+      scopeUris:
+      - /rest/scopes/00SC123456
+      - /rest/scopes/01SC123456
+    state: present
+- delegate_to: localhost
+  name: Ensure that FCoE Network is absent
+  oneview_fcoe_network:
+    config: /etc/oneview/oneview_config.json
+    data:
+      name: New FCoE Network
+    state: absent

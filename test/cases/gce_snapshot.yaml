@@ -1,0 +1,30 @@
+- delegate_to: localhost
+  gce_snapshot:
+    credentials_file: /path/to/credentials
+    instance_name: example-instance
+    project_id: project_name
+    service_account_email: project_name@appspot.gserviceaccount.com
+    snapshot_name: example-snapshot
+    state: present
+  name: Create gce snapshot
+- delegate_to: localhost
+  gce_snapshot:
+    credentials_file: /path/to/credentials
+    instance_name: example-instance
+    project_id: project_name
+    service_account_email: project_name@appspot.gserviceaccount.com
+    snapshot_name: example-snapshot
+    state: absent
+  name: Delete gce snapshot
+- delegate_to: localhost
+  gce_snapshot:
+    credentials_file: /path/to/credentials
+    disks:
+    - disk0
+    - disk1
+    instance_name: example-instance
+    project_id: project_name
+    service_account_email: project_name@appspot.gserviceaccount.com
+    snapshot_name: example-snapshot
+    state: present
+  name: Create snapshots of specific disks

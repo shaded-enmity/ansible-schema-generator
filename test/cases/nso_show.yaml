@@ -1,0 +1,7 @@
+- name: Show devices including operational data
+  nso_show:
+    operational: true
+    password: password
+    path: /ncs:devices/device
+    url: http://localhost:8080/jsonrpc
+    username: username

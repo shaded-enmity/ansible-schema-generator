@@ -1,0 +1,44 @@
+- sorcery:
+    spell: foo
+    state: present
+- sorcery:
+    spell: foo,bar,baz
+    state: absent
+- sorcery:
+    depends: bar,baz
+    spell: foo
+    state: present
+- sorcery:
+    depends: +bar,-baz
+    spell: foo
+    state: present
+- sorcery:
+    depends: libressl(SSL)
+    spell: foo
+    state: present
+- sorcery:
+    depends: '{{ item.depends | default(None) }}'
+    name: '{{ item.spell }}'
+    state: present
+  with_items:
+  - depends: +file,-gtk+2
+    spell: vifm
+  - depends: gpgme
+    spell: fwknop
+  - spell: pv,tnftp,tor
+- sorcery:
+    name: foo
+    state: latest
+- sorcery:
+    spell: foo
+    state: rebuild
+- sorcery:
+    spell: '*'
+    state: rebuild
+    update: true
+    update_cache: true
+- sorcery:
+    cache_valid_time: 86400
+    update_codex: true
+- sorcery:
+    update: true

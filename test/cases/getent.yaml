@@ -1,0 +1,16 @@
+- getent:
+    database: passwd
+    key: root
+- getent:
+    database: group
+    split: ':'
+- getent:
+    database: hosts
+- getent:
+    database: services
+    fail_key: false
+    key: http
+- getent:
+    database: shadow
+    key: www-data
+    split: ':'

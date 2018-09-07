@@ -1,0 +1,9 @@
+- name: Creates a new vApp in a VCA instance
+  vca_vapp:
+    instance_id: <your instance id here>
+    password: <your password here>
+    state: present
+    template_name: Ubuntu Server 12.04 LTS (amd64 20150127)
+    username: <your username here>
+    vapp_name: tower
+    vdc_name: VDC1

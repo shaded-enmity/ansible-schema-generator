@@ -1,0 +1,5 @@
+- win_regmerge:
+    path: C:/autodeploy/myCompany-settings.reg
+- win_regmerge:
+    compare_to: HKLM:\SOFTWARE\myCompany
+    path: C:/autodeploy/myCompany-settings.reg

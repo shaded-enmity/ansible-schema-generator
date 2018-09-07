@@ -1,0 +1,4 @@
+- ec2_eni_facts: null
+- ec2_eni_facts:
+    filters:
+      network-interface-id: eni-xxxxxxx

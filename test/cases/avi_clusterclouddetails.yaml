@@ -1,0 +1,7 @@
+- avi_clusterclouddetails:
+    controller: 10.10.25.42
+    name: sample_clusterclouddetails
+    password: something
+    state: present
+    username: admin
+  name: Example to create ClusterCloudDetails object

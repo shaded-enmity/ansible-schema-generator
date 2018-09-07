@@ -1,0 +1,14 @@
+- aws_waf_web_acl:
+    default_action: block
+    name: my_web_acl
+    purge_rules: true
+    rules:
+    - action: block
+      name: my_rule
+      priority: 1
+    state: present
+  name: create web ACL
+- aws_waf_web_acl:
+    name: my_web_acl
+    state: absent
+  name: delete the web acl

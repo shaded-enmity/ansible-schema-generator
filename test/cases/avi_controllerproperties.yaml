@@ -1,0 +1,7 @@
+- avi_controllerproperties:
+    controller: 10.10.25.42
+    name: sample_controllerproperties
+    password: something
+    state: present
+    username: admin
+  name: Example to create ControllerProperties object

@@ -1,0 +1,3 @@
+- ovirt_permissions_facts:
+    authz_name: example.com-authz
+    user_name: john

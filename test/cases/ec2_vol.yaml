@@ -1,0 +1,42 @@
+- ec2_vol:
+    device_name: sdd
+    instance: XXXXXX
+    volume_size: 5
+- ec2_vol:
+    device_name: sdd
+    instance: XXXXXX
+    iops: 100
+    volume_size: 5
+- ec2_vol:
+    instance: XXXXXX
+    snapshot: '{{ snapshot }}'
+- ec2_vol:
+    instance: '{{ item.id }} '
+    volume_size: 5
+  register: ec2_vol
+  with_items: ec2.instances
+- ec2_vol:
+    device_name: /dev/xvdf
+    instance: '{{ item.id }}'
+    name: my_existing_volume_Name_tag
+  register: ec2_vol
+  with_items: ec2.instances
+- ec2_vol:
+    id: vol-XXXXXXXX
+    state: absent
+- ec2_vol:
+    id: vol-XXXXXXXX
+    instance: None
+- ec2_vol:
+    instance: i-XXXXXX
+    state: list
+- ec2_vol:
+    device_name: /dev/xvdf
+    instance: XXXXXX
+    volume_size: 50
+    volume_type: gp2
+- ec2_vol:
+    delete_on_termination: true
+    device_name: /dev/sdf
+    id: XXXXXX
+    instance: XXXXXX

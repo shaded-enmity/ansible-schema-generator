@@ -1,0 +1,11 @@
+- aci_filter_entry:
+    descr: '{{ descr }}'
+    entry: '{{ entry }}'
+    ether_name: '{{  ether_name }}'
+    filter: '{{ filter }}'
+    host: '{{ inventory_hostname }}'
+    icmp_msg_type: '{{ icmp_msg_type }}'
+    password: '{{ pass }}'
+    state: '{{ state }}'
+    tenant: '{{ tenant }}'
+    username: '{{ user }}'

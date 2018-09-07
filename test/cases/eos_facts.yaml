@@ -1,0 +1,8 @@
+- eos_facts:
+    gather_subset: all
+- eos_facts:
+    gather_subset:
+    - config
+- eos_facts:
+    gather_subset:
+    - '!hardware'

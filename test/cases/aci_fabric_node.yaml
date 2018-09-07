@@ -1,0 +1,23 @@
+- aci_fabric_node:
+    host: apic
+    node_id: 1011
+    password: SomeSecretPassword
+    serial: FDO2031124L
+    state: present
+    switch: fab4-sw1011
+    username: admin
+  name: Add fabric node
+- aci_fabric_node:
+    host: apic
+    node_id: 1011
+    password: SomeSecretPassword
+    serial: FDO2031124L
+    state: absent
+    username: admin
+  name: Remove fabric node
+- aci_fabric_node:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query fabric nodes

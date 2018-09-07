@@ -1,0 +1,18 @@
+- ec2_vpc_subnet_facts: null
+- ec2_vpc_subnet_facts:
+    subnet_ids: subnet-00112233
+- ec2_vpc_subnet_facts:
+    filters:
+      tag:Name: Example
+- ec2_vpc_subnet_facts:
+    filters:
+      vpc-id: vpc-abcdef00
+- ec2_vpc_subnet_facts:
+    filters:
+      tag:Name: '{{ item }}'
+      vpc-id: vpc-abcdef00
+  register: subnet_facts
+  with_items:
+  - publicA
+  - publicB
+  - publicC

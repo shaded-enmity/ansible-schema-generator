@@ -1,0 +1,9 @@
+- os_server_actions:
+    action: pause
+    auth:
+      auth_url: https://mycloud.openstack.blueboxgrid.com:5001/v2.0
+      password: admin
+      project_name: admin
+      username: admin
+    server: vm1
+    timeout: 200

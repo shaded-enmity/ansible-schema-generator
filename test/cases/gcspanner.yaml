@@ -1,0 +1,17 @@
+- gcspanner:
+    configuration: '{{ configuration }}'
+    instance_id: '{{ instance_id }}'
+    node_count: 1
+    state: present
+  name: Create instance
+- gcspanner:
+    configuration: '{{ configuration }}'
+    database_name: '{{ database_name }}'
+    instance_id: '{{ instance_id }}'
+    state: present
+  name: Create database
+- gcspanner:
+    configuration: '{{ configuration }}'
+    force_instance_delete: true
+    instance_id: '{{ instance_id }}'
+    state: absent

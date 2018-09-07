@@ -1,0 +1,46 @@
+- avi_gslbservice_patch_member:
+    api_version: 17.2.1
+    controller: '{{ controller }}'
+    data:
+      group:
+        members:
+        - enabled: true
+          ip:
+            addr: 10.30.10.66
+            type: V4
+          ratio: 3
+        name: newfoo
+        priority: 60
+    name: gs-3
+    password: '{{ password }}'
+    username: '{{ username }}'
+  name: Patch GSLB Service to add a new member and group
+- avi_gslbservice_patch_member:
+    api_version: 17.2.1
+    controller: '{{ controller }}'
+    data:
+      group:
+        members:
+        - enabled: true
+          ip:
+            addr: 10.30.10.68
+            type: V4
+          ratio: 3
+        name: newfoo
+    name: gs-3
+    password: '{{ password }}'
+    state: absent
+    username: '{{ username }}'
+  name: Patch GSLB Service to delete an existing member
+- avi_gslbservice_patch_member:
+    api_version: 17.2.1
+    controller: ''
+    data:
+      group:
+        name: newfoo
+        priority: 42
+    name: gs-3
+    password: ''
+    state: present
+    username: ''
+  name: Update priority of GSLB Service Pool

@@ -1,0 +1,9 @@
+- name: vdirect_commit
+  vdirect_commit:
+    devices:
+    - dev1
+    - dev2
+    sync: false
+    vdirect_ip: 10.10.10.10
+    vdirect_password: radware
+    vdirect_user: vDirect

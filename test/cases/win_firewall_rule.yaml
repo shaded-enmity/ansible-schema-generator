@@ -1,0 +1,19 @@
+- name: Firewall rule to allow SMTP on TCP port 25
+  win_firewall_rule:
+    action: allow
+    direction: in
+    enabled: true
+    localport: 25
+    name: SMTP
+    protocol: tcp
+    state: present
+- name: Firewall rule to allow RDP on TCP port 3389
+  win_firewall_rule:
+    action: allow
+    direction: in
+    enabled: true
+    localport: 3389
+    name: Remote Desktop
+    profiles: private
+    protocol: tcp
+    state: present

@@ -1,0 +1,6 @@
+- ipa_dnszone:
+    ipa_host: localhost
+    ipa_pass: topsecret
+    ipa_user: admin
+    state: absent
+    zone_name: example.com

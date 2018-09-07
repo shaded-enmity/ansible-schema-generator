@@ -1,0 +1,11 @@
+- os_keystone_service:
+    cloud: mycloud
+    description: OpenStack Image Service
+    name: glance
+    service_type: image
+    state: present
+- os_keystone_service:
+    cloud: mycloud
+    name: glance
+    service_type: image
+    state: absent

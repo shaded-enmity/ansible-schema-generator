@@ -1,0 +1,53 @@
+- name: Install all security, critical, and rollup updates
+  win_updates:
+    category_names:
+    - SecurityUpdates
+    - CriticalUpdates
+    - UpdateRollups
+- name: Install only security updates
+  win_updates:
+    category_names: SecurityUpdates
+- name: Search-only, return list of found updates (if any), log to c:\ansible_wu.txt
+  win_updates:
+    category_names: SecurityUpdates
+    log_path: c:\ansible_wu.txt
+    state: searched
+- name: Install all security updates with automatic reboots
+  win_updates:
+    category_names:
+    - SecurityUpdates
+    reboot: true
+- name: Install only particular updates based on the KB numbers
+  win_updates:
+    category_name:
+    - SecurityUpdates
+    whitelist:
+    - KB4056892
+    - KB4073117
+- name: Exlude updates based on the update title
+  win_updates:
+    blacklist:
+    - Windows Malicious Software Removal Tool for Windows
+    - \d{4}-\d{2} Cumulative Update for Windows Server 2016
+    category_name:
+    - SecurityUpdates
+    - CriticalUpdates
+- async: 180
+  become: true
+  become_method: runas
+  become_user: SYSTEM
+  name: Search for Windows updates asynchronously
+  poll: 10
+  register: updates_to_install
+  win_updates:
+    category_names:
+    - SecurityUpdates
+    state: searched
+- async: 180
+  name: Search for Windows updates asynchronously (poll and forget)
+  poll: 0
+  register: updates_to_install_async
+  win_updates:
+    category_names:
+    - SecurityUpdates
+    state: searched

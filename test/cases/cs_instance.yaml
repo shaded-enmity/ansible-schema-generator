@@ -1,0 +1,60 @@
+- cs_instance:
+    disk_offering: PerfPlus Storage
+    disk_size: 20
+    hypervisor: VMware
+    iso: Linux Debian 7 64-bit
+    name: web-vm-1
+    networks:
+    - Server Integration
+    - Sync Integration
+    - Storage Integration
+    project: Integration
+    service_offering: 1cpu_1gb
+    zone: ch-zrh-ix-01
+  delegate_to: localhost
+  name: create a instance from an ISO
+- cs_instance:
+    display_name: web-vm-01.example.com
+    force: true
+    iso: Linux Debian 7 64-bit
+    name: web-vm-1
+    service_offering: 2cpu_2gb
+  delegate_to: localhost
+- cs_instance:
+    display_name: web-vm-1
+    service_offering: Tiny
+    ssh_key: john@example.com
+    tags:
+    - key: admin
+      value: john
+    - key: foo
+      value: bar
+    template: Linux Debian 7 64-bit
+    user_data: "#cloud-config\npackages:\n  - nginx\n"
+  delegate_to: localhost
+  name: create or update a instance on Exoscale's public cloud using display_name.
+- cs_instance:
+    ip_to_networks:
+    - ip: 10.1.1.1
+      network: NetworkA
+    - ip: 192.0.2.1
+      network: NetworkB
+    name: web-vm-1
+    service_offering: Tiny
+    template: Linux Debian 7 64-bit
+  delegate_to: localhost
+  name: create an instance with multiple interfaces specifying the IP addresses
+- cs_instance:
+    name: web-vm-1
+    state: stopped
+  delegate_to: localhost
+  name: ensure an instance is stopped
+- cs_instance:
+    name: web-vm-1
+    state: started
+  delegate_to: localhost
+  name: ensure an instance is running
+- cs_instance:
+    name: web-vm-1
+    state: absent
+  delegate_to: localhost

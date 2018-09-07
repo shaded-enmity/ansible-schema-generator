@@ -1,0 +1,69 @@
+- nagios:
+    action: downtime
+    host: '{{ inventory_hostname }}'
+    minutes: 30
+    service: httpd
+- nagios:
+    action: downtime
+    host: '{{ inventory_hostname }}'
+    minutes: 60
+    service: host
+- nagios:
+    action: downtime
+    comment: Rebuilding machine
+    host: '{{ inventory_hostname }}'
+    minutes: 60
+    service: host
+- nagios:
+    action: downtime
+    host: '{{ inventory_hostname }}'
+    minutes: 45
+    service: all
+- nagios:
+    action: downtime
+    host: '{{ inventory_hostname }}'
+    services: frob,foobar,qeuz
+- nagios:
+    action: servicegroup_service_downtime
+    host: '{{ inventory_hostname }}'
+    minutes: 30
+    servicegroup: foo
+- nagios:
+    action: servicegroup_host_downtime
+    host: '{{ inventory_hostname }}'
+    minutes: 30
+    servicegroup: foo
+- nagios:
+    action: delete_downtime
+    host: '{{ inventory_hostname }}'
+    service: all
+- nagios:
+    action: delete_downtime
+    comment: Planned maintenance
+    host: '{{ inventory_hostname }}'
+    service: host
+- nagios:
+    action: enable_alerts
+    host: '{{ inventory_hostname }}'
+    service: smart
+- nagios:
+    action: disable_alerts
+    host: '{{ inventory_hostname }}'
+    service: httpd,nfs
+- nagios:
+    action: disable_alerts
+    host: '{{ inventory_hostname }}'
+    service: host
+- nagios:
+    action: silence
+    host: '{{ inventory_hostname }}'
+- nagios:
+    action: unsilence
+    host: '{{ inventory_hostname }}'
+- nagios:
+    action: silence_nagios
+- nagios:
+    action: unsilence_nagios
+- nagios:
+    action: command
+    command: DISABLE_FAILURE_PREDICTION

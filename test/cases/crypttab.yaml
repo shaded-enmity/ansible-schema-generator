@@ -1,0 +1,12 @@
+- crypttab:
+    name: luks-home
+    opts: discard,cipher=aes-cbc-essiv:sha256
+    state: present
+  name: Set the options explicitly a device which must already exist
+- crypttab:
+    name: '{{ item.device }}'
+    opts: discard
+    state: opts_present
+  name: Add the 'discard' option to any existing options for all devices
+  when: '''/dev/mapper/luks-'' in {{ item.device }}'
+  with_items: '{{ ansible_mounts }}'

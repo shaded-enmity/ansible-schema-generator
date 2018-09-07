@@ -1,0 +1,19 @@
+- redshift_facts: null
+  register: redshift
+- redshift_facts:
+    tags:
+      env: prd
+      stack: monitoring
+  register: redshift_tags
+- redshift_facts:
+    name: user-
+    tags:
+      env: dev
+      stack: web
+  register: redshift_web
+- failed_when: '{{ redshift_user.results | length == 0 }}'
+  redshift_facts:
+    tags:
+      env: stg
+      stack: db
+  register: redshift_user

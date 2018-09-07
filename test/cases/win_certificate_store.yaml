@@ -1,0 +1,46 @@
+- name: import a certificate
+  win_certificate_store:
+    path: C:\temp\cert.pem
+    state: present
+- become: true
+  become_method: runas
+  name: import pfx certificate that is password protected
+  win_certificate_store:
+    password: VeryStrongPasswordHere!
+    path: C:\temp\cert.pfx
+    state: present
+- name: import pfx certificate without password and set private key as un-exportable
+  vars:
+    ansible_winrm_transport: credssp
+  win_certificate_store:
+    key_exportable: false
+    path: C:\temp\cert.pfx
+    state: present
+- name: remove a certificate based on file thumbprint
+  win_certificate_store:
+    path: C:\temp\cert.pem
+    state: absent
+- name: remove a certificate based on thumbprint
+  win_certificate_store:
+    state: absent
+    thumbprint: BD7AF104CF1872BDB518D95C9534EA941665FD27
+- name: remove certificate based on thumbprint is CurrentUser/TrustedPublishers store
+  win_certificate_store:
+    state: absent
+    store_location: CurrentUser
+    store_name: TrustedPublisher
+    thumbprint: BD7AF104CF1872BDB518D95C9534EA941665FD27
+- name: export certificate as der encoded file
+  win_certificate_store:
+    file_type: der
+    path: C:\temp\cert.cer
+    state: exported
+- become: true
+  become_method: runas
+  become_user: SYSTEM
+  name: export certificate and key as pfx encoded file
+  win_certificate_store:
+    file_type: pkcs12
+    password: AnotherStrongPass!
+    path: C:\temp\cert.pfx
+    state: exported

@@ -1,0 +1,18 @@
+- delegate_to: localhost
+  name: Gather facts about all Fibre Channel Networks
+  oneview_fc_network_facts:
+    config: /etc/oneview/oneview_config.json
+- delegate_to: localhost
+  name: Gather paginated, filtered and sorted facts about Fibre Channel Networks
+  oneview_fc_network_facts:
+    config: /etc/oneview/oneview_config.json
+    params:
+      count: 3
+      filter: fabricType=FabricAttach
+      sort: name:descending
+      start: 1
+- delegate_to: localhost
+  name: Gather facts about a Fibre Channel Network by name
+  oneview_fc_network_facts:
+    config: /etc/oneview/oneview_config.json
+    name: network name

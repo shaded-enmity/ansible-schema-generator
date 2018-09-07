@@ -1,0 +1,53 @@
+- win_nssm:
+    application: C:\windows\foo.exe
+    name: foo
+- win_nssm:
+    app_parameters:
+      bar: true
+    application: C:\windows\foo.exe
+    name: foo
+- win_nssm:
+    app_parameters:
+      -bar: true
+    application: C:\windows\foo.exe
+    name: foo
+- win_nssm:
+    app_parameters:
+      _: bar
+    application: C:\windows\foo.exe
+    name: foo
+- win_nssm:
+    app_parameters:
+      -file: output.bat
+      _: bar
+    application: C:\windows\foo.exe
+    name: foo
+- name: Make sure the Consul service runs
+  win_nssm:
+    app_parameters_free_form: agent -config-dir=C:\consul\config
+    application: C:\consul\consul.exe
+    name: consul
+    stderr_file: C:\consul\error.txt
+    stdout_file: C:\consul\log.txt
+- win_nssm:
+    application: C:\windows\foo.exe
+    name: foo
+    stderr_file: C:\windows\foo.log
+    stdout_file: C:\windows\foo.log
+- win_nssm:
+    application: C:\windows\foo.exe
+    dependencies: adf,tcpip
+    name: foo
+- win_nssm:
+    application: C:\windows\foo.exe
+    name: foo
+    password: secret
+    user: foouser
+- win_nssm:
+    application: C:\windows\foo.exe
+    name: foo
+    start_mode: manual
+    state: present
+- win_nssm:
+    name: foo
+    state: absent

@@ -1,0 +1,16 @@
+- azure_rm_containerregistry:
+    admin_user_enabled: true
+    location: eastus
+    name: testacr1
+    resource_group: testrg
+    sku: Premium
+    state: present
+    tags:
+      Environment: Production
+      Release: beta1
+  name: Create an azure container registry
+- azure_rm_containerregistry:
+    name: testacr2
+    resource_group: testrg
+    state: absent
+  name: Remove an azure container registry

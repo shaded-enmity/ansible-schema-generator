@@ -1,0 +1,8 @@
+- os_keystone_role:
+    cloud: mycloud
+    name: demo
+    state: present
+- os_keystone_role:
+    cloud: mycloud
+    name: demo
+    state: absent

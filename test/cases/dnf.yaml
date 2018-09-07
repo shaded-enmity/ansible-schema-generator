@@ -1,0 +1,37 @@
+- dnf:
+    name: httpd
+    state: latest
+  name: install the latest version of Apache
+- dnf:
+    name: httpd
+    state: absent
+  name: remove the Apache package
+- dnf:
+    enablerepo: testing
+    name: httpd
+    state: present
+  name: install the latest version of Apache from the testing repo
+- dnf:
+    name: '*'
+    state: latest
+  name: upgrade all packages
+- dnf:
+    name: http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
+  name: install the nginx rpm from a remote repo
+- dnf:
+    name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
+  name: install nginx rpm from a local file
+- dnf:
+    name: '@Development tools'
+    state: present
+  name: install the 'Development tools' package group
+- dnf:
+    autoremove: true
+  name: Autoremove unneeded packages installed as dependencies
+- dnf:
+    autoremove: false
+    name: httpd
+    state: absent
+  name: Uninstall httpd but keep its dependencies

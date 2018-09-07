@@ -1,0 +1,37 @@
+- pagerduty:
+    name: companyabc
+    passwd: password123
+    state: ongoing
+    user: example@example.com
+- pagerduty:
+    name: companyabc
+    state: ongoing
+    token: xxxxxxxxxxxxxx
+- pagerduty:
+    name: companyabc
+    passwd: password123
+    service: FOO123
+    state: running
+    user: example@example.com
+- pagerduty:
+    hours: 0
+    minutes: 5
+    name: companyabc
+    service: FOO123
+    state: running
+    token: xxxxxxxxxxxxxx
+- pagerduty:
+    desc: deployment
+    hours: 4
+    name: companyabc
+    passwd: password123
+    service: FOO123
+    state: running
+    user: example@example.com
+  register: pd_window
+- pagerduty:
+    name: companyabc
+    passwd: password123
+    service: '{{ pd_window.result.maintenance_window.id }}'
+    state: absent
+    user: example@example.com

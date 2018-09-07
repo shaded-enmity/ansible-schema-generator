@@ -1,0 +1,8 @@
+- digital_ocean_domain:
+    ip: 127.0.0.1
+    name: my.digitalocean.domain
+    state: present
+- digital_ocean_domain:
+    ip: '{{ test_droplet.droplet.ip_address }}'
+    name: '{{ test_droplet.droplet.name }}.my.domain'
+    state: present

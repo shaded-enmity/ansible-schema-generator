@@ -1,0 +1,15 @@
+- azure_rm_dnsrecordset_facts:
+    record_type: A
+    relative_name: server10
+    resource_group: Testing
+    zone_name: example.com
+  name: Get facts for one Record Set
+- azure_rm_dnsrecordset_facts:
+    record_type: A
+    resource_group: Testing
+    zone_name: example.com
+  name: Get facts for all Type A Record Sets in a Zone
+- azure_rm_dnsrecordset_facts:
+    resource_group: Testing
+    zone_name: example.com
+  name: Get all record sets in one zone

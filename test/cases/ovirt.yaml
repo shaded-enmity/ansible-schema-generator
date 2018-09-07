@@ -1,0 +1,56 @@
+- name: Basic example to provision from image
+  ovirt:
+    image: centos_64
+    instance_name: ansiblevm04
+    password: secret
+    resource_type: template
+    url: https://ovirt.example.com
+    user: admin@internal
+    zone: cluster01
+- name: Full example to create new instance from scratch
+  ovirt:
+    disk_alloc: thin
+    disk_int: virtio
+    instance_cores: 1
+    instance_cpus: 1
+    instance_disksize: 10
+    instance_mem: 1000
+    instance_name: testansible
+    instance_network: rhevm
+    instance_nic: nic1
+    instance_os: rhel_6x64
+    instance_type: server
+    password: secret
+    region: datacenter1
+    resource_type: new
+    sdomain: FIBER01
+    url: https://ovirt.example.com
+    user: admin@internal
+    zone: cluster01
+- name: Stopping an existing instance
+  ovirt:
+    instance_name: testansible
+    password: secret
+    state: stopped
+    url: https://ovirt.example.com
+    user: admin@internal
+- name: Start an existing instance
+  ovirt:
+    instance_name: testansible
+    password: secret
+    state: started
+    url: https://ovirt.example.com
+    user: admin@internal
+- name: Start an instance with cloud init information
+  ovirt:
+    domain: ansible.local
+    gateway: 192.0.2.1
+    hostname: testansible
+    instance_name: testansible
+    ip: 192.0.2.100
+    netmask: 255.255.255.0
+    password: secret
+    rootpw: bigsecret
+    state: started
+    url: https://ovirt.example.com
+    user: admin@internal

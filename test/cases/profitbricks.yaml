@@ -1,0 +1,35 @@
+- profitbricks:
+    assign_public_ip: true
+    cores: 4
+    count: 3
+    cpu_family: INTEL_XEON
+    datacenter: Tardis One
+    image: a3eae284-a2fe-11e4-b187-5f1f641608c8
+    location: us/las
+    name: web%02d.stackpointcloud.com
+    ram: 2048
+    volume_size: 50
+- profitbricks:
+    datacenter: Tardis One
+    instance_ids:
+    - web001.stackpointcloud.com
+    - web002.stackpointcloud.com
+    - web003.stackpointcloud.com
+    state: absent
+    wait_timeout: 500
+- profitbricks:
+    datacenter: Tardis One
+    instance_ids:
+    - web001.stackpointcloud.com
+    - web002.stackpointcloud.com
+    - web003.stackpointcloud.com
+    state: running
+    wait_timeout: 500
+- profitbricks:
+    datacenter: Tardis One
+    instance_ids:
+    - web001.stackpointcloud.com
+    - web002.stackpointcloud.com
+    - web003.stackpointcloud.com
+    state: stopped
+    wait_timeout: 500

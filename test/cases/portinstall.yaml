@@ -1,0 +1,9 @@
+- portinstall:
+    name: foo
+    state: present
+- portinstall:
+    name: security/cyrus-sasl2-saslauthd
+    state: present
+- portinstall:
+    name: foo,bar
+    state: absent

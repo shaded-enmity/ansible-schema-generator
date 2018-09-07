@@ -1,0 +1,50 @@
+- bigip_command:
+    commands: show sys version
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: run show version on remote devices
+- bigip_command:
+    commands: show sys version
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+    wait_for: result[0] contains BIG-IP
+  delegate_to: localhost
+  name: run show version and check to see if output contains BIG-IP
+- bigip_command:
+    commands:
+    - show sys version
+    - list ltm virtual
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: run multiple commands on remote nodes
+- bigip_command:
+    commands:
+    - show sys version
+    - list ltm virtual
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+    wait_for:
+    - result[0] contains BIG-IP
+    - result[1] contains my-vs
+  delegate_to: localhost
+  name: run multiple commands and evaluate the output
+- bigip_command:
+    commands:
+    - show sys version
+    - tmsh list ltm virtual
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: tmsh prefixes will automatically be handled

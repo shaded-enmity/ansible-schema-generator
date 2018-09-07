@@ -1,0 +1,20 @@
+- postgresql_lang:
+    db: testdb
+    force_trust: true
+    lang: pltclu
+    state: present
+    trust: true
+- postgresql_lang:
+    db: testdb
+    lang: pltclu
+    state: absent
+- postgresql_lang:
+    cascade: true
+    db: testdb
+    lang: pltclu
+    state: absent
+- postgresql_lang:
+    db: testdb
+    fail_on_drop: false
+    lang: pltclu
+    state: absent

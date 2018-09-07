@@ -1,0 +1,21 @@
+- bower:
+    name: bootstrap
+  name: Install "bootstrap" bower package.
+- bower:
+    name: bootstrap
+    version: 3.1.1
+  name: Install "bootstrap" bower package on version 3.1.1.
+- bower:
+    name: bootstrap
+    state: absent
+  name: Remove the "bootstrap" bower package.
+- bower:
+    path: /app/location
+  name: Install packages based on bower.json.
+- bower:
+    path: /app/location
+    state: latest
+  name: Update packages based on bower.json to their latest version.
+- bower:
+    path: /app/location
+    relative_execpath: node_modules/.bin

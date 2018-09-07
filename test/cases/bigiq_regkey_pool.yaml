@@ -1,0 +1,8 @@
+- bigiq_regkey_pool:
+    name: foo-pool
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create a registration key (regkey) pool to hold individual device licenses

@@ -1,0 +1,21 @@
+- name: Create alarm SNS topic
+  sns_topic:
+    delivery_policy:
+      http:
+        defaultHealthyRetryPolicy:
+          backoffFunction: <linear|arithmetic|geometric|exponential>
+          maxDelayTarget: 4
+          minDelayTarget: 2
+          numMaxDelayRetries: 5
+          numRetries: 3
+        defaultThrottlePolicy:
+          maxReceivesPerSecond: 10
+        disableSubscriptionOverrides: true
+    display_name: alarm SNS topic
+    name: alarms
+    state: present
+    subscriptions:
+    - endpoint: my_email_address@example.com
+      protocol: email
+    - endpoint: my_mobile_number
+      protocol: sms

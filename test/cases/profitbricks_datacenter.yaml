@@ -1,0 +1,7 @@
+- profitbricks_datacenter:
+    datacenter: Tardis One
+    wait_timeout: 500
+- profitbricks_datacenter:
+    datacenter: Tardis One
+    state: absent
+    wait_timeout: 500

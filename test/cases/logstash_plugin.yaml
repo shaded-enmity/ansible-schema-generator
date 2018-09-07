@@ -1,0 +1,13 @@
+- logstash_plugin:
+    name: logstash-input-beats
+    state: present
+  name: Install Logstash beats input plugin
+- logstash_plugin:
+    name: logstash-input-syslog
+    state: present
+    version: 3.2.0
+  name: Install specific version of a plugin
+- logstash_plugin:
+    name: logstash-filter-multiline
+    state: absent
+  name: Uninstall Logstash plugin

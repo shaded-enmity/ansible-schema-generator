@@ -1,0 +1,23 @@
+- junos_config:
+    comment: update config
+    src: srx.cfg
+  name: load configure file into device
+- junos_config:
+    comment: update config
+    lines:
+    - set interfaces ge-0/0/1 unit 0 description "Test interface"
+    - set vlans vlan01 description "Test vlan"
+  name: load configure lines into device
+- junos_config:
+    rollback: 10
+  name: rollback the configuration to id 10
+- junos_config:
+    zeroize: true
+  name: zero out the current configuration
+- junos_config:
+    confirm_commit: true
+  name: confirm a previous commit
+- junos_config:
+    lines:
+    - set interfaces ge-0/0/1 unit 0 description "Test interface"
+  name: for idempotency, use full-form commands

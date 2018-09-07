@@ -1,0 +1,3 @@
+- selinux_permissive:
+    name: httpd_t
+    permissive: true

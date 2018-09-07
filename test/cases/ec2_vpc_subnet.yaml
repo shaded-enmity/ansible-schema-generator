@@ -1,0 +1,25 @@
+- ec2_vpc_subnet:
+    cidr: 10.0.1.16/28
+    resource_tags:
+      Name: Database Subnet
+    state: present
+    vpc_id: vpc-123456
+  name: Create subnet for database servers
+  register: database_subnet
+- ec2_vpc_subnet:
+    cidr: 10.0.1.16/28
+    state: absent
+    vpc_id: vpc-123456
+  name: Remove subnet for database servers
+- ec2_vpc_subnet:
+    cidr: 10.1.100.0/24
+    ipv6_cidr: 2001:db8:0:102::/64
+    state: present
+    vpc_id: vpc-123456
+  name: Create subnet with IPv6 block assigned
+- ec2_vpc_subnet:
+    cidr: 10.1.100.0/24
+    ipv6_cidr: ''
+    state: present
+    vpc_id: vpc-123456
+  name: Remove IPv6 block assigned to subnet

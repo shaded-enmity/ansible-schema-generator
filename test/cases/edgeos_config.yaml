@@ -1,0 +1,10 @@
+- edgeos_config:
+    lines:
+    - set system host-name {{ inventory_hostname }}
+    - set service lldp
+    - delete service dhcp-server
+  name: configure the remote device
+- edgeos_config:
+    backup: true
+    src: edgeos.cfg
+  name: backup and load from file

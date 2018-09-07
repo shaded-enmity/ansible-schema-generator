@@ -1,0 +1,8 @@
+- ios_facts:
+    gather_subset: all
+- ios_facts:
+    gather_subset:
+    - config
+- ios_facts:
+    gather_subset:
+    - '!hardware'

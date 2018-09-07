@@ -1,0 +1,8 @@
+- avi_alertscriptconfig:
+    action_script: echo Hello
+    controller: '{{ controller }}'
+    name: AWS-Launch-Script
+    password: '{{ password }}'
+    tenant_ref: Demo
+    username: '{{ username }}'
+  name: Create Alert Script to perform AWS server autoscaling

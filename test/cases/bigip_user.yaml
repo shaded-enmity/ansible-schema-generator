@@ -1,0 +1,67 @@
+- bigip_user:
+    full_name: John Doe
+    partition_access: all:admin
+    password: secret
+    password_credential: password
+    server: lb.mydomain.com
+    state: present
+    update_password: on_create
+    user: admin
+    username_credential: johnd
+  delegate_to: localhost
+  name: Add the user 'johnd' as an admin
+- bigip_user:
+    partition_access: NewPartition:manager
+    password: secret
+    server: lb.mydomain.com
+    shell: tmsh
+    state: present
+    user: admin
+    username_credential: johnd
+  delegate_to: localhost
+  name: Change the user "johnd's" role and shell
+- bigip_user:
+    name: johnd
+    partition_access: all:admin
+    password: secret
+    server: lb.mydomain.com
+    shell: bash
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Make the user 'johnd' an admin and set to advanced shell
+- bigip_user:
+    name: johnd
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove the user 'johnd'
+- bigip_user:
+    password: secret
+    password_credential: newsupersecretpassword
+    server: lb.mydomain.com
+    state: present
+    user: admin
+    username_credential: johnd
+  delegate_to: localhost
+  name: Update password
+- bigip_user:
+    password: secret
+    password_credential: NewSecretPassword
+    server: lb.mydomain.com
+    state: present
+    user: admin
+    username_credential: admin
+  delegate_to: localhost
+  name: Change the Admin password
+- bigip_user:
+    password: secret
+    password_credential: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+    username_credential: root
+  delegate_to: localhost
+  name: Change the root user's password

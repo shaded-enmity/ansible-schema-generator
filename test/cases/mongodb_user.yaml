@@ -1,0 +1,51 @@
+- mongodb_user:
+    database: burgers
+    name: bob
+    password: 12345
+    state: present
+- mongodb_user:
+    database: burgers
+    name: bob
+    password: 12345
+    ssl: true
+    state: present
+- mongodb_user:
+    database: burgers
+    name: bob
+    state: absent
+- mongodb_user:
+    database: burgers
+    name: ben
+    password: 12345
+    roles: read
+    state: present
+- mongodb_user:
+    database: burgers
+    name: jim
+    password: 12345
+    roles: readWrite,dbAdmin,userAdmin
+    state: present
+- mongodb_user:
+    database: burgers
+    name: joe
+    password: 12345
+    roles: readWriteAnyDatabase
+    state: present
+- mongodb_user:
+    database: burgers
+    name: bob
+    password: 12345
+    replica_set: belcher
+    roles: readWriteAnyDatabase
+    state: present
+- mongodb_user:
+    database: admin
+    login_password: root_password
+    login_user: root
+    password: oplog_reader_password
+    replica_set: belcher
+    roles:
+    - db: local
+      role: read
+    state: present
+    user: oplog_reader

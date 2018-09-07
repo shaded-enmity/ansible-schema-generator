@@ -1,0 +1,29 @@
+- iam_group:
+    name: testgroup1
+    state: present
+- iam_group:
+    managed_policy:
+    - arn:aws:iam::aws:policy/AmazonSNSFullAccess
+    name: testgroup1
+    state: present
+- iam_group:
+    managed_policy:
+    - arn:aws:iam::aws:policy/AmazonSNSFullAccess
+    name: testgroup1
+    state: present
+    users:
+    - test_user1
+    - test_user2
+- iam_group:
+    name: testgroup1
+    purge_policy: true
+    state: present
+- iam_group:
+    managed_policy:
+    - arn:aws:iam::aws:policy/AmazonSNSFullAccess
+    name: testgroup1
+    purge_users: true
+    state: present
+- iam_group:
+    name: testgroup1
+    state: absent

@@ -1,0 +1,18 @@
+- azure_rm_virtualmachine_extension:
+    auto_upgrade_minor_version: true
+    location: eastus
+    name: myvmextension
+    publisher: Microsoft.Azure.Extensions
+    resource_group: Testing
+    settings: '{"commandToExecute": "hostname"}'
+    type_handler_version: 2.0
+    virtual_machine_extension_type: CustomScript
+    virtual_machine_name: myvm
+  name: Create VM Extension
+- azure_rm_virtualmachine_extension:
+    location: eastus
+    name: myvmextension
+    resource_group: Testing
+    state: absent
+    virtual_machine_name: myvm
+  name: Delete VM Extension

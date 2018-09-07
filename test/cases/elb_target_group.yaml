@@ -1,0 +1,49 @@
+- elb_target_group:
+    name: mytargetgroup
+    port: 80
+    protocol: http
+    state: present
+    vpc_id: vpc-01234567
+- elb_target_group:
+    health_check_path: /
+    name: mytargetgroup
+    port: 80
+    protocol: http
+    state: present
+    successful_response_codes: 200, 250-260
+    vpc_id: vpc-01234567
+- elb_target_group:
+    name: mytargetgroup
+    state: absent
+- elb_target_group:
+    health_check_path: /
+    name: mytargetgroup
+    port: 81
+    protocol: http
+    state: present
+    successful_response_codes: 200,250-260
+    targets:
+    - Id: i-01234567
+      Port: 80
+    - Id: i-98765432
+      Port: 80
+    vpc_id: vpc-01234567
+    wait: true
+    wait_timeout: 200
+- elb_target_group:
+    health_check_path: /
+    name: mytargetgroup
+    port: 81
+    protocol: http
+    state: present
+    successful_response_codes: 200,250-260
+    target_type: ip
+    targets:
+    - AvailabilityZone: all
+      Id: 10.0.0.10
+      Port: 80
+    - Id: 10.0.0.20
+      Port: 80
+    vpc_id: vpc-01234567
+    wait: true
+    wait_timeout: 200

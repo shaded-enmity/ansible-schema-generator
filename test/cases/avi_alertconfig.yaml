@@ -1,0 +1,7 @@
+- avi_alertconfig:
+    controller: 10.10.25.42
+    name: sample_alertconfig
+    password: something
+    state: present
+    username: admin
+  name: Example to create AlertConfig object

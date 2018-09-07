@@ -1,0 +1,19 @@
+- azure_rm_managed_disk:
+    disk_size_gb: 4
+    location: eastus
+    name: mymanageddisk
+    resource_group: Testing
+  name: Create managed disk
+- azure_rm_managed_disk:
+    disk_size_gb: 4
+    location: eastus
+    managed_by: testvm001
+    name: mymanageddisk
+    resource_group: Testing
+  name: Mount the managed disk to VM
+- azure_rm_managed_disk:
+    disk_size_gb: 4
+    location: eastus
+    name: mymanageddisk
+    resource_group: Testing
+  name: Unmount the managed disk to VM

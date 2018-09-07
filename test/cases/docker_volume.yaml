@@ -1,0 +1,13 @@
+- docker_volume:
+    name: volume_one
+  name: Create a volume
+- docker_volume:
+    name: volume_one
+    state: absent
+  name: Remove a volume
+- docker_volume:
+    driver_options:
+      device: /dev/sda2
+      type: btrfs
+    name: volume_two
+  name: Create a volume with options

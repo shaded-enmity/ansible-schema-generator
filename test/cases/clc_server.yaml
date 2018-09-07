@@ -1,0 +1,29 @@
+- clc_server:
+    count: 1
+    group: Default Group
+    name: test
+    state: present
+    template: ubuntu-14-64
+  name: Provision a single Ubuntu Server
+- clc_server:
+    count_group: Default Group
+    exact_count: 5
+    group: Default Group
+    name: test
+    template: ubuntu-14-64
+  name: Ensure 'Default Group' has exactly 5 servers
+- clc_server:
+    server_ids:
+    - UC1ACCT-TEST01
+    state: stopped
+  name: Stop a Server
+- clc_server:
+    server_ids:
+    - UC1ACCT-TEST01
+    state: started
+  name: Start a Server
+- clc_server:
+    server_ids:
+    - UC1ACCT-TEST01
+    state: absent
+  name: Delete a Server

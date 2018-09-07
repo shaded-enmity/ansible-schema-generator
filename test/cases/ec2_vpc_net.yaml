@@ -1,0 +1,8 @@
+- ec2_vpc_net:
+    cidr_block: 10.10.0.0/16
+    name: Module_dev2
+    region: us-east-1
+    tags:
+      module: ec2_vpc_net
+      this: works
+    tenancy: dedicated

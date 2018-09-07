@@ -1,0 +1,39 @@
+- name: Enter host system into lockdown mode
+  vmware_host_lockdown:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Exit host systems from lockdown mode
+  vmware_host_lockdown:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: absent
+    username: '{{ vcenter_username }}'
+- name: Enter host systems into lockdown mode
+  vmware_host_lockdown:
+    esxi_hostname:
+    - '{{ esxi_hostname_1 }}'
+    - '{{ esxi_hostname_2 }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'
+- name: Exit host systems from lockdown mode
+  vmware_host_lockdown:
+    esxi_hostname:
+    - '{{ esxi_hostname_1 }}'
+    - '{{ esxi_hostname_2 }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: absent
+    username: '{{ vcenter_username }}'
+- name: Enter all host system from cluster into lockdown mode
+  vmware_host_lockdown:
+    cluster_name: '{{ cluster_name }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    state: present
+    username: '{{ vcenter_username }}'

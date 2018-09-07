@@ -1,0 +1,12 @@
+- delegate_to: localhost
+  name: Save netscaler configuration
+  netscaler_save_config:
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+- delegate_to: localhost
+  name: Save configuration
+  netscaler_save_config:
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2

@@ -1,0 +1,90 @@
+- gcdns_record:
+    record: www1.example.com
+    type: A
+    value: 1.2.3.4
+    zone: example.com
+- gcdns_record:
+    overwrite: true
+    record: www1.example.com
+    type: A
+    value: 5.6.7.8
+    zone: example.com
+- gcdns_record:
+    record: www1.example.com
+    state: absent
+    type: A
+    value: 5.6.7.8
+    zone_id: example-com
+- gcdns_record:
+    record: www.example.com
+    type: CNAME
+    value: www.example.com.
+    zone_id: example-com
+- gcdns_record:
+    record: example.com
+    ttl: 3600
+    type: MX
+    value: 10 mail.example.com.
+    zone: example.com
+- gcdns_record:
+    record: api.example.com
+    record_data:
+    - 192.0.2.23
+    - 10.4.5.6
+    - 198.51.100.5
+    - 203.0.113.10
+    type: A
+    zone_id: example-com
+- gcdns_record:
+    overwrite: true
+    record: api.example.com
+    record_data:
+    - 192.0.2.23
+    - 192.0.2.42
+    - 198.51.100.5
+    - 203.0.113.10
+    type: A
+    zone: example.com
+- gcdns_record:
+    record: api.example.com
+    record_data:
+    - 192.0.2.23
+    - 192.0.2.42
+    - 198.51.100.5
+    - 203.0.113.10
+    state: absent
+    type: A
+    zone_id: example-com
+- gcdns_record:
+    overwrite: true
+    record: api.example.com
+    state: absent
+    type: A
+    zone_id: example-com
+- gcdns_record:
+    record: www1.example.com
+    type: AAAA
+    value: fd00:db8::1
+    zone: example.com
+- gcdns_record:
+    record: 10.5.168.192.in-addr.arpa
+    type: PTR
+    value: api.example.com.
+    zone: 5.168.192.in-addr.arpa
+- gcdns_record:
+    record: subdomain.example.com
+    record_data:
+    - ns-cloud-d1.googledomains.com.
+    - ns-cloud-d2.googledomains.com.
+    - ns-cloud-d3.googledomains.com.
+    - ns-cloud-d4.googledomains.com.
+    ttl: 21600
+    type: NS
+    zone: example.com
+- gcdns_record:
+    record: example.com
+    record_data:
+    - '"v=spf1 include:_spf.google.com -all"'
+    - '"hello " "world"'
+    type: TXT
+    zone_id: example-com

@@ -1,0 +1,8 @@
+- ironware_facts:
+    gather_subset: all
+- ironware_facts:
+    gather_subset:
+    - config
+- ironware_facts:
+    gather_subset:
+    - '!hardware'

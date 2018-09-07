@@ -1,0 +1,7 @@
+- junos_package:
+    src: junos-vsrx-12.1X46-D10.2-domestic.tgz
+  name: install local package on remote device
+- junos_package:
+    reboot: false
+    src: junos-vsrx-12.1X46-D10.2-domestic.tgz
+  name: install local package on remote device without rebooting

@@ -1,0 +1,52 @@
+- name: Install git
+  win_chocolatey:
+    name: git
+    state: present
+- name: Upgrade installed packages
+  win_chocolatey:
+    name: all
+    state: latest
+- name: Install notepadplusplus version 6.6
+  win_chocolatey:
+    name: notepadplusplus
+    version: '6.6'
+- name: Install git from specified repository
+  win_chocolatey:
+    name: git
+    source: https://someserver/api/v2/
+- name: Uninstall git
+  win_chocolatey:
+    name: git
+    state: absent
+- name: Install multiple packages
+  win_chocolatey:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - pscx
+  - windirstat
+- name: uninstall multiple packages
+  win_chocolatey:
+    name: '{{ item }}'
+    state: absent
+  with_items:
+  - pscx
+  - windirstat
+- name: Install curl using proxy
+  win_chocolatey:
+    name: curl
+    proxy_password: p@ssw0rd
+    proxy_url: http://proxy-server:8080/
+    proxy_username: joe
+- name: Install curl with proxy credentials that contain quotes
+  win_chocolatey:
+    name: curl
+    proxy_password: pass with \"escaped\" double quotes
+    proxy_url: http://proxy-server:8080/
+    proxy_username: user with \"escaped\" double quotes
+- become: true
+  become_method: runas
+  become_user: Administrator
+  name: Install a package that requires 'become'
+  win_chocolatey:
+    name: officepro2013

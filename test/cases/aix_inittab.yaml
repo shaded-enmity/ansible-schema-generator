@@ -1,0 +1,25 @@
+- aix_inittab:
+    action: once
+    command: echo hello
+    insertafter: existingservice
+    name: startmyservice
+    runlevel: 4
+    state: present
+  become: true
+  name: Add startmyservice to inittab
+- aix_inittab:
+    action: wait
+    command: echo hello
+    name: startmyservice
+    runlevel: 2
+    state: present
+  become: true
+  name: Change startmyservice to inittab
+- aix_inittab:
+    action: wait
+    command: echo hello
+    name: startmyservice
+    runlevel: 2
+    state: absent
+  become: true
+  name: Remove startmyservice from inittab

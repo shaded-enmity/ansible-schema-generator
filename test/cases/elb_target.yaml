@@ -1,0 +1,17 @@
+- elb_target:
+    state: present
+    target_group_name: myiptargetgroup
+    target_id: 10.0.0.10
+- elb_target:
+    state: present
+    target_group_name: mytargetgroup
+    target_id: i-1234567
+- elb_target:
+    state: absent
+    target_group_name: mytargetgroup
+    target_id: i-1234567
+- elb_target:
+    state: present
+    target_group_name: mytargetgroup
+    target_id: i-1234567
+    target_port: 8080

@@ -1,0 +1,14 @@
+- name: create a public zone
+  route53_zone:
+    comment: this is an example
+    zone: example.com
+- name: delete a public zone
+  route53_zone:
+    state: absent
+    zone: example.com
+- name: create a private zone
+  route53_zone:
+    comment: developer domain
+    vpc_id: '{{ myvpc_id }}'
+    vpc_region: us-west-2
+    zone: devel.example.com

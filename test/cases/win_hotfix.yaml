@@ -1,0 +1,27 @@
+- name: install hotfix without validating the KB and Identifier
+  register: hotfix_install
+  win_hotfix:
+    source: C:\temp\windows8.1-kb3172729-x64_e8003822a7ef4705cbb65623b72fd3cec73fe222.msu
+    state: present
+- name: install hotfix validating KB
+  register: hotfix_install
+  win_hotfix:
+    hotfix_kb: KB3172729
+    source: C:\temp\windows8.1-kb3172729-x64_e8003822a7ef4705cbb65623b72fd3cec73fe222.msu
+    state: present
+- name: install hotfix validating Identifier
+  register: hotfix_install
+  win_hotfix:
+    hotfix_identifier: Package_for_KB3172729~31bf3856ad364e35~amd64~~6.3.1.0
+    source: C:\temp\windows8.1-kb3172729-x64_e8003822a7ef4705cbb65623b72fd3cec73fe222.msu
+    state: present
+- name: uninstall hotfix with Identifier
+  register: hotfix_uninstall
+  win_hotfix:
+    hotfix_identifier: Package_for_KB3172729~31bf3856ad364e35~amd64~~6.3.1.0
+    state: absent
+- name: uninstall hotfix with KB (not recommended)
+  register: hotfix_uninstall
+  win_hotfix:
+    hotfix_kb: KB3172729
+    state: absent

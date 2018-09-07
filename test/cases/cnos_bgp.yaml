@@ -1,0 +1,225 @@
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: neighbor
+    bgpArg2: 10.241.107.40
+    bgpArg3: 13
+    bgpArg4: address-family
+    bgpArg5: ipv4
+    bgpArg6: next-hop-self
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - neighbor
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: neighbor
+    bgpArg2: 10.241.107.40
+    bgpArg3: 13
+    bgpArg4: bfd
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - BFD
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: address-family
+    bgpArg2: ipv4
+    bgpArg3: dampening
+    bgpArg4: 13
+    bgpArg5: 233
+    bgpArg6: 333
+    bgpArg7: 15
+    bgpArg8: 33
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - address-family - dampening
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: address-family
+    bgpArg2: ipv4
+    bgpArg3: network
+    bgpArg4: 1.2.3.4/5
+    bgpArg5: backdoor
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - address-family - network
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: bestpath
+    bgpArg2: always-compare-med
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - bestpath - always-compare-med
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: bestpath
+    bgpArg2: compare-confed-aspath
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - bestpath-compare-confed-aspat
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: bgp
+    bgpArg2: 33
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - bgp
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: cluster-id
+    bgpArg2: 1.2.3.4
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - cluster-id
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: confederation
+    bgpArg2: identifier
+    bgpArg3: 333
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - confederation-identifier
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: enforce-first-as
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - enforce-first-as
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: fast-external-failover
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - fast-external-failover
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: graceful-restart
+    bgpArg2: 333
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - graceful-restart
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: graceful-restart-helper
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - graceful-restart-helper
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: maxas-limit
+    bgpArg2: 333
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - maxas-limit
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: neighbor
+    bgpArg2: 10.241.107.40
+    bgpArg3: 13
+    bgpArg4: address-family
+    bgpArg5: ipv4
+    bgpArg6: next-hop-self
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP  - neighbor
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: router-id
+    bgpArg2: 1.2.3.4
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - router-id
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: synchronization
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - synchronization
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: timers
+    bgpArg2: 333
+    bgpArg3: 3333
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - timers
+- cnos_bgp:
+    asNum: 33
+    bgpArg1: vrf
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_bgp_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+  name: Test BGP - vrf

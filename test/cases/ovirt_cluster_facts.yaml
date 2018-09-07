@@ -1,0 +1,3 @@
+- ovirt_cluster_facts:
+    pattern:
+      name: production*

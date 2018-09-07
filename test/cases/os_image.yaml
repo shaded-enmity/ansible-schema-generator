@@ -1,0 +1,16 @@
+- os_image:
+    auth:
+      auth_url: http://localhost/auth/v2.0
+      password: passme
+      project_name: admin
+      username: admin
+    container_format: bare
+    disk_format: qcow2
+    filename: cirros-0.3.0-x86_64-disk.img
+    kernel: cirros-vmlinuz
+    name: cirros
+    properties:
+      cpu_arch: x86_64
+      distro: ubuntu
+    ramdisk: cirros-initrd
+    state: present

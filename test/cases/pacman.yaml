@@ -1,0 +1,33 @@
+- name: Install package foo
+  pacman:
+    name: foo
+    state: present
+- name: Upgrade package foo
+  pacman:
+    name: foo
+    state: latest
+    update_cache: true
+- name: Remove packages foo and bar
+  pacman:
+    name: foo,bar
+    state: absent
+- name: Recursively remove package baz
+  pacman:
+    name: baz
+    recurse: true
+    state: absent
+- name: Run the equivalent of "pacman -Sy" as a separate step
+  pacman:
+    update_cache: true
+- name: Run the equivalent of "pacman -Su" as a separate step
+  pacman:
+    upgrade: true
+- name: Run the equivalent of "pacman -Syu" as a separate step
+  pacman:
+    update_cache: true
+    upgrade: true
+- name: Run the equivalent of "pacman -Rdd", force remove package baz
+  pacman:
+    force: true
+    name: baz
+    state: absent

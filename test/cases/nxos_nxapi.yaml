@@ -1,0 +1,12 @@
+- name: Enable NXAPI access with default configuration
+  nxos_nxapi:
+    state: present
+- name: Enable NXAPI with no HTTP, HTTPS at port 9443 and sandbox disabled
+  nxos_nxapi:
+    enable_http: false
+    enable_sandbox: false
+    https: true
+    https_port: 9443
+- name: remove NXAPI configuration
+  nxos_nxapi:
+    state: absent

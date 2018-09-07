@@ -1,0 +1,7 @@
+- mssql_db:
+    name: jackdata
+    state: present
+- mssql_db:
+    name: my_db
+    state: import
+    target: /tmp/dump.sql

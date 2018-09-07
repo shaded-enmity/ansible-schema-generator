@@ -1,0 +1,15 @@
+- iam_user:
+    name: testuser1
+    state: present
+- iam_user:
+    managed_policy:
+    - arn:aws:iam::aws:policy/AmazonSNSFullAccess
+    name: testuser1
+    state: present
+- iam_user:
+    name: testuser1
+    purge_policy: true
+    state: present
+- iam_user:
+    name: testuser1
+    state: absent

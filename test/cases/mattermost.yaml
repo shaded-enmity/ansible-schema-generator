@@ -1,0 +1,13 @@
+- mattermost:
+    api_key: my_api_key
+    text: '{{ inventory_hostname }} completed'
+    url: http://mattermost.example.com
+  name: Send notification message via Mattermost
+- mattermost:
+    api_key: my_api_key
+    channel: notifications
+    icon_url: http://www.example.com/some-image-file.png
+    text: '{{ inventory_hostname }} completed'
+    url: http://mattermost.example.com
+    username: Ansible on {{ inventory_hostname }}
+  name: Send notification message via Mattermost all options

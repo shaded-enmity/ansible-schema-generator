@@ -1,0 +1,19 @@
+- name: configure hostname and domain-name
+  nxos_system:
+    domain_name: test.example.com
+    hostname: nxos01
+- name: remove configuration
+  nxos_system:
+    state: absent
+- name: configure name servers
+  nxos_system:
+    name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+- name: configure name servers with VRF support
+  nxos_system:
+    name_servers:
+    - server: 8.8.8.8
+      vrf: mgmt
+    - server: 8.8.4.4
+      vrf: mgmt

@@ -1,0 +1,6 @@
+- ovirt_tags_facts:
+    name: tag*
+- ovirt_tags_facts:
+    vm: postgres
+- ovirt_tags_facts:
+    host: west

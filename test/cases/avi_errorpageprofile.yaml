@@ -1,0 +1,7 @@
+- avi_errorpageprofile:
+    controller: 10.10.25.42
+    name: sample_errorpageprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create ErrorPageProfile object

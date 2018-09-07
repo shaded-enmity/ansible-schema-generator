@@ -1,0 +1,52 @@
+- bigip_pool_member:
+    connection_limit: 100
+    description: web server
+    host: '{{ ansible_default_ipv4[''address''] }}'
+    partition: Common
+    password: secret
+    pool: my-pool
+    port: 80
+    rate_limit: 50
+    ratio: 2
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add pool member
+- bigip_pool_member:
+    description: nginx server
+    host: '{{ ansible_default_ipv4[''address''] }}'
+    partition: Common
+    password: secret
+    pool: my-pool
+    port: 80
+    ratio: 1
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Modify pool member ratio and description
+- bigip_pool_member:
+    host: '{{ ansible_default_ipv4[''address''] }}'
+    partition: Common
+    password: secret
+    pool: my-pool
+    port: 80
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Remove pool member from pool
+- bigip_pool_member:
+    host: '{{ ansible_default_ipv4[''address''] }}'
+    monitor_state: disabled
+    partition: Common
+    password: secret
+    pool: my-pool
+    port: 80
+    server: lb.mydomain.com
+    session_state: disabled
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Force pool member offline

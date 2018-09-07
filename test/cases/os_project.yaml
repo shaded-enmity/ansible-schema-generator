@@ -1,0 +1,11 @@
+- os_project:
+    cloud: mycloud
+    description: demodescription
+    domain_id: demoid
+    enabled: true
+    name: demoproject
+    state: present
+- os_project:
+    cloud: mycloud
+    name: demoproject
+    state: absent

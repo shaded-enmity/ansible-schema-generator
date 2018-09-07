@@ -1,0 +1,19 @@
+- avi_ipamdnsproviderprofile:
+    controller: '{{ controller }}'
+    internal_profile:
+      dns_service_domain:
+      - domain_name: ashish.local
+        num_dns_ip: 1
+        pass_through: true
+        record_ttl: 100
+      - domain_name: guru.local
+        num_dns_ip: 1
+        pass_through: true
+        record_ttl: 200
+      ttl: 300
+    name: Ashish-DNS
+    password: '{{ password }}'
+    tenant_ref: Demo
+    type: IPAMDNS_TYPE_INTERNAL
+    username: '{{ username }}'
+  name: Create IPAM DNS provider setting

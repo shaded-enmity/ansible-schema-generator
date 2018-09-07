@@ -1,0 +1,29 @@
+- imgadm:
+    state: imported
+    uuid: 70e3ae72-96b6-11e6-9056-9737fd4d0764
+  name: Import an image
+- imgadm:
+    state: deleted
+    uuid: 70e3ae72-96b6-11e6-9056-9737fd4d0764
+  name: Delete an image
+- imgadm:
+    state: updated
+    uuid: '*'
+  name: Update all images
+- imgadm:
+    state: updated
+    uuid: 70e3ae72-96b6-11e6-9056-9737fd4d0764
+  name: Update a single image
+- imgadm:
+    source: https://datasets.project-fifo.net
+    state: present
+  name: Add a source
+- imgadm:
+    source: https://docker.io
+    state: present
+    type: docker
+  name: Add a Docker source
+- imgadm:
+    source: https://docker.io
+    state: absent
+  name: Remove a source

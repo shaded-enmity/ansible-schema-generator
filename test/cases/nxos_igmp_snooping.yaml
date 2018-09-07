@@ -1,0 +1,9 @@
+- nxos_igmp_snooping:
+    state: default
+- nxos_igmp_snooping:
+    group_timeout: never
+    link_local_grp_supp: false
+    optimize_mcast_flood: false
+    report_supp: true
+    snooping: true
+    v3_report_supp: true

@@ -1,0 +1,7 @@
+- name: generate self signed certificate
+  panos_cert_gen_ssh:
+    cert_cn: 1.1.1.1
+    cert_friendly_name: test123
+    ip_address: 192.168.1.1
+    password: paloalto
+    signed_by: root-ca

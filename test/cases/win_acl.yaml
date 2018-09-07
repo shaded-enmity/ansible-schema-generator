@@ -1,0 +1,40 @@
+- name: Restrict write and execute access to User Fed-Phil
+  win_acl:
+    path: C:\Important\Executable.exe
+    rights: ExecuteFile,Write
+    type: deny
+    user: Fed-Phil
+- name: Add IIS_IUSRS allow rights
+  win_acl:
+    inherit: ContainerInherit, ObjectInherit
+    path: C:\inetpub\wwwroot\MySite
+    propagation: None
+    rights: FullControl
+    state: present
+    type: allow
+    user: IIS_IUSRS
+- name: set registry key right
+  win_acl:
+    inherit: ContainerInherit, ObjectInherit
+    path: HKCU:\Bovine\Key
+    propagation: None
+    rights: EnumerateSubKeys
+    state: present
+    type: allow
+    user: BUILTIN\Users
+- name: Remove FullControl AccessRule for IIS_IUSRS
+  win_acl:
+    inherit: ContainerInherit, ObjectInherit
+    path: C:\inetpub\wwwroot\MySite
+    propagation: None
+    rights: FullControl
+    state: absent
+    type: allow
+    user: IIS_IUSRS
+- name: Deny Intern
+  win_acl:
+    path: C:\Administrator\Documents
+    rights: Read,Write,Modify,FullControl,Delete
+    state: present
+    type: deny
+    user: Intern

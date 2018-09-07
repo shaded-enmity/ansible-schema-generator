@@ -1,0 +1,29 @@
+- eos_system:
+    domain_name: test.example.com
+    hostname: eos01
+  name: configure hostname and domain-name
+- eos_system:
+    state: absent
+  name: remove configuration
+- eos_system:
+    lookup_source: Management1
+  name: configure DNS lookup sources
+- eos_system:
+    lookup_source:
+    - interface: Management1
+      vrf: mgmt
+    - interface: Ethernet1
+      vrf: myvrf
+  name: configure DNS lookup sources with VRF support
+- eos_system:
+    name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+  name: configure name servers
+- eos_system:
+    name_servers:
+    - server: 8.8.8.8
+      vrf: mgmt
+    - server: 8.8.4.4
+      vrf: mgmt
+  name: configure name servers with VRF support

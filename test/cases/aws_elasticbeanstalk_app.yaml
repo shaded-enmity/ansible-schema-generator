@@ -1,0 +1,7 @@
+- aws_elasticbeanstalk_app:
+    app_name: Sample_App
+    description: Hello World App
+    state: present
+- aws_elasticbeanstalk_app:
+    app_name: Sample_App
+    state: absent

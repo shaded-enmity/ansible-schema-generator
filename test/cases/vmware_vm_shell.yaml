@@ -1,0 +1,18 @@
+- delegate_to: localhost
+  name: Run command inside a vm
+  register: shell_command_output
+  vmware_vm_shell:
+    datacenter: myDatacenter
+    folder: /vm
+    hostname: myVSphere
+    password: mySecret
+    username: myUsername
+    vm_id: NameOfVM
+    vm_password: superSecret
+    vm_shell: /bin/echo
+    vm_shell_args: ' $var >> myFile '
+    vm_shell_cwd: /tmp
+    vm_shell_env:
+    - PATH=/bin
+    - VAR=test
+    vm_username: root

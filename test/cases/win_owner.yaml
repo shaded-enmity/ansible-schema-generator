@@ -1,0 +1,10 @@
+- name: Change owner of Path
+  win_owner:
+    path: C:\apache
+    recurse: true
+    user: apache
+- name: Set the owner of root directory
+  win_owner:
+    path: C:\apache
+    recurse: false
+    user: SYSTEM

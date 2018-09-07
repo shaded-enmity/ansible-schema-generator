@@ -1,0 +1,15 @@
+- name: Acme IIS site
+  register: website
+  win_iis_website:
+    application_pool: acme
+    hostname: acme.local
+    ip: 127.0.0.1
+    name: Acme
+    parameters: logfile.directory:c:\sites\logs
+    physical_path: c:\sites\acme
+    port: 80
+    state: started
+- name: Remove Default Web Site
+  win_iis_website:
+    name: Default Web Site
+    state: absent

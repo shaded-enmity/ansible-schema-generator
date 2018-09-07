@@ -1,0 +1,29 @@
+- uri:
+    body: '{{ lookup(''file'',''issue.json'') }}'
+    body_format: json
+    force_basic_auth: true
+    method: POST
+    password: your_pass
+    status_code: 201
+    url: https://your.jira.example.com/rest/api/2/issue/
+    user: your_username
+- register: login
+  uri:
+    HEADER_Content-Type: application/x-www-form-urlencoded
+    body: name=your_username&password=your_password&enter=Sign%20in
+    method: POST
+    status_code: 302
+    url: https://your.form.based.auth.example.com/index.php
+- uri:
+    HEADER_Cookie: '{{login.set_cookie}}'
+    method: GET
+    return_content: true
+    url: https://your.form.based.auth.example.com/dashboard.php
+- uri:
+    force_basic_auth: true
+    method: GET
+    password: '{{ jenkins.password }}'
+    status_code: 201
+    url: http://{{ jenkins.host }}/job/{{ jenkins.job }}/build?token={{ jenkins.token
+      }}
+    user: '{{ jenkins.user }}'

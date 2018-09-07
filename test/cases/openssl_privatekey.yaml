@@ -1,0 +1,15 @@
+- openssl_privatekey:
+    path: /etc/ssl/private/ansible.com.pem
+- openssl_privatekey:
+    cipher: aes256
+    passphrase: ansible
+    path: /etc/ssl/private/ansible.com.pem
+- openssl_privatekey:
+    path: /etc/ssl/private/ansible.com.pem
+    size: 2048
+- openssl_privatekey:
+    force: true
+    path: /etc/ssl/private/ansible.com.pem
+- openssl_privatekey:
+    path: /etc/ssl/private/ansible.com.pem
+    type: DSA

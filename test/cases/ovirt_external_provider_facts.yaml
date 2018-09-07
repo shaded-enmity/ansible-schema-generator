@@ -1,0 +1,3 @@
+- ovirt_external_provider_facts:
+    name: glance
+    type: os_image

@@ -1,0 +1,28 @@
+- fmgr_script:
+    adom: root
+    host: '{{inventory_hostname}}'
+    password: '{{ password }}'
+    script_content: get system status
+    script_description: Create by Ansible
+    script_name: TestScript
+    script_target: remote_device
+    script_type: cli
+    username: '{{ username }}'
+  name: CREATE SCRIPT
+- fmgr_script:
+    adom: root
+    host: '{{inventory_hostname}}'
+    password: '{{ password }}'
+    script_name: TestScript
+    script_scope: FGT1,FGT2
+    state: execute
+    username: '{{ username }}'
+  name: EXECUTE SCRIPT
+- fmgr_script:
+    adom: root
+    host: '{{inventory_hostname}}'
+    password: '{{ password }}'
+    script_name: TestScript
+    state: delete
+    username: '{{ username }}'
+  name: DELETE SCRIPT

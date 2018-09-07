@@ -1,0 +1,25 @@
+- eos_static_route:
+    address: 10.0.2.0/24
+    admin_distance: 2
+    next_hop: 10.8.38.1
+  name: configure static route
+- eos_static_route:
+    address: 10.0.2.0/24
+    next_hop: 10.8.38.1
+    state: absent
+  name: delete static route
+- eos_static_route:
+    aggregate:
+    - address: 10.0.1.0/24
+      next_hop: 10.8.38.1
+    - address: 10.0.3.0/24
+      next_hop: 10.8.38.1
+  name: configure static routes using aggregate
+- eos_static_route:
+    aggregate:
+    - address: 10.0.1.0/24
+      next_hop: 10.8.38.1
+    - address: 10.0.3.0/24
+      next_hop: 10.8.38.1
+    state: absent
+  name: Delete static route using aggregate

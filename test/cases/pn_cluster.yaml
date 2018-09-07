@@ -1,0 +1,13 @@
+- name: create spine cluster
+  pn_cluster:
+    pn_cluster_node1: spine01
+    pn_cluster_node2: spine02
+    pn_name: spine-cluster
+    pn_quiet: true
+    pn_validate: validate
+    state: present
+- name: delete spine cluster
+  pn_cluster:
+    pn_name: spine-cluster
+    pn_quiet: true
+    state: absent

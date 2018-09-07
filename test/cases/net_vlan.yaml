@@ -1,0 +1,11 @@
+- name: configure VLAN ID and name
+  net_vlan:
+    name: test-vlan
+    vlan_id: 20
+- name: remove configuration
+  net_vlan:
+    state: absent
+- name: configure VLAN state
+  net_vlan:
+    state: suspend
+    vlan_id: null

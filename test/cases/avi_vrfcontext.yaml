@@ -1,0 +1,7 @@
+- avi_vrfcontext:
+    controller: 10.10.25.42
+    name: sample_vrfcontext
+    password: something
+    state: present
+    username: admin
+  name: Example to create VrfContext object

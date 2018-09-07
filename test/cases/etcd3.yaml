@@ -1,0 +1,6 @@
+- etcd3:
+    host: localhost
+    key: foo
+    port: 2379
+    state: present
+    value: baz3

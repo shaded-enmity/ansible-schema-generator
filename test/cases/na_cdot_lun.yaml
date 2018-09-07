@@ -1,0 +1,23 @@
+- na_cdot_lun:
+    flexvol_name: ansibleVolume
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleLUN
+    password: '{{ netapp_password }}'
+    size: 5
+    size_unit: mb
+    state: present
+    username: '{{ netapp_username }}'
+    vserver: ansibleVServer
+  name: Create LUN
+- na_cdot_lun:
+    flexvol_name: ansibleVolume
+    force_resize: true
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleLUN
+    password: '{{ netapp_password }}'
+    size: 5
+    size_unit: gb
+    state: present
+    username: '{{ netapp_username }}'
+    vserver: ansibleVServer
+  name: Resize Lun

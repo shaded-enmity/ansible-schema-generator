@@ -1,0 +1,20 @@
+- ipa_service:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: http/host01.example.com
+    state: present
+- ipa_service:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: http/host01.example.com
+    state: absent
+- ipa_service:
+    host:
+    - host01.example.com
+    - host02.example.com
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: http/host01.example.com

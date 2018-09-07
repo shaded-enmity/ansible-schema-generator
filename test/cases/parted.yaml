@@ -1,0 +1,26 @@
+- parted:
+    device: /dev/sdb
+    number: 1
+    state: present
+- parted:
+    device: /dev/sdb
+    number: 1
+    state: absent
+- parted:
+    device: /dev/sdb
+    number: 1
+    part_end: 1GiB
+    state: present
+- parted:
+    device: /dev/sdb
+    flags:
+    - lvm
+    number: 2
+    part_start: 1GiB
+    state: present
+- parted:
+    device: /dev/sdb
+    number: '{{ item.num }}'
+    state: absent
+  with_items:
+  - '{{ sdb_info.partitions }}'

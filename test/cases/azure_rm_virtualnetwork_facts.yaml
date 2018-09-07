@@ -1,0 +1,11 @@
+- azure_rm_virtualnetwork_facts:
+    name: secgroup001
+    resource_group: Testing
+  name: Get facts for one virtual network
+- azure_rm_virtualnetwork_facts:
+    resource_group: Testing
+  name: Get facts for all virtual networks
+- azure_rm_virtualnetwork_facts:
+    tags:
+    - testing
+  name: Get facts by tags

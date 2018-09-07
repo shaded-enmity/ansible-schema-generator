@@ -1,0 +1,29 @@
+- oneandone_private_network:
+    auth_token: oneandone_private_api_key
+    datacenter: US
+    description: Testing creation of a private network with ansible
+    name: backup_network
+    network_address: 70.35.193.100
+    subnet_mask: 255.0.0.0
+- oneandone_private_network:
+    auth_token: oneandone_private_api_key
+    name: backup_network
+    state: absent
+- oneandone_private_network:
+    auth_token: oneandone_private_api_key
+    network_address: 192.168.2.0
+    private_network: backup_network
+    state: update
+    subnet_mask: 255.255.255.0
+- oneandone_private_network:
+    add_members:
+    - server identifier (id or name)
+    auth_token: oneandone_private_api_key
+    private_network: backup_network
+    state: update
+- oneandone_private_network:
+    auth_token: oneandone_private_api_key
+    private_network: backup_network
+    remove_members:
+    - server identifier (id or name)
+    state: update

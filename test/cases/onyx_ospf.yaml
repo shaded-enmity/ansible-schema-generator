@@ -1,0 +1,7 @@
+- name: add ospf router to interface
+  onyx_ospf:
+    interfaces:
+    - name: Eth1/1
+    - area: 0.0.0.0
+    ospf: 2
+    router_id: 192.168.8.2

@@ -1,0 +1,29 @@
+- fortios_address:
+    comment: French geoip address
+    country: FR
+    host: 192.168.0.254
+    name: fromfrance
+    password: p4ssw0rd
+    state: present
+    type: geography
+    username: admin
+  name: Register french addresses
+- fortios_address:
+    comment: Ansible website
+    host: 192.168.0.254
+    name: Ansible
+    password: p4ssw0rd
+    state: present
+    type: fqdn
+    username: admin
+    value: www.ansible.com
+  name: Register some fqdn
+- fortios_address:
+    host: 192.168.0.254
+    name: google_dns
+    password: p4ssw0rd
+    state: present
+    type: ipmask
+    username: admin
+    value: 8.8.8.8
+  name: Register google DNS

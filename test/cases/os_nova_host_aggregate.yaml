@@ -1,0 +1,13 @@
+- os_nova_host_aggregate:
+    cloud: mycloud
+    hosts:
+    - host1
+    - host2
+    metadata:
+      type: dbcluster
+    name: db_aggregate
+    state: present
+- os_nova_host_aggregate:
+    cloud: mycloud
+    name: db_aggregate
+    state: absent

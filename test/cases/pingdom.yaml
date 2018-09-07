@@ -1,0 +1,12 @@
+- pingdom:
+    checkid: 12345
+    key: apipassword123
+    passwd: password123
+    state: paused
+    uid: example@example.com
+- pingdom:
+    checkid: 12345
+    key: apipassword123
+    passwd: password123
+    state: running
+    uid: example@example.com

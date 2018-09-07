@@ -1,0 +1,22 @@
+- clc_server_snapshot:
+    expiration_days: 10
+    server_ids:
+    - UC1TEST-SVR01
+    - UC1TEST-SVR02
+    state: present
+    wait: true
+  name: Create server snapshot
+- clc_server_snapshot:
+    server_ids:
+    - UC1TEST-SVR01
+    - UC1TEST-SVR02
+    state: restore
+    wait: true
+  name: Restore server snapshot
+- clc_server_snapshot:
+    server_ids:
+    - UC1TEST-SVR01
+    - UC1TEST-SVR02
+    state: absent
+    wait: true
+  name: Delete server snapshot

@@ -1,0 +1,34 @@
+- rds:
+    command: create
+    db_engine: MySQL
+    instance_name: new-database
+    instance_type: db.m1.small
+    password: 1nsecure
+    size: 10
+    tags:
+      Application: cms
+      Environment: testing
+    username: mysql_admin
+- rds:
+    command: replicate
+    instance_name: new-database-replica
+    source_instance: new_database
+    wait: true
+    wait_timeout: 600
+- rds:
+    command: delete
+    instance_name: new-database
+    snapshot: new_database_snapshot
+- rds:
+    command: facts
+    instance_name: new-database
+  register: new_database_facts
+- rds:
+    command: modify
+    instance_name: new-database
+    new_instance_name: renamed-database
+    wait: true
+- rds:
+    command: reboot
+    instance_name: database
+    wait: true

@@ -1,0 +1,41 @@
+- aci_contract_subject_to_filter:
+    contract: web_to_db
+    filter: '{{ filter }}'
+    host: apic
+    log: '{{ log }}'
+    password: SomeSecretPassword
+    state: present
+    subject: test
+    tenant: production
+    username: admin
+  name: Add a new contract subject to filer binding
+- aci_contract_subject_to_filter:
+    contract: web_to_db
+    filter: '{{ filter }}'
+    host: apic
+    log: '{{ log }}'
+    password: SomeSecretPassword
+    state: present
+    subject: test
+    tenant: production
+    username: admin
+  name: Remove an existing contract subject to filter binding
+- aci_contract_subject_to_filter:
+    contract: web_to_db
+    filter: '{{ filter }}'
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    subject: test
+    tenant: production
+    username: admin
+  name: Query a specific contract subject to filter binding
+- aci_contract_subject_to_filter:
+    contract: web_to_db
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    subject: test
+    tenant: production
+    username: admin
+  name: Query all contract subject to filter bindings

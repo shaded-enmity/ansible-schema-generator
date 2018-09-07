@@ -1,0 +1,58 @@
+- ec2_vpc_vpn:
+    customer_gateway_id: cgw-XXXXXXXX
+    state: present
+    vpn_gateway_id: vgw-XXXXXXXX
+  name: create a VPN connection
+- ec2_vpc_vpn:
+    state: present
+    tags:
+      Name: ansible-tag-1
+      Other: ansible-tag-2
+    vpn_connection_id: vpn-XXXXXXXX
+  name: modify VPN connection tags
+- ec2_vpc_vpn:
+    state: absent
+    vpn_connection_id: vpn-XXXXXXXX
+  name: delete a connection
+- ec2_vpc_vpn:
+    filters:
+      cidr: 194.168.1.0/24
+      tag-keys:
+      - Ansible
+      - Other
+    purge_tags: true
+    state: present
+    static_only: true
+    tags:
+      New: Tag
+  name: modify VPN tags (identifying VPN by filters)
+- ec2_vpc_vpn:
+    filters:
+      vpn: vpn-XXXXXXXX
+    state: present
+    static_only: true
+    tunnel_options:
+    - TunnelInsideCidr: 169.254.100.1/30
+    - TunnelInsideCidr: 169.254.100.5/30
+  name: set up VPN with tunnel options utilizing 'TunnelInsideCidr' only
+- ec2_vpc_vpn:
+    filters:
+      vpn: vpn-XXXXXXXX
+    purge_routes: true
+    routes:
+    - 195.168.2.0/24
+    - 196.168.2.0/24
+    state: present
+  name: add routes and remove any preexisting ones
+- ec2_vpc_vpn:
+    purge_routes: true
+    routes: []
+    state: present
+    vpn_connection_id: vpn-XXXXXXXX
+  name: remove all routes
+- ec2_vpc_vpn:
+    filters:
+      tags:
+        Ansible: Tag
+    state: absent
+  name: delete a VPN identified by filters

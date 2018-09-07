@@ -1,0 +1,10 @@
+- name: Snapshot volume
+  netapp_e_snapshot_volume:
+    api_password: '{{ netapp_api_password }}'
+    api_url: '{{ netapp_api_url }}/'
+    api_username: '{{ netapp_api_username }}'
+    name: '{{ snapshot_volume_name }}'
+    snapshot_image_id: '{{ snapshot_volume_image_id }}'
+    ssid: '{{ ssid }}'
+    state: present
+    storage_pool_name: '{{ snapshot_volume_storage_pool_name }}'

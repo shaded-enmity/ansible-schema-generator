@@ -1,0 +1,36 @@
+- name: configure console logging
+  net_logging:
+    dest: console
+    facility: any
+    level: critical
+- name: remove console logging configuration
+  net_logging:
+    dest: console
+    state: absent
+- name: configure host logging
+  net_logging:
+    dest: host
+    facility: kernel
+    level: critical
+    name: 1.1.1.1
+- name: Configure file logging using aggregate
+  net_logging:
+    aggregate:
+    - facility: pfe
+      level: critical
+      name: test-1
+    - facility: kernel
+      level: emergency
+      name: test-2
+    dest: file
+- name: Delete file logging using aggregate
+  net_logging:
+    aggregate:
+    - facility: pfe
+      level: critical
+      name: test-1
+    - facility: kernel
+      level: emergency
+      name: test-2
+    dest: file
+    state: absent

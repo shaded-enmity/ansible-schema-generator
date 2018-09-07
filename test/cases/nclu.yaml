@@ -1,0 +1,22 @@
+- name: Add two interfaces without committing any changes
+  nclu:
+    commands:
+    - add int swp1
+    - add int swp2
+- name: Add 48 interfaces and commit the change.
+  nclu:
+    commit: true
+    description: Ansible - add swps1-48
+    template: '{% for iface in range(1,49) %}
+
+      add int swp{{iface}}
+
+      {% endfor %}
+
+      '
+- name: Atomically add an interface
+  nclu:
+    atomic: true
+    commands:
+    - add int swp1
+    description: Ansible - add swp1

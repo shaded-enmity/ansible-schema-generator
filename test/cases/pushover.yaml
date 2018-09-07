@@ -1,0 +1,5 @@
+- delegate_to: localhost
+  pushover:
+    app_token: wxfdksl
+    msg: '{{ inventory_hostname }} has exploded in flames, It is now time to panic'
+    user_key: baa5fe97f2c5ab3ca8f0bb59

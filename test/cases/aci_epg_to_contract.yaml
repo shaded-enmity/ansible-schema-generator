@@ -1,0 +1,40 @@
+- aci_epg_to_contract:
+    ap: anstest
+    contract: anstest_http
+    contract_type: provider
+    epg: anstest
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    tenant: anstest
+    username: admin
+  name: Add a new contract to EPG binding
+- aci_epg_to_contract:
+    ap: anstest
+    contract: anstest_http
+    contract_type: provider
+    epg: anstest
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: anstest
+    username: admin
+  name: Remove an existing contract to EPG binding
+- aci_epg_to_contract:
+    ap: anstest
+    contract: anstest_http
+    contract_type: provider
+    epg: anstest
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: anstest
+    username: admin
+  name: Query a specific contract to EPG binding
+- aci_epg_to_contract:
+    contract_type: provider
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all provider contract to EPG bindings

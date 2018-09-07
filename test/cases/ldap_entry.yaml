@@ -1,0 +1,25 @@
+- ldap_entry:
+    dn: ou=users,dc=example,dc=com
+    objectClass: organizationalUnit
+  name: Make sure we have a parent entry for users
+- ldap_entry:
+    attributes:
+      description: An LDAP administrator
+      userPassword: '{SSHA}tabyipcHzhwESzRaGA7oQ/SDoBZQOGND'
+    dn: cn=admin,dc=example,dc=com
+    objectClass:
+    - simpleSecurityObject
+    - organizationalRole
+  name: Make sure we have an admin user
+- ldap_entry:
+    bind_dn: cn=admin,dc=example,dc=com
+    bind_pw: password
+    dn: ou=stuff,dc=example,dc=com
+    server_uri: ldap://localhost/
+    state: absent
+  name: Get rid of an old entry
+- ldap_entry:
+    dn: ou=stuff,dc=example,dc=com
+    params: '{{ ldap_auth }}'
+    state: absent
+  name: Get rid of an old entry

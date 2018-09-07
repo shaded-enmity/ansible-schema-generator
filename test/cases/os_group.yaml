@@ -1,0 +1,16 @@
+- os_group:
+    cloud: mycloud
+    description: Demo Group
+    domain_id: demoid
+    name: demo
+    state: present
+- os_group:
+    cloud: mycloud
+    description: Something else
+    domain_id: demoid
+    name: demo
+    state: present
+- os_group:
+    cloud: mycloud
+    name: demo
+    state: absent

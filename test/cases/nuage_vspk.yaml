@@ -1,0 +1,155 @@
+- connection: local
+  name: Create Enterprise
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    properties:
+      name: '{{ enterprise_name }}-basic'
+    state: present
+    type: Enterprise
+  register: nuage_enterprise
+- connection: local
+  ignore_errors: true
+  name: Check if an Enterprise exists with the new name
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    command: find
+    properties:
+      name: '{{ enterprise_new_name }}-basic'
+    type: Enterprise
+  register: nuage_check_enterprise
+- connection: local
+  name: Update Enterprise name
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    id: '{{ nuage_enterprise.id }}'
+    properties:
+      name: '{{ enterprise_new_name }}-basic'
+    state: present
+    type: Enterprise
+  when: nuage_check_enterprise is failed
+- connection: local
+  name: Create admin user
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    match_filter: userName == 'ansible-admin'
+    parent_id: '{{ nuage_enterprise.id }}'
+    parent_type: Enterprise
+    properties:
+      email: ansible@localhost.local
+      first_name: Ansible
+      last_name: Admin
+      password: ansible-password
+      user_name: ansible-admin
+    state: present
+    type: User
+  register: nuage_user
+- connection: local
+  ignore_errors: true
+  name: Update admin password
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    command: change_password
+    id: '{{ nuage_user.id }}'
+    properties:
+      password: ansible-new-password
+    type: User
+- connection: local
+  name: Find Administrators group in Enterprise
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    command: find
+    parent_id: '{{ nuage_enterprise.id }}'
+    parent_type: Enterprise
+    properties:
+      name: Administrators
+    type: Group
+  register: nuage_group
+- connection: local
+  name: Assign admin user to administrators
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    id: '{{ nuage_user.id }}'
+    parent_id: '{{ nuage_group.id }}'
+    parent_type: Group
+    state: present
+    type: User
+- connection: local
+  name: Create multiple DomainTemplates
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    parent_id: '{{ nuage_enterprise.id }}'
+    parent_type: Enterprise
+    properties:
+      description: Created by Ansible
+      name: '{{ item }}'
+    state: present
+    type: DomainTemplate
+  with_items:
+  - Template-1
+  - Template-2
+- connection: local
+  name: Fetching all DomainTemplates
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    command: find
+    parent_id: '{{ nuage_enterprise.id }}'
+    parent_type: Enterprise
+    type: DomainTemplate
+  register: nuage_domain_templates
+- connection: local
+  name: Deleting all found DomainTemplates
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    id: '{{ item.ID }}'
+    state: absent
+    type: DomainTemplate
+  when: nuage_domain_templates.entities is defined
+  with_items: '{{ nuage_domain_templates.entities }}'
+- connection: local
+  name: Unassign admin user to administrators
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    id: '{{ nuage_user.id }}'
+    parent_id: '{{ nuage_group.id }}'
+    parent_type: Group
+    state: absent
+    type: User
+- connection: local
+  name: Delete Enterprise
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    id: '{{ nuage_enterprise.id }}'
+    state: absent
+    type: Enterprise
+- connection: local
+  name: Setup Enterprise and domain structure
+  nuage_vspk:
+    auth: '{{ nuage_auth }}'
+    children:
+    - children:
+      - match_filter: name == 'Allow All'
+        properties:
+          active: true
+          default_allow_ip: true
+          default_allow_non_ip: true
+          default_install_acl_implicit_rules: true
+          description: Created by Ansible
+          name: Allow All
+          priority_type: TOP
+        type: EgressACLTemplate
+      - match_filter: name == 'Allow All'
+        properties:
+          active: true
+          default_allow_ip: true
+          default_allow_non_ip: true
+          description: Created by Ansible
+          name: Allow All
+          priority_type: TOP
+        type: IngressACLTemplate
+      properties:
+        name: Unmanaged-Template
+      type: L2DomainTemplate
+    properties:
+      name: Child-based-Enterprise
+    state: present
+    type: Enterprise

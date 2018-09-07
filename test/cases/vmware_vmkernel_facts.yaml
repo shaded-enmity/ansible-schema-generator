@@ -1,0 +1,14 @@
+- name: Gather VMKernel facts about all ESXi Host in given Cluster
+  register: cluster_host_vmks
+  vmware_vmkernel_facts:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Gather VMKernel facts about ESXi Host
+  register: host_vmks
+  vmware_vmkernel_facts:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

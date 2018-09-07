@@ -1,0 +1,9 @@
+- os_keypair:
+    cloud: mordred
+    name: ansible_key
+    public_key_file: /home/me/.ssh/id_rsa.pub
+    state: present
+- os_keypair:
+    cloud: rax-dfw
+    name: ansible_key
+    state: present

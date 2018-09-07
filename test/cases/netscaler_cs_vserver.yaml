@@ -1,0 +1,14 @@
+- delegate_to: localhost
+  name: Setup content switching vserver
+  netscaler_cs_vserver:
+    ipv46: 192.168.1.1
+    name: cs_vserver_1
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    policybindings:
+    - policyname: policy_1
+      targetlbvserver: lbvserver_1
+    port: 80
+    servicetype: HTTP
+    state: present

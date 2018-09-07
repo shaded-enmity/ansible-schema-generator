@@ -1,0 +1,7 @@
+- azure_rm_sqlserver:
+    admin_password: Testpasswordxyz12!
+    admin_username: mylogin
+    location: westus
+    name: server_name
+    resource_group: resource_group
+  name: Create (or update) SQL Server

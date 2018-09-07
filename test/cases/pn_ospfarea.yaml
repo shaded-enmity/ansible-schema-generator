@@ -1,0 +1,7 @@
+- name: Add OSPF area to vrouter
+  pn_ospfarea:
+    pn_clipassword: admin
+    pn_cliusername: admin
+    pn_ospf_area: 1.0.0.0
+    pn_stub_type: stub
+    state: present

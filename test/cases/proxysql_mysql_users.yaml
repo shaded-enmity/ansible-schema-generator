@@ -1,0 +1,10 @@
+- proxysql_mysql_users:
+    load_to_runtime: false
+    login_password: admin
+    login_user: admin
+    state: present
+    username: productiondba
+- proxysql_mysql_users:
+    config_file: ~/proxysql.cnf
+    state: absent
+    username: mysqlboy

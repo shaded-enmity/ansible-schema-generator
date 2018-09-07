@@ -1,0 +1,9 @@
+- aws_acm_facts: null
+  name: obtain all ACM certificates
+- aws_acm_facts:
+    name: '*.example_com'
+  name: obtain all facts for a single ACM certificate
+- aws_acm_facts:
+    statuses:
+    - PENDING_VALIDATION
+  name: obtain all certificates pending validiation

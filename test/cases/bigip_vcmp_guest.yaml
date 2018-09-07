@@ -1,0 +1,29 @@
+- bigip_vcmp_guest:
+    mgmt_address: 10.20.30.40/24
+    mgmt_network: bridge
+    name: foo
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create a vCMP guest
+- bigip_vcmp_guest:
+    mgmt_address: 10.20.30.40/24
+    mgmt_network: bridge
+    name: foo
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+    vlans:
+    - vlan1
+    - vlan2
+  delegate_to: localhost
+  name: Create a vCMP guest with specific VLANs
+- bigip_vcmp_guest:
+    delete_virtual_disk: true
+    name: guest1
+    state: absent
+  name: Remove vCMP guest and disk
+  register: result

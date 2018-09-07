@@ -1,0 +1,47 @@
+- gc_storage:
+    bucket: mybucket
+    mode: put
+    object: key.txt
+    permission: public-read
+    src: /usr/local/myfile.txt
+  name: Upload some content
+- gc_storage:
+    bucket: mybucket
+    headers: '{"Content-Encoding": "gzip"}'
+    object: key.txt
+    src: /usr/local/myfile.txt
+  name: Upload some headers
+- gc_storage:
+    bucket: mybucket
+    dest: /usr/local/myfile.txt
+    mode: get
+    object: key.txt
+  name: Download some content
+- gc_storage:
+    bucket: mybucket
+    mode: get_str
+    object: key.txt
+  name: Download an object as a string to use else where in your playbook
+- gc_storage:
+    bucket: mybucket
+    mode: create
+  name: Create an empty bucket
+- gc_storage:
+    bucket: mybucket
+    mode: create
+    object: /my/directory/path
+  name: Create a bucket with key as directory
+- gc_storage:
+    bucket: mybucket
+    mode: delete
+  name: Delete a bucket and all contents
+- gc_storage:
+    bucket: mybucket
+    mode: create
+    versioning: true
+  name: Create a bucket with versioning enabled
+- gc_storage:
+    bucket: mybucket
+    mode: create
+    region: europe-west3
+  name: Create a bucket located in the eu

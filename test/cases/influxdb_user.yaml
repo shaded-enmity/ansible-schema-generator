@@ -1,0 +1,24 @@
+- influxdb_user:
+    user_name: john
+    user_password: s3cr3t
+  name: Create a user on localhost using default login credentials
+- influxdb_user:
+    login_password: '{{ influxdb_password }}'
+    login_username: '{{ influxdb_username }}'
+    user_name: john
+    user_password: s3cr3t
+  name: Create a user on localhost using custom login credentials
+- influxdb_user:
+    admin: true
+    hostname: '{{ influxdb_hostname }}'
+    login_password: '{{ influxdb_password }}'
+    login_username: '{{ influxdb_username }}'
+    user_name: john
+    user_password: s3cr3t
+  name: Create an admin user on a remote host using custom login credentials
+- influxdb_user:
+    login_password: '{{ influxdb_password }}'
+    login_username: '{{ influxdb_username }}'
+    state: absent
+    user_name: john
+  name: Destroy a user using custom login credentials

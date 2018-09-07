@@ -1,0 +1,28 @@
+- iam_managed_policy:
+    policy: '{{ lookup(''template'', ''managed_policy.json.j2'') }}'
+    policy_description: A Helpful managed policy
+    policy_name: ManagedPolicy
+    state: present
+  name: Create IAM Managed Policy
+- iam_managed_policy:
+    policy: '{{ lookup(''file'', ''managed_policy_update.json'') }}'
+    policy_name: ManagedPolicy
+    state: present
+  name: Create IAM Managed Policy
+- iam_managed_policy:
+    make_default: false
+    policy: '{{ lookup(''file'', ''managed_policy_update.json'') }}'
+    policy_name: ManagedPolicy
+    state: present
+  name: Create IAM Managed Policy
+- iam_managed_policy:
+    only_version: true
+    policy: '{ ''Version'': ''2012-10-17'', ''Statement'':[{''Effect'': ''Allow'',''Action'':
+      ''*'',''Resource'': ''*''}]}'
+    policy_name: ManagedPolicy
+    state: present
+  name: Create IAM Managed Policy
+- iam_managed_policy:
+    policy_name: ManagedPolicy
+    state: absent
+  name: Create IAM Managed Policy

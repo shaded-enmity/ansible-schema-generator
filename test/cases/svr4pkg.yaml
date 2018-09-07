@@ -1,0 +1,21 @@
+- svr4pkg:
+    name: CSWcommon
+    src: /tmp/cswpkgs.pkg
+    state: present
+- svr4pkg:
+    name: CSWpkgutil
+    src: http://get.opencsw.org/now
+    state: present
+    zone: current
+- svr4pkg:
+    name: CSWggrep
+    response_file: /tmp/ggrep.response
+    src: /tmp/third-party.pkg
+    state: present
+- svr4pkg:
+    name: SUNWgnome-sound-recorder
+    state: absent
+- svr4pkg:
+    category: true
+    name: FIREFOX
+    state: absent

@@ -1,0 +1,17 @@
+- name: basic upload
+  s3_sync:
+    bucket: tedder
+    file_root: roles/s3/files/
+- name: all the options
+  s3_sync:
+    bucket: tedder
+    cache_control: public, max-age=31536000
+    exclude: '*.txt,.*'
+    file_change_strategy: force
+    file_root: roles/s3/files
+    include: '*'
+    key_prefix: config_files/web
+    mime_map:
+      .json: application/text
+      .yml: application/text
+    permission: public-read

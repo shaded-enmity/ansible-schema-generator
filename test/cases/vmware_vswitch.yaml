@@ -1,0 +1,29 @@
+- delegate_to: localhost
+  name: Add a VMWare vSwitch without any physical NIC attached
+  vmware_vswitch:
+    hostname: 192.168.10.1
+    mtu: 9000
+    password: password123
+    switch: vswitch_0001
+    username: admin
+- delegate_to: localhost
+  name: Add a VMWare vSwitch with multiple NICs
+  vmware_vswitch:
+    hostname: esxi_hostname
+    mtu: 9000
+    nics:
+    - vmnic1
+    - vmnic2
+    password: esxi_password
+    switch: vmware_vswitch_0004
+    username: esxi_username
+- delegate_to: localhost
+  name: Add a VMware vSwitch to a specific host system
+  vmware_vswitch:
+    esxi_hostname: DC0_H0
+    hostname: 192.168.10.1
+    mtu: 9000
+    nic_name: vmnic0
+    password: esxi_password
+    switch_name: vswitch_001
+    username: esxi_username

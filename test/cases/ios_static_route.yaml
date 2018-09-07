@@ -1,0 +1,30 @@
+- ios_static_route:
+    mask: 255.255.255.0
+    next_hop: 10.0.0.1
+    prefix: 192.168.2.0
+  name: configure static route
+- ios_static_route:
+    mask: 255.255.255.0
+    next_hop: 10.0.0.1
+    prefix: 192.168.2.0
+    state: absent
+  name: remove configuration
+- ios_static_route:
+    aggregate:
+    - mask: 255.255.255.0
+      next_hop: 10.0.0.8
+      prefix: 172.16.32.0
+    - mask: 255.255.255.0
+      next_hop: 10.0.0.8
+      prefix: 172.16.33.0
+  name: Add static route aggregates
+- ios_static_route:
+    aggregate:
+    - mask: 255.255.255.0
+      next_hop: 10.0.0.8
+      prefix: 172.16.32.0
+    - mask: 255.255.255.0
+      next_hop: 10.0.0.8
+      prefix: 172.16.33.0
+    state: absent
+  name: Add static route aggregates

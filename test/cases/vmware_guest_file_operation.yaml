@@ -1,0 +1,44 @@
+- delegate_to: localhost
+  name: Create directory inside a vm
+  vmware_guest_file_operation:
+    datacenter: myDatacenter
+    directory:
+      operation: create
+      path: /test
+      recurse: false
+    hostname: myVSphere
+    password: mySecret
+    username: myUsername
+    validate_certs: true
+    vm_id: NameOfVM
+    vm_password: superSecret
+    vm_username: root
+- delegate_to: localhost
+  name: copy file to vm
+  vmware_guest_file_operation:
+    copy:
+      dest: /root/test.zip
+      overwrite: false
+      src: files/test.zip
+    datacenter: myDatacenter
+    hostname: myVSphere
+    password: mySecret
+    username: myUsername
+    validate_certs: true
+    vm_id: NameOfVM
+    vm_password: superSecret
+    vm_username: root
+- delegate_to: localhost
+  name: fetch file from vm
+  vmware_guest_file_operation:
+    datacenter: myDatacenter
+    fetch:
+      dest: files/test.zip
+      src: /root/test.zip
+    hostname: myVSphere
+    password: mySecret
+    username: myUsername
+    validate_certs: true
+    vm_id: NameOfVM
+    vm_password: superSecret
+    vm_username: root

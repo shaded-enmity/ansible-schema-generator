@@ -1,0 +1,6 @@
+- nxos_snmp_traps:
+    group: lldp
+    state: enabled
+- nxos_snmp_traps:
+    group: lldp
+    state: disabled

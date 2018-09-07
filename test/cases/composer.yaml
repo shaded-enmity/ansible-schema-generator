@@ -1,0 +1,16 @@
+- composer:
+    command: install
+    working_dir: /path/to/project
+- composer:
+    arguments: my/package
+    command: require
+    working_dir: /path/to/project
+- composer:
+    arguments: package/package /path/to/project ~1.0
+    command: create-project
+    prefer_dist: true
+    working_dir: /path/to/project
+- composer:
+    arguments: my/package
+    command: require
+    global_command: true

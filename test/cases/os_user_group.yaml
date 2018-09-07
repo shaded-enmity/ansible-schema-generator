@@ -1,0 +1,4 @@
+- cloud: mycloud
+  group: demo
+  os_user_group: null
+  user: demo

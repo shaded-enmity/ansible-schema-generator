@@ -1,0 +1,18 @@
+- ec2_vpc_vgw_facts:
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about all virtual gateways for an account or profile
+  register: vgw_facts
+- ec2_vpc_vgw_facts:
+    filters:
+      tag:Name: main-virt-gateway
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about a filtered list of Virtual Gateways
+  register: vgw_facts
+- ec2_vpc_vgw_facts:
+    profile: production
+    region: ap-southeast-2
+    vpn_gateway_ids: vgw-c432f6a7
+  name: Gather facts about a specific virtual gateway by VpnGatewayIds
+  register: vgw_facts

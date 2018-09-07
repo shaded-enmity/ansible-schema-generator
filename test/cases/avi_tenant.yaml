@@ -1,0 +1,12 @@
+- avi_tenant:
+    config_settings:
+      se_in_provider_context: false
+      tenant_access_to_provider_se: true
+      tenant_vrf: false
+    controller: '{{ controller }}'
+    description: VCenter, Open Stack, AWS Virtual services
+    local: true
+    name: Demo
+    password: '{{ password }}'
+    username: '{{ username }}'
+  name: Create Tenant using Service Engines in provider mode

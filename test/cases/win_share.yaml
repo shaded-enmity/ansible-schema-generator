@@ -1,0 +1,21 @@
+- name: Add secret share
+  win_share:
+    deny: HR-External
+    description: top secret share
+    full: Administrators,CEO
+    list: false
+    name: internal
+    path: C:\shares\internal
+    read: HR-Global
+- name: Add public company share
+  win_share:
+    description: top secret share
+    full: Administrators,CEO
+    list: true
+    name: company
+    path: C:\shares\company
+    read: Global
+- name: Remove previously added share
+  win_share:
+    name: internal
+    state: absent

@@ -1,0 +1,9 @@
+- aci_interface_policy_port_channel:
+    description: '{{ description }}'
+    host: '{{ inventory_hostname }}'
+    max_links: '{{ max_links }}'
+    min_links: '{{ min_links }}'
+    mode: '{{ mode }}'
+    password: '{{ password }}'
+    port_channel: '{{ port_channel }}'
+    username: '{{ username }}'

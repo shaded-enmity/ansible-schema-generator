@@ -1,0 +1,2 @@
+- register: whoami_out
+  win_command: whoami

@@ -1,0 +1,25 @@
+- name: configure link aggregation group
+  net_linkagg:
+    members:
+    - eth0
+    - eth1
+    name: bond0
+- name: remove configuration
+  net_linkagg:
+    name: bond0
+    state: absent
+- name: Create aggregate of linkagg definitions
+  net_linkagg:
+    aggregate:
+    - members:
+      - eth1
+      name: bond0
+    - members:
+      - eth2
+      name: bond1
+- name: Remove aggregate of linkagg definitions
+  net_linkagg:
+    aggregate:
+    - name: bond0
+    - name: bond1
+    state: absent

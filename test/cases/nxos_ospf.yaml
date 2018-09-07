@@ -1,0 +1,6 @@
+- nxos_ospf:
+    host: '{{ inventory_hostname }}'
+    ospf: 1
+    password: '{{ pwd }}'
+    state: present
+    username: '{{ un }}'

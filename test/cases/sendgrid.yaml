@@ -1,0 +1,19 @@
+- delegate_to: localhost
+  sendgrid:
+    body: The most recent Ansible deployment was successful.
+    from_address: ansible@mycompany.com
+    password: '{{ sendgrid_password }}'
+    subject: Deployment success.
+    to_addresses:
+    - ops@mycompany.com
+    username: '{{ sendgrid_username }}'
+- delegate_to: localhost
+  sendgrid:
+    body: Unable to pull source repository from Git server.
+    from_address: build@mycompany.com
+    password: '{{ sendgrid_password }}'
+    subject: Build failure!.
+    to_addresses:
+    - ops@mycompany.com
+    - devteam@mycompany.com
+    username: '{{ sendgrid_username }}'

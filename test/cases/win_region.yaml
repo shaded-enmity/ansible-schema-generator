@@ -1,0 +1,15 @@
+- win_region:
+    format: en-US
+- win_region:
+    copy_settings: true
+    format: en-AU
+- register: result
+  win_region:
+    unicode_language: en-GB
+- win_region:
+    location: 244
+- register: result
+  win_region:
+    format: en-AU
+    location: 12
+    unicode_language: en-AU

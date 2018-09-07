@@ -1,0 +1,92 @@
+- bigip_pool:
+    lb_method: least-connection-member
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    slow_ramp_time: 120
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create pool
+- bigip_pool:
+    lb_method: round-robin
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Modify load balancer method
+- bigip_pool:
+    monitor_type: single
+    monitors:
+    - http
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Set a single monitor (with enforcement)
+- bigip_pool:
+    monitors:
+    - http
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Set a single monitor (without enforcement)
+- bigip_pool:
+    monitor_type: and_list
+    monitors:
+    - http
+    - tcp
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Set multiple monitors (all must succeed)
+- bigip_pool:
+    monitor_type: m_of_n
+    monitors:
+    - http
+    - tcp
+    name: my-pool
+    partition: Common
+    password: secret
+    quorum: 1
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Set multiple monitors (at least 1 must succeed)
+- bigip_pool:
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Delete pool
+- bigip_pool:
+    metadata:
+      ansible: 2.4
+      updated_at: 2017-12-20 17:50:46
+    name: my-pool
+    partition: Common
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Add metadata to pool

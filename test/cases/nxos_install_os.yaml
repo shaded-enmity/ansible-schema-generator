@@ -1,0 +1,6 @@
+- check_mode: false
+  name: Install OS on N9k
+  nxos_install_os:
+    issu: desired
+    provider: '{{ connection | combine({''timeout'': 500}) }}'
+    system_image_file: nxos.7.0.3.I6.1.bin

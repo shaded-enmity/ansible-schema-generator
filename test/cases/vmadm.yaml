@@ -1,0 +1,23 @@
+- name: create SmartOS zone
+  vmadm:
+    alias: fw_zone
+    brand: joyent
+    firewall_enabled: true
+    image_uuid: 95f265b8-96b2-11e6-9597-972f3af4b6d5
+    indestructible_zoneroot: true
+    internal_metadata:
+      root_pw: secret
+    nics:
+    - ip: dhcp
+      nic_tag: admin
+      primary: true
+    quota: 1
+    state: present
+- name: Delete a zone
+  vmadm:
+    alias: test_zone
+    state: deleted
+- name: Stop all zones
+  vmadm:
+    state: stopped
+    uuid: '*'

@@ -1,0 +1,16 @@
+- ec2_lc:
+    image_id: ami-XXX
+    instance_type: t1.micro
+    key_name: default
+    name: special
+    security_groups:
+    - group
+    - group2
+    volumes:
+    - delete_on_termination: true
+      device_name: /dev/sda1
+      device_type: io1
+      iops: 3000
+      volume_size: 100
+    - device_name: /dev/sdb
+      ephemeral: ephemeral0

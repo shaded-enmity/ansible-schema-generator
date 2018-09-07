@@ -1,0 +1,28 @@
+- aci_tenant:
+    description: Production tenant
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    tenant: production
+    username: admin
+  name: Add a new tenant
+- aci_tenant:
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    tenant: production
+    username: admin
+  name: Remove a tenant
+- aci_tenant:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    tenant: production
+    username: admin
+  name: Query a tenant
+- aci_tenant:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all tenants

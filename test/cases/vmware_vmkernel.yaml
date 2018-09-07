@@ -1,0 +1,35 @@
+- name: Add Management vmkernel port using static network type
+  vmware_vmkernel:
+    enable_mgmt: true
+    hostname: 192.168.127.9
+    network:
+      ip_address: 192.168.127.10
+      subnet_mask: 255.255.255.0
+      type: static
+    password: supersecret123
+    portgroup_name: PG_0001
+    state: present
+    username: admin
+    vlan_id: vlan_id
+    vswitch_name: vSwitch0
+- name: Add Management vmkernel port using DHCP network type
+  vmware_vmkernel:
+    enable_mgmt: true
+    hostname: 192.168.127.9
+    network:
+      type: dhcp
+    password: supersecret123
+    portgroup_name: PG_0002
+    state: present
+    username: admin
+    vlan_id: vlan_id
+    vswitch_name: vSwitch0
+- name: Delete VMkernel port using DHCP network type
+  vmware_vmkernel:
+    hostname: 192.168.127.9
+    password: supersecret123
+    portgroup_name: PG_0002
+    state: absent
+    username: admin
+    vlan_id: vlan_id
+    vswitch_name: vSwitch0

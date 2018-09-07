@@ -1,0 +1,25 @@
+- name: create a mapped drive under Z
+  win_mapped_drive:
+    letter: Z
+    path: \\domain\appdata\accounting
+- name: delete any mapped drives under Z
+  win_mapped_drive:
+    letter: Z
+    state: absent
+- name: only delete the mapped drive Z if the paths match (error is thrown otherwise)
+  win_mapped_drive:
+    letter: Z
+    path: \\domain\appdata\accounting
+    state: absent
+- name: create mapped drive with local credentials
+  win_mapped_drive:
+    letter: M
+    password: Password
+    path: \\SERVER\c$
+    username: SERVER\Administrator
+- name: create mapped drive with domain credentials
+  win_mapped_drive:
+    letter: M
+    password: Password
+    path: \\domain\appdata\it
+    username: DOMAIN\IT

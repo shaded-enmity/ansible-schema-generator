@@ -1,0 +1,9 @@
+- modprobe:
+    name: 8021q
+    state: present
+  name: Add the 802.1q module
+- modprobe:
+    name: dummy
+    params: numdummies=2
+    state: present
+  name: Add the dummy module

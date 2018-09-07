@@ -1,0 +1,15 @@
+- bigip_gtm_pool:
+    name: my_pool
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Create a GTM pool
+- bigip_gtm_pool:
+    name: my_pool
+    password: secret
+    server: lb.mydomain.com
+    state: disabled
+    user: admin
+  delegate_to: localhost
+  name: Disable pool

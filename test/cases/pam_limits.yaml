@@ -1,0 +1,17 @@
+- pam_limits:
+    domain: joe
+    limit_item: nofile
+    limit_type: soft
+    value: 64000
+- pam_limits:
+    domain: smith
+    limit_item: fsize
+    limit_type: hard
+    use_max: true
+    value: 1000000
+- pam_limits:
+    comment: unlimited memory lock for james
+    domain: james
+    limit_item: memlock
+    limit_type: '-'
+    value: unlimited

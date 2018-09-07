@@ -1,0 +1,7 @@
+- riak:
+    command: join
+    target_node: riak@10.1.1.1
+- riak:
+    wait_for_handoffs: true
+- riak:
+    wait_for_service: kv

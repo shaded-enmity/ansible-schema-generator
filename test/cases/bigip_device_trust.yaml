@@ -1,0 +1,12 @@
+- bigip_device_trust:
+    password: secret
+    peer_hostname: '{{ item.inventory_hostname }}'
+    peer_password: '{{ item.bigip_password }}'
+    peer_server: '{{ item.ansible_host }}'
+    peer_user: '{{ item.bigip_username }}'
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Add trusts for all peer devices to Active device
+  when: inventory_hostname in groups['master']
+  with_items: hostvars

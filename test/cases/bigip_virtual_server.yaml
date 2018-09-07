@@ -1,0 +1,90 @@
+- bigip_virtual_server:
+    name: my-virtual-server
+    partition: Common
+    password: secret
+    port: 8080
+    server: lb.mydomain.net
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Modify Port of the Virtual Server
+- bigip_virtual_server:
+    name: my-virtual-server
+    partition: Common
+    password: secret
+    server: lb.mydomain.net
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Delete virtual server
+- bigip_virtual_server:
+    description: Test Virtual Server
+    destination: 10.10.10.10
+    enabled_vlans:
+    - /Common/vlan2
+    name: my-virtual-server
+    partition: Common
+    password: secret
+    policies:
+    - my-ltm-policy-for-asm
+    - ltm-uri-policy
+    - ltm-policy-2
+    - ltm-policy-3
+    pool: my-pool
+    port: 443
+    profiles:
+    - http
+    - fix
+    - context: server-side
+      name: clientssl
+    - context: client-side
+      name: ilx
+    server: lb.mydomain.net
+    snat: Automap
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Add virtual server
+- bigip_virtual_server:
+    destination: 1.1.1.1
+    name: fastl4_vs
+    port: 80
+    profiles:
+    - fastL4
+    state: present
+  name: Add FastL4 virtual server
+- bigip_virtual_server:
+    irules:
+    - irule1
+    - irule2
+    name: my-virtual-server
+    password: secret
+    server: lb.mydomain.net
+    user: admin
+  delegate_to: localhost
+  name: Add iRules to the Virtual Server
+- bigip_virtual_server:
+    irules:
+    - irule2
+    name: my-virtual-server
+    password: secret
+    server: lb.mydomain.net
+    user: admin
+  delegate_to: localhost
+  name: Remove one iRule from the Virtual Server
+- bigip_virtual_server:
+    irules: ''
+    name: my-virtual-server
+    password: secret
+    server: lb.mydomain.net
+    user: admin
+  delegate_to: localhost
+  name: Remove all iRules from the Virtual Server
+- bigip_virtual_server:
+    name: my-virtual-server
+    password: secret
+    pool: ''
+    server: lb.mydomain.net
+    user: admin
+  delegate_to: localhost
+  name: Remove pool from the Virtual Server

@@ -1,0 +1,8 @@
+- name: create a new user
+  nxos_user:
+    name: ansible
+    sshkey: '{{ lookup(''file'', ''~/.ssh/id_rsa.pub'') }}'
+    state: present
+- name: remove all users except admin
+  nxos_user:
+    purge: true

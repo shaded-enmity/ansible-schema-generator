@@ -1,0 +1,30 @@
+- name: Configure IRC Sensu handler
+  notify:
+  - Restart sensu-client
+  - Restart sensu-server
+  sensu_handler:
+    command: /usr/local/bin/notify-irc.sh
+    name: irc_handler
+    severities:
+    - ok
+    - critical
+    - warning
+    - unknown
+    timeout: 15
+    type: pipe
+- name: Delete IRC Sensu handler
+  sensu_handler:
+    name: irc_handler
+    state: absent
+- name: Configure TCP Sensu handler
+  notify:
+  - Restart sensu-client
+  - Restart sensu-server
+  register: handler
+  sensu_handler:
+    name: tcp_handler
+    socket:
+      host: 10.0.1.99
+      port: 4444
+    timeout: 30
+    type: tcp

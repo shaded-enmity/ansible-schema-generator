@@ -1,0 +1,20 @@
+- name: configure the login banner
+  net_banner:
+    banner: login
+    state: present
+    text: 'this is my login banner
+
+      that contains a multiline
+
+      string
+
+      '
+- name: remove the motd banner
+  net_banner:
+    banner: motd
+    state: absent
+- name: Configure banner from file
+  net_banner:
+    banner: motd
+    state: present
+    text: '{{ lookup(''file'', ''./config_partial/raw_banner.cfg'') }}'

@@ -1,0 +1,6 @@
+- name: Enable LLDP service
+  vyos_lldp:
+    state: present
+- name: Disable LLDP service
+  vyos_lldp:
+    state: absent

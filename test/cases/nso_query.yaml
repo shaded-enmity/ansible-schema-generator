@@ -1,0 +1,9 @@
+- name: Select device name and description
+  nso_query:
+    fields:
+    - name
+    - description
+    password: password
+    url: http://localhost:8080/jsonrpc
+    username: username
+    xpath: /ncs:devices/device

@@ -1,0 +1,14 @@
+- nxos_gir_profile_management:
+    commands:
+    - router eigrp 11
+    - isolate
+    host: '{{ inventory_hostname }}'
+    mode: maintenance
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+- nxos_gir_profile_management:
+    host: '{{ inventory_hostname }}'
+    mode: maintenance
+    password: '{{ pwd }}'
+    state: absent
+    username: '{{ un }}'

@@ -1,0 +1,8 @@
+- bigip_gtm_wide_ip:
+    lb_method: round-robin
+    name: my-wide-ip.example.com
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Set lb method

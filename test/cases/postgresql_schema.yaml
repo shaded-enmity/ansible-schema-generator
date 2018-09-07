@@ -1,0 +1,5 @@
+- postgresql_schema:
+    name: acme
+- postgresql_schema:
+    name: acme
+    owner: bob

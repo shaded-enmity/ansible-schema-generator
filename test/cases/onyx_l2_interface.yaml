@@ -1,0 +1,9 @@
+- name: configure Layer-2 interface
+  onyx_l2_interface:
+    access_vlan: 30
+    mode: access
+    name: Eth1/1
+- name: remove Layer-2 interface configuration
+  onyx_l2_interface:
+    name: Eth1/1
+    state: absent

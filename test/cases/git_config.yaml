@@ -1,0 +1,40 @@
+- git_config:
+    name: alias.ci
+    scope: global
+    value: commit
+- git_config:
+    name: alias.st
+    scope: global
+    value: status
+- git_config:
+    name: alias.remotev
+    scope: system
+    value: remote -v
+- git_config:
+    name: core.editor
+    scope: global
+    value: vim
+- git_config:
+    name: alias.diffc
+    value: diff --cached
+- git_config:
+    name: color.ui
+    value: auto
+- git_config:
+    name: user.email
+    repo: /etc
+    scope: local
+    value: root@{{ ansible_fqdn }}
+- git_config:
+    name: alias.ci
+    scope: global
+- git_config:
+    name: alias.diffc
+- git_config:
+    list_all: true
+    scope: global
+- git_config:
+    list_all: true
+- git_config:
+    list_all: true
+    repo: /path/to/repo.git

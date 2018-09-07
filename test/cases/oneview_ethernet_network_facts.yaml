@@ -1,0 +1,26 @@
+- delegate_to: localhost
+  name: Gather facts about all Ethernet Networks
+  oneview_ethernet_network_facts:
+    config: /etc/oneview/oneview_config.json
+- delegate_to: localhost
+  name: Gather paginated and filtered facts about Ethernet Networks
+  oneview_ethernet_network_facts:
+    config: /etc/oneview/oneview_config.json
+    params:
+      count: 3
+      filter: purpose=General
+      sort: name:descending
+      start: 1
+- delegate_to: localhost
+  name: Gather facts about an Ethernet Network by name
+  oneview_ethernet_network_facts:
+    config: /etc/oneview/oneview_config.json
+    name: Ethernet network name
+- delegate_to: localhost
+  name: Gather facts about an Ethernet Network by name with options
+  oneview_ethernet_network_facts:
+    config: /etc/oneview/oneview_config.json
+    name: eth1
+    options:
+    - associatedProfiles
+    - associatedUplinkGroups

@@ -1,0 +1,30 @@
+- avi_pool:
+    controller: 10.10.1.20
+    description: testpool1
+    health_monitor_refs:
+    - /api/healthmonitor?name=System-HTTP
+    name: testpool1
+    password: avi_password
+    servers:
+    - ip:
+        addr: 10.10.2.20
+        type: V4
+    - ip:
+        addr: 10.10.2.21
+        type: V4
+    state: present
+    username: avi_user
+  name: Create a Pool with two servers and HTTP monitor
+- avi_pool:
+    avi_api_patch_op: delete
+    avi_api_update_method: patch
+    avi_credentials: '{{avi_credentials}}'
+    name: test-pool
+    servers:
+    - addr: 10.90.64.13
+      ip: null
+      type: V4
+  name: Patch pool with a single server using patch op and avi_credentials
+  register: pool
+  when:
+  - state | default("present") == "present"

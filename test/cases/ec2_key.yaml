@@ -1,0 +1,17 @@
+- ec2_key:
+    name: example
+  name: example ec2 key
+- ec2_key:
+    key_material: ssh-rsa AAAAxyz...== me@example.com
+    name: example2
+    state: present
+  name: example2 ec2 key
+- ec2_key:
+    key_material: '{{ item }}'
+    name: example3
+  name: example3 ec2 key
+  with_file: /path/to/public_key.id_rsa.pub
+- ec2_key:
+    name: example
+    state: absent
+  name: remove example key

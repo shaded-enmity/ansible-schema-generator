@@ -1,0 +1,5 @@
+- nxos_reboot:
+    confirm: true
+    host: '{{ inventory_hostname }}'
+    password: '{{ password }}'
+    username: '{{ username }}'

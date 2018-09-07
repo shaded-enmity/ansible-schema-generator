@@ -1,0 +1,10 @@
+- delegate_to: localhost
+  name: Send notification message via Nexmo
+  nexmo:
+    api_key: 640c8a53
+    api_secret: 0ce239a6
+    dest:
+    - 10987654321
+    - 16789012345
+    msg: '{{ inventory_hostname }} completed'
+    src: 12345678901

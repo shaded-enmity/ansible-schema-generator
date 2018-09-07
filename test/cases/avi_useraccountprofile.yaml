@@ -1,0 +1,7 @@
+- avi_useraccountprofile:
+    controller: 10.10.25.42
+    name: sample_useraccountprofile
+    password: something
+    state: present
+    username: admin
+  name: Example to create UserAccountProfile object

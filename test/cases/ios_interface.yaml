@@ -1,0 +1,54 @@
+- ios_interface:
+    description: test-interface
+    duplex: half
+    mtu: 512
+    name: GigabitEthernet0/2
+    speed: 100
+  name: configure interface
+- ios_interface:
+    name: Loopback9
+    state: absent
+  name: remove interface
+- ios_interface:
+    enabled: true
+    name: GigabitEthernet0/2
+  name: make interface up
+- ios_interface:
+    enabled: false
+    name: GigabitEthernet0/2
+  name: make interface down
+- ios_interface:
+    name: GigabitEthernet0/2
+    rx_rate: le(0)
+    state: up
+    tx_rate: ge(0)
+  name: Check intent arguments
+- ios_interface:
+    name: Gi0/0
+    neighbors:
+    - host: netdev
+      port: eth0
+  name: Check neighbors intent arguments
+- ios_interface:
+    enabled: false
+    name: GigabitEthernet0/2
+    state: down
+  name: Config + intent
+- ios_interface:
+    aggregate:
+    - description: test-interface-1
+      mtu: 256
+      name: GigabitEthernet0/1
+    - description: test-interface-2
+      mtu: 516
+      name: GigabitEthernet0/2
+    duplex: full
+    speed: 100
+    state: present
+  name: Add interface using aggregate
+- ios_interface:
+    aggregate:
+    - name: Loopback9
+    - name: Loopback10
+    state: absent
+  name: Delete interface using aggregate

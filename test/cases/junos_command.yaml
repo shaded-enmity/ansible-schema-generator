@@ -1,0 +1,31 @@
+- junos_command:
+    commands: show version
+  name: run show version on remote devices
+- junos_command:
+    commands: show version
+    wait_for: result[0] contains Juniper
+  name: run show version and check to see if output contains Juniper
+- junos_command:
+    commands:
+    - show version
+    - show interfaces
+  name: run multiple commands on remote nodes
+- junos_command:
+    commands:
+    - show version
+    - show interfaces
+    wait_for:
+    - result[0] contains Juniper
+    - result[1] contains Loopback0
+  name: run multiple commands and evaluate the output
+- junos_command:
+    commands: show version
+    display: json
+  name: run commands and specify the output format
+- junos_command:
+    commands: show configuration
+    display: set
+  name: run rpc on the remote device
+- junos_command:
+    rpcs: get-software-information
+  name: run rpc on the remote device

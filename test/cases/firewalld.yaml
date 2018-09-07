@@ -1,0 +1,39 @@
+- firewalld:
+    permanent: true
+    service: https
+    state: enabled
+- firewalld:
+    permanent: true
+    port: 8081/tcp
+    state: disabled
+- firewalld:
+    permanent: true
+    port: 161-162/udp
+    state: enabled
+- firewalld:
+    permanent: true
+    service: http
+    state: enabled
+    zone: dmz
+- firewalld:
+    permanent: true
+    rich_rule: rule service name="ftp" audit limit value="1/m" accept
+    state: enabled
+- firewalld:
+    source: 192.0.2.0/24
+    state: enabled
+    zone: internal
+- firewalld:
+    interface: eth2
+    permanent: true
+    state: enabled
+    zone: trusted
+- firewalld:
+    masquerade: true
+    permanent: true
+    state: enabled
+    zone: dmz
+- firewalld:
+    permanent: true
+    state: present
+    zone: custom

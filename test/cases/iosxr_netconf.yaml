@@ -1,0 +1,7 @@
+- iosxr_netconf:
+    listens_on: 830
+    state: present
+  name: enable netconf service on port 830
+- iosxr_netconf:
+    state: absent
+  name: disable netconf service

@@ -1,0 +1,36 @@
+- junos_vlan:
+    name: test-vlan
+    vlan_id: 20
+    vlan_name: test
+  name: configure VLAN ID and name
+- junos_vlan:
+    state: absent
+    vlan_name: test
+  name: remove VLAN configuration
+- junos_vlan:
+    active: false
+    state: present
+    vlan_name: test
+  name: deactive VLAN configuration
+- junos_vlan:
+    active: true
+    state: present
+    vlan_name: test
+  name: activate VLAN configuration
+- junos_vlan:
+    aggregate:
+    - description: test vlan-1
+      name: test_vlan_1
+      vlan_id: 159
+    - description: test vlan-2
+      name: test_vlan_2
+      vlan_id: 160
+  name: Create vlan configuration using aggregate
+- junos_vlan:
+    aggregate:
+    - name: test_vlan_1
+      vlan_id: 159
+    - name: test_vlan_2
+      vlan_id: 160
+    state: absent
+  name: Delete vlan configuration using aggregate

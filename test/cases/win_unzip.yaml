@@ -1,0 +1,9 @@
+- name: Unzip a bz2 (BZip) file
+  win_unzip:
+    creates: C:\Users\Phil\OldLogs
+    dest: C:\Users\Phil\OldLogs
+    src: C:\Users\Phil\Logs.bz2
+- name: Unzip gz log
+  win_unzip:
+    dest: C:\ExtractedLogs\application-error-logs
+    src: C:\Logs\application-error-logs.gz

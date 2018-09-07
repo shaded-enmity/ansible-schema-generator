@@ -1,0 +1,8 @@
+- cnos_facts:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/cnos_facts_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''password''] }}'
+    username: '{{ hostvars[inventory_hostname][''username''] }}'
+  name: Test Sys Info

@@ -1,0 +1,65 @@
+- name: Install the Visual C thingy
+  win_package:
+    arguments: /install /passive /norestart
+    path: http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
+    product_id: '{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}'
+- name: Install Visual C thingy with list of arguments instead of a string
+  win_package:
+    arguments:
+    - /install
+    - /passive
+    - /norestart
+    path: http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
+    product_id: '{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}'
+- name: Install Remote Desktop Connection Manager from msi
+  win_package:
+    path: https://download.microsoft.com/download/A/F/0/AF0071F3-B198-4A35-AA90-C68D103BDCCF/rdcman.msi
+    product_id: '{0240359E-6A4C-4884-9E94-B397A02D893C}'
+    state: present
+- name: Uninstall Remote Desktop Connection Manager
+  win_package:
+    product_id: '{0240359E-6A4C-4884-9E94-B397A02D893C}'
+    state: absent
+- name: Install Remote Desktop Connection Manager locally omitting the product_id
+  win_package:
+    path: C:\temp\rdcman.msi
+    state: present
+- name: Uninstall Remote Desktop Connection Manager from local MSI omitting the product_id
+  win_package:
+    path: C:\temp\rdcman.msi
+    state: absent
+- name: Install 7zip from a network share specifying the credentials
+  win_package:
+    arguments: /S
+    path: \\domain\programs\7z.exe
+    product_id: 7-Zip
+    state: present
+    user_name: DOMAIN\User
+    user_password: Password
+- name: Install 7zip and use a file version for the installation check
+  win_package:
+    creates_path: C:\Program Files\7-Zip\7z.exe
+    creates_version: 16.04
+    path: C:\temp\7z.exe
+    state: present
+- name: Uninstall 7zip from the exe
+  win_package:
+    arguments: /S
+    path: C:\Program Files\7-Zip\Uninstall.exe
+    product_id: 7-Zip
+    state: absent
+- name: Uninstall 7zip without specifying the path
+  win_package:
+    arguments: /S
+    product_id: 7-Zip
+    state: absent
+- name: Install application and override expected return codes
+  win_package:
+    arguments: /q /norestart
+    expected_return_code:
+    - 0
+    - 666
+    - 3010
+    path: https://download.microsoft.com/download/1/6/7/167F0D79-9317-48AE-AEDB-17120579F8E2/NDP451-KB2858728-x86-x64-AllOS-ENU.exe
+    product_id: '{7DEBE4EB-6B40-3766-BB35-5CBBC385DA37}'
+    state: present

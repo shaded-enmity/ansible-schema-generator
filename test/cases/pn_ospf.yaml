@@ -1,0 +1,10 @@
+- name: Add OSPF to vrouter
+  pn_ospf:
+    pn_network_ip: 192.168.11.2/24
+    pn_ospf_area: 1.0.0.0
+    pn_vrouter_name: name-string
+    state: present
+- name: Remove OSPF from vrouter
+  pn_ospf:
+    pn_vrouter_name: name-string
+    state: absent

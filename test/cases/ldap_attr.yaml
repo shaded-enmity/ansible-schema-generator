@@ -1,0 +1,49 @@
+- ldap_attr:
+    dn: olcDatabase={1}hdb,cn=config
+    name: olcSuffix
+    state: exact
+    values: dc=example,dc=com
+  name: Configure directory number 1 for example.com
+- ldap_attr:
+    dn: olcDatabase={1}hdb,cn=config
+    name: olcAccess
+    state: exact
+    values:
+    - '{0}to attrs=userPassword,shadowLastChange by self write by anonymous auth by
+      dn="cn=admin,dc=example,dc=com" write by * none'''
+    - '{1}to dn.base="dc=example,dc=com" by dn="cn=admin,dc=example,dc=com" write
+      by * read'
+  name: Set up the ACL
+- ldap_attr:
+    dn: olcDatabase={1}hdb,cn=config
+    name: olcDbIndex
+    values: '{{ item }}'
+  name: Declare some indexes
+  with_items:
+  - objectClass eq
+  - uid eq
+- ldap_attr:
+    dn: olcDatabase={1}hdb,cn=config
+    name: '{{ item.key }}'
+    state: exact
+    values: '{{ item.value }}'
+  name: Set up a root user, which we can use later to bootstrap the directory
+  with_dict:
+    olcRootDN: cn=root,dc=example,dc=com
+    olcRootPW: '{SSHA}tabyipcHzhwESzRaGA7oQ/SDoBZQOGND'
+- ldap_attr:
+    bind_dn: cn=admin,dc=example,dc=com
+    bind_pw: password
+    dn: uid=jdoe,ou=people,dc=example,dc=com
+    name: shadowExpire
+    server_uri: ldap://localhost/
+    state: exact
+    values: ''
+  name: Get rid of an unneeded attribute
+- ldap_attr:
+    dn: uid=jdoe,ou=people,dc=example,dc=com
+    name: shadowExpire
+    params: '{{ ldap_auth }}'
+    state: exact
+    values: ''
+  name: Get rid of an unneeded attribute

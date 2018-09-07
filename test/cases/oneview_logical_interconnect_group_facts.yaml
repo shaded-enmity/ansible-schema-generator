@@ -1,0 +1,30 @@
+- delegate_to: localhost
+  name: Gather facts about all Logical Interconnect Groups
+  no_log: true
+  oneview_logical_interconnect_group_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather paginated, filtered and sorted facts about Logical Interconnect Groups
+  no_log: true
+  oneview_logical_interconnect_group_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    params:
+      count: 3
+      filter: name=LIGName
+      sort: name:descending
+      start: 0
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about a Logical Interconnect Group by name
+  no_log: true
+  oneview_logical_interconnect_group_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: logical lnterconnect group name
+    password: my_password
+    username: administrator

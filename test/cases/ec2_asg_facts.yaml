@@ -1,0 +1,23 @@
+- ec2_asg_facts: null
+  register: asgs
+- ec2_asg_facts:
+    name: public-webserver-asg
+  register: asgs
+- ec2_asg_facts:
+    tags:
+      env: production
+      project: webapp
+  register: asgs
+- ec2_asg_facts:
+    name: myproject
+    tags:
+      env: production
+  register: asgs
+- ec2_asg_facts:
+    name: public-webserver-asg
+  failed_when: '{{ asgs.results | length == 0 }}'
+  register: asgs
+- ec2_asg_facts:
+    name: public-webserver-asg
+  failed_when: '{{ asgs.results | length > 1 }}'
+  register: asgs

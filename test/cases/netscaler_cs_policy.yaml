@@ -1,0 +1,10 @@
+- delegate_to: localhost
+  name: Create url cs policy
+  netscaler_cs_policy:
+    nitro_pass: nsroot
+    nitro_user: nsroot
+    nsip: 172.18.0.2
+    policyname: policy_1
+    state: present
+    url: /example/
+    validate_certs: false

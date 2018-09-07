@@ -1,0 +1,15 @@
+- junos_rpc:
+    args:
+      interface-name: em0
+      media: true
+    rpc: get-interface-information
+  name: collect interface information using rpc
+- junos_rpc:
+    rpc: get-system-information
+  name: get system information
+- junos_rpc:
+    attrs:
+      action: override
+      url: /tmp/config.conf
+    rpc: load-configuration
+  name: load configuration

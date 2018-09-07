@@ -1,0 +1,47 @@
+- name: configure interface
+  vyos_interface:
+    description: test-interface
+    name: eth0
+- name: remove interface
+  vyos_interface:
+    name: eth0
+    state: absent
+- name: make interface down
+  vyos_interface:
+    enabled: false
+    name: eth0
+- name: make interface up
+  vyos_interface:
+    enabled: true
+    name: eth0
+- name: Configure interface speed, mtu, duplex
+  vyos_interface:
+    duplex: full
+    mtu: 256
+    name: eth5
+    speed: 100
+    state: present
+- name: Set interface using aggregate
+  vyos_interface:
+    aggregate:
+    - description: test-interface-1
+      duplex: half
+      mtu: 512
+      name: eth1
+      speed: 100
+    - description: test-interface-2
+      duplex: full
+      mtu: 256
+      name: eth2
+      speed: 1000
+- name: Check lldp neighbors intent arguments
+  vyos_interface:
+    name: eth0
+    neighbors:
+    - host: netdev
+      port: eth0
+- name: Config + intent
+  vyos_interface:
+    enabled: false
+    name: eth1
+    state: down

@@ -1,0 +1,19 @@
+- ec2_snapshot_facts: null
+- ec2_snapshot_facts:
+    filters:
+      owner-id: 0123456789
+- ec2_snapshot_facts:
+    owner_ids:
+    - 0123456789
+- ec2_snapshot_facts:
+    filters:
+      snapshot-id: snap-00112233
+- ec2_snapshot_facts:
+    snapshot_ids:
+    - snap-00112233
+- ec2_snapshot_facts:
+    filters:
+      tag:Name: Example
+- ec2_snapshot_facts:
+    filters:
+      status: error

@@ -1,0 +1,7 @@
+- avi_hardwaresecuritymodulegroup:
+    controller: 10.10.25.42
+    name: sample_hardwaresecuritymodulegroup
+    password: something
+    state: present
+    username: admin
+  name: Example to create HardwareSecurityModuleGroup object

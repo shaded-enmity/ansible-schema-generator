@@ -1,0 +1,12 @@
+- ec2_remote_facts: null
+- ec2_remote_facts:
+    filters:
+      instance-state-name: running
+      tag:Name: Example
+- ec2_remote_facts:
+    filters:
+      instance-id: i-123456
+- ec2_remote_facts:
+    filters:
+      instance-type: t2.small
+      vpc-id: vpc-123456

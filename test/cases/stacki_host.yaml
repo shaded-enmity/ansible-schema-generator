@@ -1,0 +1,16 @@
+- name: Add a host named test-1
+  stacki_host:
+    name: test-1
+    prim_intf: eth0
+    prim_intf_ip: x.x.x.x
+    prim_intf_mac: mac_addr
+    stacki_endpoint: url
+    stacki_password: pwd
+    stacki_user: usr
+- name: Remove a host named test-1
+  stacki_host:
+    name: test-1
+    stacki_endpoint: url
+    stacki_password: pwd
+    stacki_user: usr
+    state: absent

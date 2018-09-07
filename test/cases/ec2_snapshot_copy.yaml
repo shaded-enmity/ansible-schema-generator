@@ -1,0 +1,27 @@
+- ec2_snapshot_copy:
+    region: eu-west-1
+    source_region: eu-central-1
+    source_snapshot_id: snap-xxxxxxx
+- ec2_snapshot_copy:
+    region: eu-west-1
+    source_region: eu-central-1
+    source_snapshot_id: snap-xxxxxxx
+    wait: true
+  register: snapshot_id
+- ec2_snapshot_copy:
+    region: eu-west-1
+    source_region: eu-central-1
+    source_snapshot_id: snap-xxxxxxx
+    tags:
+      Name: Snapshot-Name
+- ec2_snapshot_copy:
+    encrypted: true
+    region: eu-west-1
+    source_region: eu-central-1
+    source_snapshot_id: snap-xxxxxxx
+- ec2_snapshot_copy:
+    encrypted: true
+    kms_key_id: arn:aws:kms:eu-central-1:XXXXXXXXXXXX:key/746de6ea-50a4-4bcb-8fbc-e3b29f2d367b
+    region: eu-west-1
+    source_region: eu-central-1
+    source_snapshot_id: snap-xxxxxxx

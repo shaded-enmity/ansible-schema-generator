@@ -1,0 +1,91 @@
+- aci_rest:
+    host: apic
+    method: post
+    path: /api/mo/uni.xml
+    private_key: pki/admin.key
+    src: /home/cisco/ansible/aci/configs/aci_config.xml
+    username: admin
+  delegate_to: localhost
+  name: Add a tenant using certifcate authentication
+- aci_rest:
+    content:
+      fvTenant:
+        attributes:
+          descr: Sales departement
+          name: Sales
+    host: apic
+    method: post
+    path: /api/mo/uni.json
+    private_key: pki/admin.key
+    username: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Add a tenant using inline YAML
+- aci_rest:
+    content:
+      fvTenant:
+        attributes:
+          descr: Sales departement
+          name: Sales
+    host: apic
+    method: post
+    path: /api/mo/uni.json
+    private_key: pki/admin.key
+    username: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Add a tenant using a JSON string
+- aci_rest:
+    content: <fvTenant name="Sales" descr="Sales departement"/>
+    host: apic
+    method: post
+    path: /api/mo/uni.xml
+    private_key: pki/{{ aci_username}}.key
+    username: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Add a tenant using an XML string
+- aci_rest:
+    host: apic
+    method: get
+    password: SomeSecretPassword
+    path: /api/node/class/fvTenant.json
+    username: admin
+  delegate_to: localhost
+  name: Get tenants using password authentication
+- aci_rest:
+    host: apic
+    method: post
+    path: /api/mo/uni.xml
+    private_key: pki/admin.key
+    src: /home/cisco/ansible/aci/configs/contract_config.xml
+    username: admin
+  delegate_to: localhost
+  name: Configure contracts
+- aci_rest:
+    content: "<fabricNodeIdentPol>\n  <fabricNodeIdentP name=\"{{ item.name }}\" nodeId=\"\
+      {{ item.nodeid }}\" status=\"{{ item.status }}\" serial=\"{{ item.serial }}\"\
+      />\n</fabricNodeIdentPol>\n"
+    host: apic
+    method: post
+    path: /api/mo/uni/controller/nodeidentpol.xml
+    private_key: pki/admin.key
+    username: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Register leaves and spines
+  with_items:
+  - '{{ apic_leavesspines }}'
+- aci_rest:
+    host: apic
+    path: /api/node/class/topSystem.json?query-target-filter=eq(topSystem.role,"controller")
+    private_key: pki/admin.key
+    username: admin
+    validate_certs: false
+  delay: 30
+  delegate_to: localhost
+  name: Wait for all controllers to become ready
+  register: apics
+  retries: 120
+  run_once: true
+  until: '''totalCount'' in apics and apics.totalCount|int >= groups[''apic'']|count'

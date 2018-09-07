@@ -1,0 +1,61 @@
+- delegate_to: localhost
+  name: Gather facts about all Enclosures
+  no_log: true
+  oneview_enclosure_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather paginated, filtered and sorted facts about Enclosures
+  no_log: true
+  oneview_enclosure_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    params:
+      count: 3
+      filter: status=OK
+      sort: name:descending
+      start: 0
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about an Enclosure by name
+  no_log: true
+  oneview_enclosure_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: Enclosure-Name
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about an Enclosure by name with options
+  no_log: true
+  oneview_enclosure_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: Test-Enclosure
+    options:
+    - script
+    - environmentalConfiguration
+    - utilization
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about an Enclosure with temperature data at a resolution of one
+    sample per day, between two specified dates
+  no_log: true
+  oneview_enclosure_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: Test-Enclosure
+    options:
+    - utilization:
+        fields: AmbientTemperature
+        filter:
+        - startDate=2016-07-01T14:29:42.000Z
+        - endDate=2017-07-01T03:29:42.000Z
+        refresh: false
+        view: day
+    password: my_password
+    username: administrator

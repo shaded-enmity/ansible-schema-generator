@@ -1,0 +1,8 @@
+- docker_image_facts:
+    name: pacur/centos-7
+  name: Inspect a single image
+- docker_image_facts:
+    name:
+    - pacur/centos-7
+    - sinatra
+  name: Inspect multiple images

@@ -1,0 +1,7 @@
+- elb_target_group_facts: null
+- elb_target_group_facts:
+    load_balancer_arn: arn:aws:elasticloadbalancing:ap-southeast-2:001122334455:loadbalancer/app/my-elb/aabbccddeeff
+- elb_target_group_facts:
+    names:
+    - tg1
+    - tg2

@@ -1,0 +1,15 @@
+- ovirt_affinity_label:
+    cluster: mycluster
+    hosts:
+    - host1
+    name: mylabel
+    vms:
+    - vm1
+    - vm2
+- ovirt_affinity_label:
+    cluster: mycluster
+    name: mylabel
+    vms: []
+- ovirt_affinity_label:
+    name: mylabel
+    state: absent

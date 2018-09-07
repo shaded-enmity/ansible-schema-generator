@@ -1,0 +1,73 @@
+- name: Allow everything and enable UFW
+  ufw:
+    policy: allow
+    state: enabled
+- name: Set logging
+  ufw:
+    logging: true
+- ufw:
+    log: true
+    port: auth
+    rule: reject
+- ufw:
+    port: ssh
+    proto: tcp
+    rule: limit
+- ufw:
+    name: OpenSSH
+    rule: allow
+- name: Delete OpenSSH rule
+  ufw:
+    delete: true
+    name: OpenSSH
+    rule: allow
+- name: Deny all access to port 53
+  ufw:
+    port: 53
+    rule: deny
+- name: Allow port range 60000-61000
+  ufw:
+    port: 60000:61000
+    rule: allow
+- name: Allow all access to tcp port 80
+  ufw:
+    port: 80
+    proto: tcp
+    rule: allow
+- name: Allow all access from RFC1918 networks to this host
+  ufw:
+    rule: allow
+    src: '{{ item }}'
+  with_items:
+  - 10.0.0.0/8
+  - 172.16.0.0/12
+  - 192.168.0.0/16
+- name: Deny access to udp port 514 from host 1.2.3.4 and include a comment
+  ufw:
+    comment: Block syslog
+    port: 514
+    proto: udp
+    rule: deny
+    src: 1.2.3.4
+- name: Allow incoming access to eth0 from 1.2.3.5 port 5469 to 1.2.3.4 port 5469
+  ufw:
+    dest: 1.2.3.4
+    direction: in
+    from_port: 5469
+    interface: eth0
+    proto: udp
+    rule: allow
+    src: 1.2.3.5
+    to_port: 5469
+- name: Deny all traffic from the IPv6 2001:db8::/32 to tcp port 25 on this host
+  ufw:
+    port: 25
+    proto: tcp
+    rule: deny
+    src: 2001:db8::/32
+- name: Deny forwarded/routed traffic from subnet 1.2.3.0/24 to subnet 4.5.6.0/24
+  ufw:
+    dest: 4.5.6.0/24
+    route: true
+    rule: deny
+    src: 1.2.3.0/24

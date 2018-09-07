@@ -1,0 +1,4 @@
+- sefcontext:
+    setype: httpd_git_rw_content_t
+    state: present
+    target: /srv/git_repos(/.*)?

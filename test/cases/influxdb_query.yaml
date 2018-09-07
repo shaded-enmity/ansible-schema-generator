@@ -1,0 +1,12 @@
+- influxdb_query:
+    database_name: '{{ influxdb_database_name }}'
+    hostname: '{{ influxdb_ip_address }}'
+    query: select mean(value) from connections
+  name: Query connections
+  register: connection
+- influxdb_query:
+    database_name: '{{ influxdb_database_name }}'
+    hostname: '{{ influxdb_ip_address }}'
+    query: select mean(value) from connections where region='zue01' and host='server01'
+  name: Query connections with tags filters
+  register: connection

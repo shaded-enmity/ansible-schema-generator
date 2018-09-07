@@ -1,0 +1,20 @@
+- name: configure the exec banner
+  nxos_banner:
+    banner: exec
+    state: present
+    text: 'this is my exec banner
+
+      that contains a multiline
+
+      string
+
+      '
+- name: remove the motd banner
+  nxos_banner:
+    banner: motd
+    state: absent
+- name: Configure banner from file
+  nxos_banner:
+    banner: motd
+    state: present
+    text: '{{ lookup(''file'', ''./config_partial/raw_banner.cfg'') }}'

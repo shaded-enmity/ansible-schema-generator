@@ -1,0 +1,7 @@
+- aci_tenant_action_rule_profile:
+    action_rule: '{{ action_rule }}'
+    description: '{{ descr }}'
+    host: apic
+    password: SomeSecretPassword
+    tenant: '{{ tenant }}'
+    username: admin

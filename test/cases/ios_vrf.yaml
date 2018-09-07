@@ -1,0 +1,39 @@
+- ios_vrf:
+    description: oob mgmt vrf
+    interfaces:
+    - Management1
+    name: management
+  name: configure a vrf named management
+- ios_vrf:
+    name: test
+    state: absent
+  name: remove a vrf named test
+- ios_vrf:
+    purge: true
+    vrfs:
+    - red
+    - blue
+    - green
+  name: configure set of VRFs and purge any others
+- ios_vrf:
+    name: test_import
+    rd: 1:100
+    route_import:
+    - 1:100
+    - 3:100
+  name: Creates a list of import RTs for the VRF with the same parameters
+- ios_vrf:
+    name: test_export
+    rd: 1:100
+    route_export:
+    - 1:100
+    - 3:100
+  name: Creates a list of export RTs for the VRF with the same parameters
+- ios_vrf:
+    name: test_both
+    rd: 1:100
+    route_both:
+    - 1:100
+    - 3:100
+  name: Creates a list of import and export route targets for the VRF with the same
+    parameters

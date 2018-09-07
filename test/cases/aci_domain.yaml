@@ -1,0 +1,49 @@
+- aci_domain:
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: Add a new physical domain
+- aci_domain:
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Remove a physical domain
+- aci_domain:
+    domain: hyperv_dom
+    domain_type: vmm
+    host: apic
+    password: SomeSecretPassword
+    state: present
+    username: admin
+    vm_provider: microsoft
+  name: Add a new VMM domain
+- aci_domain:
+    domain: hyperv_dom
+    domain_type: vmm
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+    vm_provider: microsoft
+  name: Remove a VMM domain
+- aci_domain:
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query a specific physical domain
+- aci_domain:
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all domains

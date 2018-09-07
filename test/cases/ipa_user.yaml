@@ -1,0 +1,24 @@
+- ipa_user:
+    gidnumber: 100
+    givenname: Pinky
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    krbpasswordexpiration: 20200119235959
+    mail:
+    - pinky@acme.com
+    name: pinky
+    sn: Acme
+    sshpubkey:
+    - ssh-rsa ....
+    - ssh-dsa ....
+    state: present
+    telephonenumber:
+    - '+555123456'
+    uidnumber: 1001
+- ipa_user:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: brain
+    state: absent

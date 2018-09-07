@@ -1,0 +1,35 @@
+- os_security_group_rule:
+    cloud: mordred
+    port_range_max: 80
+    port_range_min: 80
+    protocol: tcp
+    remote_ip_prefix: 0.0.0.0/0
+    security_group: foo
+- os_security_group_rule:
+    cloud: mordred
+    protocol: icmp
+    remote_ip_prefix: 0.0.0.0/0
+    security_group: foo
+- os_security_group_rule:
+    cloud: mordred
+    port_range_max: -1
+    port_range_min: -1
+    protocol: icmp
+    remote_ip_prefix: 0.0.0.0/0
+    security_group: foo
+- os_security_group_rule:
+    cloud: mordred
+    port_range_max: 65535
+    port_range_min: 1
+    protocol: tcp
+    remote_ip_prefix: 0.0.0.0/0
+    security_group: foo
+- os_security_group_rule:
+    cloud: mordred
+    protocol: tcp
+    remote_ip_prefix: 0.0.0.0/0
+    security_group: foo
+- os_security_group_rule:
+    protocol: 112
+    remote_group: loadbalancer-node_sg
+    security_group: loadbalancer_sg

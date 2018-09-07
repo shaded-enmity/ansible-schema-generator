@@ -1,0 +1,34 @@
+- jenkins_job_facts:
+    password: hunter2
+    user: admin
+  register: my_jenkins_job_facts
+- jenkins_job_facts:
+    token: abcdefghijklmnop
+    user: admin
+  register: my_jenkins_job_facts
+- jenkins_job_facts:
+    name: some-job-name
+    password: hunter2
+    user: admin
+  register: my_jenkins_job_facts
+- jenkins_job_facts:
+    name: some-folder-name/some-job-name
+    password: hunter2
+    user: admin
+  register: my_jenkins_job_facts
+- jenkins_job_facts:
+    glob: some-job-*
+    password: hunter2
+    user: admin
+  register: my_jenkins_job_facts
+- jenkins_job_facts:
+    color: red
+    password: hunter2
+    user: admin
+  register: my_jenkins_job_facts
+- jenkins_job_facts:
+    color: blue
+    name: some-job-*
+    password: hunter2
+    user: admin
+  register: my_jenkins_job_facts

@@ -1,0 +1,4 @@
+- irc:
+    channel: null
+    msg: Hello world
+    server: irc.example.net

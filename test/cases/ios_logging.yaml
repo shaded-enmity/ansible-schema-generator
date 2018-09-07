@@ -1,0 +1,38 @@
+- ios_logging:
+    dest: host
+    name: 172.16.0.1
+    state: present
+  name: configure host logging
+- ios_logging:
+    dest: host
+    name: 172.16.0.1
+    state: absent
+  name: remove host logging configuration
+- ios_logging:
+    dest: console
+    facility: local7
+    level: debugging
+    state: present
+  name: configure console logging level and facility
+- ios_logging:
+    dest: true
+  name: enable logging to all
+- ios_logging:
+    dest: buffered
+    size: 5000
+  name: configure buffer size
+- ios_logging:
+    aggregate:
+    - dest: console
+      level: notifications
+    - dest: buffered
+      size: 9000
+  name: Configure logging using aggregate
+- ios_logging:
+    aggregate:
+    - dest: console
+      level: notifications
+    - dest: buffered
+      size: 9000
+    state: absent
+  name: remove logging using aggregate

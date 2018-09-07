@@ -1,0 +1,18 @@
+- delegate_to: localhost
+  gitlab_group:
+    login_token: WnUzDsxjy8230-Dy_k
+    name: my_first_group
+    server_url: http://gitlab.example.com
+    state: absent
+    validate_certs: false
+  name: Delete Gitlab Group
+- delegate_to: localhost
+  gitlab_group:
+    login_password: MySecretPassword
+    login_user: dj-wasabi
+    name: my_first_group
+    path: my_first_group
+    server_url: https://gitlab.example.com
+    state: present
+    validate_certs: true
+  name: Create Gitlab Group

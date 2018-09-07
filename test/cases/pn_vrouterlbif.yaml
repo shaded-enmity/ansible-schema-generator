@@ -1,0 +1,10 @@
+- name: add vrouter-loopback-interface
+  pn_vrouterlbif:
+    pn_interface_ip: 104.104.104.1
+    pn_vrouter_name: ansible-vrouter
+    state: present
+- name: remove vrouter-loopback-interface
+  pn_vrouterlbif:
+    pn_interface_ip: 104.104.104.1
+    pn_vrouter_name: ansible-vrouter
+    state: absent

@@ -1,0 +1,10 @@
+- ec2_vpc_nacl_facts:
+    region: us-west-2
+  name: Get All NACLs
+  register: all_nacls
+- ec2_vpc_nacl_facts:
+    filters:
+      default: 'true'
+    region: us-west-2
+  name: Get Default NACLs
+  register: default_nacls

@@ -1,0 +1,2 @@
+- name: Get disk facts
+  win_disk_facts: null

@@ -1,0 +1,10 @@
+- gcpubsub_facts:
+    state: list
+    view: topics
+- gcpubsub_facts:
+    state: list
+    view: subscriptions
+- gcpubsub_facts:
+    state: list
+    topic: my-topic
+    view: subscriptions

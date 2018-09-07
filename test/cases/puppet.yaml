@@ -1,0 +1,17 @@
+- name: Run puppet agent and fail if anything goes wrong
+  puppet: null
+- name: Run puppet and timeout in 5 minutes
+  puppet:
+    timeout: 5m
+- name: Run puppet using a different environment
+  puppet:
+    environment: testing
+- name: Run puppet using a specific certname
+  puppet:
+    certname: agent01.example.com
+- name: Run puppet using a specific piece of Puppet code. Has no effect with a puppetmaster
+  puppet:
+    execute: include ::mymodule
+- name: Run puppet using a specific tags
+  puppet:
+    tags: update,nginx

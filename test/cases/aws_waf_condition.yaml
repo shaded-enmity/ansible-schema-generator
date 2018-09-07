@@ -1,0 +1,58 @@
+- aws_waf_condition:
+    filters:
+    - field_to_match: header
+      header: Content-type
+      position: STARTS_WITH
+      target_string: Hello
+    name: my_byte_condition
+    type: byte
+  name: create WAF byte condition
+- aws_waf_condition:
+    filters:
+    - country: US
+    - country: AU
+    - country: AT
+    name: my_geo_condition
+    type: geo
+  name: create WAF geo condition
+- aws_waf_condition:
+    filters:
+    - ip_address: 10.0.0.0/8
+    - ip_address: 192.168.0.0/24
+    name: '{{ resource_prefix }}_ip_condition'
+    type: ip
+  name: create IP address condition
+- aws_waf_condition:
+    filters:
+    - field_to_match: query_string
+      regex_pattern:
+        name: greetings
+        regex_strings:
+        - '[hH]ello'
+        - ^Hi there
+        - .*Good Day to You
+    name: my_regex_condition
+    type: regex
+  name: create WAF regex condition
+- aws_waf_condition:
+    filters:
+    - comparison: GT
+      field_to_match: query_string
+      size: 300
+    name: my_size_condition
+    type: size
+  name: create WAF size condition
+- aws_waf_condition:
+    filters:
+    - field_to_match: query_string
+      transformation: url_decode
+    name: my_sql_condition
+    type: sql
+  name: create WAF sql injection condition
+- aws_waf_condition:
+    filters:
+    - field_to_match: query_string
+      transformation: url_decode
+    name: my_xss_condition
+    type: xss
+  name: create WAF xss condition

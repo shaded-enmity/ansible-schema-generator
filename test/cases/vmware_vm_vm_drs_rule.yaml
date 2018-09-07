@@ -1,0 +1,37 @@
+- name: Create DRS Affinity Rule for VM-VM
+  vmware_vm_vm_drs_rule:
+    affinity_rule: true
+    cluster_name: '{{ cluster_name }}'
+    drs_rule_name: vm1-vm2-affinity-rule-001
+    enabled: true
+    hostname: '{{ esxi }}'
+    mandatory: true
+    password: '{{ esxi_password }}'
+    username: '{{ esxi_username }}'
+    validate_certs: false
+    vms:
+    - vm1
+    - vm2
+- name: Create DRS Anti-Affinity Rule for VM-VM
+  vmware_vm_vm_drs_rule:
+    affinity_rule: false
+    cluster_name: '{{ cluster_name }}'
+    drs_rule_name: vm1-vm2-affinity-rule-001
+    enabled: true
+    hostname: '{{ esxi }}'
+    mandatory: true
+    password: '{{ esxi_password }}'
+    username: '{{ esxi_username }}'
+    validate_certs: false
+    vms:
+    - vm1
+    - vm2
+- name: Delete DRS Affinity Rule for VM-VM
+  vmware_vm_vm_drs_rule:
+    cluster_name: '{{ cluster_name }}'
+    drs_rule_name: vm1-vm2-affinity-rule-001
+    hostname: '{{ esxi }}'
+    password: '{{ esxi_password }}'
+    state: absent
+    username: '{{ esxi_username }}'
+    validate_certs: false

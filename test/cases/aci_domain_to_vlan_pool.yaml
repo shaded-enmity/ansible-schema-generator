@@ -1,0 +1,59 @@
+- aci_domain_to_vlan_pool:
+    domain: vmw_dom
+    domain_type: vmm
+    host: apic
+    password: SomeSecretPassword
+    pool: vmw_pool
+    pool_allocation_mode: dynamic
+    state: present
+    username: admin
+    vm_provider: vmware
+  name: Bind a VMM domain to VLAN pool
+- aci_domain_to_vlan_pool:
+    domain: vmw_dom
+    domain_type: vmm
+    host: apic
+    password: SomeSecretPassword
+    pool: vmw_pool
+    pool_allocation_mode: dynamic
+    state: absent
+    username: admin
+    vm_provider: vmware
+  name: Remove a VMM domain to VLAN pool binding
+- aci_domain_to_vlan_pool:
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    pool: phys_pool
+    pool_allocation_mode: static
+    state: present
+    username: admin
+  name: Bind a physical domain to VLAN pool
+- aci_domain_to_vlan_pool:
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    pool: phys_pool
+    pool_allocation_mode: static
+    state: absent
+    username: admin
+  name: Bind a physical domain to VLAN pool
+- aci_domain_to_vlan_pool:
+    domain: phys_dom
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    pool: phys_pool
+    pool_allocation_mode: static
+    state: query
+    username: admin
+  name: Query an domain to VLAN pool binding
+- aci_domain_to_vlan_pool:
+    domain_type: phys
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all domain to VLAN pool bindings

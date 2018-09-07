@@ -1,0 +1,13 @@
+- name: run the vlan-show command
+  pn_show:
+    pn_command: vlan-show
+    pn_options: layout vertical
+    pn_parameters: id,scope,ports
+- name: run the vlag-show command
+  pn_show:
+    pn_command: vlag-show
+    pn_options: no-show-headers
+    pn_parameters: id,name,cluster,mode
+- name: run the cluster-show command
+  pn_show:
+    pn_command: cluster-show

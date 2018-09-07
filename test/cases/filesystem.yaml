@@ -1,0 +1,9 @@
+- filesystem:
+    dev: /dev/sdb1
+    fstype: ext2
+  name: Create a ext2 filesystem on /dev/sdb1
+- filesystem:
+    dev: /dev/sdb1
+    fstype: ext4
+    opts: -cc
+  name: Create a ext4 filesystem on /dev/sdb1 and check disk blocks

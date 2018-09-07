@@ -1,0 +1,2 @@
+- name: Gather facts from xenserver
+  xenserver_facts: null

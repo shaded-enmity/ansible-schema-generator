@@ -1,0 +1,23 @@
+- enos_command:
+    commands:
+    - show version
+    - show system memory
+    provider: '{{ cli }}'
+    wait_for:
+    - result[0] contains 'Lenovo'
+    - result[1] contains 'MemFree'
+  name: test contains operator
+  register: result
+- enos_command:
+    commands:
+    - show version
+    provider: '{{ cli }}'
+  name: get output for single command
+  register: result
+- enos_command:
+    commands:
+    - show version
+    - show interface information
+    provider: '{{ cli }}'
+  name: get output for multiple commands
+  register: result

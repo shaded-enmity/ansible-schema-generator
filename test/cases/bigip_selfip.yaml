@@ -1,0 +1,90 @@
+- bigip_selfip:
+    address: 10.10.10.10
+    name: self1
+    netmask: 255.255.255.0
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+    vlan: vlan1
+  delegate_to: localhost
+  name: Create Self IP
+- bigip_selfip:
+    address: 10.10.10.10
+    allow_service: default
+    name: self1
+    netmask: 255.255.255.0
+    password: secret
+    route_domain: 10
+    server: lb.mydomain.com
+    user: admin
+    validate_certs: false
+    vlan: vlan1
+  delegate_to: localhost
+  name: Create Self IP with a Route Domain
+- bigip_selfip:
+    name: self1
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Delete Self IP
+- bigip_selfip:
+    allow_service:
+    - tcp:443
+    name: self1
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Allow management web UI to be accessed on this Self IP
+- bigip_selfip:
+    allow_service:
+    - tcp:443
+    - tcp:22
+    name: self1
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Allow HTTPS and SSH access to this Self IP
+- bigip_selfip:
+    allow_service:
+    - all
+    name: self1
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Allow all services access to this Self IP
+- bigip_selfip:
+    allow_service:
+    - gre:0
+    - igmp:0
+    name: self1
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Allow only GRE and IGMP protocols access to this Self IP
+- bigip_selfip:
+    allow_service:
+    - tcp:0
+    name: self1
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Allow all TCP, but no other protocols access to this Self IP

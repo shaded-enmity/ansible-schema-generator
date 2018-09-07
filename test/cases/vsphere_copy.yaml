@@ -1,0 +1,18 @@
+- transport: local
+  vsphere_copy:
+    datacenter: DC1 Someplace
+    datastore: datastore1
+    host: vhost
+    login: vuser
+    password: vpass
+    path: some/remote/file
+    src: /some/local/file
+- delegate_to: other_system
+  vsphere_copy:
+    datacenter: DC2 Someplace
+    datastore: datastore2
+    host: vhost
+    login: vuser
+    password: vpass
+    path: other/remote/file
+    src: /other/local/file

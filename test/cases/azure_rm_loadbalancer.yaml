@@ -1,0 +1,19 @@
+- azure_rm_loadbalancer:
+    backend_port: 8080
+    frontend_port: 80
+    idle_timeout: 4
+    load_distribution: Default
+    location: eastus
+    name: myloadbalancer
+    natpool_backend_port: 80
+    natpool_frontend_port_end: 1040
+    natpool_frontend_port_start: 1030
+    natpool_protocol: Tcp
+    probe_fail_count: 3
+    probe_interval: 10
+    probe_port: 80
+    probe_protocol: Tcp
+    protocol: Tcp
+    public_ip: mypublicip
+    resource_group: my-rg
+  name: Create a load balancer

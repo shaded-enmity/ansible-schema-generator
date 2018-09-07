@@ -1,0 +1,9 @@
+- name: apply egress acl to ethernet1/41
+  nxos_acl_interface:
+    direction: egress
+    host: '{{ inventory_hostname }}'
+    interface: ethernet1/41
+    name: ANSIBLE
+    password: '{{ pwd }}'
+    state: present
+    username: '{{ un }}'

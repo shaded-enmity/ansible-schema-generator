@@ -1,0 +1,22 @@
+- aci_switch_policy_leaf_profile:
+    description: sw_description
+    host: apic
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: present
+    username: admin
+  name: creating a Leaf Profile with description
+- aci_switch_policy_leaf_profile:
+    host: apic
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: absent
+    username: admin
+  name: Deleting a Leaf Profile
+- aci_switch_policy_leaf_profile:
+    host: apic
+    leaf_profile: sw_name
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query a Leaf Profile

@@ -1,0 +1,4 @@
+- cs_instance_facts:
+    name: web-vm-1
+  delegate_to: localhost
+  name: gather instance facts

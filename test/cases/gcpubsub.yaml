@@ -1,0 +1,57 @@
+- gcpubsub:
+    state: present
+    topic: ansible-topic-example
+  name: Create a topic and publish a message to it
+- gcpubsub:
+    state: absent
+    topic: ansible-topic-example
+  name: Delete Topic
+- gcpubsub:
+    publish:
+    - attributes:
+        mykey1: myvalue
+        mykey2: myvalu2
+        mykey3: myvalue3
+      message: this is message 1
+    - attributes:
+        owner: fred
+        server: prod
+        sla: '99.9999'
+      message: this is message 2
+    state: present
+    topic: '{{ topic_name }}'
+  name: Publish multiple messages, with attributes (key:value available with the message)
+- gcpubsub:
+    state: present
+    subscription:
+    - name: mysub
+    topic: ansible-topic-example
+  name: Create Subscription (pull)
+- gcpubsub:
+    state: present
+    subscription:
+    - ack_deadline: '60'
+      name: mysub
+      push_endpoint: http://pushendpoint.example.com
+    topic: ansible-topic-example
+  name: Create Subscription with ack_deadline and push endpoint
+- gcpubsub:
+    subscription:
+      name: mysub
+      push_endpoint: None
+    topic: ansible-topic-example
+  name: Subscription change from push to pull
+- gcpubsub:
+    state: absent
+    subscription:
+    - name: mysub
+    topic: ansible-topic-example
+  name: Delete subscription
+- gcpubsub:
+    subscription:
+      name: ansible-topic-example-sub
+      pull:
+        max_messages: '100'
+        message_ack: true
+    topic: ansible-topic-example
+  name: Pull messages from subscription

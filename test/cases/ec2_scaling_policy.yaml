@@ -1,0 +1,9 @@
+- ec2_scaling_policy:
+    adjustment_type: ChangeInCapacity
+    asg_name: slave-pool
+    cooldown: 300
+    min_adjustment_step: 1
+    name: scaledown-policy
+    region: US-XXX
+    scaling_adjustment: -1
+    state: present

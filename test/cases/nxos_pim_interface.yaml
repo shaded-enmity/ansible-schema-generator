@@ -1,0 +1,17 @@
+- nxos_pim_interface:
+    interface: eth1/33
+    state: absent
+- nxos_pim_interface:
+    dr_prio: 10
+    hello_interval: 40
+    interface: eth1/33
+    state: present
+- nxos_pim_interface:
+    interface: eth1/33
+    jp_policy_in: JPIN
+    jp_policy_out: JPOUT
+    jp_type_in: routemap
+    jp_type_out: routemap
+- nxos_pim_interface:
+    interface: eth1/33
+    state: default

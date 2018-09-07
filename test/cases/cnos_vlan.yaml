@@ -1,0 +1,81 @@
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: 13
+    vlanArg2: name
+    vlanArg3: Anil
+  name: Test Vlan - Create a vlan, name it
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: 13
+    vlanArg2: flood
+    vlanArg3: ipv4
+  name: Test Vlan - Create a vlan, Flood configuration
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: 13
+    vlanArg2: state
+    vlanArg3: active
+  name: Test Vlan - Create a vlan, State configuration
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: access-map
+    vlanArg2: Anil
+    vlanArg3: statistics
+  name: Test Vlan - VLAN Access map1
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: access-map
+    vlanArg2: Anil
+    vlanArg3: action
+    vlanArg4: forward
+  name: Test Vlan - VLAN Accep Map2
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: 13
+    vlanArg2: ip
+    vlanArg3: query-interval
+    vlanArg4: 1313
+  name: Test Vlan - ip igmp snooping query interval
+- cnos_vlan:
+    deviceType: '{{ hostvars[inventory_hostname][''deviceType''] }}'
+    enablePassword: '{{ hostvars[inventory_hostname][''enablePassword''] }}'
+    host: '{{ inventory_hostname }}'
+    outputfile: ./results/test_vlan_{{ inventory_hostname }}_output.txt
+    password: '{{ hostvars[inventory_hostname][''ansible_ssh_pass''] }}'
+    username: '{{ hostvars[inventory_hostname][''ansible_ssh_user''] }}'
+    vlanArg1: 13
+    vlanArg2: ip
+    vlanArg3: mrouter
+    vlanArg4: port-aggregation
+    vlanArg5: 23
+  name: Test Vlan - ip igmp snooping mrouter interface port-aggregation 23

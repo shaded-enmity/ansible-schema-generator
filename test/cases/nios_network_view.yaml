@@ -1,0 +1,28 @@
+- connection: local
+  name: configure a new network view
+  nios_network_view:
+    name: ansible
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: update the comment for network view
+  nios_network_view:
+    comment: this is an example comment
+    name: ansible
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: present
+- connection: local
+  name: remove the network view
+  nios_network_view:
+    name: ansible
+    provider:
+      host: '{{ inventory_hostname_short }}'
+      password: admin
+      username: admin
+    state: absent

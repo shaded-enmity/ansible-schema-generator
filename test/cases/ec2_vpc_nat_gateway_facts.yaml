@@ -1,0 +1,26 @@
+- ec2_vpc_nat_gateway_facts:
+    region: ap-southeast-2
+  name: List all managed nat gateways in ap-southeast-2
+  register: all_ngws
+- ec2_vpc_nat_gateway_facts:
+    nat_gateway_ids:
+    - nat-1234567891234567
+    - nat-7654321987654321
+    region: ap-southeast-2
+  name: Get details on specific nat gateways
+  register: specific_ngws
+- ec2_vpc_nat_gateway_facts:
+    filters:
+      state:
+      - pending
+    region: ap-southeast-2
+  name: Get all nat gateways with specific filters
+  register: pending_ngws
+- ec2_vpc_nat_gateway_facts:
+    filters:
+      state:
+      - available
+      subnet-id: subnet-12345678
+    region: ap-southeast-2
+  name: Get nat gateways with specific filter
+  register: existing_nat_gateways

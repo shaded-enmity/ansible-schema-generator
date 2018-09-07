@@ -1,0 +1,10 @@
+- delay: 30
+  name: set admin password
+  panos_admpwd:
+    ip_address: 192.168.1.1
+    key_filename: /tmp/ssh.key
+    newpassword: badpassword
+    username: admin
+  register: result
+  retries: 10
+  until: result is not failed

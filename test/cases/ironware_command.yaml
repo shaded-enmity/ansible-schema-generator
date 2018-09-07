@@ -1,0 +1,7 @@
+- ironware_command:
+    commands:
+    - show version
+- ironware_command:
+    commands:
+    - show interfaces brief wide
+    - show mpls vll

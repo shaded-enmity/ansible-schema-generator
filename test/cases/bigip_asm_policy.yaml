@@ -1,0 +1,73 @@
+- bigip_asm_policy:
+    active: true
+    file: /root/asm_policy.xml
+    name: new_asm_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Import and activate ASM policy
+- bigip_asm_policy:
+    name: new_sharepoint_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    template: SharePoint 2007 (http)
+    user: admin
+  delegate_to: localhost
+  name: Import ASM policy from template
+- bigip_asm_policy:
+    name: new_blank_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create blank ASM policy
+- bigip_asm_policy:
+    active: true
+    name: new_blank_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create blank ASM policy and activate
+- bigip_asm_policy:
+    active: true
+    name: inactive_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Activate ASM policy
+- bigip_asm_policy:
+    name: active_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Deactivate ASM policy
+- bigip_asm_policy:
+    active: true
+    file: '{{ role_path }}/files/asm_policy.xml'
+    name: new_asm_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Import and activate ASM policy in Role
+- bigip_asm_policy:
+    active: true
+    file: /root/asm_policy.plc
+    name: new_asm_policy
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Import ASM binary policy

@@ -1,0 +1,53 @@
+- name: return information about an existing application pool
+  win_iis_webapppool:
+    name: DefaultAppPool
+    state: present
+- name: create a new application pool in 'Started' state
+  win_iis_webapppool:
+    name: AppPool
+    state: started
+- name: stop an application pool
+  win_iis_webapppool:
+    name: AppPool
+    state: stopped
+- name: restart an application pool (non-idempotent)
+  win_iis_webapppool:
+    name: AppPool
+    state: restart
+- name: change application pool attributes using new dict style
+  win_iis_webapppool:
+    attributes:
+      autoStart: false
+      managedRuntimeVersion: v4.0
+    name: AppPool
+- name: change application pool attributes using older string style
+  win_iis_webapppool:
+    attributes: managedRuntimeVersion:v4.0|autoStart:false
+    name: AppPool
+- name: creates an application pool, sets attributes and starts it
+  win_iis_webapppool:
+    attributes:
+      autoStart: false
+      managedRuntimeVersion: v4.0
+    name: AnotherAppPool
+    state: started
+- name: manage child element and set identity of application pool
+  win_iis_webapppool:
+    attributes:
+      managedPipelineMode: Classic
+      processModel.identityType: SpecificUser
+      processModel.loadUserProfile: true
+      processModel.password: '{{ansible_password}}'
+      processModel.userName: '{{ansible_user}}'
+    name: IdentitiyAppPool
+    state: started
+- name: manage a timespan attribute
+  win_iis_webapppool:
+    attributes:
+      processModel.pingResponseTime: 00:03:00
+      recycling.periodicRestart.schedule:
+      - 00:10:00
+      - 05:30:00
+      recycling.periodicRestart.time: '00:00:05:00.000000'
+    name: TimespanAppPool
+    state: started

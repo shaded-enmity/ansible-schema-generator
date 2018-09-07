@@ -1,0 +1,5 @@
+- aws_direct_connect_link_aggregation_group: null
+  bandwidth: 1Gbps
+  lag_id: dxlag-xxxxxxxx
+  location: EqDC2
+  state: present

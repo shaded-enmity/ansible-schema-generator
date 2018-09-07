@@ -1,0 +1,61 @@
+- junos_interface:
+    description: test-interface
+    name: ge-0/0/1
+  name: configure interface
+- junos_interface:
+    name: ge-0/0/1
+    state: absent
+  name: remove interface
+- junos_interface:
+    enabled: false
+    name: ge-0/0/1
+  name: make interface down
+- junos_interface:
+    enabled: true
+    name: ge-0/0/1
+  name: make interface up
+- junos_interface:
+    active: false
+    name: ge-0/0/1
+    state: present
+  name: Deactivate interface config
+- junos_interface:
+    duplex: full
+    mtu: 256
+    name: ge-0/0/1
+    speed: 1g
+    state: present
+  name: Configure interface speed, mtu, duplex
+- junos_interface:
+    aggregate:
+    - description: test-interface-1
+      name: ge-0/0/1
+    - description: test-interface-2
+      name: ge-0/0/2
+    duplex: full
+    mtu: 512
+    speed: 1g
+  name: Create interface using aggregate
+- junos_interface:
+    aggregate:
+    - name: ge-0/0/1
+    - name: ge-0/0/2
+    state: absent
+  name: Delete interface using aggregate
+- junos_interface:
+    name: '{{ name }}'
+    rx_rate: le(0)
+    state: up
+    tx_rate: ge(0)
+  name: Check intent arguments
+- junos_interface:
+    name: xe-0/1/1
+    neighbors:
+    - host: netdev
+      port: Ethernet1/0/1
+  name: Check neighbor intent
+- junos_interface:
+    enabled: false
+    name: '{{ name }}'
+    state: down
+  name: Config + intent

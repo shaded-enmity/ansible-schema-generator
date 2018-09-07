@@ -1,0 +1,27 @@
+- proxmox_template:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    node: uk-mc02
+    src: ~/ubuntu-14.04-x86_64.tar.gz
+- proxmox_template:
+    api_host: node1
+    api_user: root@pam
+    node: uk-mc02
+    src: ~/ubuntu-14.04-x86_64.tar.gz
+- proxmox_template:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    content_type: vztmpl
+    force: true
+    node: uk-mc02
+    src: ~/ubuntu-14.04-x86_64.tar.gz
+    storage: local
+- proxmox_template:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    node: uk-mc02
+    state: absent
+    template: ubuntu-14.04-x86_64.tar.gz

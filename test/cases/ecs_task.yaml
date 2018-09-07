@@ -1,0 +1,24 @@
+- ecs_task:
+    cluster: console-sample-app-static-cluster
+    count: 1
+    operation: run
+    started_by: ansible_user
+    task_definition: console-sample-app-static-taskdef
+  name: Run task
+  register: task_output
+- ecs_task:
+    cluster: console-sample-app-static-cluster
+    container_instances:
+    - arn:aws:ecs:us-west-2:172139249013:container-instance/79c23f22-876c-438a-bddf-55c98a3538a8
+    operation: start
+    started_by: ansible_user
+    task: arn:aws:ecs:us-west-2:172139249013:task/3f8353d1-29a8-4689-bbf6-ad79937ffe8a
+    task_definition: console-sample-app-static-taskdef
+  name: Start a task
+  register: task_output
+- ecs_task:
+    cluster: console-sample-app-static-cluster
+    operation: stop
+    task: arn:aws:ecs:us-west-2:172139249013:task/3f8353d1-29a8-4689-bbf6-ad79937ffe8a
+    task_definition: console-sample-app-static-taskdef
+  name: Stop a task

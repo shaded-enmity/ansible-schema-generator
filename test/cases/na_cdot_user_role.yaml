@@ -1,0 +1,10 @@
+- na_cdot_user_role:
+    access_level: none
+    command_directory_name: DEFAULT
+    hostname: '{{ netapp_hostname }}'
+    name: ansibleRole
+    password: '{{ netapp_password }}'
+    state: present
+    username: '{{ netapp_username }}'
+    vserver: ansibleVServer
+  name: Create User Role

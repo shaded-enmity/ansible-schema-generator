@@ -1,0 +1,10 @@
+- name: create vrouter
+  pn_vrouter:
+    pn_name: ansible-vrouter
+    pn_router_id: 208.74.182.1
+    pn_vnet: ansible-fab-global
+    state: present
+- name: delete vrouter
+  pn_vrouter:
+    pn_name: ansible-vrouter
+    state: absent

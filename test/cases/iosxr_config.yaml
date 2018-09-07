@@ -1,0 +1,19 @@
+- iosxr_config:
+    lines: hostname {{ inventory_hostname }}
+  name: configure top level configuration
+- iosxr_config:
+    lines:
+    - description test interface
+    - ip address 172.31.1.1 255.255.255.0
+    parents: interface GigabitEthernet0/0/0/0
+  name: configure interface settings
+- iosxr_config:
+    backup: true
+    replace: config
+    src: config.cfg
+  name: load a config from disk and replace the current config
+- iosxr_config:
+    lines:
+    - shutdown
+    parents: interface GigabitEthernet0/0/0/1
+  name: for idempotency, use full-form commands

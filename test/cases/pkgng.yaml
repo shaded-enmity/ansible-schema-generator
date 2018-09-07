@@ -1,0 +1,9 @@
+- pkgng:
+    name: foo
+    state: present
+- pkgng:
+    annotation: +test1=baz,-test2,:test3=foobar
+    name: foo,bar
+- pkgng:
+    name: foo,bar
+    state: absent

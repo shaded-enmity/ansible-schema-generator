@@ -1,0 +1,28 @@
+- znode:
+    hosts: localhost:2181
+    name: /mypath
+    state: present
+    value: myvalue
+- znode:
+    hosts: localhost:2181
+    name: /mypath
+    op: get
+- znode:
+    hosts: localhost:2181
+    name: /zookeeper
+    op: list
+- znode:
+    hosts: localhost:2181
+    name: /mypath
+    op: wait
+    timeout: 20
+- znode:
+    hosts: localhost:2181
+    name: /mypath
+    state: absent
+- delegate_to: 127.0.0.1
+  znode:
+    hosts: my-zookeeper-node:2181
+    name: /mypath
+    state: present
+    value: myvalue

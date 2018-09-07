@@ -1,0 +1,17 @@
+- os_floating_ip:
+    cloud: dguerri
+    server: cattle001
+- os_floating_ip:
+    cloud: dguerri
+    fixed_address: 192.0.2.3
+    network: ext_net
+    reuse: true
+    server: cattle001
+    state: present
+    timeout: 180
+    wait: true
+- os_floating_ip:
+    cloud: dguerri
+    floating_ip_address: 203.0.113.2
+    server: cattle001
+    state: absent

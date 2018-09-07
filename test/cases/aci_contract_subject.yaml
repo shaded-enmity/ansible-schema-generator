@@ -1,0 +1,37 @@
+- aci_contract_subject:
+    contract: web_to_db
+    description: test
+    dscp: unspecified
+    host: apic
+    password: SomeSecretPassword
+    priority: level1
+    reverse_filter: true
+    state: present
+    subject: default
+    tenant: production
+    username: admin
+  name: Add a new contract subject
+- aci_contract_subject:
+    contract: web_to_db
+    host: apic
+    password: SomeSecretPassword
+    state: absent
+    subject: default
+    tenant: production
+    username: admin
+  name: Remove a contract subject
+- aci_contract_subject:
+    contract: web_to_db
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    subject: default
+    tenant: production
+    username: admin
+  name: Query a contract subject
+- aci_contract_subject:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all contract subjects

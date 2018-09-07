@@ -1,0 +1,6 @@
+- delegate_to: localhost
+  hpilo_facts:
+    host: YOUR_ILO_ADDRESS
+    login: YOUR_ILO_LOGIN
+    password: YOUR_ILO_PASSWORD
+  when: cmdb_hwmodel.startswith('HP ')

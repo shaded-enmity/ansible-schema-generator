@@ -1,0 +1,18 @@
+- circonus_annotation:
+    api_key: XXXXXXXXXXXXXXXXX
+    category: This category groups like annotations
+    description: This is a detailed description of the config change
+    title: App Config Change
+- circonus_annotation:
+    api_key: XXXXXXXXXXXXXXXXX
+    category: This category groups like annotations
+    description: This is a detailed description of the config change
+    duration: 300
+    title: App Config Change
+- circonus_annotation:
+    api_key: XXXXXXXXXXXXXXXXX
+    category: This category groups like annotations
+    description: This is a detailed description of the config change
+    end_time: 1395954407
+    start_time: 1395940006
+    title: App Config Change

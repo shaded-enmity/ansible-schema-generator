@@ -1,0 +1,7 @@
+- avi_api_version:
+    controller: ''
+    password: ''
+    tenant: ''
+    username: ''
+  name: Get AVI API version
+  register: avi_controller_version

@@ -1,0 +1,6 @@
+- name: Enable LLDP service
+  net_lldp:
+    state: present
+- name: Disable LLDP service
+  net_lldp:
+    state: lldp

@@ -1,0 +1,18 @@
+- name: Update the OS to the latest version
+  swupd:
+    update: true
+- name: Installs the "foo" bundle
+  swupd:
+    name: foo
+    state: present
+- name: Removes the "foo" bundle
+  swupd:
+    name: foo
+    state: absent
+- name: Check integrity of filesystem
+  swupd:
+    verify: true
+- name: Downgrade OS to release 12920
+  swupd:
+    manifest: 12920
+    verify: true

@@ -1,0 +1,40 @@
+- k8s_scale:
+    api_version: v1
+    kind: Deployment
+    name: elastic
+    namespace: myproject
+    replicas: 3
+    wait_timeout: 60
+  name: Scale deployment up, and extend timeout
+- k8s_scale:
+    api_version: v1
+    current_replicas: 3
+    kind: Deployment
+    name: elastic
+    namespace: myproject
+    replicas: 2
+  name: Scale deployment down when current replicas match
+- k8s_scale:
+    api_version: batch/v1
+    kind: job
+    name: pi-with-timeout
+    namespace: testing
+    replicas: 2
+  name: Increase job parallelism
+- k8s_scale:
+    replicas: 3
+    src: /myproject/elastic_deployment.yml
+    wait: false
+  name: Scale deployment based on a file from the local filesystem
+- k8s_scale:
+    replicas: 3
+    resource_definition: '{{ lookup(''template'', ''/myproject/elastic_deployment.yml'')
+      | from_yaml }}'
+    wait: false
+  name: Scale deployment based on a template output
+- k8s_scale:
+    replicas: 3
+    resource_definition: '{{ lookup(''file'', ''/myproject/elastic_deployment.yml'')
+      | from_yaml }}'
+    wait: false
+  name: Scale deployment based on a file from the Ansible controller filesystem

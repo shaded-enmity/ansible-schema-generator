@@ -1,0 +1,127 @@
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    state: present
+  register: response
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    record_name: test
+    record_value: 192.0.2.23
+    state: present
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    record_name: test
+    state: present
+  register: response
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    record_name: test
+    state: absent
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    failover: true
+    ip1: 127.0.0.2
+    ip2: 127.0.0.3
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    failover: true
+    ip1: 127.0.0.2
+    ip2: 127.0.0.3
+    ip3: 127.0.0.4
+    ip4: 127.0.0.5
+    ip5: 127.0.0.6
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    contactList: my contact list
+    domain: my.com
+    ip1: 127.0.0.2
+    maxEmails: 1
+    monitor: true
+    port: 80
+    protocol: HTTP
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+    systemDescription: Monitor Test A record
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    contactList: 1174
+    domain: my.com
+    httpFile: example
+    httpFqdn: http://my.com
+    httpQueryString: some string
+    ip1: 127.0.0.2
+    maxEmails: 1
+    monitor: true
+    port: 80
+    protocol: HTTP
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+    systemDescription: Monitor Test A record
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    contactList: emergencycontacts
+    domain: my.com
+    failover: true
+    ip1: 127.0.0.2
+    ip2: 127.0.0.3
+    maxEmails: 1
+    monitor: true
+    port: 443
+    protocol: HTTPS
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+    systemDescription: monitoring my.com status
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    failover: false
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present
+- dnsmadeeasy:
+    account_key: key
+    account_secret: secret
+    domain: my.com
+    monitor: false
+    record_name: test
+    record_type: A
+    record_value: 127.0.0.1
+    state: present

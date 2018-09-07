@@ -1,0 +1,12 @@
+- os_user:
+    cloud: mycloud
+    default_project: demo
+    domain: default
+    email: demo@example.com
+    name: demouser
+    password: secret
+    state: present
+- os_user:
+    cloud: mycloud
+    name: demouser
+    state: absent

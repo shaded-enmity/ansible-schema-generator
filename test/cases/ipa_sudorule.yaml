@@ -1,0 +1,26 @@
+- ipa_sudorule:
+    cmdcategory: all
+    description: Allow to run every command with sudo without password
+    hostcategory: all
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: sudo_all_nopasswd
+    sudoopt:
+    - '!authenticate'
+    usercategory: all
+- ipa_sudorule:
+    cmdcategory: all
+    description: Allow developers to run every command with sudo on all database server
+    host:
+    - db01.example.com
+    hostgroup:
+    - db-server
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: sudo_dev_dbserver
+    sudoopt:
+    - '!authenticate'
+    usergroup:
+    - developers

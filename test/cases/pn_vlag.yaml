@@ -1,0 +1,12 @@
+- name: create a VLAG
+  pn_vlag:
+    pn_mode: active-active
+    pn_name: spine-to-leaf
+    pn_peer_port: spine02-to-leaf
+    pn_peer_switch: spine02
+    pn_port: spine01-to-leaf
+    state: present
+- name: delete VLAGs
+  pn_vlag:
+    pn_name: spine-to-leaf
+    state: absent

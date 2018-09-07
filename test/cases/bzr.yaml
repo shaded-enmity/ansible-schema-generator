@@ -1,0 +1,4 @@
+- bzr:
+    dest: /srv/checkout
+    name: bzr+ssh://foosball.example.org/path/to/branch
+    version: 22

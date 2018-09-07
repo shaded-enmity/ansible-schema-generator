@@ -1,0 +1,23 @@
+- name: Create or update a rundeck ACL policy in project Ansible
+  rundeck_acl_policy:
+    api_version: 18
+    name: Project_01
+    policy:
+      by:
+        group: build
+      context:
+        application: rundeck
+      description: my policy
+      for:
+        project:
+        - allow: read
+    project: Ansible
+    state: present
+    token: mytoken
+    url: https://rundeck.example.org
+- name: Remove a rundeck system policy
+  rundeck_acl_policy:
+    name: Project_02
+    state: absent
+    token: mytoken
+    url: https://rundeck.example.org

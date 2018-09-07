@@ -1,0 +1,17 @@
+- jenkins_script:
+    password: admin
+    script: println(Jenkins.instance.pluginManager.plugins)
+    user: admin
+  name: Obtaining a list of plugins
+- jenkins_script:
+    args:
+      jenkins_mode: Node.Mode.EXCLUSIVE
+    script: '{{ setmaster_mode }}'
+  name: use the variable as the script
+- jenkins_script:
+    password: admin
+    script: println(Jenkins.instance.pluginManager.plugins)
+    url: https://localhost
+    user: admin
+    validate_certs: false
+  name: interacting with an untrusted HTTPS connection

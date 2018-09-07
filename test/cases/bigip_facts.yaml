@@ -1,0 +1,7 @@
+- bigip_facts:
+    include: interface,vlan
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Collect BIG-IP facts

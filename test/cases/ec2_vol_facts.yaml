@@ -1,0 +1,10 @@
+- ec2_vol_facts: null
+- ec2_vol_facts:
+    filters:
+      volume-id: vol-00112233
+- ec2_vol_facts:
+    filters:
+      tag:Name: Example
+- ec2_vol_facts:
+    filters:
+      attachment.status: attached

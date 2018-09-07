@@ -1,0 +1,39 @@
+- name: configure interface
+  net_interface:
+    description: test-interface
+    name: ge-0/0/1
+- name: remove interface
+  net_interface:
+    name: ge-0/0/1
+    state: absent
+- name: make interface up
+  net_interface:
+    description: test-interface
+    enabled: true
+    name: ge-0/0/1
+- name: make interface down
+  net_interface:
+    description: test-interface
+    enabled: false
+    name: ge-0/0/1
+- name: Create interface using aggregate
+  net_interface:
+    aggregate:
+    - description: test-interface-1
+      name: ge-0/0/1
+    - description: test-interface-2
+      name: ge-0/0/2
+    duplex: full
+    mtu: 512
+    speed: 1g
+- name: Check intent arguments
+  net_interface:
+    name: fxp0
+    rx_rate: le(0)
+    state: up
+    tx_rate: ge(0)
+- name: Config + intent
+  net_interface:
+    enabled: false
+    name: fxp0
+    state: down

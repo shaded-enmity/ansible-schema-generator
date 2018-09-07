@@ -1,0 +1,7 @@
+- name: List running jobs for the testing.yml playbook
+  tower_job_list:
+    query:
+      playbook: testing.yml
+    register: testing_jobs
+    status: running
+    tower_config_file: ~/tower_cli.cfg

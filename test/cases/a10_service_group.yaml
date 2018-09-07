@@ -1,0 +1,16 @@
+- a10_service_group:
+    host: a10.mydomain.com
+    partition: mypartition
+    password: mypassword
+    servers:
+    - port: 8080
+      server: foo1.mydomain.com
+    - port: 8080
+      server: foo2.mydomain.com
+    - port: 8080
+      server: foo3.mydomain.com
+    - port: 8080
+      server: foo4.mydomain.com
+      status: disabled
+    service_group: sg-80-tcp
+    username: myadmin

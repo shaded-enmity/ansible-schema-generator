@@ -1,0 +1,7 @@
+- name: set admin password
+  panos_admin:
+    admin_password: badpassword
+    admin_username: admin
+    commit: false
+    ip_address: 192.168.1.1
+    password: admin

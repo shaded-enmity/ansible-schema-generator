@@ -1,0 +1,50 @@
+- azure_rm_virtualmachine_scaleset:
+    admin_username: adminUser
+    capacity: 2
+    data_disks:
+    - caching: ReadWrite
+      disk_size_gb: 64
+      lun: 0
+      managed_disk_type: Standard_LRS
+    image:
+      offer: CoreOS
+      publisher: CoreOS
+      sku: Stable
+      version: latest
+    managed_disk_type: Standard_LRS
+    name: testvmss
+    resource_group: Testing
+    ssh_password_enabled: false
+    ssh_public_keys:
+    - key_data: < insert yor ssh public key here... >
+      path: /home/adminUser/.ssh/authorized_keys
+    subnet_name: testsubnet
+    virtual_network_name: testvnet
+    vm_size: Standard_DS1_v2
+  name: Create VMSS
+- azure_rm_virtualmachine_scaleset:
+    admin_password: password01
+    admin_username: adminUser
+    capacity: 2
+    image: customimage001
+    managed_disk_type: Standard_LRS
+    name: testvmss
+    resource_group: Testing
+    subnet_name: testsubnet
+    virtual_network_name: testvnet
+    vm_size: Standard_DS1_v2
+  name: Create a VMSS with a custom image
+- azure_rm_virtualmachine_scaleset:
+    admin_password: password01
+    admin_username: adminUser
+    capacity: 2
+    image:
+      name: customimage001
+      resource_group: Testing
+    managed_disk_type: Standard_LRS
+    name: testvmss
+    resource_group: Testing
+    subnet_name: testsubnet
+    virtual_network_name: testvnet
+    vm_size: Standard_DS1_v2
+  name: Create a VMSS with a custom image from a particular resource group

@@ -1,0 +1,33 @@
+- ipa_dnsrecord:
+    ipa_host: spider.example.com
+    ipa_pass: Passw0rd!
+    record_name: vm-001
+    record_type: AAAA
+    record_value: ::1
+    state: present
+    zone_name: example.com
+- ipa_dnsrecord:
+    ipa_host: spider.example.com
+    ipa_pass: Passw0rd!
+    record_name: 5
+    record_type: PTR
+    record_value: internal.ipa.example.com
+    state: present
+    zone_name: 2.168.192.in-addr.arpa
+- ipa_dnsrecord:
+    ipa_host: spider.example.com
+    ipa_pass: Passw0rd!
+    record_name: _kerberos
+    record_type: TXT
+    record_value: EXAMPLE.COM
+    state: present
+    zone_name: example.com
+- ipa_dnsrecord:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: host01
+    record_type: AAAA
+    record_value: ::1
+    state: absent
+    zone_name: example.com

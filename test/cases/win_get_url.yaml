@@ -1,0 +1,22 @@
+- name: Download earthrise.jpg to specified path
+  win_get_url:
+    dest: C:\Users\RandomUser\earthrise.jpg
+    url: http://www.example.com/earthrise.jpg
+- name: Download earthrise.jpg to specified path only if modified
+  win_get_url:
+    dest: C:\Users\RandomUser\earthrise.jpg
+    force: false
+    url: http://www.example.com/earthrise.jpg
+- name: Download earthrise.jpg to specified path through a proxy server.
+  win_get_url:
+    dest: C:\Users\RandomUser\earthrise.jpg
+    proxy_password: password
+    proxy_url: http://10.0.0.1:8080
+    proxy_username: username
+    url: http://www.example.com/earthrise.jpg
+- name: Download file from FTP with authentication
+  win_get_url:
+    dest: '%TEMP%\ftp-file.txt'
+    url: ftp://server/file.txt
+    url_password: ftp-password
+    url_username: ftp-user

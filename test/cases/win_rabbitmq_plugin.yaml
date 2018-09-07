@@ -1,0 +1,4 @@
+- name: Enables the rabbitmq_management plugin
+  win_rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled

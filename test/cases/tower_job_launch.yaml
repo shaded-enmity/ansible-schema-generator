@@ -1,0 +1,4 @@
+- name: Launch a job
+  register: job
+  tower_job_launch:
+    job_template: My Job Template

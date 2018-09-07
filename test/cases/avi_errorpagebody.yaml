@@ -1,0 +1,7 @@
+- avi_errorpagebody:
+    controller: 10.10.25.42
+    name: sample_errorpagebody
+    password: something
+    state: present
+    username: admin
+  name: Example to create ErrorPageBody object

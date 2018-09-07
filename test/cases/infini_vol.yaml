@@ -1,0 +1,9 @@
+- infini_vol:
+    name: foo
+    password: secret
+    pool: bar
+    size: 1TB
+    state: present
+    system: ibox001
+    user: admin
+  name: Create new volume named foo under pool named bar

@@ -1,0 +1,12 @@
+- name: Gather DNS facts about all ESXi Host in given Cluster
+  vmware_host_dns_facts:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Gather DNS facts about ESXi Host
+  vmware_host_dns_facts:
+    esxi_hostname: '{{ esxi_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

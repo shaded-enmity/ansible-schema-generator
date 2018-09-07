@@ -1,0 +1,9 @@
+- name: Add tower user
+  tower_user:
+    email: jdoe@example.org
+    first_name: John
+    last_name: Doe
+    password: foobarbaz
+    state: present
+    tower_config_file: ~/tower_cli.cfg
+    username: jdoe

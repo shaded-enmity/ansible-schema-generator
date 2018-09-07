@@ -1,0 +1,15 @@
+- layman:
+    name: mozilla
+- layman:
+    list_url: http://raw.github.com/cvut/gentoo-overlay/master/overlay.xml
+    name: cvut
+- layman:
+    list_url: http://raw.github.com/cvut/gentoo-overlay/master/overlay.xml
+    name: cvut
+    state: updated
+- layman:
+    name: ALL
+    state: updated
+- layman:
+    name: cvut
+    state: absent

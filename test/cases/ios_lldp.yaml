@@ -1,0 +1,6 @@
+- ios_lldp:
+    state: present
+  name: Enable LLDP service
+- ios_lldp:
+    state: absent
+  name: Disable LLDP service

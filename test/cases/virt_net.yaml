@@ -1,0 +1,37 @@
+- virt_net:
+    command: define
+    name: br_nat
+    xml: '{{ lookup("template", "network/bridge.xml.j2") }}'
+- virt_net:
+    command: create
+    name: br_nat
+- virt_net:
+    command: list_nets
+- virt_net:
+    command: get_xml
+    name: br_nat
+- virt_net:
+    command: destroy
+    name: br_nat
+- virt_net:
+    command: undefine
+    name: br_nat
+- virt_net:
+    command: facts
+- register: networks
+  virt_net:
+    command: info
+    uri: '{{ item }}'
+  with_items: '{{ libvirt_uris }}'
+- virt_net:
+    name: br_nat
+    state: active
+- virt_net:
+    name: br_nat
+    state: inactive
+- virt_net:
+    autostart: true
+    name: br_nat
+- virt_net:
+    autostart: false
+    name: br_nat

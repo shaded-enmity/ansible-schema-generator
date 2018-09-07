@@ -1,0 +1,19 @@
+- name: configure hostname and domain name
+  net_system:
+    domain-search:
+    - ansible.com
+    - redhat.com
+    - cisco.com
+    domain_name: test.example.com
+    hostname: ios01
+- name: remove configuration
+  net_system:
+    state: absent
+- name: configure DNS lookup sources
+  net_system:
+    lookup_source: MgmtEth0/0/CPU0/0
+- name: configure name servers
+  net_system:
+    name_servers:
+    - 8.8.8.8
+    - 8.8.4.4

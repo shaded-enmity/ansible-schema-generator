@@ -1,0 +1,10 @@
+- rds_param_group:
+    description: My Fancy Ex Parrot Group
+    engine: mysql5.6
+    name: norwegian_blue
+    params:
+      auto_increment_increment: 42K
+    state: present
+- rds_param_group:
+    name: norwegian_blue
+    state: absent

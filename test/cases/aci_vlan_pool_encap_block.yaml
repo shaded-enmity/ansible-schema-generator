@@ -1,0 +1,40 @@
+- aci_vlan_pool_encap_block:
+    block_end: 50
+    block_start: 20
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    state: present
+    username: admin
+  name: Add a new VLAN encap block
+- aci_vlan_pool_encap_block:
+    block_end: 50
+    block_start: 20
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    state: absent
+    username: admin
+  name: Remove a VLAN encap block
+- aci_vlan_pool_encap_block:
+    block_end: 50
+    block_start: 20
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    state: query
+    username: admin
+  name: Query a VLAN encap block
+- aci_vlan_pool_encap_block:
+    host: apic
+    password: SomeSecretPassword
+    pool: production
+    state: query
+    username: admin
+  name: Query a VLAN pool for encap blocks
+- aci_vlan_pool_encap_block:
+    host: apic
+    password: SomeSecretPassword
+    state: query
+    username: admin
+  name: Query all VLAN encap blocks

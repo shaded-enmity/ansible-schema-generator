@@ -1,0 +1,23 @@
+- ovirt_external_provider:
+    auth_url: http://10.34.63.71:35357/v2.0/
+    name: image_provider
+    password: 123456
+    tenant: admin
+    type: os_image
+    url: http://10.34.63.71:9292
+    username: admin
+- ovirt_external_provider:
+    name: foreman_provider
+    password: 123456
+    type: foreman
+    url: https://foreman.example.com
+    username: admin
+- ovirt_external_provider:
+    name: ovn_provider
+    network_type: external
+    type: network
+    url: http://1.2.3.4:9696
+- ovirt_external_provider:
+    name: image_provider
+    state: absent
+    type: os_image

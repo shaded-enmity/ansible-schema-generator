@@ -1,0 +1,14 @@
+- cronvar:
+    name: EMAIL
+    value: doug@ansibmod.con.com
+  name: Ensure entry like "EMAIL=doug@ansibmod.con.com" exists
+- cronvar:
+    name: LEGACY
+    state: absent
+  name: Ensure a variable does not exist. This may remove any variable named "LEGACY"
+- cronvar:
+    cron_file: ansible_yum-autoupdate
+    name: LOGFILE
+    user: root
+    value: /var/log/yum-autoupdate.log
+  name: Add a variable to a file under /etc/cron.d

@@ -1,0 +1,35 @@
+- iosxr_system:
+    domain-search:
+    - ansible.com
+    - redhat.com
+    - cisco.com
+    domain_name: test.example.com
+    hostname: iosxr01
+  name: configure hostname and domain-name (default vrf=default)
+- iosxr_system:
+    domain-search:
+    - ansible.com
+    - redhat.com
+    - cisco.com
+    domain_name: test.example.com
+    hostname: iosxr01
+    state: absent
+  name: remove configuration
+- iosxr_system:
+    domain-search:
+    - ansible.com
+    - redhat.com
+    - cisco.com
+    domain_name: test.example.com
+    hostname: iosxr01
+    vrf: nondefault
+  name: configure hostname and domain-name with vrf
+- iosxr_system:
+    lookup_enabled: true
+    lookup_source: MgmtEth0/0/CPU0/0
+  name: configure DNS lookup sources
+- iosxr_system:
+    name_servers:
+    - 8.8.8.8
+    - 8.8.4.4
+  name: configure name servers

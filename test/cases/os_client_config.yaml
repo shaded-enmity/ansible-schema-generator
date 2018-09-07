@@ -1,0 +1,4 @@
+- os_client_config: null
+- os_client_config:
+    clouds:
+    - mordred

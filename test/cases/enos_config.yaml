@@ -1,0 +1,12 @@
+- enos_config: 'lines: hostname {{ inventory_hostname }}'
+  name: configure top level configuration
+- enos_config:
+    lines:
+    - enable
+    - ip ospf enable
+    parents: interface ip 13
+  name: configure interface settings
+- enos_config:
+    backup: true
+    src: config.cfg
+  name: load a config from disk and replace the current config

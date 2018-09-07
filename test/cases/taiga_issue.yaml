@@ -1,0 +1,22 @@
+- taiga_issue:
+    attachment: /path/to/error.log
+    attachment_description: Error log file
+    description: An error has been found. Please check the attached error log for
+      details.
+    issue_type: Bug
+    priority: High
+    project: myproject
+    severity: Important
+    state: present
+    status: New
+    subject: An error has been found
+    tags:
+    - Error
+    - Needs manual check
+    taiga_host: https://mytaigahost.example.com
+- taiga_issue:
+    issue_type: Bug
+    project: myproject
+    state: absent
+    subject: An error has been found
+    taiga_host: https://mytaigahost.example.com

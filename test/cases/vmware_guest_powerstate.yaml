@@ -1,0 +1,23 @@
+- delegate_to: localhost
+  name: Set the state of a virtual machine to poweroff
+  register: deploy
+  vmware_guest_powerstate:
+    folder: /testvms
+    hostname: 192.0.2.44
+    name: testvm_2
+    password: vmware
+    state: powered-off
+    username: administrator@vsphere.local
+    validate_certs: false
+- delegate_to: localhost
+  name: Set the state of a virtual machine to poweroff at given scheduled time
+  register: deploy_at_schedule_datetime
+  vmware_guest_powerstate:
+    folder: /datacenter-1/vm/my_folder
+    hostname: 192.0.2.44
+    name: testvm_2
+    password: vmware
+    scheduled_at: 09/01/2018 10:18
+    state: powered-off
+    username: administrator@vsphere.local
+    validate_certs: false

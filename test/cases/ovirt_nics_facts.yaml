@@ -1,0 +1,3 @@
+- ovirt_nics_facts:
+    name: eth*
+    vm: centos7

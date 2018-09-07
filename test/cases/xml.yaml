@@ -1,0 +1,70 @@
+- name: Remove the subjective attribute of the rating element
+  xml:
+    path: /foo/bar.xml
+    state: absent
+    xpath: /business/rating/@subjective
+- name: Set the rating to 11
+  xml:
+    path: /foo/bar.xml
+    value: 11
+    xpath: /business/rating
+- name: Get count of beers nodes
+  register: hits
+  xml:
+    count: true
+    path: /foo/bar.xml
+    xpath: /business/beers/beer
+- name: Add a phonenumber element to the business element
+  xml:
+    path: /foo/bar.xml
+    value: 555-555-1234
+    xpath: /business/phonenumber
+- name: Add several more beers to the beers element
+  xml:
+    add_children:
+    - beer: Old Rasputin
+    - beer: Old Motor Oil
+    - beer: Old Curmudgeon
+    path: /foo/bar.xml
+    xpath: /business/beers
+- name: Add a validxhtml element to the website element
+  xml:
+    path: /foo/bar.xml
+    xpath: /business/website/validxhtml
+- name: Add an empty validatedon attribute to the validxhtml element
+  xml:
+    path: /foo/bar.xml
+    xpath: /business/website/validxhtml/@validatedon
+- name: Add or modify an attribute, add element if needed
+  xml:
+    attribute: validatedon
+    path: /foo/bar.xml
+    value: 1976-08-05
+    xpath: /business/website/validxhtml
+- name: Read attribute value
+  register: xmlresp
+  xml:
+    attribute: validatedon
+    content: attribute
+    path: /foo/bar.xml
+    xpath: /business/website/validxhtml
+- name: Remove all children from the website element (option 1)
+  xml:
+    path: /foo/bar.xml
+    state: absent
+    xpath: /business/website/*
+- name: Remove all children from the website element (option 2)
+  xml:
+    children: []
+    path: /foo/bar.xml
+    xpath: /business/website
+- name: Set namespaced '/x:foo/x:bar/y:baz/@z:my_namespaced_attribute' to 'false'
+  xml:
+    attribute: z:my_namespaced_attribute
+    namespaces:
+      x: http://x.test
+      y: http://y.test
+      z: http://z.test
+    path: foo.xml
+    value: 'false'
+    xpath: /x:foo/x:bar/y:baz

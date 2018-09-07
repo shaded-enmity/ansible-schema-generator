@@ -1,0 +1,36 @@
+- name: Ensure Eth1/5 is in its default l2 interface state
+  nxos_l2_interface:
+    name: Ethernet1/5
+    state: unconfigured
+- name: Ensure Eth1/5 is configured for access vlan 20
+  nxos_l2_interface:
+    access_vlan: 20
+    mode: access
+    name: Ethernet1/5
+- name: Ensure Eth1/5 only has vlans 5-10 as trunk vlans
+  nxos_l2_interface:
+    mode: trunk
+    name: Ethernet1/5
+    native_vlan: 10
+    trunk_vlans: 5-10
+- name: Ensure eth1/5 is a trunk port and ensure 2-50 are being tagged (doesn't mean
+    others aren't also being tagged)
+  nxos_l2_interface:
+    mode: trunk
+    name: Ethernet1/5
+    native_vlan: 10
+    trunk_vlans: 2-50
+- name: Ensure these VLANs are not being tagged on the trunk
+  nxos_l2_interface:
+    mode: trunk
+    name: Ethernet1/5
+    state: absent
+    trunk_vlans: 51-4094
+- name: Aggregate Configure interfaces for access_vlan with aggregate
+  nxos_l2_interface:
+    aggregate:
+    - access_vlan: 6
+      name: Ethernet1/2
+    - access_vlan: 15
+      name: Ethernet1/7
+    mode: access

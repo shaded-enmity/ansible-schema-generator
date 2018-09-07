@@ -1,0 +1,9 @@
+- bcf_switch:
+    controller: '{{ inventory_hostname }}'
+    fabric_role: leaf
+    leaf_group: R1
+    mac: 00:00:00:02:00:02
+    name: Rack1Leaf1
+    state: present
+    validate_certs: false
+  name: bcf leaf switch

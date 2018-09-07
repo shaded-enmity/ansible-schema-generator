@@ -1,0 +1,5 @@
+- nxos_vtp_version:
+    host: '{{ inventory_hostname }}'
+    password: '{{ pwd }}'
+    username: '{{ un }}'
+    version: 2

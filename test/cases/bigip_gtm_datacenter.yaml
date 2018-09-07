@@ -1,0 +1,8 @@
+- bigip_gtm_datacenter:
+    location: 222 West 23rd
+    name: New York
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Create data center "New York"

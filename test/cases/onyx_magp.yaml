@@ -1,0 +1,6 @@
+- name: run add vlan interface with magp
+  onyx_magp:
+    interface: Vlan 1002
+    magp_id: 103
+    router_ip: 192.168.8.2
+    router_mac: AA:1B:2C:3D:4E:5F

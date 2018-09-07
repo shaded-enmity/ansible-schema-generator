@@ -1,0 +1,17 @@
+- bigip_device_group:
+    name: foo-group
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create a sync-only device group
+- bigip_device_group:
+    auto_sync: true
+    name: foo-group
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Create a sync-only device group with auto-sync enabled

@@ -1,0 +1,21 @@
+- avi_virtualservice:
+    addr: 10.90.131.103
+    application_profile_ref: /api/applicationprofile?name=System-Secure-HTTP
+    controller: 10.10.27.90
+    ip_address: null
+    max_concurrent_connections: 1000
+    name: newtestvs
+    password: AviNetworks123!
+    performance_limits: null
+    pool_ref: /api/pool?name=testpool2
+    services:
+    - enable_ssl: true
+      port: 443
+    - port: 80
+    ssl_key_and_certificate_refs:
+    - /api/sslkeyandcertificate?name=System-Default-Cert
+    ssl_profile_ref: /api/sslprofile?name=System-Standard
+    state: present
+    type: V4
+    username: admin
+  name: Create SSL Virtual Service using Pool testpool2

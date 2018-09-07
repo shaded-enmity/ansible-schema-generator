@@ -1,0 +1,7 @@
+- hponcfg:
+    src: /tmp/enable-ssh.xml
+  name: Configure HP iLO using enable-ssh.xml
+- hponcfg:
+    executable: /opt/hp/tools/hponcfg
+    src: /tmp/enable-ssh.xml
+  name: Configure HP iLO on VMware ESXi hypervisor

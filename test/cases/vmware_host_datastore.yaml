@@ -1,0 +1,46 @@
+- delegate_to: localhost
+  name: Mount VMFS datastores to ESXi
+  vmware_host_datastore:
+    datacenter_name: '{{ datacenter }}'
+    datastore_name: '{{ item.name }}'
+    datastore_type: '{{ item.type }}'
+    esxi_hostname: '{{ inventory_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_pass }}'
+    state: present
+    username: '{{ vcenter_user }}'
+    vmfs_device_name: naa.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    vmfs_version: 6
+- delegate_to: localhost
+  name: Mount NFS datastores to ESXi
+  vmware_host_datastore:
+    datacenter_name: '{{ datacenter }}'
+    datastore_name: '{{ item.name }}'
+    datastore_type: '{{ item.type }}'
+    esxi_hostname: '{{ inventory_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    nfs_path: '{{ item.path }}'
+    nfs_ro: false
+    nfs_server: '{{ item.server }}'
+    password: '{{ vcenter_pass }}'
+    state: present
+    username: '{{ vcenter_user }}'
+  with_items:
+  - name: NasDS_vol01
+    path: /mnt/vol01
+    server: nas01
+    type: nfs
+  - name: NasDS_vol02
+    path: /mnt/vol02
+    server: nas01
+    type: nfs
+- delegate_to: localhost
+  name: Remove/Umount Datastores from ESXi
+  vmware_host_datastore:
+    datacenter_name: '{{ datacenter }}'
+    datastore_name: NasDS_vol01
+    esxi_hostname: '{{ inventory_hostname }}'
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_pass }}'
+    state: absent
+    username: '{{ vcenter_user }}'

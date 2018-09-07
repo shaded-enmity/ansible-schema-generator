@@ -1,0 +1,26 @@
+- name: configure console logging with level
+  nxos_logging:
+    dest: console
+    level: 2
+    state: present
+- name: remove console logging configuration
+  nxos_logging:
+    dest: console
+    level: 2
+    state: absent
+- name: configure file logging with level
+  nxos_logging:
+    dest: logfile
+    dest_level: 3
+    name: testfile
+    state: present
+- name: configure facility level logging
+  nxos_logging:
+    facility: daemon
+    facility_level: 0
+    state: present
+- name: remove facility level logging
+  nxos_logging:
+    facility: daemon
+    facility_level: 0
+    state: absent

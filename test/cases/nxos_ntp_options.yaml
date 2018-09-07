@@ -1,0 +1,7 @@
+- nxos_ntp_options:
+    host: '{{ inventory_hostname }}'
+    logging: false
+    master: true
+    password: '{{ pwd }}'
+    stratum: 12
+    username: '{{ un }}'

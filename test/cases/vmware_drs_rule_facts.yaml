@@ -1,0 +1,14 @@
+- name: Gather DRS facts about given Cluster
+  register: cluster_drs_facts
+  vmware_drs_rule_facts:
+    cluster_name: cluster_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'
+- name: Gather DRS facts about all Clusters in given datacenter
+  register: datacenter_drs_facts
+  vmware_drs_rule_facts:
+    datacenter: datacenter_name
+    hostname: '{{ vcenter_hostname }}'
+    password: '{{ vcenter_password }}'
+    username: '{{ vcenter_username }}'

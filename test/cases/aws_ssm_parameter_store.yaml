@@ -1,0 +1,22 @@
+- aws_ssm_parameter_store:
+    description: This is your first key
+    name: Hello
+    value: World
+  name: Create or update key/value pair in aws parameter store
+- aws_ssm_parameter_store:
+    name: Hello
+    state: absent
+  name: Delete the key
+- aws_ssm_parameter_store:
+    description: This is your first key
+    name: Hello
+    string_type: SecureString
+    value: World
+  name: Create or update secure key/value pair with default kms key (aws/ssm)
+- aws_ssm_parameter_store:
+    description: This is your first key
+    key_id: alias/demo
+    name: Hello
+    string_type: SecureString
+    value: World
+  name: Create or update secure key/value pair with nominated kms key

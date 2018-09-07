@@ -1,0 +1,27 @@
+- bigip_configsync_action:
+    device_group: foo-group
+    password: secret
+    server: lb.mydomain.com
+    sync_device_to_group: true
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Sync configuration from device to group
+- bigip_configsync_action:
+    device_group: foo-group
+    password: secret
+    server: lb.mydomain.com
+    sync_most_recent_to_device: true
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Sync configuration from most recent device to the current host
+- bigip_configsync_action:
+    device_group: new-device-group
+    password: secret
+    server: lb.mydomain.com
+    sync_device_to_group: true
+    user: admin
+    validate_certs: false
+  delegate_to: localhost
+  name: Perform an initial sync of a device to a new device group

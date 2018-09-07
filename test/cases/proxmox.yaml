@@ -1,0 +1,106 @@
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    hostname: example.org
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    hostname: example.org
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz
+    password: '123456'
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    force: true
+    hostname: example.org
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_user: root@pam
+    hostname: example.org
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    hostname: example.org
+    netif: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}'
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    hostname: example.org
+    netif: '{"net0":"name=eth0,gw=192.168.0.1,ip=192.168.0.2/24,bridge=vmbr0"}'
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    hostname: example.org
+    mounts: '{"mp0":"local:8,mp=/mnt/test/"}'
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz'
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    cores: 2
+    hostname: example.org
+    node: uk-mc02
+    ostemplate: local:vztmpl/ubuntu-14.04-x86_64.tar.gz'
+    password: 123456
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    state: started
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    state: stopped
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    force: true
+    state: stopped
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    state: stopped
+    vmid: 100
+- proxmox:
+    api_host: node1
+    api_password: 1q2w3e
+    api_user: root@pam
+    state: absent
+    vmid: 100

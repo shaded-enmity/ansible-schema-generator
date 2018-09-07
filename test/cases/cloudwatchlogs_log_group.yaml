@@ -1,0 +1,18 @@
+- cloudwatchlogs_log_group:
+    log_group_name: test-log-group
+- cloudwatchlogs_log_group:
+    log_group_name: test-log-group
+    state: present
+    tags:
+      Env: QA
+      Name: test-log-group
+- cloudwatchlogs_log_group:
+    kms_key_id: arn:aws:kms:region:account-id:key/key-id
+    log_group_name: test-log-group
+    state: present
+    tags:
+      Env: QA
+      Name: test-log-group
+- cloudwatchlogs_log_group:
+    log_group_name: test-log-group
+    state: absent

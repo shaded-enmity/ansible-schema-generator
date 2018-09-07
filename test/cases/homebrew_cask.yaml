@@ -1,0 +1,28 @@
+- homebrew_cask:
+    name: alfred
+    state: present
+- homebrew_cask:
+    name: alfred
+    state: absent
+- homebrew_cask:
+    install_options: appdir=/Applications
+    name: alfred
+    state: present
+- homebrew_cask:
+    install_options: debug,appdir=/Applications
+    name: alfred
+    state: present
+- homebrew_cask:
+    allow_external_apps: true
+    name: alfred
+    state: present
+- homebrew_cask:
+    install_options: force
+    name: alfred
+    state: absent
+- homebrew_cask:
+    upgrade_all: true
+- homebrew_cask:
+    install_options: force
+    name: alfred
+    state: upgraded

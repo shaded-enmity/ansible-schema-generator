@@ -1,0 +1,8 @@
+- bigip_gtm_facts:
+    filter: my_pool
+    include: pool
+    password: secret
+    server: lb.mydomain.com
+    user: admin
+  delegate_to: localhost
+  name: Get pool facts

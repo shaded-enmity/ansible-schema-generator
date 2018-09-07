@@ -1,0 +1,43 @@
+- virt_pool:
+    command: define
+    name: vms
+    xml: '{{ lookup("template", "pool/dir.xml.j2") }}'
+- virt_pool:
+    command: build
+    name: vms
+- virt_pool:
+    command: create
+    name: vms
+- virt_pool:
+    command: list_pools
+- virt_pool:
+    command: get_xml
+    name: vms
+- virt_pool:
+    command: destroy
+    name: vms
+- virt_pool:
+    command: delete
+    name: vms
+- virt_pool:
+    command: undefine
+    name: vms
+- virt_pool:
+    command: facts
+- register: storage_pools
+  virt_pool:
+    command: info
+    uri: '{{ item }}'
+  with_items: '{{ libvirt_uris }}'
+- virt_pool:
+    name: vms
+    state: active
+- virt_pool:
+    name: vms
+    state: inactive
+- virt_pool:
+    autostart: true
+    name: vms
+- virt_pool:
+    autostart: false
+    name: vms

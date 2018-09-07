@@ -1,0 +1,32 @@
+- eos_vlan:
+    name: vlan-4000
+    state: present
+    vlan_id: 4000
+  name: Create vlan
+- eos_vlan:
+    interfaces:
+    - Ethernet1
+    - Ethernet2
+    state: present
+    vlan_id: 4000
+  name: Add interfaces to vlan
+- eos_vlan:
+    associated_interfaces:
+    - Ethernet1
+    - Ethernet2
+    vlan_id: 4000
+  name: Check if interfaces is assigned to vlan
+- eos_vlan:
+    state: suspend
+    vlan_id: 4000
+  name: Suspend vlan
+- eos_vlan:
+    state: active
+    vlan_id: 4000
+  name: Unsuspend vlan
+- eos_vlan:
+    aggregate:
+    - vlan_id: 4000
+    - name: vlan-4001
+      vlan_id: 4001
+  name: Create aggregate of vlans

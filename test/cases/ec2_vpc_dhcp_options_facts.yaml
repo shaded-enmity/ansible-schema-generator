@@ -1,0 +1,18 @@
+- ec2_vpc_dhcp_options_facts:
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about all DHCP Option sets for an account or profile
+  register: dhcp_facts
+- ec2_vpc_dhcp_options_facts:
+    filters:
+      tag:Name: abc-123
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about a filtered list of DHCP Option sets
+  register: dhcp_facts
+- ec2_vpc_dhcp_options_facts:
+    DhcpOptionsIds: dopt-123fece2
+    profile: production
+    region: ap-southeast-2
+  name: Gather facts about a specific DHCP Option set by DhcpOptionId
+  register: dhcp_facts

@@ -1,0 +1,36 @@
+- delegate_to: localhost
+  name: Gather facts about all Data Centers
+  oneview_datacenter_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    password: my_password
+    username: administrator
+- name: Gather paginated, filtered and sorted facts about Data Centers
+  oneview_datacenter_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    params:
+      count: 3
+      filter: state=Unmanaged
+      sort: name:descending
+      start: 0
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about a Data Center by name
+  oneview_datacenter_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: My Data Center
+    password: my_password
+    username: administrator
+- delegate_to: localhost
+  name: Gather facts about the Data Center Visual Content
+  oneview_datacenter_facts:
+    api_version: 500
+    hostname: 172.16.101.48
+    name: My Data Center
+    options:
+    - visualContent
+    password: my_password
+    username: administrator

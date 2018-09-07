@@ -1,0 +1,21 @@
+- digital_ocean_tag:
+    name: production
+    state: present
+  name: create a tag
+- digital_ocean_tag:
+    name: '{{ item }}'
+    resource_id: YYY
+    state: present
+  name: tag a resource; creating the tag if it does not exists
+  with_items:
+  - staging
+  - dbserver
+- digital_ocean_tag:
+    name: staging
+    resource_id: YYY
+    state: absent
+  name: untag a resource
+- digital_ocean_tag:
+    name: dbserver
+    state: absent
+  name: remove a tag

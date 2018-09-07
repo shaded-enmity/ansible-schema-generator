@@ -1,0 +1,40 @@
+- name: ensure the group Cow exists using sAMAccountName
+  win_domain_group:
+    name: Cow
+    path: OU=groups,DC=ansible,DC=local
+    scope: global
+- name: ensure the group Cow does't exist using the Distinguished Name
+  win_domain_group:
+    name: CN=Cow,OU=groups,DC=ansible,DC=local
+    state: absent
+- name: delete group ignoring the protection flag
+  win_domain_group:
+    ignore_protection: true
+    name: Cow
+    state: absent
+- name: create group with delete protection enabled and custom attributes
+  win_domain_group:
+    attributes:
+      mail: helpdesk@ansible.com
+      wWWHomePage: www.ansible.com
+    category: security
+    ignore_protection: true
+    name: Ansible Users
+    scope: domainlocal
+- name: change the OU of a group using the SID and ignore the protection flag
+  win_domain_group:
+    ignore_protection: true
+    name: S-1-5-21-2171456218-3732823212-122182344-1189
+    organizational_unit: OU=groups,DC=ansible,DC=local
+    scope: global
+- name: add managed_by user
+  win_domain_group:
+    managed_by: Domain Admins
+    name: Group Name Here
+- name: add group and specify the AD domain services to use for the create
+  win_domain_group:
+    domain_password: Password01!
+    domain_server: corp-DC12.corp.ansible.com
+    domain_username: user@CORP.ANSIBLE.COM
+    name: Test Group
+    scope: domainlocal

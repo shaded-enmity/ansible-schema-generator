@@ -1,0 +1,17 @@
+- jabber:
+    msg: Ansible task finished
+    password: secret
+    to: friend@example.net
+    user: mybot@example.net
+- jabber:
+    msg: Ansible task finished
+    password: secret
+    to: mychaps@conference.example.net/ansiblebot
+    user: mybot@example.net
+- jabber:
+    host: talk.example.net
+    msg: Ansible task finished
+    password: secret
+    port: 5223
+    to: mychaps@example.net
+    user: mybot@example.net

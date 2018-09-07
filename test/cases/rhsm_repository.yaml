@@ -1,0 +1,17 @@
+- name: Enable a RHSM repository
+  rhsm_repository:
+    name: rhel-7-server-rpms
+- name: Disable all RHSM repositories
+  rhsm_repository:
+    name: '*'
+    state: disabled
+- name: Enable all repositories starting with rhel-6-server
+  rhsm_repository:
+    name: rhel-6-server*
+    state: enabled
+- name: Disable all repositories except rhel-7-server-rpms
+  rhsm_repository:
+    name: '{{ item }}'
+    state: disabled
+  with_items: '{{ rhsm_repository.repositories | map(attribute=''id'') | difference([''rhel-7-server-rpms''])
+    }}'

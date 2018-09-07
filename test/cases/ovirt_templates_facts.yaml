@@ -1,0 +1,2 @@
+- ovirt_templates_facts:
+    pattern: name=centos* and datacenter=west

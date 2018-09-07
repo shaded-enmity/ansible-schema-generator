@@ -1,0 +1,38 @@
+- apk:
+    name: foo
+    update_cache: true
+- apk:
+    name: foo,bar
+    update_cache: true
+- apk:
+    name: foo
+    state: absent
+- apk:
+    name: foo,bar
+    state: absent
+- apk:
+    name: foo
+    state: present
+- apk:
+    name: foo,bar
+    state: present
+- apk:
+    name: foo
+    state: latest
+    update_cache: true
+- apk:
+    name: foo,bar
+    state: latest
+    update_cache: true
+- apk:
+    upgrade: true
+- apk:
+    available: true
+    upgrade: true
+- apk:
+    update_cache: true
+- apk:
+    name: foo
+    repository: http://dl-3.alpinelinux.org/alpine/edge/main
+    state: latest
+    update_cache: true

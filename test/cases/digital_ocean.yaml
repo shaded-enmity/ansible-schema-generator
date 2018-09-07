@@ -1,0 +1,34 @@
+- digital_ocean:
+    api_token: XXX
+    command: ssh
+    name: my_ssh_key
+    ssh_pub_key: ssh-rsa AAAA...
+    state: present
+- digital_ocean:
+    api_token: XXX
+    command: droplet
+    image_id: fedora-19-x64
+    name: mydroplet
+    region_id: ams2
+    size_id: 2gb
+    state: present
+    wait_timeout: 500
+  register: my_droplet
+- digital_ocean:
+    api_token: XXX
+    command: droplet
+    id: 123
+    image_id: fedora-19-x64
+    name: mydroplet
+    region_id: ams2
+    size_id: 2gb
+    state: present
+    wait_timeout: 500
+- digital_ocean:
+    api_token: XXX
+    image_id: fedora-19-x64
+    name: mydroplet
+    region_id: ams2
+    size_id: 2gb
+    ssh_key_ids: 123,456
+    state: present

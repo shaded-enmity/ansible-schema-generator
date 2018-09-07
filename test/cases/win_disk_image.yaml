@@ -1,0 +1,7 @@
+- register: disk_image_out
+  win_disk_image:
+    image_path: C:\install.iso
+    state: present
+- win_disk_image:
+    image_path: C:\install.iso
+    state: absent

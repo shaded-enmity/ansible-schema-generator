@@ -1,0 +1,21 @@
+- bigip_policy:
+    name: Policy-Foo
+    state: present
+  delegate_to: localhost
+  name: Create policy which is immediately published
+- bigip_policy:
+    name: Policy-Bar
+    rules:
+    - rule1
+    - rule2
+    - rule3
+    state: present
+  name: Create policy specify default rules - Immediately published
+- bigip_policy:
+    name: Policy-Baz
+    rules:
+    - rule1
+    - rule2
+    - rule3
+    state: draft
+  name: Create policy specify default rules - Left in a draft

@@ -1,0 +1,32 @@
+- name: Create a new file system called myfs in pool rpool with the setuid property
+    turned off
+  zfs:
+    extra_zfs_properties:
+      setuid: false
+    name: rpool/myfs
+    state: present
+- name: Create a new volume called myvol in pool rpool.
+  zfs:
+    extra_zfs_properties:
+      volsize: 10M
+    name: rpool/myvol
+    state: present
+- name: Create a snapshot of rpool/myfs file system.
+  zfs:
+    name: rpool/myfs@mysnapshot
+    state: present
+- name: Create a new file system called myfs2 with snapdir enabled
+  zfs:
+    extra_zfs_properties:
+      snapdir: enabled
+    name: rpool/myfs2
+    state: present
+- name: Create a new file system by cloning a snapshot
+  zfs:
+    name: rpool/cloned_fs
+    origin: rpool/myfs@mysnapshot
+    state: present
+- name: Destroy a filesystem
+  zfs:
+    name: rpool/myfs
+    state: absent

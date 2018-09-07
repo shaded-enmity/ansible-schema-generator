@@ -1,0 +1,22 @@
+- name: search for rules with tcp/3306
+  panos_query_rules:
+    destination_port: '3306'
+    destination_zone: DevVPC
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    protocol: tcp
+    source_zone: DevNet
+    username: '{{ username }}'
+- name: search devicegroup for inbound rules to dmz host
+  panos_query_rules:
+    address: DeviceGroupA
+    api_key: '{{ api_key }}'
+    destination_ip: 10.100.42.18
+    destination_zone: DMZ
+    ip_address: '{{ ip_address }}'
+- name: search for rules containing a specified rule tag
+  panos_query_rules:
+    ip_address: '{{ ip_address }}'
+    password: '{{ password }}'
+    tag_name: ProjectX
+    username: '{{ username }}'

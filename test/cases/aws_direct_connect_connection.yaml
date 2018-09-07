@@ -1,0 +1,21 @@
+- aws_direct_connect_connection:
+    bandwidth: 1Gbps
+    link_aggregation_group: dxlag-xxxxxxxx
+    location: EqDC2
+    name: ansible-test-connection
+    state: present
+  register: dc
+- aws_direct_connect_connection:
+    bandwidth: 1Gbps
+    connection_id: dc.connection.connection_id
+    location: EqDC2
+    state: present
+- aws_direct_connect_connection:
+    bandwidth: 10Gbps
+    forced_update: true
+    location: EqDC2
+    name: ansible-test-connection
+    state: present
+- aws_direct_connect_connection:
+    name: ansible-test-connection
+    state: absent

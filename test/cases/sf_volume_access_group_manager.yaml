@@ -1,0 +1,31 @@
+- name: Create Volume Access Group
+  sf_volume_access_group_manager:
+    hostname: '{{ solidfire_hostname }}'
+    name: AnsibleVolumeAccessGroup
+    password: '{{ solidfire_password }}'
+    state: present
+    username: '{{ solidfire_username }}'
+    volumes:
+    - 7
+    - 8
+- name: Modify Volume Access Group
+  sf_volume_access_group_manager:
+    attributes:
+      virtual_network_id: 12345
+      volumes:
+      - 1
+      - 2
+      - 3
+    hostname: '{{ solidfire_hostname }}'
+    name: AnsibleVolumeAccessGroup-Renamed
+    password: '{{ solidfire_password }}'
+    state: present
+    username: '{{ solidfire_username }}'
+    volume_access_group_id: 1
+- name: Delete Volume Access Group
+  sf_volume_access_group_manager:
+    hostname: '{{ solidfire_hostname }}'
+    password: '{{ solidfire_password }}'
+    state: absent
+    username: '{{ solidfire_username }}'
+    volume_access_group_id: 1

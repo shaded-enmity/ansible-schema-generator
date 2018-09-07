@@ -1,0 +1,16 @@
+- ipa_sudocmdgroup:
+    description: Group of important commands
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: group01
+    sudocmd:
+    - su
+  name: Ensure sudo command group exists
+- ipa_sudocmdgroup:
+    ipa_host: ipa.example.com
+    ipa_pass: topsecret
+    ipa_user: admin
+    name: group01
+    state: absent
+  name: Ensure sudo command group does not exist

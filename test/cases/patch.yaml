@@ -1,0 +1,9 @@
+- name: Apply patch to one file
+  patch:
+    dest: /var/www/index.html
+    src: /tmp/index.html.patch
+- name: Apply patch to multiple files under basedir
+  patch:
+    basedir: /var/www
+    src: /tmp/customize.patch
+    strip: 1

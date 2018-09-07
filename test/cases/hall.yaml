@@ -1,0 +1,15 @@
+- delegate_to: loclahost
+  hall:
+    msg: Created virtual host file on {{ inventory_hostname }}
+    room_token: <hall room integration token>
+    title: Nginx
+  name: Send Hall notifiation
+- delegate_to: loclahost
+  hall:
+    msg: Created instance {{ item.id }} of type {{ item.instance_type }}.\nInstance
+      can be reached at {{ item.public_ip }} in the {{ item.region }} region.
+    room_token: <hall room integration token>
+    title: Server Creation
+  name: Send Hall notification if EC2 servers were created.
+  when: ec2.instances|length > 0
+  with_items: '{{ ec2.instances }}'

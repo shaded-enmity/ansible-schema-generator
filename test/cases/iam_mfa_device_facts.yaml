@@ -1,0 +1,2 @@
+- iam_mfa_device_facts: null
+  register: mfa_devices

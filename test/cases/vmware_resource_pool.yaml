@@ -1,0 +1,17 @@
+- name: Add resource pool to vCenter
+  vmware_resource_pool:
+    cluster: cluster
+    cpu_expandable_reservations: true
+    cpu_limit: -1
+    cpu_reservation: 0
+    cpu_shares: normal
+    datacenter: datacenter
+    hostname: vcsa_host
+    mem_expandable_reservations: true
+    mem_limit: -1
+    mem_reservation: 0
+    mem_shares: normal
+    password: vcsa_pass
+    resource_pool: resource_pool
+    state: present
+    username: vcsa_user

@@ -1,0 +1,3 @@
+- ovirt_quotas_facts:
+    data_center: Default
+    name: myquota

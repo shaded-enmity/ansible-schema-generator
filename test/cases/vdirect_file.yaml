@@ -1,0 +1,6 @@
+- name: vdirect_file
+  vdirect_file:
+    file_name: /tmp/get_vlans.vm
+    vdirect_ip: 10.10.10.10
+    vdirect_password: radware
+    vdirect_user: vDirect

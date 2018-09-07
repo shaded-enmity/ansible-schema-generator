@@ -1,0 +1,3 @@
+- win_domain:
+    dns_domain_name: ansible.vagrant
+    safe_mode_password: password123!

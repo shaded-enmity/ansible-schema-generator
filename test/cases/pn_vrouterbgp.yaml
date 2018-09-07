@@ -1,0 +1,10 @@
+- name: add vrouter-bgp
+  pn_vrouterbgp:
+    pn_neighbor: 104.104.104.1
+    pn_remote_as: 1800
+    pn_vrouter_name: ansible-vrouter
+    state: present
+- name: remove vrouter-bgp
+  pn_vrouterbgp:
+    pn_name: ansible-vrouter
+    state: absent

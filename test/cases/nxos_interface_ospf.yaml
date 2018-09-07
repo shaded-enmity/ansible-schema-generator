@@ -1,0 +1,5 @@
+- nxos_interface_ospf:
+    area: 1
+    cost: default
+    interface: ethernet1/32
+    ospf: 1

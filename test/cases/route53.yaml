@@ -1,0 +1,84 @@
+- route53:
+    command: create
+    record: new.foo.com
+    ttl: 7200
+    type: A
+    value: 1.1.1.1,2.2.2.2,3.3.3.3
+    wait: true
+    zone: foo.com
+- register: rec
+  route53:
+    command: get
+    record: new.foo.com
+    type: A
+    zone: foo.com
+- route53:
+    command: delete
+    record: '{{ rec.set.record }}'
+    ttl: '{{ rec.set.ttl }}'
+    type: '{{ rec.set.type }}'
+    value: '{{ rec.set.value }}'
+    zone: foo.com
+- route53:
+    command: create
+    record: localhost.foo.com
+    ttl: '7200'
+    type: AAAA
+    value: ::1
+    zone: foo.com
+- route53:
+    command: create
+    record: _example-service._tcp.foo.com
+    type: SRV
+    value:
+    - 0 0 22222 host1.foo.com
+    - 0 0 22222 host2.foo.com
+    zone: foo.com
+- route53:
+    command: create
+    record: localhost.foo.com
+    ttl: '7200'
+    type: TXT
+    value: '"bar"'
+    zone: foo.com
+- register: rec
+  route53:
+    command: get
+    record: elb.foo.com
+    type: A
+    zone: foo.com
+- route53:
+    alias: true
+    alias_hosted_zone_id: '{{ rec.set.alias_hosted_zone_id }}'
+    command: delete
+    record: '{{ rec.set.record }}'
+    ttl: '{{ rec.set.ttl }}'
+    type: '{{ rec.set.type }}'
+    value: '{{ rec.set.value }}'
+    zone: foo.com
+- route53:
+    command: create
+    hosted_zone_id: Z2AABBCCDDEEFF
+    record: localhost.foo.com
+    ttl: '7200'
+    type: AAAA
+    value: ::1
+    zone: foo.com
+- route53:
+    command: create
+    hosted_zone_id: Z2AABBCCDDEEFF
+    record: localhost.foo.com
+    ttl: '7200'
+    type: AAAA
+    value: ::1
+    zone: foo.com
+- route53:
+    command: create
+    health_check: d994b780-3150-49fd-9205-356abdd42e75
+    identifier: host1@www
+    record: www.foo.com
+    ttl: 30
+    type: CNAME
+    value: host1.foo.com
+    weight: 100
+    zone: foo.com

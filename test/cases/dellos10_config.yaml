@@ -1,0 +1,29 @@
+- dellos10_config:
+    lines:
+    - hostname {{ inventory_hostname }}
+    provider: '{{ cli }}'
+- dellos10_config:
+    before:
+    - no ip access-list test
+    lines:
+    - 10 permit ip host 1.1.1.1 any log
+    - 20 permit ip host 2.2.2.2 any log
+    - 30 permit ip host 3.3.3.3 any log
+    - 40 permit ip host 4.4.4.4 any log
+    - 50 permit ip host 5.5.5.5 any log
+    match: exact
+    parents:
+    - ip access-list test
+    provider: '{{ cli }}'
+- dellos10_config:
+    before:
+    - no ip access-list test
+    lines:
+    - 10 permit ip host 1.1.1.1 any log
+    - 20 permit ip host 2.2.2.2 any log
+    - 30 permit ip host 3.3.3.3 any log
+    - 40 permit ip host 4.4.4.4 any log
+    parents:
+    - ip access-list test
+    provider: '{{ cli }}'
+    replace: block

@@ -1,0 +1,2 @@
+- ovirt_group_facts:
+    pattern: name=admin*

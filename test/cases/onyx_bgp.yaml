@@ -1,0 +1,10 @@
+- name: configure bgp
+  onyx_bgp:
+    as_number: 320
+    neighbors:
+    - neighbor: 10.3.3.4
+      remote_as: 321
+    networks:
+    - 172.16.1.0/24
+    router_id: 10.3.3.3
+    state: present

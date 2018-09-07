@@ -1,0 +1,52 @@
+- ec2_eni:
+    private_ip_address: 172.31.0.20
+    state: present
+    subnet_id: subnet-xxxxxxxx
+- ec2_eni:
+    device_index: 1
+    instance_id: i-xxxxxxx
+    private_ip_address: 172.31.0.20
+    state: present
+    subnet_id: subnet-xxxxxxxx
+- ec2_eni:
+    secondary_private_ip_address_count: 2
+    state: present
+    subnet_id: subnet-xxxxxxxx
+- ec2_eni:
+    eni_id: eni-yyyyyyyy
+    secondary_private_ip_addresses:
+    - 172.16.1.1
+    state: present
+    subnet_id: subnet-xxxxxxxx
+- ec2_eni:
+    eni_id: eni-yyyyyyyy
+    secondary_private_ip_addresses:
+    - null
+    state: present
+    subnet_id: subnet-xxxxxxxx
+- ec2_eni:
+    eni_id: eni-xxxxxxx
+    force_detach: true
+    state: absent
+- ec2_eni:
+    description: My new description
+    eni_id: eni-xxxxxxx
+    state: present
+- ec2_eni:
+    description: My new description
+    private_ip_address: 172.16.1.1
+    subnet_id: subnet-xxxxxxx
+- ec2_eni:
+    eni_id: eni-xxxxxxx
+    instance_id: None
+    state: present
+- ec2_eni:
+    device_index: 1
+    instance_id: i-xxxxxxx
+    private_ip_address: 172.31.0.20
+    state: present
+    subnet_id: subnet-xxxxxxxx
+  register: eni
+- ec2_eni:
+    delete_on_termination: true
+    eni_id: '{{ eni.interface.id }}'

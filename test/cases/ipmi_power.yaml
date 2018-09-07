@@ -1,0 +1,5 @@
+- ipmi_power:
+    name: test.testdomain.com
+    password: password
+    state: true
+    user: admin

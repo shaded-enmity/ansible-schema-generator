@@ -1,0 +1,9 @@
+- ovirt_mac_pools:
+    allow_duplicates: false
+    name: mymacpool
+    ranges:
+    - 00:1a:4a:16:01:51,00:1a:4a:16:01:61
+    - 00:1a:4a:16:02:51,00:1a:4a:16:02:61
+- ovirt_mac_pools:
+    name: mymacpool
+    state: absent

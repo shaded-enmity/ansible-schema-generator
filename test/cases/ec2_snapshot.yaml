@@ -1,0 +1,13 @@
+- ec2_snapshot:
+    description: snapshot of /data from DB123 taken 2013/11/28 12:18:32
+    volume_id: vol-abcdef12
+- ec2_snapshot:
+    description: snapshot of /data from DB123 taken 2013/11/28 12:18:32
+    device_name: /dev/sdb1
+    instance_id: i-12345678
+- ec2_snapshot:
+    device_name: /dev/sdb1
+    instance_id: i-12345678
+    snapshot_tags:
+      frequency: hourly
+      source: /data

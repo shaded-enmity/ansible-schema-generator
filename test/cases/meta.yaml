@@ -1,0 +1,4 @@
+- meta: flush_handlers
+- meta: refresh_inventory
+- meta: clear_facts
+- meta: clear_host_errors

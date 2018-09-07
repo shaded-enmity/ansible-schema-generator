@@ -1,0 +1,15 @@
+- name: configure the pre-login banner
+  vyos_banner:
+    banner: pre-login
+    state: present
+    text: 'this is my pre-login banner
+
+      that contains a multiline
+
+      string
+
+      '
+- name: remove the post-login banner
+  vyos_banner:
+    banner: post-login
+    state: absent

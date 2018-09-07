@@ -1,0 +1,20 @@
+- iosxr_banner:
+    banner: login
+    state: present
+    text: 'this is my login banner
+
+      that contains a multiline
+
+      string
+
+      '
+  name: configure the login banner
+- iosxr_banner:
+    banner: motd
+    state: absent
+  name: remove the motd banner
+- iosxr_banner:
+    banner: motd
+    state: present
+    text: '{{ lookup(''file'', ''./config_partial/raw_banner.cfg'') }}'
+  name: Configure banner from file

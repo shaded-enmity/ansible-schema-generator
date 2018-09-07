@@ -1,0 +1,11 @@
+- junos_scp:
+    src: test.tgz
+  name: upload local file to home directory on remote device
+- junos_scp:
+    dest: /tmp/
+    src: test.tgz
+  name: upload local file to tmp directory on remote device
+- junos_scp:
+    remote_src: true
+    src: test.tgz
+  name: download file from remote device

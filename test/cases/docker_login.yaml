@@ -1,0 +1,17 @@
+- docker_login:
+    email: docker@docker.io
+    password: rekcod
+    username: docker
+  name: Log into DockerHub
+- docker_login:
+    password: secrets3
+    reauthorize: true
+    registry: your.private.registry.io
+    username: yourself
+  name: Log into private registry and force re-authorization
+- docker_login:
+    config_path: /tmp/.mydockercfg
+    email: docker@docker.io
+    password: rekcod
+    username: docker
+  name: Log into DockerHub using a custom config file

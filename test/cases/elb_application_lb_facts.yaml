@@ -1,0 +1,8 @@
+- elb_application_lb_facts: null
+- elb_application_lb_facts:
+    load_balancer_arns:
+    - arn:aws:elasticloadbalancing:ap-southeast-2:001122334455:loadbalancer/app/my-elb/aabbccddeeff
+- elb_application_lb_facts:
+    names:
+    - elb1
+    - elb2

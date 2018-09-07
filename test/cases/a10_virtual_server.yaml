@@ -1,0 +1,17 @@
+- a10_virtual_server:
+    host: a10.mydomain.com
+    partition: mypartition
+    password: mypassword
+    username: myadmin
+    virtual_server: vserver1
+    virtual_server_ip: 1.1.1.1
+    virtual_server_ports:
+    - port: 80
+      protocol: TCP
+      service_group: sg-80-tcp
+    - port: 443
+      protocol: HTTPS
+      service_group: sg-443-https
+    - port: 8080
+      protocol: http
+      status: disabled

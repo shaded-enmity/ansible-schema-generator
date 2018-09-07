@@ -1,0 +1,13 @@
+- ecs_cluster:
+    name: default
+    state: present
+- ecs_cluster:
+    name: default
+    state: absent
+- ecs_cluster:
+    delay: 10
+    name: '{{ new_cluster }}'
+    repeat: 10
+    state: has_instances
+  name: Wait for register
+  register: task_output

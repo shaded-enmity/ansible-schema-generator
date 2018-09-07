@@ -1,0 +1,17 @@
+- bigip_ssl_key:
+    content: '{{ lookup(''file'', ''/path/to/key.key'') }}'
+    name: key-name
+    password: secret
+    server: lb.mydomain.com
+    state: present
+    user: admin
+  delegate_to: localhost
+  name: Use a file lookup to import key
+- bigip_ssl_key:
+    name: key-name
+    password: secret
+    server: lb.mydomain.com
+    state: absent
+    user: admin
+  delegate_to: localhost
+  name: Delete key

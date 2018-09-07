@@ -1,0 +1,14 @@
+- stackdriver:
+    deployed_by: leeroyjenkins
+    deployed_to: production
+    event: deploy
+    key: AAAAAA
+    repository: MyWebApp
+    revision_id: abcd123
+- stackdriver:
+    annotated_by: leeroyjenkins
+    event: annotation
+    instance_id: i-abcd1234
+    key: AAAAAA
+    level: WARN
+    msg: Greetings from Ansible

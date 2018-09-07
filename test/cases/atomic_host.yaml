@@ -1,0 +1,6 @@
+- atomic_host:
+    revision: latest
+  name: Upgrade the atomic host platform to the latest version (atomic host upgrade)
+- atomic_host:
+    revision: 23.13
+  name: Deploy a specific revision as the atomic host (atomic host deploy 23.130)

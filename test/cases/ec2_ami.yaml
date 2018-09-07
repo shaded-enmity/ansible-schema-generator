@@ -1,0 +1,78 @@
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    instance_id: i-xxxxxx
+    name: newtest
+    tags:
+      Name: newtest
+      Service: TestService
+    wait: true
+  register: instance
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    instance_id: i-xxxxxx
+    name: newtest
+    region: xxxxxx
+    wait: false
+  register: instance
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    device_mapping:
+    - delete_on_termination: true
+      device_name: /dev/sda1
+      size: XXX
+      volume_type: gp2
+    - delete_on_termination: false
+      device_name: /dev/sdb
+      size: YYY
+      volume_type: gp2
+    instance_id: i-xxxxxx
+    name: newtest
+  register: instance
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    device_mapping:
+    - delete_on_termination: true
+      device_name: /dev/sda1
+      size: XXX
+      volume_type: gp2
+    - device_name: /dev/sdb
+      no_device: true
+    instance_id: i-xxxxxx
+    name: newtest
+  register: instance
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    delete_snapshot: false
+    image_id: '{{ instance.image_id }}'
+    region: xxxxxx
+    state: absent
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    delete_snapshot: true
+    image_id: '{{ instance.image_id }}'
+    region: xxxxxx
+    state: absent
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    image_id: '{{ instance.image_id }}'
+    launch_permissions:
+      group_names:
+      - all
+    region: xxxxxx
+    state: present
+- ec2_ami:
+    aws_access_key: xxxxxxxxxxxxxxxxxxxxxxx
+    aws_secret_key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    image_id: '{{ instance.image_id }}'
+    launch_permissions:
+      user_ids:
+      - '123456789012'
+    region: xxxxxx
+    state: present

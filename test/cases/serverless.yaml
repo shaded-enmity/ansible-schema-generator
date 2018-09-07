@@ -1,0 +1,18 @@
+- serverless:
+    service_path: '{{ project_dir }}'
+    state: present
+- serverless:
+    functions:
+    - my_func_one
+    - my_func_two
+    service_path: '{{ project_dir }}'
+- register: sls
+  serverless:
+    region: us-east-1
+    service_path: '{{ project_dir }}'
+    stage: dev
+- serverless:
+    region: us-east-1
+    serverless_bin_path: node_modules/.bin/serverless
+    service_path: '{{ project_dir }}'
+    stage: dev

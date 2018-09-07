@@ -1,0 +1,12 @@
+- nxos_bgp_neighbor:
+    asn: 65535
+    description: just a description
+    host: '{{ inventory_hostname }}'
+    local_as: 20
+    neighbor: 3.3.3.3
+    password: '{{ pwd }}'
+    remote_as: 30
+    shutdown: default
+    state: present
+    update_source: Ethernet1/3
+    username: '{{ un }}'

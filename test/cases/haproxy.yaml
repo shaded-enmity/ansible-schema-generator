@@ -1,0 +1,64 @@
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    state: disabled
+- haproxy:
+    host: '{{ inventory_hostname }}'
+    state: disabled
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    socket: /var/run/haproxy.sock
+    state: disabled
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    socket: /var/run/haproxy.sock
+    state: disabled
+    wait: true
+- haproxy:
+    backend: www
+    drain: true
+    host: '{{ inventory_hostname }}'
+    socket: /var/run/haproxy.sock
+    state: disabled
+    wait: true
+    wait_interval: 1
+    wait_retries: 60
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    shutdown_sessions: true
+    socket: /var/run/haproxy.sock
+    state: disabled
+- haproxy:
+    fail_on_not_found: true
+    host: '{{ inventory_hostname }}'
+    state: disabled
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    state: enabled
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    state: enabled
+    wait: true
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    state: enabled
+    wait: true
+    wait_interval: 5
+    wait_retries: 10
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    socket: /var/run/haproxy.sock
+    state: enabled
+    weight: 10
+- haproxy:
+    backend: www
+    host: '{{ inventory_hostname }}'
+    socket: /var/run/haproxy.sock
+    state: drain

@@ -1,0 +1,6 @@
+- digital_ocean_sshkey:
+    api_key: XXX
+    client_id: XXX
+    name: my_ssh_key
+    ssh_pub_key: ssh-rsa AAAA...
+    state: present

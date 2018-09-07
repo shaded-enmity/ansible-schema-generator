@@ -1,0 +1,14 @@
+- oneandone_public_ip:
+    auth_token: oneandone_private_api_key
+    datacenter: US
+    reverse_dns: example.com
+    type: IPV4
+- oneandone_public_ip:
+    auth_token: oneandone_private_api_key
+    public_ip_id: public ip id
+    reverse_dns: secondexample.com
+    state: update
+- oneandone_public_ip:
+    auth_token: oneandone_private_api_key
+    public_ip_id: public ip id
+    state: absent
