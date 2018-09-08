@@ -15,5 +15,5 @@ export ARGSPEC_PATH=ansible-stable/test/sanity/validate-modules/module_args.py
 ./generate.sh
 
 cd validator/
-npm install
+yarn install
 node index.js

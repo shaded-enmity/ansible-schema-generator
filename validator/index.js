@@ -2,9 +2,11 @@ const fs = require('fs');
 const tv4 = require('tv4');
 const yaml = require('js-yaml');
 
+
 let schema = JSON.parse(
   fs.readFileSync('../generated/ansible-stable-2.5.json')
 );
+
 
 /* Process each case in `files` relative to `base` directory */
 const caseProcessor = (base, files) => { return (file, n) => {
@@ -18,15 +20,18 @@ const caseProcessor = (base, files) => { return (file, n) => {
      throw tv4.error
    }
 
-   console.log('['+(n+1)+'/'+files.length+'] Validating: '+ file);
+   console.log('  ['+(n+1)+'/'+files.length+'] Validating: '+ file);
 }}
 
+
 /* Validate all test cases in a directory */
-const validateDirectory = dir => {
+const validateDirectory = (dir, title) => {
   fs.readdir(dir, (err, files) => {
+    console.log('- ' + title);
     files.forEach(caseProcessor(dir, files));
   })
 }
 
-validateDirectory('../test/cases/');
-validateDirectory('../test/regressions/');
+
+validateDirectory('../test/cases/', 'Module test cases');
+validateDirectory('../test/regressions/', 'Regression test cases');
