@@ -499,8 +499,10 @@ def _transform_options_to_schemas(options, deferred, version, argspec=None, repo
         if _check_keys(FREE_FORM_KEYS, data):
             if title in COMMAND_MODULES:
                 deferred.append((filename, contents, True))
+                continue
             elif title in META_MODULES:
                 deferred.append((filename, contents, False))
+                continue
             else:
                 logger.warning(
                     'Ignoring non-command free form module {}'.format(filename))
@@ -513,6 +515,12 @@ def _transform_options_to_schemas(options, deferred, version, argspec=None, repo
             spec = {}
 
         arguments = spec.get('argument_spec', {})
+        if title != 'async_status':
+            if 'jid' in arguments and 'mode' in arguments and len(arguments.keys()) == 2:
+                del arguments['jid']
+                del arguments['mode']
+
+        keys = arguments.keys() or data.keys()
 
         # What are the other interesting keys that we can use here?
         #
@@ -520,7 +528,7 @@ def _transform_options_to_schemas(options, deferred, version, argspec=None, repo
         # mutually_exclusive = spec.get('mutually_exclusive', [])
         #
         properties = PropertyList()
-        for key in arguments.keys():
+        for key in keys:
             st_desc = arguments.get(key, {})
             value = data.get(key, None)
 
@@ -561,6 +569,7 @@ def _transform_options_to_schemas(options, deferred, version, argspec=None, repo
             properties.append(
                 Property(key, descriptor['description'], typ, required, list(aliases) if aliases else [], list(choices) if choices else [])
             )
+
 
         description = contents.get('description', '')
         if isinstance(description, list):
