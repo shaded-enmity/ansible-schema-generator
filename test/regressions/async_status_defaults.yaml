@@ -1,0 +1,10 @@
+- debug:
+    msg: This is a debug message
+
+- debug:
+    var: result
+    verbosity: 1
+
+- set_fact:
+    fact: data
+    another: more
