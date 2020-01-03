@@ -202,6 +202,7 @@ class PropertyList(list):
                 if p['choices']:
                     if _are_choices_clean(p['choices']):
                         base['enum'] = p['choices']
+                        base = {'anyOf': [base, {'type': 'string'}]}
                     else:
                         logger.warning('Passing `choices`: {} via description'.format(p['choices']))
                         base['description'] += '\n\nPossible choices:\n' + '\n'.join(map(str, p['choices']))
@@ -365,6 +366,13 @@ def _check_keys(key_set_list, obj):
     return False
 
 
+def _get_top_level_functions(tree):
+    ''' Get a list of top level function names '''
+    for node in ast.iter_child_nodes(tree):
+        if isinstance(node, ast.FunctionDef):
+            yield node.name
+
+
 def _validate_docs_argument_spec(items, reporter):
     ''' Yield one item for each tuple in `items` and report
         in case of inequality between A/B
@@ -479,8 +487,8 @@ def _tranform_deferred_schemas(options, version, argspec=None):
 
 def _transform_options_to_schemas(options, deferred, version, argspec=None, report=None):
     ''' Transform Ansible `options` specification into JSON descriptors '''
-    schemas = {'name': {'type': 'string'}}
-    for (filename, contents) in options:
+    schemas = {'name': {'type': 'string'}, 'blocks': {'type': {'$ref': '#/definitions/ansible_block'}}}
+    for (filename, contents, tree) in options:
         if _check_keys(IGNORE_KEYS, contents):
             logger.debug('Ignoring source file: {}'.format(filename))
             continue
@@ -508,11 +516,14 @@ def _transform_options_to_schemas(options, deferred, version, argspec=None, repo
                     'Ignoring non-command free form module {}'.format(filename))
                 continue
 
-        try:
-            spec = argspec(filename)
-        except:
-            report.append({'kind': 'argspec_fail', 'file': filename})
-            spec = {}
+        spec = {}
+        if 'main' in set(_get_top_level_functions(tree)):
+            # Perform argspec inspection only on things that actually implement
+            # the main() function, otherwise it returns total rubish
+            try:
+                spec = argspec(filename)
+            except:
+                report.append({'kind': 'argspec_fail', 'file': filename})
 
         arguments = spec.get('argument_spec', {})
         if title != 'async_status':
@@ -640,7 +651,7 @@ def main():
     for filename, module in parsed_files.iteritems():
         variable_value = _find_documentation_variable(filename, module)
         if variable_value:
-            collected_data.append((filename, variable_value))
+            collected_data.append((filename, variable_value, module))
 
     logger.debug('Transforming {} documents'.format(len(collected_data)))
 
@@ -655,6 +666,7 @@ def main():
     transformed = _transform_options_to_schemas(
         collected_data, deferred, arguments.version, argspec, reports
     )
+    #sys.exit(0)
 
     if arguments.report_file:
         with open(arguments.report_file, 'w') as rf:
@@ -662,16 +674,48 @@ def main():
     #sys.exit(0)
 
     logger.debug('Handing {} deferred schemas'.format(len(deferred)))
+
+    block_schema = {
+        'type': 'object',
+        'properties': {
+            'block':  {'type': 'array', 'items': {'$ref': '#/definitions/ansible_role_block'}},
+            'always': {'type': 'array', 'items': {'$ref': '#/definitions/ansible_role_block'}},
+            'rescue': {'type': 'array', 'items': {'$ref': '#/definitions/ansible_role_block'}}
+        }
+    }
+
     transformed_deferred = _tranform_deferred_schemas(deferred, arguments.version, argspec)
 
-    combined = {'anyOf': transformed_deferred + [{'type': 'object',
-                                                  'properties': transformed, 'required': ['name']}]}
+    combined = {'anyOf': transformed_deferred + [{'type': 'object', 'properties': transformed}]}
+
+    definitions = get_definitions()
+    definitions['ansible_role_block'] = combined
+    definitions['ansible_block'] = block_schema
+
+    '''
+     Use cases of validation:
+
+     1) roles - where each module is defined as top-level object
+        - module:
+           args
+     2) playbooks - where each module is defined as child of .tasks
+        - something
+          tasks:
+     3) block, always, rescue - 
+    '''
+    validating_schemas = {'anyOf': [
+        {'$ref': '#/definitions/ansible_role_block'},
+        {'type': 'object', 'required': ['tasks'], 'properties': 
+            {'tasks': {'anyOf': [{"type": "array", "items": {'$ref': '#/definitions/ansible_role_block'}}, {'$ref': '#/definitions/ansible_block'}]}}
+        }
+    ]}
+
 
     output_schemas = {'$schema': 'http://json-schema.org/draft-04/schema#',
-                      'type': 'array', 'items': combined,
+                      'type': 'array', 'items': validating_schemas,
                       'description': arguments.description,
                       'title': arguments.title,
-                      'definitions': get_definitions(),
+                      'definitions': definitions,
                       '$contact': {
                           'issues': 'https://github.com/shaded-enmity/ansible-schema-generator/issues',
                           'name': 'Pavel Odvody'
